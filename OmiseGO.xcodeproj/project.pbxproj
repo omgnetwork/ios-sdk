@@ -1,0 +1,572 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442F81F8CA691003DD5BE /* FixtureClient.swift */; };
+		031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FA1F8CA857003DD5BE /* FixtureTestCase.swift */; };
+		031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */; };
+		031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */; };
+		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
+		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
+		03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */; };
+		03BCCCBA1F8B311600F604DB /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 03BCCCAC1F8B311600F604DB /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC41F8B753600F604DB /* APIClient.swift */; };
+		03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */; };
+		03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */; };
+		03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCB1F8B7B5300F604DB /* Object.swift */; };
+		03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCD1F8B800000F604DB /* Tool.swift */; };
+		03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCF1F8B814800F604DB /* APIRequest.swift */; };
+		03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD11F8B817B00F604DB /* Failable.swift */; };
+		03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */; };
+		03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD51F8B81F200F604DB /* APIError.swift */; };
+		03BCCCD81F8C6AE000F604DB /* URLQueryItemEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD71F8C6AE000F604DB /* URLQueryItemEncoder.swift */; };
+		03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */; };
+		03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCDB1F8C79B100F604DB /* ListProperty.swift */; };
+		03F5C0111F8CB1F80079E073 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F5C0101F8CB19D0079E073 /* Fixtures */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03BCCCB41F8B311600F604DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03BCCCA01F8B311600F604DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03BCCCA81F8B311600F604DB;
+			remoteInfo = OmiseGO;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		031442F81F8CA691003DD5BE /* FixtureClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureClient.swift; sourceTree = "<group>"; };
+		031442FA1F8CA857003DD5BE /* FixtureTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTestCase.swift; sourceTree = "<group>"; };
+		031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOTestCase.swift; sourceTree = "<group>"; };
+		031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncoderTest.swift; sourceTree = "<group>"; };
+		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
+		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03BCCCAC1F8B311600F604DB /* OmiseGO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
+		03BCCCAD1F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOTests.swift; sourceTree = "<group>"; };
+		03BCCCB91F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03BCCCC41F8B753600F604DB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		03BCCCCB1F8B7B5300F604DB /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		03BCCCCD1F8B800000F604DB /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		03BCCCCF1F8B814800F604DB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		03BCCCD11F8B817B00F604DB /* Failable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failable.swift; sourceTree = "<group>"; };
+		03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
+		03BCCCD51F8B81F200F604DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		03BCCCD71F8C6AE000F604DB /* URLQueryItemEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryItemEncoder.swift; sourceTree = "<group>"; };
+		03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOJSONResponse.swift; sourceTree = "<group>"; };
+		03BCCCDB1F8C79B100F604DB /* ListProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProperty.swift; sourceTree = "<group>"; };
+		03F5C0101F8CB19D0079E073 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03BCCCA51F8B311600F604DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03BCCCAF1F8B311600F604DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		031443001F8CAA68003DD5BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		031443031F8CAD88003DD5BE /* FixtureTests */ = {
+			isa = PBXGroup;
+			children = (
+				03F5C0101F8CB19D0079E073 /* Fixtures */,
+				031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */,
+			);
+			path = FixtureTests;
+			sourceTree = "<group>";
+		};
+		03BCCC9F1F8B311600F604DB = {
+			isa = PBXGroup;
+			children = (
+				03BCCCAB1F8B311600F604DB /* OmiseGO */,
+				03BCCCB61F8B311600F604DB /* OmiseGOTests */,
+				03BCCCAA1F8B311600F604DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03BCCCAA1F8B311600F604DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03BCCCA91F8B311600F604DB /* OmiseGO.framework */,
+				03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03BCCCAB1F8B311600F604DB /* OmiseGO */ = {
+			isa = PBXGroup;
+			children = (
+				03BCCCCA1F8B7B3B00F604DB /* Models */,
+				03BCCCC31F8B742E00F604DB /* API */,
+				03BCCCAC1F8B311600F604DB /* OmiseGO.h */,
+				03BCCCAD1F8B311600F604DB /* Info.plist */,
+			);
+			path = OmiseGO;
+			sourceTree = "<group>";
+		};
+		03BCCCB61F8B311600F604DB /* OmiseGOTests */ = {
+			isa = PBXGroup;
+			children = (
+				031443031F8CAD88003DD5BE /* FixtureTests */,
+				03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */,
+				03BCCCB91F8B311600F604DB /* Info.plist */,
+				031442F81F8CA691003DD5BE /* FixtureClient.swift */,
+				031442FA1F8CA857003DD5BE /* FixtureTestCase.swift */,
+				031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */,
+				031443001F8CAA68003DD5BE /* Models */,
+			);
+			path = OmiseGOTests;
+			sourceTree = "<group>";
+		};
+		03BCCCC31F8B742E00F604DB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				03BCCCC41F8B753600F604DB /* APIClient.swift */,
+				03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */,
+				03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */,
+				03BCCCCD1F8B800000F604DB /* Tool.swift */,
+				03BCCCCF1F8B814800F604DB /* APIRequest.swift */,
+				03BCCCD51F8B81F200F604DB /* APIError.swift */,
+				03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */,
+				03BCCCD71F8C6AE000F604DB /* URLQueryItemEncoder.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		03BCCCCA1F8B7B3B00F604DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03BCCCCB1F8B7B5300F604DB /* Object.swift */,
+				03BCCCD11F8B817B00F604DB /* Failable.swift */,
+				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
+				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		03BCCCA61F8B311600F604DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03BCCCBA1F8B311600F604DB /* OmiseGO.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		03BCCCA81F8B311600F604DB /* OmiseGO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03BCCCBD1F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGO" */;
+			buildPhases = (
+				03BCCCA41F8B311600F604DB /* Sources */,
+				03BCCCA51F8B311600F604DB /* Frameworks */,
+				03BCCCA61F8B311600F604DB /* Headers */,
+				03BCCCA71F8B311600F604DB /* Resources */,
+				03F5C0121F8CD7080079E073 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OmiseGO;
+			productName = OmiseGO;
+			productReference = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		03BCCCB11F8B311600F604DB /* OmiseGOTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03BCCCC01F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGOTests" */;
+			buildPhases = (
+				03BCCCAE1F8B311600F604DB /* Sources */,
+				03BCCCAF1F8B311600F604DB /* Frameworks */,
+				03BCCCB01F8B311600F604DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03BCCCB51F8B311600F604DB /* PBXTargetDependency */,
+			);
+			name = OmiseGOTests;
+			productName = OmiseGOTests;
+			productReference = 03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03BCCCA01F8B311600F604DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = OmiseGO;
+				TargetAttributes = {
+					03BCCCA81F8B311600F604DB = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
+					};
+					03BCCCB11F8B311600F604DB = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 03BCCCA31F8B311600F604DB /* Build configuration list for PBXProject "OmiseGO" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 03BCCC9F1F8B311600F604DB;
+			productRefGroup = 03BCCCAA1F8B311600F604DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03BCCCA81F8B311600F604DB /* OmiseGO */,
+				03BCCCB11F8B311600F604DB /* OmiseGOTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03BCCCA71F8B311600F604DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03BCCCB01F8B311600F604DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03F5C0111F8CB1F80079E073 /* Fixtures in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03F5C0121F8CD7080079E073 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03BCCCA41F8B311600F604DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */,
+				03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */,
+				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
+				03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */,
+				03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */,
+				03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */,
+				03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */,
+				03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */,
+				03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */,
+				03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */,
+				03BCCCD81F8C6AE000F604DB /* URLQueryItemEncoder.swift in Sources */,
+				03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03BCCCAE1F8B311600F604DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
+				031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */,
+				03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */,
+				031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */,
+				031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */,
+				031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03BCCCB51F8B311600F604DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03BCCCA81F8B311600F604DB /* OmiseGO */;
+			targetProxy = 03BCCCB41F8B311600F604DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		03BCCCBB1F8B311600F604DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		03BCCCBC1F8B311600F604DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		03BCCCBE1F8B311600F604DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = OmiseGO/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OmiseGO;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		03BCCCBF1F8B311600F604DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = OmiseGO/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OmiseGO;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		03BCCCC11F8B311600F604DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = OmiseGOTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OmiseGOTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		03BCCCC21F8B311600F604DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = OmiseGOTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OmiseGOTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03BCCCA31F8B311600F604DB /* Build configuration list for PBXProject "OmiseGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03BCCCBB1F8B311600F604DB /* Debug */,
+				03BCCCBC1F8B311600F604DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03BCCCBD1F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03BCCCBE1F8B311600F604DB /* Debug */,
+				03BCCCBF1F8B311600F604DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03BCCCC01F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGOTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03BCCCC11F8B311600F604DB /* Debug */,
+				03BCCCC21F8B311600F604DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03BCCCA01F8B311600F604DB /* Project object */;
+}
