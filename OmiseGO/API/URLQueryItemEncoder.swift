@@ -5,6 +5,7 @@
 //  Created by Mederic Petit on 10/10/2560 BE.
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
+// swiftlint:disable file_length
 
 import Foundation
 
@@ -164,6 +165,7 @@ extension URLQueryItemEncoder {
         items.append(URLQueryItem(name: codingPath.queryItemKey, value: value.absoluteString))
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func push<T: Encodable>(_ value: T?, forKey codingPath: [CodingKey]) throws {
         switch value {
         case let value as String:

@@ -33,9 +33,3 @@ class FixtureTestCase: OmiseGOTestCase {
         return data
     }
 }
-
-class SuccessTestObject: OmiseGOObject {
-
-    var object: String = ""
-
-}

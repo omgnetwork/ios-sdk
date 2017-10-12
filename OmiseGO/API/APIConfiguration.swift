@@ -10,7 +10,7 @@ import Foundation
 
 public struct APIConfiguration {
 
-    public let apiVersion: String = "1.0.0"
+    public let apiVersion: String = "1"
 
     public let baseURL: String
     public let apiKey: String

@@ -8,8 +8,15 @@
 
 import UIKit
 
-public protocol OmiseGOObject: Codable {
+public protocol OmiseGOObject: Decodable {
     var object: String { get }
+}
+
+public protocol OmiseGOLocatableObject: OmiseGOObject {
+    static var operation: String { get }
+}
+
+public protocol OmiseGOResourceObject: OmiseGOLocatableObject {
 }
 
 // This is a special protocol to support decoding metadata type.

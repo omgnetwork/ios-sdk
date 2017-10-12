@@ -11,11 +11,6 @@ import Foundation
 public struct ListProperty<Item: OmiseGOObject>: OmiseGOObject {
 
     public let object: String
-    public let currentPage: Int
-    public let nextPage: Int
-    public let pageCount: Int
-    public let totalCount: Int
-    public let perPage: Int
     public let data: [Item]
 
     public subscript(index: Array<Item>.Index) -> Item {

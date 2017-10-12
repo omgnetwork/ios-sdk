@@ -20,8 +20,8 @@ class FixtureClient: APIClient {
     }
 
     @discardableResult
-    override func requestToEndpoint<ResultType>(_ endpoint: APIEndpoint<ResultType>,
-                                                callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+    override func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
+                                      callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
         do {
             let req: FixtureRequest<ResultType> = FixtureRequest(client: self, endpoint: endpoint, callback: callback)
             return try req.start()
@@ -96,7 +96,7 @@ class FixtureRequest<ResultType: OmiseGOObject>: APIRequest<ResultType> {
 
 extension OmiseGO.APIEndpoint {
     var fixtureFilePath: String {
-        let filePath = makeURL().absoluteString
+        let filePath = makeURL(withBaseURL: "api.omisego.co")!.absoluteString
         return (filePath + "-post" as NSString).appendingPathExtension("json")! as String
     }
 }

@@ -12,7 +12,7 @@ func omiseGOWarn(_ message: String) {
     print("[omiseGO] WARN: \(message)")
 }
 
-func deserializeData<ObjectType: Codable>(_ data: Data) throws -> ObjectType {
+func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
     jsonDecoder.dateDecodingStrategy = .iso8601
     return try jsonDecoder.decode(ObjectType.self, from: data)

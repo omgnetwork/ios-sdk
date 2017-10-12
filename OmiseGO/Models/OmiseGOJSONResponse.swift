@@ -16,7 +16,7 @@ public struct OmiseGOJSONResponse<ObjectType: OmiseGOObject> {
 
 }
 
-extension OmiseGOJSONResponse: Codable {
+extension OmiseGOJSONResponse: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case version
@@ -36,17 +36,4 @@ extension OmiseGOJSONResponse: Codable {
             data = Failable.fail(error)
         }
     }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(version, forKey: .version)
-        try container.encode(success, forKey: .success)
-        switch data {
-        case .success(let result):
-            try container.encode(result, forKey: .data)
-        case .fail(let error):
-            try container.encode(error, forKey: .data)
-        }
-    }
-
 }

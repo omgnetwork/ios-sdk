@@ -29,7 +29,9 @@ public class APIRequest<ResultType: OmiseGOObject> {
     }
 
     func start() throws -> Self {
-        let urlRequest = try makeURLRequest()
+        guard let urlRequest = try makeURLRequest() else {
+            throw OmiseGOError.configuration("Invalid request")
+        }
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
         self.task = dataTask
         dataTask.resume()
@@ -80,8 +82,10 @@ public class APIRequest<ResultType: OmiseGOObject> {
         client.operationQueue.addOperation({ cb(result) })
     }
 
-    func makeURLRequest() throws -> URLRequest {
-        let requestURL = endpoint.makeURL()
+    func makeURLRequest() throws -> URLRequest? {
+        guard let requestURL = endpoint.makeURL(withBaseURL: self.client.config.baseURL) else {
+            throw OmiseGOError.configuration("Invalid request")
+        }
 
         let auth = try client.encodedAuthorizationHeader()
 

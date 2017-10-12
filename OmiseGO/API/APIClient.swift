@@ -27,8 +27,8 @@ public class APIClient {
     }
 
     @discardableResult
-    public func requestToEndpoint<ResultType>(_ endpoint: APIEndpoint<ResultType>,
-                                              callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+    public func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
+                                    callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
         do {
             let req: APIRequest<ResultType> = APIRequest(client: self, endpoint: endpoint, callback: callback)
             return try req.start()
@@ -60,6 +60,7 @@ public class APIClient {
         guard let encodedKey = data?.base64EncodedString() else {
             throw OmiseGOError.configuration("bad API key or authentication token (encoding failed.)")
         }
+
         return "\(authScheme) \(encodedKey)"
     }
 

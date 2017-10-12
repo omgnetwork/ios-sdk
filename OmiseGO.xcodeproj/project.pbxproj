@@ -12,6 +12,11 @@
 		031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */; };
 		031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */; };
 		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
+		038A42511F8DCB5C001A00E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42501F8DCB5C001A00E0 /* User.swift */; };
+		038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42521F8DDCDA001A00E0 /* Retrievable.swift */; };
+		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
+		03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E8181F8E14570009D5E0 /* ClientTests.swift */; };
+		03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */; };
 		03BCCCBA1F8B311600F604DB /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 03BCCCAC1F8B311600F604DB /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +51,11 @@
 		031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOTestCase.swift; sourceTree = "<group>"; };
 		031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncoderTest.swift; sourceTree = "<group>"; };
 		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
+		038A42501F8DCB5C001A00E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		038A42521F8DDCDA001A00E0 /* Retrievable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
+		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
+		03A5E8181F8E14570009D5E0 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
+		03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyObject.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCAC1F8B311600F604DB /* OmiseGO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
 		03BCCCAD1F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */,
+				03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,8 +110,17 @@
 			children = (
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
 				031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */,
+				038A42551F8DE786001A00E0 /* UserFixtureTests.swift */,
 			);
 			path = FixtureTests;
+			sourceTree = "<group>";
+		};
+		038A42541F8DDCE1001A00E0 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				038A42521F8DDCDA001A00E0 /* Retrievable.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		03BCCC9F1F8B311600F604DB = {
@@ -126,6 +146,7 @@
 			children = (
 				03BCCCCA1F8B7B3B00F604DB /* Models */,
 				03BCCCC31F8B742E00F604DB /* API */,
+				038A42541F8DDCE1001A00E0 /* Operations */,
 				03BCCCAC1F8B311600F604DB /* OmiseGO.h */,
 				03BCCCAD1F8B311600F604DB /* Info.plist */,
 			);
@@ -141,6 +162,7 @@
 				031442F81F8CA691003DD5BE /* FixtureClient.swift */,
 				031442FA1F8CA857003DD5BE /* FixtureTestCase.swift */,
 				031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */,
+				03A5E8181F8E14570009D5E0 /* ClientTests.swift */,
 				031443001F8CAA68003DD5BE /* Models */,
 			);
 			path = OmiseGOTests;
@@ -168,6 +190,7 @@
 				03BCCCD11F8B817B00F604DB /* Failable.swift */,
 				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
 				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
+				038A42501F8DCB5C001A00E0 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038A42511F8DCB5C001A00E0 /* User.swift in Sources */,
 				03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */,
 				03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */,
 				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
@@ -313,6 +337,7 @@
 				03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */,
 				03BCCCD81F8C6AE000F604DB /* URLQueryItemEncoder.swift in Sources */,
 				03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */,
+				038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,8 +349,11 @@
 				031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */,
 				03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */,
 				031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */,
+				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,
 				031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */,
+				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
 				031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */,
+				03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
