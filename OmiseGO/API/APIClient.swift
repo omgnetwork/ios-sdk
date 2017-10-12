@@ -10,25 +10,50 @@ import Foundation
 
 public class APIClient {
 
+    public static let shared = APIClient()
     public static let sessionIdentifier = "omg.omise.co"
     let authScheme = "OMGClient"
 
     var session: URLSession!
-    let operationQueue: OperationQueue
+    let operationQueue: OperationQueue = OperationQueue()
+    var config: APIConfiguration!
 
-    let config: APIConfiguration
+    private init() {}
 
     public init(config: APIConfiguration) {
-        self.config = config
-        self.operationQueue = OperationQueue()
-        self.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
-                                  delegate: nil,
-                                  delegateQueue: operationQueue)
+        APIClient.set(config, toClient: self)
+    }
+
+    @discardableResult
+    public static func setup(withConfig config: APIConfiguration) -> APIClient {
+        return APIClient.set(config, toClient: APIClient.shared)
+    }
+
+    @discardableResult
+    private static func set(_ config: APIConfiguration, toClient client: APIClient) -> APIClient {
+        client.config = config
+        client.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
+                                              delegate: nil,
+                                              delegateQueue: client.operationQueue)
+
+        return client
     }
 
     @discardableResult
     public func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
                                     callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+        guard self.config != nil else {
+            let missingConfigMessage = """
+               Missing client configuration. Add a configuration to the client
+               using APIClient.shared.setup(withConfig: APIConfiguration)
+            """
+            omiseGOWarn(missingConfigMessage)
+            performCallback {
+                callback?(.fail(.configuration(missingConfigMessage)))
+            }
+
+            return nil
+        }
         do {
             let req: APIRequest<ResultType> = APIRequest(client: self, endpoint: endpoint, callback: callback)
             return try req.start()

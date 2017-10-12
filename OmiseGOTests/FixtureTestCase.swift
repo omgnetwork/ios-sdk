@@ -10,13 +10,14 @@ import XCTest
 @testable import OmiseGO
 
 class FixtureTestCase: OmiseGOTestCase {
-    var testClient: FixtureClient {
-        let url: String = "api.omisego.co"
-        let apiKey: String = "apikey"
-        let authenticationToken: String = "authenticationtoken"
-        let config = APIConfiguration(baseURL: url, apiKey: apiKey, authenticationToken: authenticationToken)
-        return FixtureClient(config: config)
+
+    var testCustomClient: FixtureClient {
+        return FixtureClient(config: self.validConfig)
     }
+
+    let validConfig: APIConfiguration = APIConfiguration(baseURL: "api.omisego.co",
+                                                        apiKey: "apikey",
+                                                        authenticationToken: "authenticationtoken")
 
     func fixturesData(for filename: String) -> Data? {
         let bundle = Bundle(for: OmiseGOTestCase.self)

@@ -12,11 +12,10 @@ import XCTest
 
 class ResponseTest: FixtureTestCase {
 
-    func testValidResponse() {
+    func testCustomClientResponse() {
         let expectation = self.expectation(description: "Success response")
-
         let endpoint = APIEndpoint<DummyTestObject>(action: "dummy.success")
-        let request = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case let .success(object):
@@ -32,7 +31,7 @@ class ResponseTest: FixtureTestCase {
     func testErrorResponse() {
         let expectation = self.expectation(description: "Error response")
         let endpoint = APIEndpoint<DummyTestObject>(action: "dummy.failure")
-        let request = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(_):

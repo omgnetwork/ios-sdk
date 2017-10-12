@@ -45,7 +45,7 @@ extension User: Decodable {
 
 extension User: Retrievable {
 
-    public static func getCurrent(using client: APIClient,
+    public static func getCurrent(using client: APIClient = APIClient.shared,
                                   callback: @escaping User.RetrieveRequest.Callback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, callback: callback)
     }

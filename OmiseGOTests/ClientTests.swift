@@ -39,4 +39,28 @@ class ClientTests: XCTestCase {
         XCTAssertNil(request, "Request should be nil")
         waitForExpectations(timeout: 15.0, handler: nil)
     }
+
+    func testMissingClientConfiguration() {
+        let expectation = self.expectation(description: "Missing configuration")
+        let client = APIClient.shared
+        let dummyEndpoint = APIEndpoint<DummyTestObject>(action: "dummy_action")
+        let request = client.request(toEndpoint: dummyEndpoint) { result in
+            defer {
+                expectation.fulfill()
+            }
+            switch result {
+            case .success(_):
+                XCTFail("Request should not be executed if config was not provided to the client")
+            case .fail(let error):
+                switch error {
+                case .configuration(_):
+                    XCTAssertTrue(true)
+                default:
+                    XCTFail("Error should be a configuration error")
+                }
+            }
+        }
+        XCTAssertNil(request, "Request should be nil")
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
 }
