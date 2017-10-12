@@ -18,9 +18,11 @@ public extension Retrievable where Self: OmiseGOLocatableObject {
         return RetrieveEndpoint(action: self.operation)
     }
 
+    @discardableResult
     public static func retrieve(using client: APIClient,
                                 callback: @escaping RetrieveRequest.Callback) -> RetrieveRequest? {
         let endpoint = self.retrieveEndpoint()
+
         return client.request(toEndpoint: endpoint, callback: callback)
     }
 }

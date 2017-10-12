@@ -1,0 +1,21 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "object": "list",
+    "data": [
+      {
+        "object": "balance",
+        "address": "my_mnt_address",
+        "symbol": "MNT",
+        "amount": 10
+      },
+      {
+        "object": "balance",
+        "address": "my_omg_address",
+        "symbol": "OMG",
+        "amount": 52
+      }
+    ]
+  }
+}

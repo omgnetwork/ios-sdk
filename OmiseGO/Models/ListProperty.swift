@@ -35,3 +35,18 @@ extension ListProperty: RandomAccessCollection {
         return data.endIndex
     }
 }
+
+extension ListProperty: Decodable {
+
+    private enum CodingKeys: String, CodingKey {
+        case object
+        case data
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        object = try container.decode(String.self, forKey: .object)
+        data = try container.decode([Item].self, forKey: .data)
+    }
+
+}

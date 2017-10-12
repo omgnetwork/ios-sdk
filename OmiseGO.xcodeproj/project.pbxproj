@@ -12,6 +12,9 @@
 		031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */; };
 		031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */; };
 		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
+		031863F31F8F517000D13862 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F21F8F517000D13862 /* Balance.swift */; };
+		031863F51F8F54EC00D13862 /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F41F8F54EC00D13862 /* Listable.swift */; };
+		031863F71F8F59DA00D13862 /* BalanceFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */; };
 		038A42511F8DCB5C001A00E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42501F8DCB5C001A00E0 /* User.swift */; };
 		038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42521F8DDCDA001A00E0 /* Retrievable.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
@@ -51,6 +54,9 @@
 		031442FC1F8CA87F003DD5BE /* OmiseGOTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOTestCase.swift; sourceTree = "<group>"; };
 		031442FE1F8CAA62003DD5BE /* URLEncoderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncoderTest.swift; sourceTree = "<group>"; };
 		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
+		031863F21F8F517000D13862 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		031863F41F8F54EC00D13862 /* Listable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
+		031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFixtureTests.swift; sourceTree = "<group>"; };
 		038A42501F8DCB5C001A00E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		038A42521F8DDCDA001A00E0 /* Retrievable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
 				031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */,
 				038A42551F8DE786001A00E0 /* UserFixtureTests.swift */,
+				031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -119,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				038A42521F8DDCDA001A00E0 /* Retrievable.swift */,
+				031863F41F8F54EC00D13862 /* Listable.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
 				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
 				038A42501F8DCB5C001A00E0 /* User.swift */,
+				031863F21F8F517000D13862 /* Balance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				038A42511F8DCB5C001A00E0 /* User.swift in Sources */,
+				031863F31F8F517000D13862 /* Balance.swift in Sources */,
 				03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */,
 				03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */,
 				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
@@ -332,6 +342,7 @@
 				03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */,
 				03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */,
 				03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */,
+				031863F51F8F54EC00D13862 /* Listable.swift in Sources */,
 				03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */,
 				03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */,
 				03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */,
@@ -349,6 +360,7 @@
 				031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */,
 				03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */,
 				031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */,
+				031863F71F8F59DA00D13862 /* BalanceFixtureTests.swift in Sources */,
 				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,
 				031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */,
 				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
