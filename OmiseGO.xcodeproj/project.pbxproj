@@ -15,6 +15,9 @@
 		031863F31F8F517000D13862 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F21F8F517000D13862 /* Balance.swift */; };
 		031863F51F8F54EC00D13862 /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F41F8F54EC00D13862 /* Listable.swift */; };
 		031863F71F8F59DA00D13862 /* BalanceFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */; };
+		031863F91F8F64C800D13862 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863F81F8F64C800D13862 /* Setting.swift */; };
+		031863FB1F8F65C000D13862 /* CurrencyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863FA1F8F65C000D13862 /* CurrencyToken.swift */; };
+		031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863FC1F8F678300D13862 /* SettingFixtureTests.swift */; };
 		038A42511F8DCB5C001A00E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42501F8DCB5C001A00E0 /* User.swift */; };
 		038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42521F8DDCDA001A00E0 /* Retrievable.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
@@ -57,6 +60,9 @@
 		031863F21F8F517000D13862 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		031863F41F8F54EC00D13862 /* Listable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
 		031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFixtureTests.swift; sourceTree = "<group>"; };
+		031863F81F8F64C800D13862 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		031863FA1F8F65C000D13862 /* CurrencyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToken.swift; sourceTree = "<group>"; };
+		031863FC1F8F678300D13862 /* SettingFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFixtureTests.swift; sourceTree = "<group>"; };
 		038A42501F8DCB5C001A00E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		038A42521F8DDCDA001A00E0 /* Retrievable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */,
 				038A42551F8DE786001A00E0 /* UserFixtureTests.swift */,
 				031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */,
+				031863FC1F8F678300D13862 /* SettingFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -199,7 +206,9 @@
 				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
 				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
 				038A42501F8DCB5C001A00E0 /* User.swift */,
+				031863F81F8F64C800D13862 /* Setting.swift */,
 				031863F21F8F517000D13862 /* Balance.swift */,
+				031863FA1F8F65C000D13862 /* CurrencyToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,11 +352,13 @@
 				03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */,
 				03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */,
 				031863F51F8F54EC00D13862 /* Listable.swift in Sources */,
+				031863FB1F8F65C000D13862 /* CurrencyToken.swift in Sources */,
 				03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */,
 				03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */,
 				03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */,
 				03BCCCD81F8C6AE000F604DB /* URLQueryItemEncoder.swift in Sources */,
 				03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */,
+				031863F91F8F64C800D13862 /* Setting.swift in Sources */,
 				038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +374,7 @@
 				031863F71F8F59DA00D13862 /* BalanceFixtureTests.swift in Sources */,
 				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,
 				031442FD1F8CA87F003DD5BE /* OmiseGOTestCase.swift in Sources */,
+				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
 				031442FF1F8CAA62003DD5BE /* URLEncoderTest.swift in Sources */,
 				03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */,

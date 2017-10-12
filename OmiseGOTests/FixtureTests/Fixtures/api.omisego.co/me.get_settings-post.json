@@ -1,0 +1,19 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "object": "setting",
+    "tokens": [
+      {
+        "object": "currency_token",
+        "symbol": "MNT",
+        "name": "Mint"
+      },
+      {
+        "object": "currency_token",
+        "symbol": "OMG",
+        "name": "OmiseGO"
+      }
+    ]
+  }
+}

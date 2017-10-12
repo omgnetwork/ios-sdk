@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import OmiseGO
+@testable import OmiseGO
 
 class BalanceFixtureTests: FixtureTestCase {
 
