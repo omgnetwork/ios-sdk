@@ -8,11 +8,8 @@
 
 import UIKit
 
-public struct User: OmiseGOLocatableObject {
+public struct User {
 
-    public static let operation: String = "user.me"
-
-    public let object: String
     // swiftlint:disable:next identifier_name
     public let id: String
     public let providerUserId: String
@@ -21,10 +18,15 @@ public struct User: OmiseGOLocatableObject {
 
 }
 
+extension User: OmiseGOLocatableObject {
+
+    public static let operation: String = "user.me"
+
+}
+
 extension User: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case object
         // swiftlint:disable:next identifier_name
         case id
         case providerUserId = "provider_user_id"
@@ -34,7 +36,6 @@ extension User: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        object = try container.decode(String.self, forKey: .object)
         id = try container.decode(String.self, forKey: .id)
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
@@ -46,7 +47,7 @@ extension User: Decodable {
 extension User: Retrievable {
 
     public static func getCurrent(using client: APIClient = APIClient.shared,
-                                  callback: @escaping User.RetrieveRequest.Callback) -> User.RetrieveRequest? {
+                                  callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, callback: callback)
     }
 

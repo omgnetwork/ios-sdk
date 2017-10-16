@@ -18,10 +18,8 @@ class SettingFixtureTests: FixtureTestCase {
             switch result {
             case .success(let setting):
                 XCTAssertTrue(setting.tokens.count == 2)
-                XCTAssertEqual(setting.tokens[0].object, "currency_token")
                 XCTAssertEqual(setting.tokens[0].symbol, "MNT")
                 XCTAssertEqual(setting.tokens[0].name, "Mint")
-                XCTAssertEqual(setting.tokens[1].object, "currency_token")
                 XCTAssertEqual(setting.tokens[1].symbol, "OMG")
                 XCTAssertEqual(setting.tokens[1].name, "OmiseGO")
             case .fail(let error):

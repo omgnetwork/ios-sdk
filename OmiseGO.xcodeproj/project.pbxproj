@@ -32,7 +32,7 @@
 		03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCB1F8B7B5300F604DB /* Object.swift */; };
 		03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCD1F8B800000F604DB /* Tool.swift */; };
 		03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCF1F8B814800F604DB /* APIRequest.swift */; };
-		03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD11F8B817B00F604DB /* Failable.swift */; };
+		03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD11F8B817B00F604DB /* Reponse.swift */; };
 		03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */; };
 		03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD51F8B81F200F604DB /* APIError.swift */; };
 		03BCCCD81F8C6AE000F604DB /* URLQueryItemEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD71F8C6AE000F604DB /* URLQueryItemEncoder.swift */; };
@@ -80,7 +80,7 @@
 		03BCCCCB1F8B7B5300F604DB /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		03BCCCCD1F8B800000F604DB /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		03BCCCCF1F8B814800F604DB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		03BCCCD11F8B817B00F604DB /* Failable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failable.swift; sourceTree = "<group>"; };
+		03BCCCD11F8B817B00F604DB /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
 		03BCCCD51F8B81F200F604DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		03BCCCD71F8C6AE000F604DB /* URLQueryItemEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryItemEncoder.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				03BCCCCB1F8B7B5300F604DB /* Object.swift */,
-				03BCCCD11F8B817B00F604DB /* Failable.swift */,
+				03BCCCD11F8B817B00F604DB /* Reponse.swift */,
 				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
 				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
 				038A42501F8DCB5C001A00E0 /* User.swift */,
@@ -344,7 +344,7 @@
 			files = (
 				038A42511F8DCB5C001A00E0 /* User.swift in Sources */,
 				031863F31F8F517000D13862 /* Balance.swift in Sources */,
-				03BCCCD21F8B817B00F604DB /* Failable.swift in Sources */,
+				03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */,
 				03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */,
 				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
 				03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */,

@@ -11,11 +11,11 @@ import Foundation
 public class APIClient {
 
     public static let shared = APIClient()
-    public static let sessionIdentifier = "omg.omise.co"
+
     let authScheme = "OMGClient"
+    let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
-    let operationQueue: OperationQueue = OperationQueue()
     var config: APIConfiguration!
 
     private init() {}
@@ -40,12 +40,12 @@ public class APIClient {
     }
 
     @discardableResult
-    public func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
-                                    callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+    func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
+                             callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
         guard self.config != nil else {
             let missingConfigMessage = """
                Missing client configuration. Add a configuration to the client
-               using APIClient.shared.setup(withConfig: APIConfiguration)
+               using APIClient.setup(withConfig: APIConfiguration)
             """
             omiseGOWarn(missingConfigMessage)
             performCallback {

@@ -11,18 +11,14 @@ import Foundation
 public protocol Retrievable {}
 
 public extension Retrievable where Self: OmiseGOLocatableObject {
-    public typealias RetrieveEndpoint = APIEndpoint<Self>
+    internal typealias RetrieveEndpoint = APIEndpoint<Self>
     public typealias RetrieveRequest = APIRequest<Self>
-
-    public static func retrieveEndpoint() -> RetrieveEndpoint {
-        return RetrieveEndpoint(action: self.operation)
-    }
+    public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
-    public static func retrieve(using client: APIClient,
-                                callback: @escaping RetrieveRequest.Callback) -> RetrieveRequest? {
-        let endpoint = self.retrieveEndpoint()
-
+    internal static func retrieve(using client: APIClient,
+                                  callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
+        let endpoint = RetrieveEndpoint(action: self.operation)
         return client.request(toEndpoint: endpoint, callback: callback)
     }
 }

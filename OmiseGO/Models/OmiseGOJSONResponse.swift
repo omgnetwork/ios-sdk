@@ -8,11 +8,11 @@
 
 import UIKit
 
-public struct OmiseGOJSONResponse<ObjectType: OmiseGOObject> {
+struct OmiseGOJSONResponse<ObjectType: OmiseGOObject> {
 
-    public let version: String
-    public let success: Bool
-    public let data: Failable<ObjectType, APIError>
+    let version: String
+    let success: Bool
+    let data: Response<ObjectType, APIError>
 
 }
 
@@ -24,16 +24,16 @@ extension OmiseGOJSONResponse: Decodable {
         case data
     }
 
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         version = try container.decode(String.self, forKey: .version)
         success = try container.decode(Bool.self, forKey: .success)
         if success {
             let result = try container.decode(ObjectType.self, forKey: .data)
-            data = Failable.success(result)
+            data = .success(result)
         } else {
             let error = try container.decode(APIError.self, forKey: .data)
-            data = Failable.fail(error)
+            data = .fail(error)
         }
     }
 }

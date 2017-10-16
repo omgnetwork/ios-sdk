@@ -8,18 +8,16 @@
 
 import Foundation
 
-public protocol APIQuery: Encodable {}
+protocol APIQuery: Encodable {}
 
-public protocol APIURLQuery: APIQuery {}
+protocol APIURLQuery: APIQuery {}
 
-public protocol APIJSONQuery: APIURLQuery {}
+protocol APIJSONQuery: APIURLQuery {}
 
-public struct APIEndpoint<DataType: OmiseGOObject> {
+struct APIEndpoint<DataType: OmiseGOObject> {
 
-    public typealias Result = DataType
-
-    public let parameter: APIQuery?
-    public let action: String
+    let parameter: APIQuery?
+    let action: String
 
     init(action: String, parameter: APIQuery? = nil) {
         self.action = action
@@ -34,7 +32,7 @@ public struct APIEndpoint<DataType: OmiseGOObject> {
         return url.appendingPathComponent(self.action)
     }
 
-    func deserialize(_ data: Data) throws -> Failable<DataType, APIError> {
+    func deserialize(_ data: Data) throws -> Response<DataType, APIError> {
         let response: OmiseGOJSONResponse<DataType> = try deserializeData(data)
         return response.data
     }

@@ -10,8 +10,11 @@ import Foundation
 
 public struct ListProperty<Item: OmiseGOObject>: OmiseGOObject {
 
-    public let object: String
-    public let data: [Item]
+    let data: [Item]
+
+}
+
+extension ListProperty: RandomAccessCollection {
 
     public subscript(index: Array<Item>.Index) -> Item {
         return data[index]
@@ -21,12 +24,6 @@ public struct ListProperty<Item: OmiseGOObject>: OmiseGOObject {
         return data[bounds]
     }
 
-}
-
-extension ListProperty: RandomAccessCollection {
-    /// The position of the first element in a nonempty collection.
-    ///
-    /// If the collection is empty, `startIndex` is equal to `endIndex`.
     public var startIndex: (Array<Item>.Index) {
         return data.startIndex
     }
@@ -34,18 +31,17 @@ extension ListProperty: RandomAccessCollection {
     public var endIndex: (Array<Item>.Index) {
         return data.endIndex
     }
+
 }
 
 extension ListProperty: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case object
         case data
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        object = try container.decode(String.self, forKey: .object)
         data = try container.decode([Item].self, forKey: .data)
     }
 

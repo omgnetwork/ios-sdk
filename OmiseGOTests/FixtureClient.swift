@@ -79,16 +79,16 @@ class FixtureRequest<ResultType: OmiseGOObject>: APIRequest<ResultType> {
             let response = try endpoint.deserialize(data)
             switch response {
             case .fail(let apiError):
-                return performCallback(Failable.fail(OmiseGOError.api(apiError)))
+                return performCallback(.fail(OmiseGOError.api(apiError)))
             case .success(let response):
-                return performCallback(Failable.success(response))
+                return performCallback(.success(response))
             }
         } catch let err {
             return performCallback(.fail(.other(err)))
         }
     }
 
-    fileprivate func performCallback(_ result: Failable<ResultType, OmiseGOError>) {
+    fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
         guard let cb = callback else { return }
         client.operationQueue.addOperation { cb(result) }
     }

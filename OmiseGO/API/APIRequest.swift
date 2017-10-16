@@ -9,8 +9,8 @@
 import Foundation
 
 public class APIRequest<ResultType: OmiseGOObject> {
-    public typealias Endpoint = APIEndpoint<ResultType>
-    public typealias Callback = (Failable<ResultType, OmiseGOError>) -> Void
+    typealias Endpoint = APIEndpoint<ResultType>
+    public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
 
     let client: APIClient
     let endpoint: APIRequest.Endpoint
@@ -60,7 +60,7 @@ public class APIRequest<ResultType: OmiseGOObject> {
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
     }
 
-    fileprivate func result(withData data: Data, statusCode: Int) -> Failable<ResultType, OmiseGOError> {
+    fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType, OmiseGOError> {
         guard ![200, 500].contains(statusCode) else {
             return .fail(.unexpected("unrecognized HTTP status code: \(statusCode)"))
         }
@@ -68,16 +68,16 @@ public class APIRequest<ResultType: OmiseGOObject> {
             let response = try endpoint.deserialize(data)
             switch response {
             case .fail(let apiError):
-                return Failable.fail(OmiseGOError.api(apiError))
+                return .fail(OmiseGOError.api(apiError))
             case .success(let response):
-                return Failable.success(response)
+                return .success(response)
             }
         } catch let err {
             return .fail(.other(err))
         }
     }
 
-    fileprivate func performCallback(_ result: Failable<ResultType, OmiseGOError>) {
+    fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
         guard let cb = callback else { return }
         client.operationQueue.addOperation({ cb(result) })
     }

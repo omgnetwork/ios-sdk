@@ -1,5 +1,5 @@
 //
-//  Failable.swift
+//  Response.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2560 BE.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum Failable<ResultType, ErrorType> {
+public enum Response<ResultType, ErrorType> {
     case success(ResultType)
     case fail(ErrorType)
 }

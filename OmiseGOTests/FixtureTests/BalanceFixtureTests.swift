@@ -18,11 +18,9 @@ class BalanceFixtureTests: FixtureTestCase {
             switch result {
             case .success(let balances):
                 XCTAssert(balances.count == 2)
-                XCTAssertEqual(balances[0].object, "balance")
                 XCTAssertEqual(balances[0].address, "my_mnt_address")
                 XCTAssertEqual(balances[0].amount, 10)
                 XCTAssertEqual(balances[0].symbol, "MNT")
-                XCTAssertEqual(balances[1].object, "balance")
                 XCTAssertEqual(balances[1].address, "my_omg_address")
                 XCTAssertEqual(balances[1].amount, 52)
                 XCTAssertEqual(balances[1].symbol, "OMG")

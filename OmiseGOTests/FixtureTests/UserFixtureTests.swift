@@ -17,7 +17,6 @@ class UserFixtureTests: FixtureTestCase {
             defer { expectation.fulfill() }
             switch result {
             case .success(let user):
-                XCTAssertEqual(user.object, "user")
                 XCTAssertEqual(user.id, "cec34607-0761-4a59-8357-18963e42a1aa")
                 XCTAssertEqual(user.providerUserId, "wijf-fbancomw-dqwjudb")
                 XCTAssertEqual(user.username, "john.doe@example.com")

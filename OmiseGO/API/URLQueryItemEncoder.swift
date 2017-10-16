@@ -11,18 +11,18 @@ import Foundation
 
 let iso8601Formatter = ISO8601DateFormatter()
 
-public class URLQueryItemEncoder {
-    public enum ArrayIndexEncodingStrategy {
+class URLQueryItemEncoder {
+    enum ArrayIndexEncodingStrategy {
         case emptySquareBrackets
         case index
     }
 
-    fileprivate(set) public var codingPath: [CodingKey] = []
+    fileprivate(set)  var codingPath: [CodingKey] = []
     fileprivate var items: [URLQueryItem] = []
-    public var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.index
-    public init() {}
+    var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.index
+    init() {}
 
-    public func encode(_ value: Encodable) throws -> [URLQueryItem] {
+    func encode(_ value: Encodable) throws -> [URLQueryItem] {
         items = []
         try value.encode(to: self)
         return items
@@ -217,17 +217,17 @@ extension URLQueryItemEncoder {
 }
 
 extension URLQueryItemEncoder: Encoder {
-    public var userInfo: [CodingUserInfoKey: Any] { return [:] }
+    var userInfo: [CodingUserInfoKey: Any] { return [:] }
 
-    public func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
+    func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
         return KeyedEncodingContainer(KeyedContainer<Key>(encoder: self, codingPath: codingPath))
     }
 
-    public func unkeyedContainer() -> UnkeyedEncodingContainer {
+    func unkeyedContainer() -> UnkeyedEncodingContainer {
         return UnkeyedContanier(encoder: self, codingPath: codingPath)
     }
 
-    public func singleValueContainer() -> SingleValueEncodingContainer {
+    func singleValueContainer() -> SingleValueEncodingContainer {
         return SingleValueContanier(encoder: self, codingPath: codingPath)
     }
 }
@@ -253,8 +253,9 @@ extension URLQueryItemEncoder {
 
         func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type,
                                         forKey key: Key)
-                                        -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
-            return KeyedEncodingContainer(KeyedContainer<NestedKey>(encoder: encoder, codingPath: codingPath + [key]))
+            -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
+                return KeyedEncodingContainer(KeyedContainer<NestedKey>(encoder: encoder,
+                                                                        codingPath: codingPath + [key]))
         }
 
         func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {
@@ -288,14 +289,14 @@ extension URLQueryItemEncoder {
         }
 
         func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type)
-                                        -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
-            codingPath.append(
-                URLQueryItemArrayElementKey(index: encodedItemsCount,
-                                            encodingStrategy: encoder.arrayIndexEncodingStrategy)
-            )
-            defer { codingPath.removeLast() }
-            return KeyedEncodingContainer(KeyedContainer<NestedKey>(encoder: encoder,
-                                                                    codingPath: codingPath))
+            -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
+                codingPath.append(
+                    URLQueryItemArrayElementKey(index: encodedItemsCount,
+                                                encodingStrategy: encoder.arrayIndexEncodingStrategy)
+                )
+                defer { codingPath.removeLast() }
+                return KeyedEncodingContainer(KeyedContainer<NestedKey>(encoder: encoder,
+                                                                        codingPath: codingPath))
         }
 
         func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
@@ -348,59 +349,59 @@ extension URLQueryItemEncoder {
             encoder.items.append(URLQueryItem(name: codingPath.queryItemKey, value: nil))
         }
 
-        public func encode(_ value: Bool) throws {
+        func encode(_ value: Bool) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Int) throws {
+        func encode(_ value: Int) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Int8) throws {
+        func encode(_ value: Int8) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Int16) throws {
+        func encode(_ value: Int16) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Int32) throws {
+        func encode(_ value: Int32) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Int64) throws {
+        func encode(_ value: Int64) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: UInt) throws {
+        func encode(_ value: UInt) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: UInt8) throws {
+        func encode(_ value: UInt8) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: UInt16) throws {
+        func encode(_ value: UInt16) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: UInt32) throws {
+        func encode(_ value: UInt32) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: UInt64) throws {
+        func encode(_ value: UInt64) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: String) throws {
+        func encode(_ value: String) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Float) throws {
+        func encode(_ value: Float) throws {
             try encoder.push(value, forKey: codingPath)
         }
 
-        public func encode(_ value: Double) throws {
+        func encode(_ value: Double) throws {
             try encoder.push(value, forKey: codingPath)
         }
 

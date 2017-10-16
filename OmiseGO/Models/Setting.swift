@@ -8,25 +8,26 @@
 
 import UIKit
 
-public struct Setting: OmiseGOLocatableObject {
+public struct Setting {
+
+    public let tokens: [CurrencyToken]
+
+}
+
+extension Setting: OmiseGOLocatableObject {
 
     public static let operation: String = "me.get_settings"
-
-    public let object: String
-    public let tokens: [CurrencyToken]
 
 }
 
 extension Setting: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case object
         case tokens
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        object = try container.decode(String.self, forKey: .object)
         tokens = try container.decode([CurrencyToken].self, forKey: .tokens)
     }
 
@@ -35,7 +36,7 @@ extension Setting: Decodable {
 extension Setting: Retrievable {
 
     public static func get(using client: APIClient = APIClient.shared,
-                           callback: @escaping Setting.RetrieveRequest.Callback) -> Setting.RetrieveRequest? {
+                           callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
         return self.retrieve(using: client, callback: callback)
     }
 
