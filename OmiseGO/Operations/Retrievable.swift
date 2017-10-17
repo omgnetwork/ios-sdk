@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent an Object that can be uniquely retrived
 public protocol Retrievable {}
 
 public extension Retrievable where Self: OmiseGOLocatableObject {

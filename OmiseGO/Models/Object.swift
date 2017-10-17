@@ -8,18 +8,21 @@
 
 import UIKit
 
+/// Represents a decodable Object
 public protocol OmiseGOObject: Decodable {}
 
+/// Represents an object that can be retrieved using an operation
 public protocol OmiseGOLocatableObject: OmiseGOObject {
     static var operation: String { get }
 }
 
+/// Represents an object that can be listed using a list operation
 public protocol OmiseGOListableObject: OmiseGOObject {
     static var listOperation: String { get }
 }
 
-// This is a special protocol to support decoding metadata type.
-// This situation will be greatly improved when `Conditional Conformance` feature land in Swift
+/// This is a special protocol to support decoding metadata type.
+/// This situation will be greatly improved when `Conditional Conformance` feature lands in Swift
 public protocol JSONType: Decodable {
     var jsonValue: Any { get }
 }
@@ -62,7 +65,7 @@ public struct AnyJSONType: JSONType {
         } else {
             throw DecodingError.typeMismatch(JSONType.self,
                                              DecodingError.Context(codingPath: decoder.codingPath,
-                                                                   debugDescription: "Unsupported JSON tyep"))
+                                                                   debugDescription: "Unsupported JSON type"))
         }
     }
 }

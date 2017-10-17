@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Represents an API error
 public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
 
+    /// The error code describing the error
     public let code: APIErrorCode
+    /// The error message
     public let message: String
 
     public var debugDescription: String {

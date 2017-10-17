@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represents a cancellable request
 public class APIRequest<ResultType: OmiseGOObject> {
     typealias Endpoint = APIEndpoint<ResultType>
     public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
@@ -24,6 +25,7 @@ public class APIRequest<ResultType: OmiseGOObject> {
         self.callback = callback
     }
 
+    /// Cancel the request
     public func cancel() {
         task?.cancel()
     }

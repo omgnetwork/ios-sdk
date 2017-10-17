@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Represents an object that can be retrived in a collection
 public protocol Listable {}
 
 public extension Listable where Self: OmiseGOListableObject {

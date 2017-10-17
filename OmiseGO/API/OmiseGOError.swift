@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// Represents a SDK error
+///
+/// - unexpected: An unexpected error has occured
+/// - configuration: A configuration error has occured
+/// - api: An API error has occured
+/// - other: Other types of errors
 public enum OmiseGOError: Error {
     case unexpected(String)
     case configuration(String)

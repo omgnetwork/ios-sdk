@@ -1,0 +1,173 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIClient.swift",
+      "line": 37,
+      "symbol": "APIClient.setup(withConfig:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIClient.swift",
+      "line": 86,
+      "symbol": "APIClient.cancelAllOperations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIConfiguration.swift",
+      "line": 24,
+      "symbol": "APIConfiguration.init(baseURL:apiKey:authenticationToken:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 23,
+      "symbol": "APIError.APIErrorCode",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 25,
+      "symbol": "APIError.APIErrorCode.other",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 38,
+      "symbol": "APIError.APIErrorCode.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 18,
+      "symbol": "OmiseGOError.unexpected",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 19,
+      "symbol": "OmiseGOError.configuration",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 20,
+      "symbol": "OmiseGOError.api",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 21,
+      "symbol": "OmiseGOError.other",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 23,
+      "symbol": "OmiseGOError.message",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 45,
+      "symbol": "OmiseGOError.errorDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 16,
+      "symbol": "OmiseGOLocatableObject.operation",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 21,
+      "symbol": "OmiseGOListableObject.listOperation",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 27,
+      "symbol": "JSONType.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 31,
+      "symbol": "Int.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 34,
+      "symbol": "String.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 37,
+      "symbol": "Double.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 40,
+      "symbol": "Bool.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 43,
+      "symbol": "AnyJSONType",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 44,
+      "symbol": "AnyJSONType.jsonValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
+      "line": 46,
+      "symbol": "AnyJSONType.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Reponse.swift",
+      "line": 17,
+      "symbol": "Response.success",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Reponse.swift",
+      "line": 18,
+      "symbol": "Response.fail",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/mederic/work/ios/omisego-ios"
+}

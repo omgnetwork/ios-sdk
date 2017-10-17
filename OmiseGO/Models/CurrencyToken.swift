@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Represents a token
 public struct CurrencyToken: OmiseGOObject {
 
+    /// The symbol of the token
     public let symbol: String
+    /// The full name of the token
     public let name: String
 
 }

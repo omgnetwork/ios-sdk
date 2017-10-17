@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (75% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/APIClient.html">APIClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/APIRequest.html">APIRequest</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/OmiseGOError.html">OmiseGOError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/JSONType.html">JSONType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:7OmiseGO8ListableP">Listable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/OmiseGOListableObject.html">OmiseGOListableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/OmiseGOLocatableObject.html">OmiseGOLocatableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:7OmiseGO11RetrievableP">Retrievable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/APIConfiguration.html">APIConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/APIError/APIErrorCode.html">– APIErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnyJSONType.html">AnyJSONType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/CurrencyToken.html">CurrencyToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ListProperty.html">ListProperty</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Setting.html">Setting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='omisego' class='heading'>OmiseGO</h1>
+
+<p>The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.</p>
+
+<p>Currently, it can be used to retrieve the current user, get a user&rsquo;s balances and list the settings for a node.</p>
+<h1 id='installation' class='heading'>Installation.</h1>
+
+<p>To do.</p>
+<h1 id='initialization' class='heading'>Initialization</h1>
+
+<p>Before using the SDK to retrieve a resource, you are required to initialize the client.
+The easiest way to do so is to setup the shared client using an APIConfiguration object.
+You should do this as soon as you have the current user’s authentication token.</p>
+<pre class="highlight shell"><code><span class="nb">let </span>configuration <span class="o">=</span> APIConfiguration<span class="o">(</span>baseURL: <span class="s2">"your.base.url"</span>,
+                                     apiKey: <span class="s2">"apikey"</span>,
+                                     authenticationToken: <span class="s2">"authenticationtoken"</span><span class="o">)</span>
+APIClient.setup<span class="o">(</span>withConfig: configuration<span class="o">)</span>
+</code></pre>
+<h1 id='usage' class='heading'>Usage</h1>
+
+<p>Once the SDK is initialized, you can then retrieve different resources:</p>
+
+<ul>
+<li>Get the current user:</li>
+</ul>
+<pre class="highlight shell"><code>User.getCurrent <span class="o">{</span> <span class="o">(</span>result<span class="o">)</span> <span class="k">in
+    </span>switch result <span class="o">{</span>
+    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>user<span class="p">)</span>:
+        //TODO: Do something with the user
+    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+        //TODO: Handle the error
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<ul>
+<li>Get the balances of the current user:</li>
+</ul>
+<pre class="highlight shell"><code>Balance.getAll <span class="o">{</span> <span class="o">(</span>balances<span class="o">)</span> <span class="k">in
+    </span>switch result <span class="o">{</span>
+    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>balances<span class="p">)</span>:
+        //TODO: Do something with the balances
+    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+        //TODO: Handle the error
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<ul>
+<li>Get the provider settings:</li>
+</ul>
+<pre class="highlight shell"><code>Setting.get <span class="o">{</span> <span class="o">(</span>result<span class="o">)</span> <span class="k">in
+    </span>switch result <span class="o">{</span>
+    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>settings<span class="p">)</span>:
+        //TODO: Do something with the settings
+    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+        //TODO: Handle the error
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-10-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

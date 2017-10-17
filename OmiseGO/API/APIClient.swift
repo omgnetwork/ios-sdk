@@ -8,8 +8,10 @@
 
 import Foundation
 
+/// Represents an APIClient that should be configured using an APIConfiguration
 public class APIClient {
 
+    /// The shared client that will be used by default if no client is specified.
     public static let shared = APIClient()
 
     let authScheme = "OMGClient"
@@ -20,11 +22,18 @@ public class APIClient {
 
     private init() {}
 
+    /// Initialize a client using a configuration object
+    ///
+    /// - Parameter config: The configuration object
     public init(config: APIConfiguration) {
         APIClient.set(config, toClient: self)
     }
 
     @discardableResult
+    /// A method used to setup the shared client with a configuration object
+    ///
+    /// - Parameter config: The configuration object
+    /// - Returns: The shared client
     public static func setup(withConfig config: APIConfiguration) -> APIClient {
         return APIClient.set(config, toClient: APIClient.shared)
     }

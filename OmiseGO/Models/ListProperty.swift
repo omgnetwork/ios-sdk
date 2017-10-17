@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A struct representing a list response containing a data array of items.
 public struct ListProperty<Item: OmiseGOObject>: OmiseGOObject {
 
     let data: [Item]
