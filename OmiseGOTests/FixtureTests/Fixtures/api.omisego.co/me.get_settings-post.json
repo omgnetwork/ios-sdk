@@ -7,12 +7,14 @@
       {
         "object": "currency_token",
         "symbol": "MNT",
-        "name": "Mint"
+        "name": "Mint",
+        "subunit_to_unit": 100000
       },
       {
         "object": "currency_token",
         "symbol": "OMG",
-        "name": "OmiseGO"
+        "name": "OmiseGO",
+        "subunit_to_unit": 100000000
       }
     ]
   }

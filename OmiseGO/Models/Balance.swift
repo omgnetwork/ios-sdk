@@ -17,6 +17,22 @@ public struct Balance {
     public let symbol: String
     /// The total amount of token available
     public let amount: Double
+    /// The multiplier representing the value of 1 token. i.e: if I want to give or receive
+    /// 13 tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
+    public let subUnitToUnit: Double
+}
+
+extension Balance {
+
+    func displayAmount() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1000
+        let displayableAmount: Double = self.amount / self.subUnitToUnit
+        let formattedDisplayAmount = formatter.string(from: NSNumber(value: displayableAmount))
+        return formattedDisplayAmount ?? ""
+    }
+
 }
 
 extension Balance: OmiseGOListableObject {
@@ -32,6 +48,7 @@ extension Balance: Decodable {
         case address
         case symbol
         case amount
+        case subUnitToUnit = "subunit_to_unit"
     }
 
     public init(from decoder: Decoder) throws {
@@ -39,6 +56,7 @@ extension Balance: Decodable {
         address = try container.decode(String.self, forKey: .address)
         symbol = try container.decode(String.self, forKey: .symbol)
         amount = try container.decode(Double.self, forKey: .amount)
+        subUnitToUnit = try container.decode(Double.self, forKey: .subUnitToUnit)
     }
 
 }

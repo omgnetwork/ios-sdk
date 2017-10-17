@@ -8,13 +8,15 @@
         "object": "balance",
         "address": "my_mnt_address",
         "symbol": "MNT",
-        "amount": 10
+        "amount": 10,
+        "subunit_to_unit": 100000
       },
       {
         "object": "balance",
         "address": "my_omg_address",
         "symbol": "OMG",
-        "amount": 52
+        "amount": 52,
+        "subunit_to_unit": 100000000
       }
     ]
   }

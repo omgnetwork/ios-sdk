@@ -20,8 +20,10 @@ class SettingFixtureTests: FixtureTestCase {
                 XCTAssertTrue(setting.tokens.count == 2)
                 XCTAssertEqual(setting.tokens[0].symbol, "MNT")
                 XCTAssertEqual(setting.tokens[0].name, "Mint")
+                XCTAssertEqual(setting.tokens[0].subUnitToUnit, 100000)
                 XCTAssertEqual(setting.tokens[1].symbol, "OMG")
                 XCTAssertEqual(setting.tokens[1].name, "OmiseGO")
+                XCTAssertEqual(setting.tokens[1].subUnitToUnit, 100000000)
             case .fail(let error):
                 XCTFail("\(error)")
             }
