@@ -45,6 +45,7 @@ extension Balance: Decodable {
 
 extension Balance: Listable {
 
+    @discardableResult
     /// Get all balances of the current user
     ///
     /// - Parameters:

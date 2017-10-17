@@ -9,8 +9,6 @@
 
 import Foundation
 
-let iso8601Formatter = ISO8601DateFormatter()
-
 class URLQueryItemEncoder {
     enum ArrayIndexEncodingStrategy {
         case emptySquareBrackets
@@ -99,7 +97,7 @@ extension URLQueryItemEncoder {
     }
 
     private func push(_ value: Date, forKey codingPath: [CodingKey]) throws {
-        items.append(URLQueryItem(name: codingPath.queryItemKey, value: iso8601Formatter.string(from: value)))
+        items.append(URLQueryItem(name: codingPath.queryItemKey, value: value.toString()))
     }
 
     private func push(_ value: Bool, forKey codingPath: [CodingKey]) throws {

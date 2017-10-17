@@ -52,6 +52,7 @@ extension User: Decodable {
 
 extension User: Retrievable {
 
+    @discardableResult
     /// Get the current user corresponding to the authentication token provided in the configuration
     ///
     /// - Parameters:

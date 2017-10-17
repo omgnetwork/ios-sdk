@@ -14,6 +14,16 @@ func omiseGOWarn(_ message: String) {
 
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
-    jsonDecoder.dateDecodingStrategy = .iso8601
     return try jsonDecoder.decode(ObjectType.self, from: data)
+}
+
+extension Date {
+
+    func toString(withFormat format: String? = "yyyy-MM-dd'T'HH:mm:ssZZZZZ") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.string(from: self)
+    }
+
 }

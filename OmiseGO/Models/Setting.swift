@@ -38,6 +38,7 @@ extension Setting: Decodable {
 
 extension Setting: Retrievable {
 
+    @discardableResult
     /// Get the global settings of the provider
     ///
     /// - Parameters:
