@@ -85,6 +85,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Balance.swift",
+      "line": 74,
+      "symbol": "Balance.getAll(using:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
       "line": 16,
       "symbol": "OmiseGOLocatableObject.operation",
@@ -166,6 +173,20 @@
       "line": 18,
       "symbol": "Response.fail",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Setting.swift",
+      "line": 49,
+      "symbol": "Setting.get(using:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/User.swift",
+      "line": 63,
+      "symbol": "User.getCurrent(using:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     }
   ],

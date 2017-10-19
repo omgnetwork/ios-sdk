@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ListProperty Structure Reference</title>
+    <title>MintedToken Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/ListProperty" class="dashAnchor"></a>
-    <a title="ListProperty Structure Reference"></a>
+    <a name="//apple_ref/swift/Struct/MintedToken" class="dashAnchor"></a>
+    <a title="MintedToken Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (73% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ListProperty Structure Reference
+        MintedToken Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -126,14 +126,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ListProperty</h1>
+            <h1>MintedToken</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ListProperty</span><span class="o">&lt;</span><span class="kt">Item</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MintedToken</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a></span></code></pre>
 
                 </div>
               </div>
-            <p>A struct representing a list response containing a data array of items.</p>
+            <p>Represents a minted token</p>
 
           </section>
           <section class="section task-group-section">
@@ -142,9 +142,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s14_IndexableBaseP10startIndex0D0Qzv"></a>
-                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s14_IndexableBaseP10startIndex0D0Qzv">startIndex</a>
+                    <a name="/s:7OmiseGO11MintedTokenV6symbolSSv"></a>
+                    <a name="//apple_ref/swift/Property/symbol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO11MintedTokenV6symbolSSv">symbol</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,13 +152,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The symbol of the minted token</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="p">(</span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Item</span><span class="o">&gt;.</span><span class="kt">Index</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -168,9 +169,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s14_IndexableBaseP8endIndex0D0Qzv"></a>
-                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s14_IndexableBaseP8endIndex0D0Qzv">endIndex</a>
+                    <a name="/s:7OmiseGO11MintedTokenV4nameSSv"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO11MintedTokenV4nameSSv">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,13 +179,42 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The full name of the minted token</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="p">(</span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Item</span><span class="o">&gt;.</span><span class="kt">Index</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO11MintedTokenV09subUnitToF0Sdv"></a>
+                    <a name="//apple_ref/swift/Property/subUnitToUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO11MintedTokenV09subUnitToF0Sdv">subUnitToUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The multiplier representing the value of 1 minted token. i.e: if I want to give or receive
+13 minted tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">subUnitToUnit</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
 
                         </div>
                       </div>
