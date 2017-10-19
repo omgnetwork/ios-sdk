@@ -10,9 +10,9 @@ import Foundation
 
 protocol APIQuery: Encodable {}
 
-protocol APIURLQuery: APIQuery {}
-
-protocol APIJSONQuery: APIURLQuery {}
+protocol APIJSONQuery: APIQuery {
+    func encodedPayload() -> Data?
+}
 
 struct APIEndpoint<DataType: OmiseGOObject> {
 

@@ -10,7 +10,7 @@
 import XCTest
 @testable import OmiseGO
 
-class ResponseTest: FixtureTestCase {
+class ResponseFixtureTest: FixtureTestCase {
 
     func testCustomClientResponse() {
         let expectation = self.expectation(description: "Success response")

@@ -8,17 +8,17 @@
 
 import UIKit
 
-/// Represents a balance of a token
+/// Represents a balance of a minted token
 public struct Balance {
 
     /// The address of the balance
     public let address: String
-    /// The symbol of the token
+    /// The symbol of the minted token
     public let symbol: String
-    /// The total amount of token available
+    /// The total amount of minted token available
     public let amount: Double
-    /// The multiplier representing the value of 1 token. i.e: if I want to give or receive
-    /// 13 tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
+    /// The multiplier representing the value of 1 minted token. i.e: if I want to give or receive
+    /// 13 minted tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
     public let subUnitToUnit: Double
 }
 

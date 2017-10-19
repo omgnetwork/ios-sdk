@@ -11,8 +11,8 @@ import UIKit
 /// Represents the global settings of the provider
 public struct Setting {
 
-    /// An array of currency tokens available for the provider
-    public let tokens: [CurrencyToken]
+    /// An array of minted tokens available for the provider
+    public let mintedTokens: [MintedToken]
 
 }
 
@@ -26,12 +26,12 @@ extension Setting: OmiseGOLocatableObject {
 extension Setting: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case tokens
+        case mintedTokens = "minted_tokens"
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        tokens = try container.decode([CurrencyToken].self, forKey: .tokens)
+        mintedTokens = try container.decode([MintedToken].self, forKey: .mintedTokens)
     }
 
 }

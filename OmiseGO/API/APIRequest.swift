@@ -63,7 +63,7 @@ public class APIRequest<ResultType: OmiseGOObject> {
     }
 
     fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType, OmiseGOError> {
-        guard ![200, 500].contains(statusCode) else {
+        guard [200, 500].contains(statusCode) else {
             return .fail(.unexpected("unrecognized HTTP status code: \(statusCode)"))
         }
         do {
@@ -119,18 +119,11 @@ public class APIRequest<ResultType: OmiseGOObject> {
             return nil
         }
         switch query {
-        case let query as APIURLQuery:
-            return makePayload(for: query)
+        case let query as APIJSONQuery:
+            return query.encodedPayload()
         default:
             return nil
         }
     }
 
-    private func makePayload(for query: APIURLQuery?) -> Data? {
-        var urlComponents = URLComponents()
-        let encoder = URLQueryItemEncoder()
-        encoder.arrayIndexEncodingStrategy = .emptySquareBrackets
-        urlComponents.queryItems = try? encoder.encode(query)
-        return urlComponents.percentEncodedQuery?.data(using: .utf8)
-    }
 }

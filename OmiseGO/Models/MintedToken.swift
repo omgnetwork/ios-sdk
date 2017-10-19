@@ -1,5 +1,5 @@
 //
-//  CurrencyToken.swift
+//  MintedToken.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/10/2560 BE.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-/// Represents a token
-public struct CurrencyToken: OmiseGOObject {
+/// Represents a minted token
+public struct MintedToken: OmiseGOObject {
 
-    /// The symbol of the token
+    /// The symbol of the minted token
     public let symbol: String
-    /// The full name of the token
+    /// The full name of the minted token
     public let name: String
-    /// The multiplier representing the value of 1 token. i.e: if I want to give or receive
-    /// 13 tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
+    /// The multiplier representing the value of 1 minted token. i.e: if I want to give or receive
+    /// 13 minted tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
     public let subUnitToUnit: Double
 
 }
 
-extension CurrencyToken: Decodable {
+extension MintedToken: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case symbol

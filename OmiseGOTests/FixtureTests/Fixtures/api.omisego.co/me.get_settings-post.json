@@ -3,15 +3,15 @@
   "success": true,
   "data": {
     "object": "setting",
-    "tokens": [
+    "minted_tokens": [
       {
-        "object": "currency_token",
+        "object": "minted_token",
         "symbol": "MNT",
         "name": "Mint",
         "subunit_to_unit": 100000
       },
       {
-        "object": "currency_token",
+        "object": "minted_token",
         "symbol": "OMG",
         "name": "OmiseGO",
         "subunit_to_unit": 100000000
