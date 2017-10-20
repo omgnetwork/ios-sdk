@@ -49,7 +49,7 @@ public class APIClient {
     }
 
     @discardableResult
-    func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
+    func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                              callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
         guard self.config != nil else {
             let missingConfigMessage = """

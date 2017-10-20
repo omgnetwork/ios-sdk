@@ -9,7 +9,7 @@
 import UIKit
 
 /// Represents a balance of a minted token
-public struct Balance {
+public struct Balance: Retrievable {
 
     /// The address of the balance
     public let address: String
@@ -35,14 +35,7 @@ extension Balance {
 
 }
 
-extension Balance: OmiseGOListableObject {
-
-    /// The HTTP-RPC operation to get the balances of the current user
-    public static let listOperation: String = "me.list_balances"
-
-}
-
-extension Balance: Decodable {
+extension Balance: OmiseGOObject {
 
     private enum CodingKeys: String, CodingKey {
         case address
@@ -73,7 +66,7 @@ extension Balance: Listable {
     /// - Returns: An optional cancellable request.
     public static func getAll(using client: APIClient = APIClient.shared,
                               callback: @escaping Balance.ListRequestCallback) -> Balance.ListRequest? {
-        return self.list(using: client, callback: callback)
+        return self.list(using: client, endpoint: .getBalances, callback: callback)
     }
 
 }

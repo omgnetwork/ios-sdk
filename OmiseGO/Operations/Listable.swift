@@ -11,15 +11,14 @@ import UIKit
 /// Represents an object that can be retrived in a collection
 public protocol Listable {}
 
-public extension Listable where Self: OmiseGOListableObject {
-    internal typealias ListEndpoint = APIEndpoint<ListProperty<Self>>
+public extension Listable where Self: OmiseGOObject {
     public typealias ListRequest = APIRequest<ListProperty<Self>>
     public typealias ListRequestCallback = (Response<[Self], OmiseGOError>) -> Void
 
     @discardableResult
     internal static func list(using client: APIClient,
+                              endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
-        let endpoint = ListEndpoint(action: self.listOperation)
         return client.request(toEndpoint: endpoint, callback: { (result) in
             switch result {
             case .success(let list):

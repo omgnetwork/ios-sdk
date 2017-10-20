@@ -10,7 +10,7 @@ import Foundation
 
 /// Represents a cancellable request
 public class APIRequest<ResultType: OmiseGOObject> {
-    typealias Endpoint = APIEndpoint<ResultType>
+    typealias Endpoint = APIEndpoint
     public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
 
     let client: APIClient
@@ -67,8 +67,8 @@ public class APIRequest<ResultType: OmiseGOObject> {
             return .fail(.unexpected("unrecognized HTTP status code: \(statusCode)"))
         }
         do {
-            let response = try endpoint.deserialize(data)
-            switch response {
+            let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
+            switch response.data {
             case .fail(let apiError):
                 return .fail(OmiseGOError.api(apiError))
             case .success(let response):
@@ -99,19 +99,23 @@ public class APIRequest<ResultType: OmiseGOObject> {
         request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Accept")
         request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
 
-        let payloadData: Data? = makePayload(for: endpoint.parameter)
+        switch endpoint.task {
+        case .requestPlain:
+            break
+        case .requestParameters(let parameters):
+            let payloadData: Data? = makePayload(for: parameters)
 
-        guard !(request.httpMethod == "GET" && payloadData != nil) else {
-            omiseGOWarn("ignoring payloads for HTTP GET operation.")
-            return request as URLRequest
+            guard !(request.httpMethod == "GET" && payloadData != nil) else {
+                omiseGOWarn("ignoring payloads for HTTP GET operation.")
+                return request
+            }
+
+            if let payload = payloadData {
+                request.httpBody = payload
+                request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
+            }
         }
-
-        if let payload = payloadData {
-            request.httpBody = payload
-            request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
-        }
-
-        return request as URLRequest
+        return request
     }
 
     private func makePayload(for query: APIQuery?) -> Data? {

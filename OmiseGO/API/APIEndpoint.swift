@@ -14,14 +14,41 @@ protocol APIJSONQuery: APIQuery {
     func encodedPayload() -> Data?
 }
 
-struct APIEndpoint<DataType: OmiseGOObject> {
+/// Represents an HTTP task.
+enum Task {
+    /// A request with no additional data.
+    case requestPlain
+    /// A requests body set with encoded parameters.
+    case requestParameters(parameters: APIQuery)
+}
 
-    let parameter: APIQuery?
-    let action: String
+enum APIEndpoint {
 
-    init(action: String, parameter: APIQuery? = nil) {
-        self.action = action
-        self.parameter = parameter
+    case getCurrentUser
+    case getBalances
+    case getSettings
+    case custom(path: String, task: Task)
+
+    var path: String {
+        switch self {
+        case .getCurrentUser:
+            return "/user.me"
+        case .getBalances:
+            return "/me.list_balances"
+        case .getSettings:
+            return "/me.get_settings"
+        case .custom(let path, _):
+            return path
+        }
+    }
+
+    var task: Task {
+        switch self {
+        case .getCurrentUser, .getBalances, .getSettings: // Send no parameters
+            return .requestPlain
+        case .custom(_, let task):
+            return task
+        }
     }
 
     func makeURL(withBaseURL baseURL: String) -> URL? {
@@ -29,12 +56,6 @@ struct APIEndpoint<DataType: OmiseGOObject> {
             omiseGOWarn("Base url is not a valid URL!")
             return nil
         }
-        return url.appendingPathComponent(self.action)
+        return url.appendingPathComponent(self.path)
     }
-
-    func deserialize(_ data: Data) throws -> Response<DataType, APIError> {
-        let response: OmiseGOJSONResponse<DataType> = try deserializeData(data)
-        return response.data
-    }
-
 }

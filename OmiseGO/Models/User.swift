@@ -23,14 +23,7 @@ public struct User {
 
 }
 
-extension User: OmiseGOLocatableObject {
-
-    /// The HTTP-RPC operation to get the current user
-    public static let operation: String = "user.me"
-
-}
-
-extension User: Decodable {
+extension User: OmiseGOObject {
 
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name
@@ -62,7 +55,7 @@ extension User: Retrievable {
     /// - Returns: An optional cancellable request.
     public static func getCurrent(using client: APIClient = APIClient.shared,
                                   callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
-        return self.retrieve(using: client, callback: callback)
+        return self.retrieve(using: client, endpoint: .getCurrentUser, callback: callback)
     }
 
 }

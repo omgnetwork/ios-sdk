@@ -19,8 +19,8 @@ class ClientTests: XCTestCase {
         let authenticationToken: String = "dummy_authenticationtoken"
         let config = APIConfiguration(baseURL: url, apiKey: apiKey, authenticationToken: authenticationToken)
         let client = APIClient(config: config)
-        let dummyEndpoint = APIEndpoint<DummyTestObject>(action: "dummy_action")
-        let request = client.request(toEndpoint: dummyEndpoint) { result in
+        let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
+        let request: APIRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {
                 expectation.fulfill()
             }
@@ -35,7 +35,7 @@ class ClientTests: XCTestCase {
                     XCTFail("Error should be a configuration error")
                 }
             }
-        }
+            }
         XCTAssertNil(request, "Request should be nil")
         waitForExpectations(timeout: 15.0, handler: nil)
     }
@@ -43,8 +43,8 @@ class ClientTests: XCTestCase {
     func testMissingClientConfiguration() {
         let expectation = self.expectation(description: "Missing configuration")
         let client = APIClient.shared
-        let dummyEndpoint = APIEndpoint<DummyTestObject>(action: "dummy_action")
-        let request = client.request(toEndpoint: dummyEndpoint) { result in
+        let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
+        let request: APIRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {
                 expectation.fulfill()
             }

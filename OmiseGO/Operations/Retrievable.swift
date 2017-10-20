@@ -11,15 +11,14 @@ import Foundation
 /// Represent an Object that can be uniquely retrived
 public protocol Retrievable {}
 
-public extension Retrievable where Self: OmiseGOLocatableObject {
-    internal typealias RetrieveEndpoint = APIEndpoint<Self>
+public extension Retrievable where Self: OmiseGOObject {
     public typealias RetrieveRequest = APIRequest<Self>
     public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
     internal static func retrieve(using client: APIClient,
+                                  endpoint: APIEndpoint,
                                   callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
-        let endpoint = RetrieveEndpoint(action: self.operation)
         return client.request(toEndpoint: endpoint, callback: callback)
     }
 }

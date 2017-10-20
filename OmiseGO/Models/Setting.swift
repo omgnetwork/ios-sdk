@@ -16,14 +16,7 @@ public struct Setting {
 
 }
 
-extension Setting: OmiseGOLocatableObject {
-
-    /// The HTTP-RPC operation to get the settings
-    public static let operation: String = "me.get_settings"
-
-}
-
-extension Setting: Decodable {
+extension Setting: OmiseGOObject {
 
     private enum CodingKeys: String, CodingKey {
         case mintedTokens = "minted_tokens"
@@ -48,7 +41,7 @@ extension Setting: Retrievable {
     /// - Returns: An optional cancellable request.
     public static func get(using client: APIClient = APIClient.shared,
                            callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
-        return self.retrieve(using: client, callback: callback)
+        return self.retrieve(using: client, endpoint: .getSettings, callback: callback)
     }
 
 }

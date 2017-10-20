@@ -20,7 +20,7 @@ class FixtureClient: APIClient {
     }
 
     @discardableResult
-    override func request<ResultType>(toEndpoint endpoint: APIEndpoint<ResultType>,
+    override func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                                       callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
         do {
             let req: FixtureRequest<ResultType> = FixtureRequest(client: self, endpoint: endpoint, callback: callback)
@@ -76,8 +76,8 @@ class FixtureRequest<ResultType: OmiseGOObject>: APIRequest<ResultType> {
             return performCallback(.fail(.unexpected("empty response.")))
         }
         do {
-            let response = try endpoint.deserialize(data)
-            switch response {
+            let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
+            switch response.data {
             case .fail(let apiError):
                 return performCallback(.fail(OmiseGOError.api(apiError)))
             case .success(let response):
