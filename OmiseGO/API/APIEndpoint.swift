@@ -27,6 +27,7 @@ enum APIEndpoint {
     case getCurrentUser
     case getBalances
     case getSettings
+    case logout
     case custom(path: String, task: Task)
 
     var path: String {
@@ -37,6 +38,8 @@ enum APIEndpoint {
             return "/me.list_balances"
         case .getSettings:
             return "/me.get_settings"
+        case .logout:
+            return "/logout"
         case .custom(let path, _):
             return path
         }
@@ -44,7 +47,7 @@ enum APIEndpoint {
 
     var task: Task {
         switch self {
-        case .getCurrentUser, .getBalances, .getSettings: // Send no parameters
+        case .getCurrentUser, .getBalances, .getSettings, .logout: // Send no parameters
             return .requestPlain
         case .custom(_, let task):
             return task

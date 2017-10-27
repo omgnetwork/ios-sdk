@@ -89,7 +89,10 @@ public class OMGClient {
     }
 
     func encodedAuthorizationHeader() throws -> String {
-        let keys = "\(self.config.apiKey):\(self.config.authenticationToken)"
+        guard let authenticationToken = self.config.authenticationToken else {
+            throw OmiseGOError.configuration(message: "Please provide an authentication token before using the SDK")
+        }
+        let keys = "\(self.config.apiKey):\(authenticationToken)"
         let data = keys.data(using: .utf8, allowLossyConversion: false)
         guard let encodedKey = data?.base64EncodedString() else {
             throw OmiseGOError.configuration(message: "bad API key or authentication token (encoding failed.)")
@@ -100,6 +103,29 @@ public class OMGClient {
 
     func contentTypeHeader() -> String {
         return "application/vnd.omisego.v\(self.config.apiVersion)+json"
+    }
+
+}
+
+extension OMGClient {
+
+    /// Logout the current user (invalidate the provided authenticationToken).
+    ///
+    /// - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    @discardableResult
+    public func logout(withCallback callback: @escaping OMGRequest<EmptyResponse>.Callback)
+        -> OMGRequest<EmptyResponse>? {
+        let request: OMGRequest<EmptyResponse>? = self.request(toEndpoint: .logout) { (result) in
+            switch result {
+            case .success(data: let data):
+                self.config.authenticationToken = nil
+                callback(.success(data: data))
+            case .fail(let error):
+                callback(.fail(error: error))
+            }
+        }
+        return request
     }
 
 }

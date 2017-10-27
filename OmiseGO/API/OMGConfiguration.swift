@@ -19,7 +19,7 @@ public struct OMGConfiguration {
     /// The API key provided by OmiseGO
     public let apiKey: String
     /// The authentication token of the current user
-    public let authenticationToken: String
+    public var authenticationToken: String?
 
     public init(baseURL: String, apiKey: String, authenticationToken: String) {
         self.baseURL = baseURL

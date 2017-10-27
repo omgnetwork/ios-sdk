@@ -40,6 +40,8 @@ extension Bool: JSONType {
     public var jsonValue: Any { return self }
 }
 
+public struct EmptyResponse: OmiseGOObject {}
+
 public struct AnyJSONType: JSONType {
     public let jsonValue: Any
 

@@ -34,6 +34,7 @@
 		0345BE251F96FD9C00B4CA16 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserTests.swift */; };
 		0345BE271F96FDC400B4CA16 /* LiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTest.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseTest.swift */; };
+		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
 		038A42511F8DCB5C001A00E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42501F8DCB5C001A00E0 /* User.swift */; };
 		038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42521F8DDCDA001A00E0 /* Retrievable.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
@@ -80,6 +81,7 @@
 		0345BE241F96FD9C00B4CA16 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		0345BE261F96FDC400B4CA16 /* LiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTest.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
+		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
 		038A42501F8DCB5C001A00E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		038A42521F8DDCDA001A00E0 /* Retrievable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				038A42551F8DE786001A00E0 /* UserFixtureTests.swift */,
 				031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */,
 				031863FC1F8F678300D13862 /* SettingFixtureTests.swift */,
+				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				0345BE251F96FD9C00B4CA16 /* UserTests.swift in Sources */,
 				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
 				0345BE291F96FE8C00B4CA16 /* ResponseTest.swift in Sources */,
+				034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */,
 				031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */,
 				03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */,
 				031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */,
