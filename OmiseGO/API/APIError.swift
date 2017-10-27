@@ -14,10 +14,10 @@ public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
     /// The error code describing the error
     public let code: APIErrorCode
     /// The error message
-    public let message: String
+    public let description: String
 
     public var debugDescription: String {
-        return "Error: \(code.debugDescription) - \(message)"
+        return "Error: \(code.debugDescription) - \(description)"
     }
 
     public enum APIErrorCode: CustomDebugStringConvertible, Decodable {
@@ -59,13 +59,13 @@ extension APIError: Decodable {
     private enum CodingKeys: String, CodingKey {
         case object
         case code
-        case message
+        case description
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         code = try container.decode(APIErrorCode.self, forKey: .code)
-        message = try container.decode(String.self, forKey: .message)
+        description = try container.decode(String.self, forKey: .description)
     }
 
 }

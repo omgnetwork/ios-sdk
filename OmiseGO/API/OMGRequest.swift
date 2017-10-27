@@ -1,5 +1,5 @@
 //
-//  APIRequest.swift
+//  OMGRequest.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2560 BE.
@@ -9,17 +9,17 @@
 import Foundation
 
 /// Represents a cancellable request
-public class APIRequest<ResultType: OmiseGOObject> {
+public class OMGRequest<ResultType: OmiseGOObject> {
     typealias Endpoint = APIEndpoint
     public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
 
-    let client: APIClient
-    let endpoint: APIRequest.Endpoint
-    let callback: APIRequest.Callback?
+    let client: OMGClient
+    let endpoint: OMGRequest.Endpoint
+    let callback: OMGRequest.Callback?
 
     var task: URLSessionTask?
 
-    init(client: APIClient, endpoint: Endpoint, callback: Callback?) {
+    init(client: OMGClient, endpoint: Endpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback
@@ -32,7 +32,7 @@ public class APIRequest<ResultType: OmiseGOObject> {
 
     func start() throws -> Self {
         guard let urlRequest = try makeURLRequest() else {
-            throw OmiseGOError.configuration("Invalid request")
+            throw OmiseGOError.configuration(message: "Invalid request")
         }
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
         self.task = dataTask
@@ -45,18 +45,18 @@ public class APIRequest<ResultType: OmiseGOObject> {
         // no one's in the forest to hear the leaf falls.
         guard callback != nil else { return }
 
-        if let err = error {
-            performCallback(.fail(.other(err)))
+        if let error = error {
+            performCallback(.fail(error: .other(error: error)))
             return
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            performCallback(.fail(.unexpected("no error and no response.")))
+            performCallback(.fail(error: .unexpected(message: "no error and no response.")))
             return
         }
 
         guard let data = data else {
-            performCallback(.fail(.unexpected("empty response.")))
+            performCallback(.fail(error: .unexpected(message: "empty response.")))
             return
         }
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
@@ -64,18 +64,18 @@ public class APIRequest<ResultType: OmiseGOObject> {
 
     fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType, OmiseGOError> {
         guard [200, 500].contains(statusCode) else {
-            return .fail(.unexpected("unrecognized HTTP status code: \(statusCode)"))
+            return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
             let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
             switch response.data {
             case .fail(let apiError):
-                return .fail(OmiseGOError.api(apiError))
+                return .fail(error: OmiseGOError.api(apiError: apiError))
             case .success(let response):
-                return .success(response)
+                return .success(data: response)
             }
-        } catch let err {
-            return .fail(.other(err))
+        } catch let error {
+            return .fail(error: .other(error: error))
         }
     }
 
@@ -86,7 +86,7 @@ public class APIRequest<ResultType: OmiseGOObject> {
 
     func makeURLRequest() throws -> URLRequest? {
         guard let requestURL = endpoint.makeURL(withBaseURL: self.client.config.baseURL) else {
-            throw OmiseGOError.configuration("Invalid request")
+            throw OmiseGOError.configuration(message: "Invalid request")
         }
 
         let auth = try client.encodedAuthorizationHeader()

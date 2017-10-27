@@ -9,10 +9,10 @@
 import Foundation
 @testable import OmiseGO
 
-class FixtureClient: APIClient {
+class FixtureClient: OMGClient {
     let fixturesDirectoryURL: URL
 
-    public override init(config: APIConfiguration) {
+    public override init(config: OMGConfiguration) {
         let bundle = Bundle(for: FixtureClient.self)
         self.fixturesDirectoryURL = bundle.url(forResource: "Fixtures", withExtension: nil)!
 
@@ -21,21 +21,23 @@ class FixtureClient: APIClient {
 
     @discardableResult
     override func request<ResultType>(toEndpoint endpoint: APIEndpoint,
-                                      callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+                                      callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
         do {
-            let req: FixtureRequest<ResultType> = FixtureRequest(client: self, endpoint: endpoint, callback: callback)
-            return try req.start()
-        } catch let err as NSError {
-            operationQueue.addOperation { callback?(.fail(.other(err))) }
-        } catch let err as OmiseGOError {
-            operationQueue.addOperation { callback?(.fail(err)) }
+            let request: FixtureRequest<ResultType> = FixtureRequest(client: self,
+                                                                     endpoint: endpoint,
+                                                                     callback: callback)
+            return try request.start()
+        } catch let error as NSError {
+            operationQueue.addOperation { callback?(.fail(error: .other(error: error))) }
+        } catch let error as OmiseGOError {
+            operationQueue.addOperation { callback?(.fail(error: error)) }
         }
 
         return nil
     }
 }
 
-class FixtureRequest<ResultType: OmiseGOObject>: APIRequest<ResultType> {
+class FixtureRequest<ResultType: OmiseGOObject>: OMGRequest<ResultType> {
     var fixtureClient: FixtureClient? {
         return client as? FixtureClient
     }
@@ -68,23 +70,23 @@ class FixtureRequest<ResultType: OmiseGOObject>: APIRequest<ResultType> {
     fileprivate func didComplete(data: Data?, error: Error?) {
         guard callback != nil else { return }
 
-        if let err = error {
-            return performCallback(.fail(.other(err)))
+        if let error = error {
+            return performCallback(.fail(error: .other(error: error)))
         }
 
         guard let data = data else {
-            return performCallback(.fail(.unexpected("empty response.")))
+            return performCallback(.fail(error: .unexpected(message: "empty response.")))
         }
         do {
             let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
             switch response.data {
             case .fail(let apiError):
-                return performCallback(.fail(OmiseGOError.api(apiError)))
+                return performCallback(.fail(error: OmiseGOError.api(apiError: apiError)))
             case .success(let response):
-                return performCallback(.success(response))
+                return performCallback(.success(data: response))
             }
-        } catch let err {
-            return performCallback(.fail(.other(err)))
+        } catch let error {
+            return performCallback(.fail(error: .other(error: error)))
         }
     }
 

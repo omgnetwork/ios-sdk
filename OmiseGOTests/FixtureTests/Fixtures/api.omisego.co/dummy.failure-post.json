@@ -4,6 +4,6 @@
   "data": {
     "object": "error",
     "code": "error_code",
-    "message": "error_message"
+    "description": "error_message"
   }
 }

@@ -36,10 +36,10 @@ extension Setting: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An optional API client (use the shared client by default).
-    ///             This client need to be initialized with a APIConfiguration struct before being used.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func get(using client: APIClient = APIClient.shared,
+    public static func get(using client: OMGClient = OMGClient.shared,
                            callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getSettings, callback: callback)
     }

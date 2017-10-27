@@ -15,10 +15,10 @@ import UIKit
 /// - api: An API error has occured
 /// - other: Other types of errors
 public enum OmiseGOError: Error {
-    case unexpected(String)
-    case configuration(String)
-    case api(APIError)
-    case other(Error)
+    case unexpected(message: String)
+    case configuration(message: String)
+    case api(apiError: APIError)
+    case other(error: Error)
 
     public var message: String {
         switch self {
@@ -26,14 +26,15 @@ public enum OmiseGOError: Error {
             return "unexpected error: \(message)"
         case .configuration(let message):
             return "configuration error: \(message)"
-        case .other(let err as DecodingError):
-            return "Decoding Error: \(err.localizedDescription) - \(err.failureReason ?? "")"
-        case .other(let err):
-            return "I/O error: \(err.localizedDescription)"
-        case .api(let err):
-            return "(\(err.code)) \(err.message)"
+        case .other(let error as DecodingError):
+            return "Decoding Error: \(error.localizedDescription) - \(error.failureReason ?? "")"
+        case .other(let error):
+            return "I/O error: \(error.localizedDescription)"
+        case .api(let error):
+            return "(\(error.code)) \(error.description)"
         }
     }
+    
 }
 
 extension OmiseGOError: CustomStringConvertible, CustomDebugStringConvertible {

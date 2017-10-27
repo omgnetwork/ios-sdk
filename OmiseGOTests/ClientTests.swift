@@ -17,10 +17,10 @@ class ClientTests: XCTestCase {
         let url: String = "invalid url @"
         let apiKey: String = "dummy_apikey"
         let authenticationToken: String = "dummy_authenticationtoken"
-        let config = APIConfiguration(baseURL: url, apiKey: apiKey, authenticationToken: authenticationToken)
-        let client = APIClient(config: config)
+        let config = OMGConfiguration(baseURL: url, apiKey: apiKey, authenticationToken: authenticationToken)
+        let client = OMGClient(config: config)
         let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
-        let request: APIRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
+        let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {
                 expectation.fulfill()
             }
@@ -42,9 +42,9 @@ class ClientTests: XCTestCase {
 
     func testMissingClientConfiguration() {
         let expectation = self.expectation(description: "Missing configuration")
-        let client = APIClient.shared
+        let client = OMGClient.shared
         let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
-        let request: APIRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
+        let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {
                 expectation.fulfill()
             }

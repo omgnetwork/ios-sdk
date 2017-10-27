@@ -30,10 +30,10 @@ extension OmiseGOJSONResponse: Decodable {
         success = try container.decode(Bool.self, forKey: .success)
         if success {
             let result = try container.decode(ObjectType.self, forKey: .data)
-            data = .success(result)
+            data = .success(data: result)
         } else {
             let error = try container.decode(APIError.self, forKey: .data)
-            data = .fail(error)
+            data = .fail(error: error)
         }
     }
 }

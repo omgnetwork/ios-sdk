@@ -50,10 +50,10 @@ extension User: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An optional API client (use the shared client by default).
-    ///             This client need to be initialized with a APIConfiguration struct before being used.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getCurrent(using client: APIClient = APIClient.shared,
+    public static func getCurrent(using client: OMGClient = OMGClient.shared,
                                   callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getCurrentUser, callback: callback)
     }

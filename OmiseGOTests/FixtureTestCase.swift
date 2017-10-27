@@ -15,9 +15,9 @@ class FixtureTestCase: OmiseGOTestCase {
         return FixtureClient(config: self.validConfig)
     }
 
-    let validConfig: APIConfiguration = APIConfiguration(baseURL: "api.omisego.co",
-                                                        apiKey: "apikey",
-                                                        authenticationToken: "authenticationtoken")
+    let validConfig: OMGConfiguration = OMGConfiguration(baseURL: "api.omisego.co",
+                                                         apiKey: "apikey",
+                                                         authenticationToken: "authenticationtoken")
 
     func fixturesData(for filename: String) -> Data? {
         let bundle = Bundle(for: OmiseGOTestCase.self)

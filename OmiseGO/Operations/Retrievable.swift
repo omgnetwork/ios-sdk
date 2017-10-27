@@ -12,11 +12,11 @@ import Foundation
 public protocol Retrievable {}
 
 public extension Retrievable where Self: OmiseGOObject {
-    public typealias RetrieveRequest = APIRequest<Self>
+    public typealias RetrieveRequest = OMGRequest<Self>
     public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
-    internal static func retrieve(using client: APIClient,
+    internal static func retrieve(using client: OMGClient,
                                   endpoint: APIEndpoint,
                                   callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)

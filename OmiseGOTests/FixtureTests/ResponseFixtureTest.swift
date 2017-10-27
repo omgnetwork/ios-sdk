@@ -15,7 +15,7 @@ class ResponseFixtureTest: FixtureTestCase {
     func testCustomClientResponse() {
         let expectation = self.expectation(description: "Success response")
         let endpoint = APIEndpoint.custom(path: "dummy.success", task: .requestPlain)
-        let request: APIRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
+        let request: OMGRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case let .success(object):
@@ -31,7 +31,7 @@ class ResponseFixtureTest: FixtureTestCase {
     func testErrorResponse() {
         let expectation = self.expectation(description: "Error response")
         let endpoint = APIEndpoint.custom(path: "dummy.failure", task: .requestPlain)
-        let request: APIRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
+        let request: OMGRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(_):

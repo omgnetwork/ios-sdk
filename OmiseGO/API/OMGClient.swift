@@ -1,5 +1,5 @@
 //
-//  APIClient.swift
+//  OMGClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2560 BE.
@@ -8,25 +8,25 @@
 
 import Foundation
 
-/// Represents an APIClient that should be configured using an APIConfiguration
-public class APIClient {
+/// Represents an OMGClient that should be configured using an OMGConfiguration
+public class OMGClient {
 
     /// The shared client that will be used by default if no client is specified.
-    public static let shared = APIClient()
+    public static let shared = OMGClient()
 
     let authScheme = "OMGClient"
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
-    var config: APIConfiguration!
+    var config: OMGConfiguration!
 
     private init() {}
 
     /// Initialize a client using a configuration object
     ///
     /// - Parameter config: The configuration object
-    public init(config: APIConfiguration) {
-        APIClient.set(config, toClient: self)
+    public init(config: OMGConfiguration) {
+        OMGClient.set(config, toClient: self)
     }
 
     @discardableResult
@@ -34,12 +34,12 @@ public class APIClient {
     ///
     /// - Parameter config: The configuration object
     /// - Returns: The shared client
-    public static func setup(withConfig config: APIConfiguration) -> APIClient {
-        return APIClient.set(config, toClient: APIClient.shared)
+    public static func setup(withConfig config: OMGConfiguration) -> OMGClient {
+        return OMGClient.set(config, toClient: OMGClient.shared)
     }
 
     @discardableResult
-    private static func set(_ config: APIConfiguration, toClient client: APIClient) -> APIClient {
+    private static func set(_ config: OMGConfiguration, toClient client: OMGClient) -> OMGClient {
         client.config = config
         client.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
                                               delegate: nil,
@@ -50,29 +50,29 @@ public class APIClient {
 
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
-                             callback: APIRequest<ResultType>.Callback?) -> APIRequest<ResultType>? {
+                             callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
         guard self.config != nil else {
             let missingConfigMessage = """
                Missing client configuration. Add a configuration to the client
-               using APIClient.setup(withConfig: APIConfiguration)
+               using OMGClient.setup(withConfig: OMGConfiguration)
             """
             omiseGOWarn(missingConfigMessage)
             performCallback {
-                callback?(.fail(.configuration(missingConfigMessage)))
+                callback?(.fail(error: .configuration(message: missingConfigMessage)))
             }
 
             return nil
         }
         do {
-            let req: APIRequest<ResultType> = APIRequest(client: self, endpoint: endpoint, callback: callback)
-            return try req.start()
-        } catch let err as OmiseGOError {
+            let request: OMGRequest<ResultType> = OMGRequest(client: self, endpoint: endpoint, callback: callback)
+            return try request.start()
+        } catch let error as OmiseGOError {
             performCallback {
-                callback?(.fail(err))
+                callback?(.fail(error: error))
             }
-        } catch let err {
+        } catch let error {
             performCallback {
-                callback?(.fail(.other(err)))
+                callback?(.fail(error: .other(error: error)))
             }
         }
 
@@ -92,7 +92,7 @@ public class APIClient {
         let keys = "\(self.config.apiKey):\(self.config.authenticationToken)"
         let data = keys.data(using: .utf8, allowLossyConversion: false)
         guard let encodedKey = data?.base64EncodedString() else {
-            throw OmiseGOError.configuration("bad API key or authentication token (encoding failed.)")
+            throw OmiseGOError.configuration(message: "bad API key or authentication token (encoding failed.)")
         }
 
         return "\(authScheme) \(encodedKey)"

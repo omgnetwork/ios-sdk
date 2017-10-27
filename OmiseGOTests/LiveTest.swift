@@ -14,15 +14,15 @@ class LiveTest: OmiseGOTestCase {
 
     override func setUp() {
         super.setUp()
-        APIClient.setup(withConfig: self.validConfig())
+        OMGClient.setup(withConfig: self.validConfig())
     }
 
-    var testClient: APIClient {
-        return APIClient(config: self.validConfig())
+    var testClient: OMGClient {
+        return OMGClient(config: self.validConfig())
     }
 
-    private func validConfig() -> APIConfiguration {
-        return APIConfiguration(baseURL: "http://localhost:4000", apiKey: "", authenticationToken: "")
+    private func validConfig() -> OMGConfiguration {
+        return OMGConfiguration(baseURL: "http://localhost:4000", apiKey: "", authenticationToken: "")
     }
 
 }

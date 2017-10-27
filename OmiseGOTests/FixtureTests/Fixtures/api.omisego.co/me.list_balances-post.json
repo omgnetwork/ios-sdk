@@ -1,23 +1,31 @@
 {
-  "version": "1",
-  "success": true,
-  "data": {
-    "object": "list",
-    "data": [
-      {
-        "object": "balance",
-        "address": "my_mnt_address",
-        "symbol": "MNT",
-        "amount": 10,
-        "subunit_to_unit": 100000
-      },
-      {
-        "object": "balance",
-        "address": "my_omg_address",
-        "symbol": "OMG",
-        "amount": 52,
-        "subunit_to_unit": 100000000
-      }
-    ]
-  }
+    "version": "1",
+    "success": true,
+    "data": {
+        "object": "list",
+        "data": [
+                 {
+                 "object": "balance",
+                 "minted_token": {
+                     "object": "minted_token",
+                     "symbol": "MNT",
+                     "name": "Mint",
+                     "subunit_to_unit": 100000
+                 },
+                 "address": "my_mnt_address",
+                 "amount": 10
+                 },
+                 {
+                 "object": "balance",
+                 "minted_token": {
+                     "object": "minted_token",
+                     "symbol": "OMG",
+                     "name": "OmiseGO",
+                     "subunit_to_unit": 100000000
+                 },
+                 "address": "my_omg_address",
+                 "amount": 52
+                 }
+                 ]
+    }
 }

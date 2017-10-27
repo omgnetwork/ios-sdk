@@ -21,14 +21,16 @@ class BalanceFixtureTests: FixtureTestCase {
             switch result {
             case .success(let balances):
                 XCTAssert(balances.count == 2)
+                let mntToken = balances[0].mintedToken
+                XCTAssertEqual(mntToken.symbol, "MNT")
+                XCTAssertEqual(mntToken.subUnitToUnit, 100000)
                 XCTAssertEqual(balances[0].address, "my_mnt_address")
                 XCTAssertEqual(balances[0].amount, 10)
-                XCTAssertEqual(balances[0].symbol, "MNT")
-                XCTAssertEqual(balances[0].subUnitToUnit, 100000)
+                let omgToken = balances[1].mintedToken
+                XCTAssertEqual(omgToken.symbol, "OMG")
+                XCTAssertEqual(omgToken.subUnitToUnit, 100000000)
                 XCTAssertEqual(balances[1].address, "my_omg_address")
                 XCTAssertEqual(balances[1].amount, 52)
-                XCTAssertEqual(balances[1].symbol, "OMG")
-                XCTAssertEqual(balances[1].subUnitToUnit, 100000000)
             case .fail(let error):
                 XCTFail("\(error)")
             }
@@ -38,30 +40,47 @@ class BalanceFixtureTests: FixtureTestCase {
     }
 
     func testStandardDisplayAmount() {
-        let balance1 = Balance(address: "", symbol: "", amount: 13, subUnitToUnit: 1000)
-        XCTAssertEqual(balance1.displayAmount(), "0\(decimalSeparator)013")
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 13)
+        XCTAssertEqual(balance.displayAmount(), "0\(decimalSeparator)013")
     }
 
     func testZeroDisplayAmount() {
-        let balance2 = Balance(address: "", symbol: "", amount: 0, subUnitToUnit: 1000)
-        XCTAssertEqual(balance2.displayAmount(), "0")
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 0)
+        XCTAssertEqual(balance.displayAmount(), "0")
     }
 
     func testBigDisplayAmount() {
-        let balance3 = Balance(address: "", symbol: "", amount: 999999999999999, subUnitToUnit: 1000)
-        XCTAssertEqual(balance3.displayAmount(),
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 999999999999999)
+        XCTAssertEqual(balance.displayAmount(),
                        "999\(groupingSeparator)999\(groupingSeparator)999\(groupingSeparator)999\(decimalSeparator)999")
     }
 
+    func testBigDisplayAmountPrecision() {
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 999999999999999)
+        XCTAssertEqual(balance.displayAmount(withPrecision: 1),
+                       "1\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000")
+    }
+
     func testBigDisplayAmountWithBigSubUnitToUnity() {
-        let balance4 = Balance(address: "", symbol: "", amount: 130000000000000000000,
-                               subUnitToUnit: 1000000000000000000)
-        XCTAssertEqual(balance4.displayAmount(), "130")
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 130000000000000000000)
+        XCTAssertEqual(balance.displayAmount(), "130")
     }
 
     func testSmallestDisplayAmount() {
-        let balance5 = Balance(address: "", symbol: "", amount: 1, subUnitToUnit: 1000000000000000000)
-        XCTAssertEqual(balance5.displayAmount(), "0\(decimalSeparator)000000000000000001")
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 1)
+        XCTAssertEqual(balance.displayAmount(), "0\(decimalSeparator)000000000000000001")
+    }
+
+    func testSmallNumberPrecision() {
+        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let balance = Balance(mintedToken: mintedToken, address: "", amount: 1)
+        XCTAssertEqual(balance.displayAmount(withPrecision: 2), "0")
     }
 
 }

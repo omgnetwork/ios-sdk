@@ -1,5 +1,5 @@
 //
-//  APIConfiguration.swift
+//  OMGConfiguration.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2560 BE.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// Represents a configuration object used to setup an APIClient
-public struct APIConfiguration {
+/// Represents a configuration object used to setup an OMGClient
+public struct OMGConfiguration {
 
     /// The current SDK version
     public let apiVersion: String = "1"

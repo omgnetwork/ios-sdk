@@ -42,12 +42,12 @@
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */; };
 		03BCCCBA1F8B311600F604DB /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 03BCCCAC1F8B311600F604DB /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC41F8B753600F604DB /* APIClient.swift */; };
-		03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */; };
+		03BCCCC51F8B753600F604DB /* OMGClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC41F8B753600F604DB /* OMGClient.swift */; };
+		03BCCCC71F8B772A00F604DB /* OMGConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC61F8B772A00F604DB /* OMGConfiguration.swift */; };
 		03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */; };
 		03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCB1F8B7B5300F604DB /* Object.swift */; };
 		03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCD1F8B800000F604DB /* Tool.swift */; };
-		03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCF1F8B814800F604DB /* APIRequest.swift */; };
+		03BCCCD01F8B814800F604DB /* OMGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCCF1F8B814800F604DB /* OMGRequest.swift */; };
 		03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD11F8B817B00F604DB /* Reponse.swift */; };
 		03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */; };
 		03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD51F8B81F200F604DB /* APIError.swift */; };
@@ -91,12 +91,12 @@
 		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB71F8B311600F604DB /* OmiseGOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOTests.swift; sourceTree = "<group>"; };
 		03BCCCB91F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03BCCCC41F8B753600F604DB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		03BCCCC41F8B753600F604DB /* OMGClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGClient.swift; sourceTree = "<group>"; };
+		03BCCCC61F8B772A00F604DB /* OMGConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGConfiguration.swift; sourceTree = "<group>"; };
 		03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		03BCCCCB1F8B7B5300F604DB /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		03BCCCCD1F8B800000F604DB /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
-		03BCCCCF1F8B814800F604DB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		03BCCCCF1F8B814800F604DB /* OMGRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequest.swift; sourceTree = "<group>"; };
 		03BCCCD11F8B817B00F604DB /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
 		03BCCCD51F8B81F200F604DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -212,11 +212,11 @@
 		03BCCCC31F8B742E00F604DB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				03BCCCC41F8B753600F604DB /* APIClient.swift */,
-				03BCCCC61F8B772A00F604DB /* APIConfiguration.swift */,
+				03BCCCC41F8B753600F604DB /* OMGClient.swift */,
+				03BCCCC61F8B772A00F604DB /* OMGConfiguration.swift */,
 				03BCCCC81F8B7AC200F604DB /* APIEndpoint.swift */,
 				03BCCCCD1F8B800000F604DB /* Tool.swift */,
-				03BCCCCF1F8B814800F604DB /* APIRequest.swift */,
+				03BCCCCF1F8B814800F604DB /* OMGRequest.swift */,
 				03BCCCD51F8B81F200F604DB /* APIError.swift */,
 				03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */,
 			);
@@ -388,7 +388,7 @@
 				038A42511F8DCB5C001A00E0 /* User.swift in Sources */,
 				031863F31F8F517000D13862 /* Balance.swift in Sources */,
 				03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */,
-				03BCCCC51F8B753600F604DB /* APIClient.swift in Sources */,
+				03BCCCC51F8B753600F604DB /* OMGClient.swift in Sources */,
 				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
 				03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */,
 				03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */,
@@ -397,8 +397,8 @@
 				031863F51F8F54EC00D13862 /* Listable.swift in Sources */,
 				031863FB1F8F65C000D13862 /* MintedToken.swift in Sources */,
 				03BCCCCE1F8B800000F604DB /* Tool.swift in Sources */,
-				03BCCCD01F8B814800F604DB /* APIRequest.swift in Sources */,
-				03BCCCC71F8B772A00F604DB /* APIConfiguration.swift in Sources */,
+				03BCCCD01F8B814800F604DB /* OMGRequest.swift in Sources */,
+				03BCCCC71F8B772A00F604DB /* OMGConfiguration.swift in Sources */,
 				03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */,
 				031863F91F8F64C800D13862 /* Setting.swift in Sources */,
 				038A42531F8DDCDA001A00E0 /* Retrievable.swift in Sources */,

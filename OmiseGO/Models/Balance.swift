@@ -11,24 +11,26 @@ import UIKit
 /// Represents a balance of a minted token
 public struct Balance: Retrievable {
 
+    /// The minted token corresponding to the balance
+    public let mintedToken: MintedToken
     /// The address of the balance
     public let address: String
-    /// The symbol of the minted token
-    public let symbol: String
     /// The total amount of minted token available
     public let amount: Double
-    /// The multiplier representing the value of 1 minted token. i.e: if I want to give or receive
-    /// 13 minted tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
-    public let subUnitToUnit: Double
 }
 
 extension Balance {
 
-    func displayAmount() -> String {
+    /// Helper method that returns an easily readable value of the amount
+    ///
+    /// - Parameter precision: The decimal precision to give to the formatter
+    /// for example a number 0.123 with a precision of 1 will be 0.1
+    /// - Returns: the formatted balance amount
+    public func displayAmount(withPrecision precision: Int = 1000) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 1000
-        let displayableAmount: Double = self.amount / self.subUnitToUnit
+        formatter.maximumFractionDigits = precision
+        let displayableAmount: Double = self.amount / self.mintedToken.subUnitToUnit
         let formattedDisplayAmount = formatter.string(from: NSNumber(value: displayableAmount))
         return formattedDisplayAmount ?? ""
     }
@@ -38,18 +40,16 @@ extension Balance {
 extension Balance: OmiseGOObject {
 
     private enum CodingKeys: String, CodingKey {
+        case mintedToken = "minted_token"
         case address
-        case symbol
         case amount
-        case subUnitToUnit = "subunit_to_unit"
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
         address = try container.decode(String.self, forKey: .address)
-        symbol = try container.decode(String.self, forKey: .symbol)
         amount = try container.decode(Double.self, forKey: .amount)
-        subUnitToUnit = try container.decode(Double.self, forKey: .subUnitToUnit)
     }
 
 }
@@ -61,10 +61,10 @@ extension Balance: Listable {
     ///
     /// - Parameters:
     ///   - client: An optional API client (use the shared client by default).
-    ///             This client need to be initialized with a APIConfiguration struct before being used.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getAll(using client: APIClient = APIClient.shared,
+    public static func getAll(using client: OMGClient = OMGClient.shared,
                               callback: @escaping Balance.ListRequestCallback) -> Balance.ListRequest? {
         return self.list(using: client, endpoint: .getBalances, callback: callback)
     }
