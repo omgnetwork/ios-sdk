@@ -17,15 +17,53 @@ public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
     public let description: String
 
     public var debugDescription: String {
-        return "Error: \(code.debugDescription) - \(description)"
+        return "Error: \(code) \(description)"
+    }
+    public var localizedDescription: String {
+        return self.description
     }
 
-    public enum APIErrorCode: CustomDebugStringConvertible, Decodable {
+    /// Indicate if the error is an authorization error in which case you may want to refresh the authentication token
+    public func isAuthorizationError() -> Bool {
+        switch self.code {
+        case .accessTokenExpired, .accessTokenNotFound, .invalidAPIKey: return true
+        default: return false
+        }
+    }
 
+    public enum APIErrorCode: Decodable {
+
+        case invalidParameters
+        case invalidVersion
+        case permissionError
+        case endPointNotFound
+        case invalidAPIKey
+        case internalServerError
+        case unknownServerError
+        case accessTokenNotFound
+        case accessTokenExpired
         case other(String)
 
         init(code: String) {
             switch code {
+            case "client:invalid_parameter":
+                self = .invalidParameters
+            case "client:invalid_version":
+                self = .invalidVersion
+            case "client:permission_error":
+                self = .permissionError
+            case "client:endpoint_not_found":
+                self = .endPointNotFound
+            case "client:invalid_api_key":
+                self = .invalidAPIKey
+            case "server:internal_server_error":
+                self = .internalServerError
+            case "server:unknown_error":
+                self = .unknownServerError
+            case "user:access_token_not_found":
+                self = .accessTokenNotFound
+            case "user:access_token_expired":
+                self = .accessTokenExpired
             case let code:
                 self = .other(code)
             }
@@ -37,13 +75,24 @@ public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
 
         public var code: String {
             switch self {
-            case .other(let code):
-                return code
-            }
-        }
-
-        public var debugDescription: String {
-            switch self {
+            case .invalidParameters:
+                return "client:invalid_parameter"
+            case .invalidVersion:
+                return "client:invalid_version"
+            case .permissionError:
+                return "client:permission_error"
+            case .endPointNotFound:
+                return "client:endpoint_not_found"
+            case .invalidAPIKey:
+                return "client:invalid_api_key"
+            case .internalServerError:
+                return "server:internal_server_error"
+            case .unknownServerError:
+                return "server:unknown_error"
+            case .accessTokenNotFound:
+                return "user:access_token_not_found"
+            case .accessTokenExpired:
+                return "user:access_token_expired"
             case .other(let code):
                 return code
             }

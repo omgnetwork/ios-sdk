@@ -22,7 +22,7 @@ class LiveTest: OmiseGOTestCase {
     }
 
     private func validConfig() -> OMGConfiguration {
-        return OMGConfiguration(baseURL: "http://localhost:4000", apiKey: "", authenticationToken: "")
+        return OMGConfiguration(baseURL: "https://kubera.omisego.io", apiKey: "", authenticationToken: "")
     }
 
 }

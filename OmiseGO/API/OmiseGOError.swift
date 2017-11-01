@@ -31,10 +31,14 @@ public enum OmiseGOError: Error {
         case .other(let error):
             return "I/O error: \(error.localizedDescription)"
         case .api(let error):
-            return "(\(error.code)) \(error.description)"
+            return error.description
         }
     }
-    
+
+    public var localizedDescription: String {
+        return self.message
+    }
+
 }
 
 extension OmiseGOError: CustomStringConvertible, CustomDebugStringConvertible {
@@ -43,7 +47,9 @@ extension OmiseGOError: CustomStringConvertible, CustomDebugStringConvertible {
 }
 
 extension OmiseGOError: LocalizedError {
+
     public var errorDescription: String {
         return self.message
     }
+
 }

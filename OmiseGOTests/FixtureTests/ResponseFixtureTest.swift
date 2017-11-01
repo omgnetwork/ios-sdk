@@ -37,7 +37,7 @@ class ResponseFixtureTest: FixtureTestCase {
             case .success(_):
                 XCTFail("Should not succeed")
             case .fail(let error):
-                XCTAssertEqual(error.description, "(error_code) error_message")
+                XCTAssertEqual(error.description, "error_message")
             }
         }
         XCTAssertNotNil(request)
