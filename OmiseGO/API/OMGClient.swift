@@ -80,7 +80,7 @@ public class OMGClient {
     }
 
     func performCallback(_ callback: @escaping () -> Void) {
-        operationQueue.addOperation(callback)
+        OperationQueue.main.addOperation(callback)
     }
 
     public func cancelAllOperations() {

@@ -81,7 +81,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
 
     fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
         guard let cb = callback else { return }
-        client.operationQueue.addOperation({ cb(result) })
+        OperationQueue.main.addOperation({ cb(result) })
     }
 
     func makeURLRequest() throws -> URLRequest? {
