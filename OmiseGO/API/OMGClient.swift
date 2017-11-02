@@ -42,8 +42,8 @@ public class OMGClient {
     private static func set(_ config: OMGConfiguration, toClient client: OMGClient) -> OMGClient {
         client.config = config
         client.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
-                                              delegate: nil,
-                                              delegateQueue: client.operationQueue)
+                                    delegate: nil,
+                                    delegateQueue: client.operationQueue)
 
         return client
     }

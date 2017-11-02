@@ -78,7 +78,7 @@ class FixtureRequest<ResultType: OmiseGOObject>: OMGRequest<ResultType> {
             return performCallback(.fail(error: .unexpected(message: "empty response.")))
         }
         do {
-            let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
+            let response: OMGJSONResponse<ResultType> = try deserializeData(data)
             switch response.data {
             case .fail(let apiError):
                 return performCallback(.fail(error: OmiseGOError.api(apiError: apiError)))

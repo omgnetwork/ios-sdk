@@ -52,8 +52,8 @@
 		03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD11F8B817B00F604DB /* Reponse.swift */; };
 		03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */; };
 		03BCCCD61F8B81F200F604DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD51F8B81F200F604DB /* APIError.swift */; };
-		03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */; };
-		03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCDB1F8C79B100F604DB /* ListProperty.swift */; };
+		03BCCCDA1F8C711E00F604DB /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD91F8C711E00F604DB /* OMGJSONResponse.swift */; };
+		03BCCCDC1F8C79B100F604DB /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCDB1F8C79B100F604DB /* OMGJSONListResponse.swift */; };
 		03F5C0111F8CB1F80079E073 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F5C0101F8CB19D0079E073 /* Fixtures */; };
 /* End PBXBuildFile section */
 
@@ -102,8 +102,8 @@
 		03BCCCD11F8B817B00F604DB /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		03BCCCD31F8B81A600F604DB /* OmiseGOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
 		03BCCCD51F8B81F200F604DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOJSONResponse.swift; sourceTree = "<group>"; };
-		03BCCCDB1F8C79B100F604DB /* ListProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProperty.swift; sourceTree = "<group>"; };
+		03BCCCD91F8C711E00F604DB /* OMGJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
+		03BCCCDB1F8C79B100F604DB /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
 		03F5C0101F8CB19D0079E073 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,8 +231,8 @@
 			children = (
 				03BCCCCB1F8B7B5300F604DB /* Object.swift */,
 				03BCCCD11F8B817B00F604DB /* Reponse.swift */,
-				03BCCCD91F8C711E00F604DB /* OmiseGOJSONResponse.swift */,
-				03BCCCDB1F8C79B100F604DB /* ListProperty.swift */,
+				03BCCCD91F8C711E00F604DB /* OMGJSONResponse.swift */,
+				03BCCCDB1F8C79B100F604DB /* OMGJSONListResponse.swift */,
 				038A42501F8DCB5C001A00E0 /* User.swift */,
 				031863F81F8F64C800D13862 /* Setting.swift */,
 				031863F21F8F517000D13862 /* Balance.swift */,
@@ -392,10 +392,10 @@
 				031863F31F8F517000D13862 /* Balance.swift in Sources */,
 				03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */,
 				03BCCCC51F8B753600F604DB /* OMGClient.swift in Sources */,
-				03BCCCDC1F8C79B100F604DB /* ListProperty.swift in Sources */,
+				03BCCCDC1F8C79B100F604DB /* OMGJSONListResponse.swift in Sources */,
 				03BCCCD41F8B81A600F604DB /* OmiseGOError.swift in Sources */,
 				03BCCCC91F8B7AC200F604DB /* APIEndpoint.swift in Sources */,
-				03BCCCDA1F8C711E00F604DB /* OmiseGOJSONResponse.swift in Sources */,
+				03BCCCDA1F8C711E00F604DB /* OMGJSONResponse.swift in Sources */,
 				03BCCCCC1F8B7B5300F604DB /* Object.swift in Sources */,
 				031863F51F8F54EC00D13862 /* Listable.swift in Sources */,
 				031863FB1F8F65C000D13862 /* MintedToken.swift in Sources */,

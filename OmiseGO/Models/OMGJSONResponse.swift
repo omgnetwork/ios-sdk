@@ -1,5 +1,5 @@
 //
-//  OmiseGOJSONResponse.swift
+//  OMGJSONResponse.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 10/10/2560 BE.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct OmiseGOJSONResponse<ObjectType: OmiseGOObject> {
+struct OMGJSONResponse<ObjectType: OmiseGOObject> {
 
     let version: String
     let success: Bool
@@ -16,7 +16,7 @@ struct OmiseGOJSONResponse<ObjectType: OmiseGOObject> {
 
 }
 
-extension OmiseGOJSONResponse: Decodable {
+extension OMGJSONResponse: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case version

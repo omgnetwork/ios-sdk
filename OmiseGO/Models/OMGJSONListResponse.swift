@@ -1,5 +1,5 @@
 //
-//  ListProperty.swift
+//  OMGJSONListResponse.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 10/10/2560 BE.
@@ -9,13 +9,13 @@
 import Foundation
 
 /// A struct representing a list response containing a data array of items.
-public struct ListProperty<Item: OmiseGOObject>: OmiseGOObject {
+public struct OMGJSONListResponse<Item: OmiseGOObject>: OmiseGOObject {
 
     let data: [Item]
 
 }
 
-extension ListProperty: RandomAccessCollection {
+extension OMGJSONListResponse: RandomAccessCollection {
 
     public subscript(index: Array<Item>.Index) -> Item {
         return data[index]
@@ -35,7 +35,7 @@ extension ListProperty: RandomAccessCollection {
 
 }
 
-extension ListProperty: Decodable {
+extension OMGJSONListResponse: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case data

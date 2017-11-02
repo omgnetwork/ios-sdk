@@ -67,7 +67,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
-            let response: OmiseGOJSONResponse<ResultType> = try deserializeData(data)
+            let response: OMGJSONResponse<ResultType> = try deserializeData(data)
             switch response.data {
             case .fail(let apiError):
                 return .fail(error: OmiseGOError.api(apiError: apiError))

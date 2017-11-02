@@ -12,7 +12,7 @@ import UIKit
 public protocol Listable {}
 
 public extension Listable where Self: OmiseGOObject {
-    public typealias ListRequest = OMGRequest<ListProperty<Self>>
+    public typealias ListRequest = OMGRequest<OMGJSONListResponse<Self>>
     public typealias ListRequestCallback = (Response<[Self], OmiseGOError>) -> Void
 
     @discardableResult
