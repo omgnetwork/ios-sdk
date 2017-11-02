@@ -31,7 +31,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
     }
 
     func start() throws -> Self {
-        guard let urlRequest = try makeURLRequest() else {
+        guard let urlRequest = try buildURLRequest() else {
             throw OmiseGOError.configuration(message: "Invalid request")
         }
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
@@ -84,7 +84,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
         OperationQueue.main.addOperation({ cb(result) })
     }
 
-    func makeURLRequest() throws -> URLRequest? {
+    func buildURLRequest() throws -> URLRequest? {
         guard let requestURL = endpoint.makeURL(withBaseURL: self.client.config.baseURL) else {
             throw OmiseGOError.configuration(message: "Invalid request")
         }
@@ -103,14 +103,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
         case .requestPlain:
             break
         case .requestParameters(let parameters):
-            let payloadData: Data? = makePayload(for: parameters)
-
-            guard !(request.httpMethod == "GET" && payloadData != nil) else {
-                omiseGOWarn("ignoring payloads for HTTP GET operation.")
-                return request
-            }
-
-            if let payload = payloadData {
+            if let payload: Data = buildPayload(for: parameters) {
                 request.httpBody = payload
                 request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
             }
@@ -118,7 +111,7 @@ public class OMGRequest<ResultType: OmiseGOObject> {
         return request
     }
 
-    private func makePayload(for query: APIQuery?) -> Data? {
+    private func buildPayload(for query: APIQuery?) -> Data? {
         guard let query = query else {
             return nil
         }
