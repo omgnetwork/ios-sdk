@@ -8,7 +8,16 @@
         "username": "john.doe@example.com",
         "metadata": {
             "first_name": "John",
-            "last_name": "Doe"
+            "last_name": "Doe",
+            "object": {
+                "my_key": "my_value",
+                "my_nested_object": {
+                    "my_nested_key": "my_nested_value"
+                }
+            },
+            "array": [
+                "value_1", "value_2"
+            ]
         }
     }
 }
