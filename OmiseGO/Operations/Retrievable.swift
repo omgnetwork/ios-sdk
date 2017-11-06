@@ -11,7 +11,7 @@ import Foundation
 /// Represent an Object that can be uniquely retrived
 public protocol Retrievable {}
 
-public extension Retrievable where Self: OmiseGOObject {
+public extension Retrievable where Self: Decodable {
     public typealias RetrieveRequest = OMGRequest<Self>
     public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 

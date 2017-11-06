@@ -9,16 +9,13 @@
 import UIKit
 
 /// Represents an API error
-public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
+public struct APIError {
 
     /// The error code describing the error
     public let code: APIErrorCode
     /// The error message
     public let description: String
 
-    public var debugDescription: String {
-        return "Error: \(code) \(description)"
-    }
     public var localizedDescription: String {
         return self.description
     }
@@ -97,6 +94,14 @@ public struct APIError: OmiseGOObject, CustomDebugStringConvertible {
                 return code
             }
         }
+    }
+
+}
+
+extension APIError: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "Error: \(code) \(description)"
     }
 
 }

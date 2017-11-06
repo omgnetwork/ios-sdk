@@ -9,17 +9,17 @@
 import Foundation
 
 /// Represents a cancellable request
-public class OMGRequest<ResultType: OmiseGOObject> {
-    typealias Endpoint = APIEndpoint
+public class OMGRequest<ResultType: Decodable> {
+
     public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
 
     let client: OMGClient
-    let endpoint: OMGRequest.Endpoint
+    let endpoint: APIEndpoint
     let callback: OMGRequest.Callback?
 
     var task: URLSessionTask?
 
-    init(client: OMGClient, endpoint: Endpoint, callback: Callback?) {
+    init(client: OMGClient, endpoint: APIEndpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback
@@ -100,27 +100,14 @@ public class OMGRequest<ResultType: OmiseGOObject> {
         request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
 
         switch endpoint.task {
-        case .requestPlain:
-            break
+        case .requestPlain: break
         case .requestParameters(let parameters):
-            if let payload: Data = buildPayload(for: parameters) {
+            if let payload: Data = parameters.encodedPayload() {
                 request.httpBody = payload
                 request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
             }
         }
         return request
-    }
-
-    private func buildPayload(for query: APIQuery?) -> Data? {
-        guard let query = query else {
-            return nil
-        }
-        switch query {
-        case let query as APIJSONQuery:
-            return query.encodedPayload()
-        default:
-            return nil
-        }
     }
 
 }

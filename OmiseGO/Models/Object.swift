@@ -6,21 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
-/// Represents a decodable Object
-public protocol OmiseGOObject: Decodable {}
-
-/// Represents an object that can be retrieved using an operation
-public protocol OmiseGOLocatableObject: OmiseGOObject {
-    static var operation: String { get }
-}
-
-/// Represents an object that can be listed using a list operation
-public protocol OmiseGOListableObject: OmiseGOObject {
-    static var listOperation: String { get }
-}
-
 /// This is a special protocol to support decoding metadata type.
 /// This situation will be greatly improved when `Conditional Conformance` feature lands in Swift
 public protocol JSONType: Decodable {
@@ -40,7 +25,7 @@ extension Bool: JSONType {
     public var jsonValue: Any { return self }
 }
 
-public struct EmptyResponse: OmiseGOObject {}
+public struct EmptyResponse: Decodable {}
 
 public struct AnyJSONType: JSONType {
     public let jsonValue: Any

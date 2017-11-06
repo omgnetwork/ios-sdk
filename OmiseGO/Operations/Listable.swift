@@ -11,7 +11,7 @@ import UIKit
 /// Represents an object that can be retrived in a collection
 public protocol Listable {}
 
-public extension Listable where Self: OmiseGOObject {
+public extension Listable where Self: Decodable {
     public typealias ListRequest = OMGRequest<OMGJSONListResponse<Self>>
     public typealias ListRequestCallback = (Response<[Self], OmiseGOError>) -> Void
 

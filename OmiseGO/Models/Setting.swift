@@ -16,7 +16,7 @@ public struct Setting {
 
 }
 
-extension Setting: OmiseGOObject {
+extension Setting: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case mintedTokens = "minted_tokens"

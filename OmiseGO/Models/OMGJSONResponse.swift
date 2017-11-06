@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct OMGJSONResponse<ObjectType: OmiseGOObject> {
+struct OMGJSONResponse<ObjectType: Decodable> {
 
     let version: String
     let success: Bool

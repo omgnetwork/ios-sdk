@@ -8,9 +8,7 @@
 
 import Foundation
 
-protocol APIQuery: Encodable {}
-
-protocol APIJSONQuery: APIQuery {
+protocol Parametrable: Encodable {
     func encodedPayload() -> Data?
 }
 
@@ -19,7 +17,7 @@ enum Task {
     /// A request with no additional data.
     case requestPlain
     /// A requests body set with encoded parameters.
-    case requestParameters(parameters: APIQuery)
+    case requestParameters(parameters: Parametrable)
 }
 
 enum APIEndpoint {

@@ -9,7 +9,7 @@
 import UIKit
 @testable import OmiseGO
 
-struct DummyTestObject: OmiseGOObject {
+struct DummyTestObject: Decodable {
 
     var object: String = ""
 

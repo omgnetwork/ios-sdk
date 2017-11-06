@@ -37,7 +37,7 @@ extension Balance {
 
 }
 
-extension Balance: OmiseGOObject {
+extension Balance: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case mintedToken = "minted_token"

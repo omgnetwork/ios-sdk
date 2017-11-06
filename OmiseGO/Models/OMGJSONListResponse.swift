@@ -9,7 +9,7 @@
 import Foundation
 
 /// A struct representing a list response containing a data array of items.
-public struct OMGJSONListResponse<Item: OmiseGOObject>: OmiseGOObject {
+public struct OMGJSONListResponse<Item: Decodable> {
 
     let data: [Item]
 

@@ -37,7 +37,7 @@ class FixtureClient: OMGClient {
     }
 }
 
-class FixtureRequest<ResultType: OmiseGOObject>: OMGRequest<ResultType> {
+class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
     var fixtureClient: FixtureClient? {
         return client as? FixtureClient
     }

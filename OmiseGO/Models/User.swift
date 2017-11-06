@@ -23,7 +23,7 @@ public struct User {
 
 }
 
-extension User: OmiseGOObject {
+extension User: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         // swiftlint:disable:next identifier_name

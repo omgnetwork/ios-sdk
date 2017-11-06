@@ -9,7 +9,7 @@
 import UIKit
 
 /// Represents a minted token
-public struct MintedToken: OmiseGOObject {
+public struct MintedToken {
 
     /// The symbol of the minted token
     public let symbol: String
