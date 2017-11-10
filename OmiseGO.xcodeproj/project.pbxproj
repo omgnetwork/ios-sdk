@@ -55,6 +55,8 @@
 		03BCCCDA1F8C711E00F604DB /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCD91F8C711E00F604DB /* OMGJSONResponse.swift */; };
 		03BCCCDC1F8C79B100F604DB /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BCCCDB1F8C79B100F604DB /* OMGJSONListResponse.swift */; };
 		03F5C0111F8CB1F80079E073 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F5C0101F8CB19D0079E073 /* Fixtures */; };
+		217782171FB552C9002CBCA7 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217782161FB552C9002CBCA7 /* Address.swift */; };
+		217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		03BCCCD91F8C711E00F604DB /* OMGJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
 		03BCCCDB1F8C79B100F604DB /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
 		03F5C0101F8CB19D0079E073 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
+		217782161FB552C9002CBCA7 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFixtureTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 				031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */,
 				038A42551F8DE786001A00E0 /* UserFixtureTests.swift */,
 				031863F61F8F59DA00D13862 /* BalanceFixtureTests.swift */,
+				217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */,
 				031863FC1F8F678300D13862 /* SettingFixtureTests.swift */,
 				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
 			);
@@ -237,6 +242,7 @@
 				031863F81F8F64C800D13862 /* Setting.swift */,
 				031863F21F8F517000D13862 /* Balance.swift */,
 				031863FA1F8F65C000D13862 /* MintedToken.swift */,
+				217782161FB552C9002CBCA7 /* Address.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217782171FB552C9002CBCA7 /* Address.swift in Sources */,
 				038A42511F8DCB5C001A00E0 /* User.swift in Sources */,
 				031863F31F8F517000D13862 /* Balance.swift in Sources */,
 				03BCCCD21F8B817B00F604DB /* Reponse.swift in Sources */,
@@ -419,6 +426,7 @@
 				031442F91F8CA691003DD5BE /* FixtureClient.swift in Sources */,
 				03BCCCB81F8B311600F604DB /* OmiseGOTests.swift in Sources */,
 				031442FB1F8CA857003DD5BE /* FixtureTestCase.swift in Sources */,
+				217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */,
 				031863F71F8F59DA00D13862 /* BalanceFixtureTests.swift in Sources */,
 				0345BE271F96FDC400B4CA16 /* LiveTest.swift in Sources */,
 				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,

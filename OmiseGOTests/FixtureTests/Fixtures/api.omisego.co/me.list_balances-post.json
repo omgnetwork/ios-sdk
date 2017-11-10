@@ -1,31 +1,35 @@
 {
-    "version": "1",
-    "success": true,
-    "data": {
-        "object": "list",
-        "data": [
-                 {
-                 "object": "balance",
-                 "minted_token": {
-                     "object": "minted_token",
-                     "symbol": "MNT",
-                     "name": "Mint",
-                     "subunit_to_unit": 100000
-                 },
-                 "address": "my_mnt_address",
-                 "amount": 10
-                 },
-                 {
-                 "object": "balance",
-                 "minted_token": {
-                     "object": "minted_token",
-                     "symbol": "OMG",
-                     "name": "OmiseGO",
-                     "subunit_to_unit": 100000000
-                 },
-                 "address": "my_omg_address",
-                 "amount": 52
-                 }
-                 ]
+    "version":"1",
+    "success":true,
+    "data":{
+        "object":"list",
+        "data":[
+            {
+                "object":"address",
+                "address":"2c2e0f2e-fa0f-4abe-8516-9e92cf003486",
+                "balances":[
+                    {
+                        "object":"balance",
+                        "amount":103100,
+                        "minted_token":{
+                            "symbol":"OMG",
+                            "subunit_to_unit":10000,
+                            "object":"minted_token",
+                            "name":"OmiseGO"
+                        }
+                    },
+                    {
+                        "object":"balance",
+                        "amount":133700,
+                        "minted_token":{
+                            "symbol":"KNC",
+                            "subunit_to_unit":10000,
+                            "object":"minted_token",
+                            "name":"Kyber"
+                        }
+                    }
+                ]
+            }
+        ]
     }
 }

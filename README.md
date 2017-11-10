@@ -29,22 +29,35 @@ Once the SDK is initialized, you can then retrieve different resources:
 ```sh
 User.getCurrent { (result) in
     switch result {
-    case .success(let user):
+    case .success(data: let user):
         //TODO: Do something with the user
-    case .fail(let error):
+    case .fail(error: let error):
         //TODO: Handle the error
     }
 }
 ```
 
-- Get the balances of the current user:
+- Get the addresses of the current user:
 
 ```sh
-Balance.getAll { (balances) in
+Address.getAll { (addresses) in
     switch result {
-    case .success(let balances):
+    case .success(data: let addresses):
         //TODO: Do something with the balances
-    case .fail(let error):
+    case .fail(error: let error):
+        //TODO: Handle the error
+    }
+}
+```
+
+- Get the main address of the current user:
+
+```sh
+Address.getMain { (address) in
+    switch result {
+    case .success(data: let address):
+        //TODO: Do something with the address
+    case .fail(error: let error):
         //TODO: Handle the error
     }
 }
@@ -55,9 +68,9 @@ Balance.getAll { (balances) in
 ```sh
 Setting.get { (result) in
     switch result {
-    case .success(let settings):
+    case .success(data: let settings):
         //TODO: Do something with the settings
-    case .fail(let error):
+    case .fail(error: let error):
         //TODO: Handle the error
     }
 }
