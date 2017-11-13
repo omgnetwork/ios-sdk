@@ -12,7 +12,7 @@ import XCTest
 class SettingFixtureTests: FixtureTestCase {
 
     func testGetSettings() {
-        let expectation = self.expectation(description: "Setting result")
+        let expectation = self.expectation(description: "Get settings for current user")
         let request = Setting.get(using: self.testCustomClient) { (result) in
             defer { expectation.fulfill() }
             switch result {

@@ -1,0 +1,7 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "data": ["value_1", "value_2"]
+  }
+}

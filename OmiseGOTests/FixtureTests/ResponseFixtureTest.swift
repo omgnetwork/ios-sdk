@@ -5,15 +5,14 @@
 //  Created by Mederic Petit on 10/10/2560 BE.
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
-// swiftlint:disable empty_enum_arguments
 
 import XCTest
 @testable import OmiseGO
 
 class ResponseFixtureTest: FixtureTestCase {
 
-    func testCustomClientResponse() {
-        let expectation = self.expectation(description: "Success response")
+    func testParseSuccessResponse() {
+        let expectation = self.expectation(description: "Parse success response")
         let endpoint = APIEndpoint.custom(path: "dummy.success", task: .requestPlain)
         let request: OMGRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
@@ -28,13 +27,13 @@ class ResponseFixtureTest: FixtureTestCase {
         waitForExpectations(timeout: 15.0, handler: nil)
     }
 
-    func testErrorResponse() {
-        let expectation = self.expectation(description: "Error response")
+    func testParseErrorResponse() {
+        let expectation = self.expectation(description: "Parse error response")
         let endpoint = APIEndpoint.custom(path: "dummy.failure", task: .requestPlain)
         let request: OMGRequest<DummyTestObject>? = self.testCustomClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
-            case .success(_):
+            case .success(data: _):
                 XCTFail("Should not succeed")
             case .fail(let error):
                 XCTAssertEqual(error.description, "error_message")

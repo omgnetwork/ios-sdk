@@ -31,7 +31,7 @@ enum APIEndpoint {
     var path: String {
         switch self {
         case .getCurrentUser:
-            return "/user.me"
+            return "/me.get"
         case .getAddresses:
             return "/me.list_balances"
         case .getSettings:

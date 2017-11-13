@@ -1,5 +1,5 @@
 //
-//  OMGRequest.swift
+//  APIRequest.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2560 BE.
@@ -9,17 +9,17 @@
 import Foundation
 
 /// Represents a cancellable request
-public class OMGRequest<ResultType: Decodable> {
-
+public class APIRequest<ResultType: OmiseGOObject> {
+    typealias Endpoint = APIEndpoint<ResultType>
     public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
 
-    let client: OMGClient
-    let endpoint: APIEndpoint
-    let callback: OMGRequest.Callback?
+    let client: APIClient
+    let endpoint: APIRequest.Endpoint
+    let callback: APIRequest.Callback?
 
     var task: URLSessionTask?
 
-    init(client: OMGClient, endpoint: APIEndpoint, callback: Callback?) {
+    init(client: APIClient, endpoint: Endpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback
@@ -31,8 +31,8 @@ public class OMGRequest<ResultType: Decodable> {
     }
 
     func start() throws -> Self {
-        guard let urlRequest = try buildURLRequest() else {
-            throw OmiseGOError.configuration(message: "Invalid request")
+        guard let urlRequest = try makeURLRequest() else {
+            throw OmiseGOError.configuration("Invalid request")
         }
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
         self.task = dataTask
@@ -45,18 +45,18 @@ public class OMGRequest<ResultType: Decodable> {
         // no one's in the forest to hear the leaf falls.
         guard callback != nil else { return }
 
-        if let error = error {
-            performCallback(.fail(error: .other(error: error)))
+        if let err = error {
+            performCallback(.fail(.other(err)))
             return
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            performCallback(.fail(error: .unexpected(message: "no error and no response.")))
+            performCallback(.fail(.unexpected("no error and no response.")))
             return
         }
 
         guard let data = data else {
-            performCallback(.fail(error: .unexpected(message: "empty response.")))
+            performCallback(.fail(.unexpected("empty response.")))
             return
         }
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
@@ -64,29 +64,29 @@ public class OMGRequest<ResultType: Decodable> {
 
     fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType, OmiseGOError> {
         guard [200, 500].contains(statusCode) else {
-            return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
+            return .fail(.unexpected("unrecognized HTTP status code: \(statusCode)"))
         }
         do {
-            let response: OMGJSONResponse<ResultType> = try deserializeData(data)
-            switch response.data {
+            let response = try endpoint.deserialize(data)
+            switch response {
             case .fail(let apiError):
-                return .fail(error: OmiseGOError.api(apiError: apiError))
+                return .fail(OmiseGOError.api(apiError))
             case .success(let response):
-                return .success(data: response)
+                return .success(response)
             }
-        } catch let error {
-            return .fail(error: .other(error: error))
+        } catch let err {
+            return .fail(.other(err))
         }
     }
 
     fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
         guard let cb = callback else { return }
-        OperationQueue.main.addOperation({ cb(result) })
+        client.operationQueue.addOperation({ cb(result) })
     }
 
-    func buildURLRequest() throws -> URLRequest? {
+    func makeURLRequest() throws -> URLRequest? {
         guard let requestURL = endpoint.makeURL(withBaseURL: self.client.config.baseURL) else {
-            throw OmiseGOError.configuration(message: "Invalid request")
+            throw OmiseGOError.configuration("Invalid request")
         }
 
         let auth = try client.encodedAuthorizationHeader()
@@ -96,18 +96,34 @@ public class OMGRequest<ResultType: Decodable> {
         request.cachePolicy = .useProtocolCachePolicy
         request.timeoutInterval = 6.0
         request.addValue(auth, forHTTPHeaderField: "Authorization")
-        request.addValue(client.acceptHeader(), forHTTPHeaderField: "Accept")
+        request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Accept")
         request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
 
-        switch endpoint.task {
-        case .requestPlain: break
-        case .requestParameters(let parameters):
-            if let payload: Data = parameters.encodedPayload() {
-                request.httpBody = payload
-                request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
-            }
+        let payloadData: Data? = makePayload(for: endpoint.parameter)
+
+        guard !(request.httpMethod == "GET" && payloadData != nil) else {
+            omiseGOWarn("ignoring payloads for HTTP GET operation.")
+            return request as URLRequest
         }
-        return request
+
+        if let payload = payloadData {
+            request.httpBody = payload
+            request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
+        }
+
+        return request as URLRequest
+    }
+
+    private func makePayload(for query: APIQuery?) -> Data? {
+        guard let query = query else {
+            return nil
+        }
+        switch query {
+        case let query as APIJSONQuery:
+            return query.encodedPayload()
+        default:
+            return nil
+        }
     }
 
 }

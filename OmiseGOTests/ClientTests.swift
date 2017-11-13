@@ -5,7 +5,6 @@
 //  Created by Mederic Petit on 11/10/2560 BE.
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
-// swiftlint:disable empty_enum_arguments
 
 import XCTest
 @testable import OmiseGO
@@ -25,11 +24,11 @@ class ClientTests: XCTestCase {
                 expectation.fulfill()
             }
             switch result {
-            case .success(_):
+            case .success(data: _):
                 XCTFail("Request should not be executed if base url is not correct")
             case .fail(let error):
                 switch error {
-                case .configuration(_):
+                case .configuration(message: _):
                     XCTAssertTrue(true)
                 default:
                     XCTFail("Error should be a configuration error")
@@ -49,11 +48,11 @@ class ClientTests: XCTestCase {
                 expectation.fulfill()
             }
             switch result {
-            case .success(_):
+            case .success(data: _):
                 XCTFail("Request should not be executed if config was not provided to the client")
             case .fail(let error):
                 switch error {
-                case .configuration(_):
+                case .configuration(message: _):
                     XCTAssertTrue(true)
                 default:
                     XCTFail("Error should be a configuration error")

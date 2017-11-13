@@ -102,6 +102,10 @@ public class OMGClient {
     }
 
     func contentTypeHeader() -> String {
+        return "application/vnd.omisego.v\(self.config.apiVersion)+json; charset=utf-8"
+    }
+
+    func acceptHeader() -> String {
         return "application/vnd.omisego.v\(self.config.apiVersion)+json"
     }
 

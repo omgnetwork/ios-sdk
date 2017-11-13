@@ -12,17 +12,25 @@ import OmiseGO
 
 class LiveTest: OmiseGOTestCase {
 
+    let validBaseURL = "https://kubera.omisego.io"
+    let validAPIKey = "1482qNxPey7A4_rrKkAOb4kAOTsD2HoLysS7eQ1Zd3Y"
+    let validAuthenticationToken = "fNW95axd980PGF75hmmfsIWJ_H4RO3nr3UUGn40edw0"
+
+    let invalidBaseURL = "an invalid base url"
+    let invalidAPIKey = "an invalid api key"
+    let invalidAuthenticationToken = "and invalid authentication token"
+
     override func setUp() {
         super.setUp()
-        OMGClient.setup(withConfig: self.validConfig())
+        self.testClient = OMGClient(config: self.validConfig())
     }
 
-    var testClient: OMGClient {
-        return OMGClient(config: self.validConfig())
-    }
+    var testClient: OMGClient!
 
     private func validConfig() -> OMGConfiguration {
-        return OMGConfiguration(baseURL: "https://kubera.omisego.io", apiKey: "", authenticationToken: "")
+        return OMGConfiguration(baseURL: validBaseURL,
+                                apiKey: validAPIKey,
+                                authenticationToken: validAuthenticationToken)
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 /// Represents a balance of a minted token
-public struct Balance: Retrievable {
+public struct Balance {
 
     /// The minted token corresponding to the balance
     public let mintedToken: MintedToken

@@ -19,7 +19,7 @@ public struct User {
     /// The user's username, it can be an email or any name describing this user
     public let username: String
     /// Any additional metadata that need to be stored as a dictionary
-    public let metadata: [String: AnyJSONType]
+    public let metadata: [String: Any]
 
 }
 
@@ -38,7 +38,7 @@ extension User: Decodable {
         id = try container.decode(String.self, forKey: .id)
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
-        metadata = try container.decode([String: AnyJSONType].self, forKey: .metadata)
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
     }
 
 }

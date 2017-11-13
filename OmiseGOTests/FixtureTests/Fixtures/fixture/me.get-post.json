@@ -1,0 +1,23 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+      "object": "user",
+      "id": "cec34607-0761-4a59-8357-18963e42a1aa",
+      "provider_user_id": "wijf-fbancomw-dqwjudb",
+      "username": "john.doe@example.com",
+      "metadata": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "object": {
+              "my_key": "my_value",
+              "my_nested_object": {
+                  "my_nested_key": "my_nested_value"
+              }
+          },
+          "array": [
+              "value_1", "value_2"
+          ]
+      }
+    }
+}

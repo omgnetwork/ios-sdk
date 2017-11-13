@@ -12,23 +12,19 @@ import XCTest
 
 class UserTests: LiveTest {
 
-//    func testCurrentUserRetrieve() {
-//        let expectation = self.expectation(description: "User result")
-//        let request = User.getCurrent { (result) in
-//            defer { expectation.fulfill() }
-//            switch result {
-//            case .success(let user):
-//                XCTAssertEqual(user.id, "06ba7634-109e-42e6-8f40-52fc5bc08a9c")
-//                XCTAssertEqual(user.providerUserId, "1234")
-//                XCTAssertEqual(user.username, "john.doe@example.com")
-//                XCTAssertEqual(user.metadata["first_name"]?.jsonValue as? String, "John")
-//                XCTAssertEqual(user.metadata["last_name"]?.jsonValue as? String, "Doe")
-//            case .fail(let error):
-//                XCTFail("\(error)")
-//            }
-//        }
-//        XCTAssertNotNil(request)
-//        waitForExpectations(timeout: 15.0, handler: nil)
-//    }
+    func testCurrentUserRetrieve() {
+        let expectation = self.expectation(description: "Get current user from authentication token")
+        let request = User.getCurrent(using: self.testClient) { (result) in
+            defer { expectation.fulfill() }
+            switch result {
+            case .success(let user):
+                XCTAssertNotNil(user)
+            case .fail(let error):
+                XCTFail("\(error)")
+            }
+        }
+        XCTAssertNotNil(request)
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
 
 }

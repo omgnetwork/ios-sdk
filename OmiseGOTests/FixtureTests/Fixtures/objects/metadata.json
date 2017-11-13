@@ -1,0 +1,17 @@
+{
+  "metadata":{
+    "a_string": "some_string",
+    "an_integer": 1,
+    "a_bool": true,
+    "a_double": 12.34,
+    "an_object": {
+      "a_key": "a_value",
+      "a_nested_object": {
+        "a_nested_key": "a_nested_value"
+      }
+    },
+    "an_array": [
+      "value_1", "value_2"
+    ]
+  }
+}

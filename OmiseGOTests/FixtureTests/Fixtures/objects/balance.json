@@ -1,0 +1,8 @@
+{
+  "amount":103100,
+  "minted_token":{
+    "symbol":"OMG",
+    "subunit_to_unit":10000,
+    "name":"OmiseGO"
+  }
+}

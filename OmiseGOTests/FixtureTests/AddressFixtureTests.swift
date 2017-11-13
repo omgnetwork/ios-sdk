@@ -12,7 +12,7 @@ import XCTest
 class AddressFixtureTests: FixtureTestCase {
 
     func testGetAll() {
-        let expectation = self.expectation(description: "Addresses result")
+        let expectation = self.expectation(description: "Get all addresses for current user")
         let request = Address.getAll(using: self.testCustomClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
@@ -41,7 +41,7 @@ class AddressFixtureTests: FixtureTestCase {
     }
 
     func testGetMain() {
-        let expectation = self.expectation(description: "Get the main address")
+        let expectation = self.expectation(description: "Get the main address of the current user")
         let request = Address.getMain(using: self.testCustomClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
