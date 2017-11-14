@@ -6,7 +6,5 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-/// This is a special protocol to support decoding metadata type.
-/// This situation will be greatly improved when `Conditional Conformance` feature lands in Swift
-
+// This struct represents an empty response from the server.
 public struct EmptyResponse: Decodable {}

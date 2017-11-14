@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Balance Structure Reference</title>
+    <title>OMGClient Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Balance" class="dashAnchor"></a>
-    <a title="Balance Structure Reference"></a>
+    <a name="//apple_ref/swift/Class/OMGClient" class="dashAnchor"></a>
+    <a title="OMGClient Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (69% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Balance Structure Reference
+        OMGClient Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -100,14 +100,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Balance</h1>
+            <h1>OMGClient</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Balance</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OMGClient</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents a balance of a minted token</p>
+            <p>Represents an OMGClient that should be configured using an OMGConfiguration</p>
 
           </section>
           <section class="section task-group-section">
@@ -116,9 +116,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7OmiseGO7BalanceV11mintedTokenAA06MintedE0Vv"></a>
-                    <a name="//apple_ref/swift/Property/mintedToken" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7OmiseGO7BalanceV11mintedTokenAA06MintedE0Vv">mintedToken</a>
+                    <a name="/s:7OmiseGO9OMGClientC6sharedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO9OMGClientC6sharedACvZ">shared</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -126,14 +126,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The minted token corresponding to the balance</p>
+                        <p>The shared client that will be used by default if no client is specified.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">mintedToken</span><span class="p">:</span> <span class="kt"><a href="../Structs/MintedToken.html">MintedToken</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">OMGClient</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -143,9 +143,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7OmiseGO7BalanceV6amountSdv"></a>
-                    <a name="//apple_ref/swift/Property/amount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7OmiseGO7BalanceV6amountSdv">amount</a>
+                    <a name="/s:7OmiseGO9OMGClientCAcA16OMGConfigurationV6config_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(config:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO9OMGClientCAcA16OMGConfigurationV6config_tcfc">init(config:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -153,45 +153,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The total amount of minted token available</p>
+                        <p>Initialize a client using a configuration object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7OmiseGO7BalanceV13displayAmountSSSi13withPrecision_tF"></a>
-                    <a name="//apple_ref/swift/Method/displayAmount(withPrecision:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7OmiseGO7BalanceV13displayAmountSSSi13withPrecision_tF">displayAmount(withPrecision:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Helper method that returns an easily readable value of the amount</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">displayAmount</span><span class="p">(</span><span class="n">withPrecision</span> <span class="nv">precision</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/OMGConfiguration.html">OMGConfiguration</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -202,22 +171,71 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>precision</em>
+                                <em>config</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The decimal precision to give to the formatter
-for example a number 0.123 with a precision of 1 will be 0.1</p>
+                                  <p>The configuration object</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the formatted balance amount</p>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO9OMGClientC5setupAcA16OMGConfigurationV10withConfig_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/setup(withConfig:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO9OMGClientC5setupAcA16OMGConfigurationV10withConfig_tFZ">setup(withConfig:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OMGClient</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO9OMGClientC19cancelAllOperationsyyF"></a>
+                    <a name="//apple_ref/swift/Method/cancelAllOperations()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO9OMGClientC19cancelAllOperationsyyF">cancelAllOperations()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OMGClient</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -229,9 +247,9 @@ for example a number 0.123 with a precision of 1 will be 0.1</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s9DecodablePxs7Decoder_p4from_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s9DecodablePxs7Decoder_p4from_tKcfc">init(from:)</a>
+                    <a name="/s:7OmiseGO9OMGClientC6logoutAA10OMGRequestCyAA13EmptyResponseVGSgyAA0G0OyAhA0A7GOErrorOGc12withCallback_tF"></a>
+                    <a name="//apple_ref/swift/Method/logout(withCallback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO9OMGClientC6logoutAA10OMGRequestCyAA13EmptyResponseVGSgyAA0G0OyAhA0A7GOErrorOGc12withCallback_tF">logout(withCallback:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -239,15 +257,25 @@ for example a number 0.123 with a precision of 1 will be 0.1</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Logout the current user (invalidate the provided authenticationToken).</p>
+
+<ul>
+<li>callback: The closure called when the request is completed</li>
+</ul>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="n">withCallback</span> <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/OMGRequest.html">OMGRequest</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:7OmiseGO13EmptyResponseV">EmptyResponse</a></span><span class="o">&gt;.</span><span class="kt">Callback</span><span class="p">)</span>
+        <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OMGRequest.html">OMGRequest</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:7OmiseGO13EmptyResponseV">EmptyResponse</a></span><span class="o">&gt;</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An optional cancellable request.</p>
                       </div>
                     </section>
                   </div>

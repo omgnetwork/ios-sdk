@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (73% documented)</p>
+        <p><a href="index.html"> Docs</a> (69% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,10 +30,10 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/APIClient.html">APIClient</a>
+                <a href="Classes/OMGClient.html">OMGClient</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/APIRequest.html">APIRequest</a>
+                <a href="Classes/OMGRequest.html">OMGRequest</a>
               </li>
             </ul>
           </li>
@@ -49,39 +49,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Double.html">Double</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Int.html">Int</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/String.html">String</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/JSONType.html">JSONType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Protocols.html#/s:7OmiseGO8ListableP">Listable</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/OmiseGOListableObject.html">OmiseGOListableObject</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/OmiseGOLocatableObject.html">OmiseGOLocatableObject</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:7OmiseGO11RetrievableP">Retrievable</a>
@@ -92,25 +63,28 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/APIConfiguration.html">APIConfiguration</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/APIError/APIErrorCode.html">– APIErrorCode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/AnyJSONType.html">AnyJSONType</a>
+                <a href="Structs/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Balance.html">Balance</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/ListProperty.html">ListProperty</a>
+                <a href="Structs.html#/s:7OmiseGO13EmptyResponseV">EmptyResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/MintedToken.html">MintedToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OMGConfiguration.html">OMGConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OMGJSONListResponse.html">OMGJSONListResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Setting.html">Setting</a>
@@ -128,12 +102,17 @@
             
             <h1 id='omisego' class='heading'>OmiseGO</h1>
 
-<p>The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.</p>
+<p>The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.
+It supports the following functionalities:</p>
 
-<p>Currently, it can be used to retrieve the current user, get a user&rsquo;s balances and list the settings for a node.</p>
+<ul>
+<li>Retrieve the current user</li>
+<li>Get the user addresses and balances</li>
+<li>List the settings for a node</li>
+</ul>
 <h1 id='installation' class='heading'>Installation.</h1>
 
-<p>To do.</p>
+<p>For this initial beta version the SDK will be provided as an universal Framework. To integrate it in your application, simply add it to the project, make sure that it&rsquo;s added to the target&rsquo;s <q>Embedded Binaries</q> and to the target&rsquo;s <q>Linked Frameworks and Libraries</q>.</p>
 <h1 id='initialization' class='heading'>Initialization</h1>
 
 <p>Before using the SDK to retrieve a resource, you are required to initialize the client.
@@ -144,6 +123,8 @@ You should do this as soon as you have the current user’s authentication token
                                      authenticationToken: <span class="s2">"authenticationtoken"</span><span class="o">)</span>
 APIClient.setup<span class="o">(</span>withConfig: configuration<span class="o">)</span>
 </code></pre>
+
+<p>For security reason the authentication token can&rsquo;t be retrieved by the client so you&rsquo;ll need to obtain it from the application&rsquo;s server. You can find more info on how to retrive this token in the server side SDK&rsquo;s documentations.</p>
 <h1 id='usage' class='heading'>Usage</h1>
 
 <p>Once the SDK is initialized, you can then retrieve different resources:</p>
@@ -153,22 +134,36 @@ APIClient.setup<span class="o">(</span>withConfig: configuration<span class="o">
 </ul>
 <pre class="highlight shell"><code>User.getCurrent <span class="o">{</span> <span class="o">(</span>result<span class="o">)</span> <span class="k">in
     </span>switch result <span class="o">{</span>
-    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>user<span class="p">)</span>:
+    <span class="k">case</span> .success<span class="o">(</span>data: <span class="nb">let </span>user<span class="p">)</span>:
         //TODO: Do something with the user
-    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+    <span class="k">case</span> .fail<span class="o">(</span>error: <span class="nb">let </span>error<span class="p">)</span>:
         //TODO: Handle the error
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 
 <ul>
-<li>Get the balances of the current user:</li>
+<li>Get the addresses of the current user:</li>
 </ul>
-<pre class="highlight shell"><code>Balance.getAll <span class="o">{</span> <span class="o">(</span>balances<span class="o">)</span> <span class="k">in
+<pre class="highlight shell"><code>Address.getAll <span class="o">{</span> <span class="o">(</span>addresses<span class="o">)</span> <span class="k">in
     </span>switch result <span class="o">{</span>
-    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>balances<span class="p">)</span>:
+    <span class="k">case</span> .success<span class="o">(</span>data: <span class="nb">let </span>addresses<span class="p">)</span>:
         //TODO: Do something with the balances
-    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+    <span class="k">case</span> .fail<span class="o">(</span>error: <span class="nb">let </span>error<span class="p">)</span>:
+        //TODO: Handle the error
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Note that for now a user will have only one address so for the sake of simplicity you can get this address using:
+
+</div>
+<pre class="highlight shell"><code>Address.getMain <span class="o">{</span> <span class="o">(</span>address<span class="o">)</span> <span class="k">in
+    </span>switch result <span class="o">{</span>
+    <span class="k">case</span> .success<span class="o">(</span>data: <span class="nb">let </span>address<span class="p">)</span>:
+        //TODO: Do something with the address
+    <span class="k">case</span> .fail<span class="o">(</span>error: <span class="nb">let </span>error<span class="p">)</span>:
         //TODO: Handle the error
     <span class="o">}</span>
 <span class="o">}</span>
@@ -179,9 +174,9 @@ APIClient.setup<span class="o">(</span>withConfig: configuration<span class="o">
 </ul>
 <pre class="highlight shell"><code>Setting.get <span class="o">{</span> <span class="o">(</span>result<span class="o">)</span> <span class="k">in
     </span>switch result <span class="o">{</span>
-    <span class="k">case</span> .success<span class="o">(</span><span class="nb">let </span>settings<span class="p">)</span>:
+    <span class="k">case</span> .success<span class="o">(</span>data: <span class="nb">let </span>settings<span class="p">)</span>:
         //TODO: Do something with the settings
-    <span class="k">case</span> .fail<span class="o">(</span><span class="nb">let </span>error<span class="p">)</span>:
+    <span class="k">case</span> .fail<span class="o">(</span>error: <span class="nb">let </span>error<span class="p">)</span>:
         //TODO: Handle the error
     <span class="o">}</span>
 <span class="o">}</span>
@@ -190,7 +185,7 @@ APIClient.setup<span class="o">(</span>withConfig: configuration<span class="o">
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-10-19)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-11-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

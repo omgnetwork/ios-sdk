@@ -1,12 +1,14 @@
 # OmiseGO
 
 The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.
-
-Currently, it can be used to retrieve the current user, get a user's balances and list the settings for a node.
+It supports the following functionalities:
+- Retrieve the current user
+- Get the user addresses and balances
+- List the settings for a node
 
 # Installation.
 
-To do.
+For this initial beta version the SDK will be provided as an universal Framework. To integrate it in your application, simply add it to the project, make sure that it's added to the target's "Embedded Binaries" and to the target's "Linked Frameworks and Libraries".
 
 # Initialization
 
@@ -20,6 +22,8 @@ let configuration = APIConfiguration(baseURL: "your.base.url",
                                      authenticationToken: "authenticationtoken")
 APIClient.setup(withConfig: configuration)
 ```
+
+For security reason the authentication token can't be retrieved by the client so you'll need to obtain it from the application's server. You can find more info on how to retrive this token in the server side SDK's documentations.
 
 # Usage
 
@@ -50,7 +54,8 @@ Address.getAll { (addresses) in
 }
 ```
 
-- Get the main address of the current user:
+- Note that for now a user will have only one address so for the sake of simplicity you can get this address using:
+
 
 ```sh
 Address.getMain { (address) in

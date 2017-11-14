@@ -13,7 +13,7 @@
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (73% documented)</p>
+        <p><a href="index.html"> Docs</a> (69% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,10 +30,10 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/APIClient.html">APIClient</a>
+                <a href="Classes/OMGClient.html">OMGClient</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/APIRequest.html">APIRequest</a>
+                <a href="Classes/OMGRequest.html">OMGRequest</a>
               </li>
             </ul>
           </li>
@@ -49,39 +49,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Double.html">Double</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Int.html">Int</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/String.html">String</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/JSONType.html">JSONType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Protocols.html#/s:7OmiseGO8ListableP">Listable</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/OmiseGOListableObject.html">OmiseGOListableObject</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/OmiseGOLocatableObject.html">OmiseGOLocatableObject</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols.html#/s:7OmiseGO0A8GOObjectP">OmiseGOObject</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:7OmiseGO11RetrievableP">Retrievable</a>
@@ -92,25 +63,28 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/APIConfiguration.html">APIConfiguration</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/APIError/APIErrorCode.html">– APIErrorCode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/AnyJSONType.html">AnyJSONType</a>
+                <a href="Structs/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Balance.html">Balance</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/ListProperty.html">ListProperty</a>
+                <a href="Structs.html#/s:7OmiseGO13EmptyResponseV">EmptyResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/MintedToken.html">MintedToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OMGConfiguration.html">OMGConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OMGJSONListResponse.html">OMGJSONListResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Setting.html">Setting</a>
@@ -149,7 +123,7 @@
 
 <ul>
 <li>success: The request and post processing operations were successful resulting in the serialization
-        of the provided associated ResultType</li>
+        of the provided associated Data</li>
 <li>fail: The request encountered an error resulting in a failure</li>
 </ul>
 
@@ -159,7 +133,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="p">,</span> <span class="kt">ErrorType</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -210,7 +184,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-10-19)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-11-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

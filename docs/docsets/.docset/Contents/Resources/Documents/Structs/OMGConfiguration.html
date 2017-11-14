@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Response Enumeration Reference</title>
+    <title>OMGConfiguration Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Response" class="dashAnchor"></a>
-    <a title="Response Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/OMGConfiguration" class="dashAnchor"></a>
+    <a title="OMGConfiguration Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (69% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Response Enumeration Reference
+        OMGConfiguration Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -100,20 +100,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Response</h1>
+            <h1>OMGConfiguration</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OMGConfiguration</span></code></pre>
 
                 </div>
               </div>
-            <p>Used to represent whether an API request was successfull or encountered an error.</p>
-
-<ul>
-<li>success: The request and post processing operations were successful resulting in the serialization
-        of the provided associated Data</li>
-<li>fail: The request encountered an error resulting in a failure</li>
-</ul>
+            <p>Represents a configuration object used to setup an OMGClient</p>
 
           </section>
           <section class="section task-group-section">
@@ -122,9 +116,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7OmiseGO8ResponseO7successACyxq_Gx4data_tcAEmr0_lF"></a>
-                    <a name="//apple_ref/swift/Element/success" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7OmiseGO8ResponseO7successACyxq_Gx4data_tcAEmr0_lF">success</a>
+                    <a name="/s:7OmiseGO16OMGConfigurationV10apiVersionSSv"></a>
+                    <a name="//apple_ref/swift/Property/apiVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO16OMGConfigurationV10apiVersionSSv">apiVersion</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -132,30 +126,107 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The current SDK version</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">apiVersion</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"1"</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7OmiseGO8ResponseO4failACyxq_Gq_5error_tcAEmr0_lF"></a>
-                    <a name="//apple_ref/swift/Element/fail" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7OmiseGO8ResponseO4failACyxq_Gq_5error_tcAEmr0_lF">fail</a>
+                    <a name="/s:7OmiseGO16OMGConfigurationV7baseURLSSv"></a>
+                    <a name="//apple_ref/swift/Property/baseURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO16OMGConfigurationV7baseURLSSv">baseURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The base URL of the wallet server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">baseURL</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO16OMGConfigurationV6apiKeySSv"></a>
+                    <a name="//apple_ref/swift/Property/apiKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO16OMGConfigurationV6apiKeySSv">apiKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The API key provided by OmiseGO</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO16OMGConfigurationV19authenticationTokenSSSgv"></a>
+                    <a name="//apple_ref/swift/Property/authenticationToken" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO16OMGConfigurationV19authenticationTokenSSSgv">authenticationToken</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The authentication token of the current user</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">authenticationToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7OmiseGO16OMGConfigurationVACSS7baseURL_SS6apiKeySS19authenticationTokentcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(baseURL:apiKey:authenticationToken:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7OmiseGO16OMGConfigurationVACSS7baseURL_SS6apiKeySS19authenticationTokentcfc">init(baseURL:apiKey:authenticationToken:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,7 +241,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OMGConfiguration</span></code></pre>
 
                         </div>
                       </div>

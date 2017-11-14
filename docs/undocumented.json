@@ -1,45 +1,115 @@
 {
   "warnings": [
     {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIClient.swift",
-      "line": 37,
-      "symbol": "APIClient.setup(withConfig:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIClient.swift",
-      "line": 86,
-      "symbol": "APIClient.cancelAllOperations()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIConfiguration.swift",
-      "line": 24,
-      "symbol": "APIConfiguration.init(baseURL:apiKey:authenticationToken:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 19,
+      "symbol": "APIError.localizedDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
-      "line": 23,
+      "line": 31,
       "symbol": "APIError.APIErrorCode",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
-      "line": 25,
-      "symbol": "APIError.APIErrorCode.other",
+      "line": 33,
+      "symbol": "APIError.APIErrorCode.invalidParameters",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 34,
+      "symbol": "APIError.APIErrorCode.invalidVersion",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 35,
+      "symbol": "APIError.APIErrorCode.permissionError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 36,
+      "symbol": "APIError.APIErrorCode.endPointNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 37,
+      "symbol": "APIError.APIErrorCode.invalidAPIKey",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
       "line": 38,
+      "symbol": "APIError.APIErrorCode.internalServerError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 39,
+      "symbol": "APIError.APIErrorCode.unknownServerError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 40,
+      "symbol": "APIError.APIErrorCode.accessTokenNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 41,
+      "symbol": "APIError.APIErrorCode.accessTokenExpired",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 42,
+      "symbol": "APIError.APIErrorCode.other",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/APIError.swift",
+      "line": 73,
       "symbol": "APIError.APIErrorCode.code",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OMGClient.swift",
+      "line": 37,
+      "symbol": "OMGClient.setup(withConfig:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OMGClient.swift",
+      "line": 86,
+      "symbol": "OMGClient.cancelAllOperations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OMGConfiguration.swift",
+      "line": 24,
+      "symbol": "OMGConfiguration.init(baseURL:apiKey:authenticationToken:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -79,86 +149,37 @@
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
-      "line": 45,
+      "line": 38,
+      "symbol": "OmiseGOError.localizedDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/API/OmiseGOError.swift",
+      "line": 51,
       "symbol": "OmiseGOError.errorDescription",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Balance.swift",
-      "line": 74,
-      "symbol": "Balance.getAll(using:callback:)",
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Address.swift",
+      "line": 45,
+      "symbol": "Address.getAll(using:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Address.swift",
+      "line": 58,
+      "symbol": "Address.getMain(using:callback:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 16,
-      "symbol": "OmiseGOLocatableObject.operation",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 21,
-      "symbol": "OmiseGOListableObject.listOperation",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 27,
-      "symbol": "JSONType.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 31,
-      "symbol": "Int.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 34,
-      "symbol": "String.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 37,
-      "symbol": "Double.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 40,
-      "symbol": "Bool.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 43,
-      "symbol": "AnyJSONType",
+      "line": 10,
+      "symbol": "EmptyResponse",
       "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 44,
-      "symbol": "AnyJSONType.jsonValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Object.swift",
-      "line": 46,
-      "symbol": "AnyJSONType.init(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -177,14 +198,14 @@
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/Setting.swift",
-      "line": 49,
+      "line": 42,
       "symbol": "Setting.get(using:callback:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mederic/work/ios/omisego-ios/OmiseGO/Models/User.swift",
-      "line": 63,
+      "line": 56,
       "symbol": "User.getCurrent(using:callback:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"

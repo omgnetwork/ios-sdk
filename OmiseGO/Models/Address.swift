@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// Represents a balance of a minted token
+/// Represents an address containing a list of balances
 public struct Address: Retrievable {
 
-    /// The address of the balance
+    /// The address of the balances
     public let address: String
     /// The list of balances associated with that address
     public let balances: [Balance]
