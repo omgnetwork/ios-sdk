@@ -14,7 +14,7 @@ class LiveTest: OmiseGOTestCase {
 
     let validBaseURL = "https://kubera.omisego.io"
     let validAPIKey = "1482qNxPey7A4_rrKkAOb4kAOTsD2HoLysS7eQ1Zd3Y"
-    let validAuthenticationToken = "fNW95axd980PGF75hmmfsIWJ_H4RO3nr3UUGn40edw0"
+    let validAuthenticationToken = "1Zacrsqt03FbKQkmD1EF9u_ERuK7Zu4sBSSsIJfQ84U"
 
     let invalidBaseURL = "an invalid base url"
     let invalidAPIKey = "an invalid api key"

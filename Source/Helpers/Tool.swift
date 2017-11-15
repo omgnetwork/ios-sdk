@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 func omiseGOWarn(_ message: String) {
     print("[omiseGO] WARN: \(message)")
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 /// A struct representing a list response containing a data array of items.
 public struct OMGJSONListResponse<Item: Decodable> {
 

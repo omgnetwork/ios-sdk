@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 /// Represents an OMGClient that should be configured using an OMGConfiguration
 public class OMGClient {
 

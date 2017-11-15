@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
 /// Represents the current user
 public struct User {
 

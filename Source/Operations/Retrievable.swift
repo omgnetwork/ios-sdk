@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 /// Represent an Object that can be uniquely retrived
 public protocol Retrievable {}
 

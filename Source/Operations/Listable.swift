@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
 /// Represents an object that can be retrived in a collection
 public protocol Listable {}
 

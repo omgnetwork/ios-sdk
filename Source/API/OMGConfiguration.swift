@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 /// Represents a configuration object used to setup an OMGClient
 public struct OMGConfiguration {
 

@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
 struct OMGJSONResponse<ObjectType: Decodable> {
 
     let version: String

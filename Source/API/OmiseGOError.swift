@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
 /// Represents a SDK error
 ///
 /// - unexpected: An unexpected error has occured

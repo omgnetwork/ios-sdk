@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import UIKit
-
 /// Used to represent whether an API request was successfull or encountered an error.
 ///
 /// - success: The request and post processing operations were successful resulting in the serialization

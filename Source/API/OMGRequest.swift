@@ -6,8 +6,6 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-import Foundation
-
 /// Represents a cancellable request
 public class OMGRequest<ResultType: Decodable> {
 
