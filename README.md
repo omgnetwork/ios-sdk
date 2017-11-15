@@ -8,7 +8,7 @@ It supports the following functionalities:
 
 # Installation.
 
-For this initial beta version the SDK will be provided as an universal Framework. To integrate it in your application, simply add it to the project, make sure that it's added to the target's "Embedded Binaries" and to the target's "Linked Frameworks and Libraries".
+For this initial beta version, the SDK will be provided as pod hosted on our private repo.
 
 # Initialization
 
@@ -23,7 +23,7 @@ let configuration = APIConfiguration(baseURL: "your.base.url",
 APIClient.setup(withConfig: configuration)
 ```
 
-For security reason the authentication token can't be retrieved by the client so you'll need to obtain it from the application's server. You can find more info on how to retrive this token in the server side SDK's documentations.
+For security reason, the authentication token can't be retrieved from the client so you'll need to obtain it from the server. You can find more info on how to retrieve this token in the server side SDK documentations.
 
 # Usage
 
