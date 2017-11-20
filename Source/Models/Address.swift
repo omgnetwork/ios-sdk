@@ -71,3 +71,17 @@ extension Address: Listable {
     }
 
 }
+
+extension Address: Hashable {
+
+    public var hashValue: Int {
+        return self.address.hashValue
+    }
+
+}
+
+// MARK: Equatable
+
+public func == (lhs: Address, rhs: Address) -> Bool {
+    return lhs.address == rhs.address
+}

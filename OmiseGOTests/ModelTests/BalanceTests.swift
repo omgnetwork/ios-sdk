@@ -1,5 +1,5 @@
 //
-//  BalanceFixtureTests.swift
+//  BalanceTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 12/10/2560 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class BalanceFixtureTests: FixtureTestCase {
+class BalanceTests: XCTestCase {
 
     let decimalSeparator = NSLocale.current.decimalSeparator ?? "."
     let groupingSeparator = NSLocale.current.groupingSeparator ?? ","
@@ -56,6 +56,31 @@ class BalanceFixtureTests: FixtureTestCase {
         let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
         let balance = Balance(mintedToken: mintedToken, amount: 1)
         XCTAssertEqual(balance.displayAmount(withPrecision: 2), "0")
+    }
+
+    func testEquatable() {
+        let mintedToken1 = MintedToken(symbol: "OMG", name: "", subUnitToUnit: 1)
+        let mintedToken2 = MintedToken(symbol: "BTC", name: "", subUnitToUnit: 1)
+        let balance1 = Balance(mintedToken: mintedToken1, amount: 1)
+        let balance2 = Balance(mintedToken: mintedToken1, amount: 1)
+        let balance3 = Balance(mintedToken: mintedToken1, amount: 10)
+        let balance4 = Balance(mintedToken: mintedToken2, amount: 10)
+        XCTAssertEqual(balance1, balance2)
+        XCTAssertNotEqual(balance1, balance3)
+        XCTAssertNotEqual(balance1, balance4)
+        XCTAssertNotEqual(balance3, balance4)
+    }
+
+    func testHashable() {
+        let mintedToken1 = MintedToken(symbol: "OMG", name: "", subUnitToUnit: 1)
+        let mintedToken2 = MintedToken(symbol: "BTC", name: "", subUnitToUnit: 1)
+        let balance1 = Balance(mintedToken: mintedToken1, amount: 1)
+        let balance2 = Balance(mintedToken: mintedToken1, amount: 1)
+        let balance3 = Balance(mintedToken: mintedToken1, amount: 10)
+        let balance4 = Balance(mintedToken: mintedToken2, amount: 10)
+        let set: Set<Balance> = [balance1, balance2, balance3, balance4]
+        XCTAssertEqual(balance1.hashValue, mintedToken1.hashValue ^ 1.0.hashValue)
+        XCTAssertEqual(set.count, 3)
     }
 
 }

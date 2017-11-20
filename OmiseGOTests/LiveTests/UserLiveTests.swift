@@ -1,5 +1,5 @@
 //
-//  UserTests.swift
+//  UserLiveTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 18/10/2560 BE.
@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import OmiseGO
 
-class UserTests: LiveTestCase {
+class UserLiveTests: LiveTestCase {
 
     func testCurrentUserRetrieve() {
         let expectation = self.expectation(description: "Get current user from authentication token")

@@ -57,3 +57,17 @@ extension User: Retrievable {
     }
 
 }
+
+extension User: Hashable {
+
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+
+}
+
+// MARK: Equatable
+
+public func == (lhs: User, rhs: User) -> Bool {
+    return lhs.id == rhs.id
+}

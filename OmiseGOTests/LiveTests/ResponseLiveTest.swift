@@ -1,5 +1,5 @@
 //
-//  ResponseTest.swift
+//  ResponseLiveTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 18/10/2560 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class ResponseTest: LiveTestCase {
+class ResponseLiveTest: LiveTestCase {
 
     func testWrongEndpoint() {
         let expectation = self.expectation(description: "Error response")

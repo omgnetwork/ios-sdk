@@ -1,5 +1,5 @@
 //
-//  AuthenticationTest.swift
+//  AuthenticationLiveTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 6/11/2560 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class AuthenticationTest: LiveTestCase {
+class AuthenticationLiveTest: LiveTestCase {
 
     func testInvalidAuthenticationToken() {
         let expectation = self.expectation(description: "Error token not found")

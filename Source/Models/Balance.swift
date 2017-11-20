@@ -47,3 +47,17 @@ extension Balance: Decodable {
     }
 
 }
+
+extension Balance: Hashable {
+
+    public var hashValue: Int {
+        return self.mintedToken.hashValue ^ self.amount.hashValue
+    }
+
+}
+
+// MARK: Equatable
+
+public func == (lhs: Balance, rhs: Balance) -> Bool {
+    return lhs.mintedToken == rhs.mintedToken && lhs.amount == rhs.amount
+}

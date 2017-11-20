@@ -1,5 +1,5 @@
 //
-//  SettingTests.swift
+//  SettingLiveTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 10/11/2560 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class SettingTests: LiveTestCase {
+class SettingLiveTests: LiveTestCase {
 
     func testGetSettings() {
         let expectation = self.expectation(description: "Setting result")

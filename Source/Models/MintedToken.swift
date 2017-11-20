@@ -35,3 +35,17 @@ extension MintedToken: Decodable {
     }
 
 }
+
+extension MintedToken: Hashable {
+
+    public var hashValue: Int {
+        return self.symbol.hashValue
+    }
+
+}
+
+// MARK: Equatable
+
+public func == (lhs: MintedToken, rhs: MintedToken) -> Bool {
+    return lhs.symbol == rhs.symbol
+}

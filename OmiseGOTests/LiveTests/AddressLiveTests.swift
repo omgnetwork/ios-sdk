@@ -1,5 +1,5 @@
 //
-//  AddressTests.swift
+//  AddressLiveTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 10/11/2560 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class AddressTests: LiveTestCase {
+class AddressLiveTests: LiveTestCase {
 
     func testGetAll() {
         let expectation = self.expectation(description: "Addresses result")
