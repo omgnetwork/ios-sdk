@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class FixtureTestCase: OmiseGOTestCase {
+class FixtureTestCase: XCTestCase {
 
     var testCustomClient: FixtureClient {
         return FixtureClient(config: self.validConfig)
@@ -20,7 +20,7 @@ class FixtureTestCase: OmiseGOTestCase {
                                                          authenticationToken: "authenticationtoken")
 
     func fixturesData(for filename: String) -> Data? {
-        let bundle = Bundle(for: OmiseGOTestCase.self)
+        let bundle = Bundle(for: FixtureTestCase.self)
         guard let path = bundle.path(forResource: filename, ofType: "json") else {
             XCTFail("could not load fixtures.")
             return nil

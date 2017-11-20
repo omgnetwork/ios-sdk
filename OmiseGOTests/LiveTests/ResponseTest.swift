@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class ResponseTest: LiveTest {
+class ResponseTest: LiveTestCase {
 
     func testWrongEndpoint() {
         let expectation = self.expectation(description: "Error response")

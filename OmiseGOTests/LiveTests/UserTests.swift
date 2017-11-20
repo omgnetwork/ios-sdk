@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import OmiseGO
 
-class UserTests: LiveTest {
+class UserTests: LiveTestCase {
 
     func testCurrentUserRetrieve() {
         let expectation = self.expectation(description: "Get current user from authentication token")

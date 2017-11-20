@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class SettingTests: LiveTest {
+class SettingTests: LiveTestCase {
 
     func testGetSettings() {
         let expectation = self.expectation(description: "Setting result")

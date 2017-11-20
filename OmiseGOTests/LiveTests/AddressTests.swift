@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class AddressTests: LiveTest {
+class AddressTests: LiveTestCase {
 
     func testGetAll() {
         let expectation = self.expectation(description: "Addresses result")

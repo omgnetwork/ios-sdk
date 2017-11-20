@@ -36,7 +36,7 @@ extension User: Decodable {
         id = try container.decode(String.self, forKey: .id)
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
-        metadata = try container.decode([String: Any].self, forKey: .metadata)
+        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
     }
 
 }

@@ -19,7 +19,7 @@ struct MetadataDummy: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        metadata = try container.decode([String: Any].self, forKey: .metadata)
+        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
     }
 }
 
@@ -59,6 +59,16 @@ class DecodeTests: XCTestCase {
             XCTAssertTrue(array.count == 2)
             XCTAssertEqual(array[0] as? String, "value_1")
             XCTAssertEqual(array[1] as? String, "value_2")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testMetadaNullDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "metadata_null")
+            let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
+            XCTAssertEqual(decodedData.metadata.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
