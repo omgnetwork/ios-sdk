@@ -26,10 +26,12 @@ class AddressFixtureTests: FixtureTestCase {
                 let balance2 = address.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
+                XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
                 XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
                 XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
 
                 XCTAssertEqual(balance2.amount, 133700)
+                XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
                 XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
                 XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
             case .fail(error: let error):
@@ -53,10 +55,12 @@ class AddressFixtureTests: FixtureTestCase {
                 let balance2 = address.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
+                XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
                 XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
                 XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
 
                 XCTAssertEqual(balance2.amount, 133700)
+                XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
                 XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
                 XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
             case .fail(error: let error):

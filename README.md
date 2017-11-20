@@ -80,3 +80,25 @@ Setting.get { (result) in
     }
 }
 ```
+
+# Tests
+
+In order to run the live tests (binded to a working server) you need to fill the corresponding tokens in the file `LiveTestCase.swift`.
+```
+/// Replace with yours!
+var validBaseURL = ""
+/// Replace with yours!
+var validAPIKey = ""
+/// Replace with yours!
+var validAuthenticationToken = ""
+```
+
+**Note:**
+These tokens can also be provided with environments variables which make it easier and safer for CI as you don't need to hardcode them.
+The variables are:
+- `OMG_BASE_URL`
+- `OMG_API_KEY`
+- `OMG_AUTHENTICATION_TOKEN`
+
+You can then for example run the tests with the following command:
+`xcodebuild -project OmiseGO.xcodeproj -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" test`

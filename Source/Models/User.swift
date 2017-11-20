@@ -5,11 +5,11 @@
 //  Created by Mederic Petit on 11/10/2560 BE.
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 /// Represents the current user
 public struct User {
 
-    // swiftlint:disable identifier_name
     /// The uniq identifier on the wallet server side
     public let id: String
     /// The user identifier on the provider server side
@@ -24,7 +24,6 @@ public struct User {
 extension User: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        // swiftlint:disable:next identifier_name
         case id
         case providerUserId = "provider_user_id"
         case username

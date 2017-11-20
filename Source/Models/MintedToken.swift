@@ -5,10 +5,13 @@
 //  Created by Mederic Petit on 12/10/2560 BE.
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 /// Represents a minted token
 public struct MintedToken {
 
+    /// The id of the minted token
+    public let id: String
     /// The symbol of the minted token
     public let symbol: String
     /// The full name of the minted token
@@ -22,6 +25,7 @@ public struct MintedToken {
 extension MintedToken: Decodable {
 
     private enum CodingKeys: String, CodingKey {
+        case id
         case symbol
         case name
         case subUnitToUnit = "subunit_to_unit"
@@ -29,6 +33,7 @@ extension MintedToken: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
         symbol = try container.decode(String.self, forKey: .symbol)
         name = try container.decode(String.self, forKey: .name)
         subUnitToUnit = try container.decode(Double.self, forKey: .subUnitToUnit)
@@ -39,7 +44,7 @@ extension MintedToken: Decodable {
 extension MintedToken: Hashable {
 
     public var hashValue: Int {
-        return self.symbol.hashValue
+        return self.id.hashValue
     }
 
 }
@@ -47,5 +52,5 @@ extension MintedToken: Hashable {
 // MARK: Equatable
 
 public func == (lhs: MintedToken, rhs: MintedToken) -> Bool {
-    return lhs.symbol == rhs.symbol
+    return lhs.id == rhs.id
 }

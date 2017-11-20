@@ -15,52 +15,52 @@ class BalanceTests: XCTestCase {
     let groupingSeparator = NSLocale.current.groupingSeparator ?? ","
 
     func testStandardDisplayAmount() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000)
         let balance = Balance(mintedToken: mintedToken, amount: 13)
         XCTAssertEqual(balance.displayAmount(), "0\(decimalSeparator)013")
     }
 
     func testZeroDisplayAmount() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000)
         let balance = Balance(mintedToken: mintedToken, amount: 0)
         XCTAssertEqual(balance.displayAmount(), "0")
     }
 
     func testBigDisplayAmount() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000)
         let balance = Balance(mintedToken: mintedToken, amount: 999999999999999)
         XCTAssertEqual(balance.displayAmount(),
                        "999\(groupingSeparator)999\(groupingSeparator)999\(groupingSeparator)999\(decimalSeparator)999")
     }
 
     func testBigDisplayAmountPrecision() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000)
         let balance = Balance(mintedToken: mintedToken, amount: 999999999999999)
         XCTAssertEqual(balance.displayAmount(withPrecision: 1),
                        "1\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000")
     }
 
     func testBigDisplayAmountWithBigSubUnitToUnity() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000000000000000000)
         let balance = Balance(mintedToken: mintedToken, amount: 130000000000000000000)
         XCTAssertEqual(balance.displayAmount(), "130")
     }
 
     func testSmallestDisplayAmount() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000000000000000000)
         let balance = Balance(mintedToken: mintedToken, amount: 1)
         XCTAssertEqual(balance.displayAmount(), "0\(decimalSeparator)000000000000000001")
     }
 
     func testSmallNumberPrecision() {
-        let mintedToken = MintedToken(symbol: "", name: "", subUnitToUnit: 1000000000000000000)
+        let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1000000000000000000)
         let balance = Balance(mintedToken: mintedToken, amount: 1)
         XCTAssertEqual(balance.displayAmount(withPrecision: 2), "0")
     }
 
     func testEquatable() {
-        let mintedToken1 = MintedToken(symbol: "OMG", name: "", subUnitToUnit: 1)
-        let mintedToken2 = MintedToken(symbol: "BTC", name: "", subUnitToUnit: 1)
+        let mintedToken1 = MintedToken(id: "OMG:123", symbol: "", name: "", subUnitToUnit: 1)
+        let mintedToken2 = MintedToken(id: "BTC:123", symbol: "", name: "", subUnitToUnit: 1)
         let balance1 = Balance(mintedToken: mintedToken1, amount: 1)
         let balance2 = Balance(mintedToken: mintedToken1, amount: 1)
         let balance3 = Balance(mintedToken: mintedToken1, amount: 10)
@@ -72,8 +72,8 @@ class BalanceTests: XCTestCase {
     }
 
     func testHashable() {
-        let mintedToken1 = MintedToken(symbol: "OMG", name: "", subUnitToUnit: 1)
-        let mintedToken2 = MintedToken(symbol: "BTC", name: "", subUnitToUnit: 1)
+        let mintedToken1 = MintedToken(id: "OMG", symbol: "", name: "", subUnitToUnit: 1)
+        let mintedToken2 = MintedToken(id: "BTC", symbol: "", name: "", subUnitToUnit: 1)
         let balance1 = Balance(mintedToken: mintedToken1, amount: 1)
         let balance2 = Balance(mintedToken: mintedToken1, amount: 1)
         let balance3 = Balance(mintedToken: mintedToken1, amount: 10)

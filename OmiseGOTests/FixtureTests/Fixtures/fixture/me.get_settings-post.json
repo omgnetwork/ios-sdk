@@ -6,12 +6,14 @@
     "minted_tokens": [
       {
         "object": "minted_token",
+        "id": "MNT:123",
         "symbol": "MNT",
         "name": "Mint",
         "subunit_to_unit": 100000
       },
       {
         "object": "minted_token",
+        "id": "OMG:123",
         "symbol": "OMG",
         "name": "OmiseGO",
         "subunit_to_unit": 100000000
