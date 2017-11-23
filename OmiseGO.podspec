@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'OmiseGO'
-  s.version = '0.8.2'
-  s.license = 'MIT'
+  s.version = '0.8.3'
+  s.license = 'Apache'
   s.summary = 'The OmiseGO iOS SDK'
   s.homepage = 'https://omisego.network/'
   s.social_media_url = 'https://twitter.com/omise_go'
