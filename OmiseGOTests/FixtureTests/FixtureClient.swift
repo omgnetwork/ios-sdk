@@ -51,11 +51,7 @@ class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
         DispatchQueue.global().async {
             let data: Data?
             let error: Error?
-
-            defer {
-                self.didComplete(data: data, error: error)
-            }
-
+            defer { self.didComplete(data: data, error: error) }
             do {
                 data = try Data(contentsOf: fixtureFileURL)
                 error = nil
@@ -79,18 +75,13 @@ class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
         }
         do {
             let response: OMGJSONResponse<ResultType> = try deserializeData(data)
-            switch response.data {
-            case .fail(let apiError):
-                return performCallback(.fail(error: OmiseGOError.api(apiError: apiError)))
-            case .success(let response):
-                return performCallback(.success(data: response))
-            }
+            return performCallback(response.data)
         } catch let error {
             return performCallback(.fail(error: .other(error: error)))
         }
     }
 
-    fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
+    fileprivate func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
         client.operationQueue.addOperation { cb(result) }
     }

@@ -9,7 +9,7 @@
 /// Represents a cancellable request
 public class OMGRequest<ResultType: Decodable> {
 
-    public typealias Callback = (Response<ResultType, OmiseGOError>) -> Void
+    public typealias Callback = (Response<ResultType>) -> Void
 
     let client: OMGClient
     let endpoint: APIEndpoint
@@ -60,24 +60,19 @@ public class OMGRequest<ResultType: Decodable> {
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
     }
 
-    fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType, OmiseGOError> {
+    fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
         guard [200, 500].contains(statusCode) else {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
             let response: OMGJSONResponse<ResultType> = try deserializeData(data)
-            switch response.data {
-            case .fail(let apiError):
-                return .fail(error: OmiseGOError.api(apiError: apiError))
-            case .success(let response):
-                return .success(data: response)
-            }
+            return response.data
         } catch let error {
             return .fail(error: .other(error: error))
         }
     }
 
-    fileprivate func performCallback(_ result: Response<ResultType, OmiseGOError>) {
+    fileprivate func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
         OperationQueue.main.addOperation({ cb(result) })
     }

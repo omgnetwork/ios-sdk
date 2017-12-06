@@ -10,7 +10,7 @@ struct OMGJSONResponse<ObjectType: Decodable> {
 
     let version: String
     let success: Bool
-    let data: Response<ObjectType, APIError>
+    let data: Response<ObjectType>
 
 }
 
@@ -31,7 +31,7 @@ extension OMGJSONResponse: Decodable {
             data = .success(data: result)
         } else {
             let error = try container.decode(APIError.self, forKey: .data)
-            data = .fail(error: error)
+            data = .fail(error: .api(apiError: error))
         }
     }
 }

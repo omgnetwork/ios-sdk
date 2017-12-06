@@ -38,28 +38,4 @@ class ClientTests: XCTestCase {
         XCTAssertNil(request, "Request should be nil")
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
-    func testMissingClientConfiguration() {
-        let expectation = self.expectation(description: "Missing configuration")
-        let client = OMGClient.shared
-        let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
-        let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
-            defer {
-                expectation.fulfill()
-            }
-            switch result {
-            case .success(data: _):
-                XCTFail("Request should not be executed if config was not provided to the client")
-            case .fail(let error):
-                switch error {
-                case .configuration(message: _):
-                    XCTAssertTrue(true)
-                default:
-                    XCTFail("Error should be a configuration error")
-                }
-            }
-        }
-        XCTAssertNil(request, "Request should be nil")
-        waitForExpectations(timeout: 15.0, handler: nil)
-    }
 }

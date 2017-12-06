@@ -46,11 +46,11 @@ extension User: Retrievable {
     /// Get the current user corresponding to the authentication token provided in the configuration
     ///
     /// - Parameters:
-    ///   - client: An optional API client (use the shared client by default).
+    ///   - client: An API client.
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getCurrent(using client: OMGClient = OMGClient.shared,
+    public static func getCurrent(using client: OMGClient,
                                   callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getCurrentUser, callback: callback)
     }

@@ -6,61 +6,28 @@
 //  Copyright © 2560 OmiseGO. All rights reserved.
 //
 
-/// Represents an OMGClient that should be configured using an OMGConfiguration
+/// Represents an OMGClient that should be initialized using an OMGConfiguration
 public class OMGClient {
-
-    /// The shared client that will be used by default if no client is specified.
-    public static let shared = OMGClient()
 
     let authScheme = "OMGClient"
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
-    var config: OMGConfiguration!
-
-    private init() {}
+    var config: OMGConfiguration
 
     /// Initialize a client using a configuration object
     ///
     /// - Parameter config: The configuration object
     public init(config: OMGConfiguration) {
-        OMGClient.set(config, toClient: self)
-    }
-
-    @discardableResult
-    /// A method used to setup the shared client with a configuration object
-    ///
-    /// - Parameter config: The configuration object
-    /// - Returns: The shared client
-    public static func setup(withConfig config: OMGConfiguration) -> OMGClient {
-        return OMGClient.set(config, toClient: OMGClient.shared)
-    }
-
-    @discardableResult
-    private static func set(_ config: OMGConfiguration, toClient client: OMGClient) -> OMGClient {
-        client.config = config
-        client.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
-                                    delegate: nil,
-                                    delegateQueue: client.operationQueue)
-
-        return client
+        self.config = config
+        self.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
+                                  delegate: nil,
+                                  delegateQueue: self.operationQueue)
     }
 
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                              callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
-        guard self.config != nil else {
-            let missingConfigMessage = """
-               Missing client configuration. Add a configuration to the client
-               using OMGClient.setup(withConfig: OMGConfiguration)
-            """
-            omiseGOWarn(missingConfigMessage)
-            performCallback {
-                callback?(.fail(error: .configuration(message: missingConfigMessage)))
-            }
-
-            return nil
-        }
         do {
             let request: OMGRequest<ResultType> = OMGRequest(client: self, endpoint: endpoint, callback: callback)
             return try request.start()

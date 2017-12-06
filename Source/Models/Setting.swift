@@ -7,22 +7,13 @@
 //
 
 /// Represents the global settings of the provider
-public struct Setting {
+public struct Setting: Decodable {
 
     /// An array of minted tokens available for the provider
     public let mintedTokens: [MintedToken]
 
-}
-
-extension Setting: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case mintedTokens = "minted_tokens"
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        mintedTokens = try container.decode([MintedToken].self, forKey: .mintedTokens)
     }
 
 }
@@ -33,11 +24,11 @@ extension Setting: Retrievable {
     /// Get the global settings of the provider
     ///
     /// - Parameters:
-    ///   - client: An optional API client (use the shared client by default).
+    ///   - client: An API client.
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func get(using client: OMGClient = OMGClient.shared,
+    public static func get(using client: OMGClient,
                            callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getSettings, callback: callback)
     }

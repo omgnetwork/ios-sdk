@@ -11,7 +11,7 @@ public protocol Listable {}
 
 public extension Listable where Self: Decodable {
     public typealias ListRequest = OMGRequest<OMGJSONListResponse<Self>>
-    public typealias ListRequestCallback = (Response<[Self], OmiseGOError>) -> Void
+    public typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
     internal static func list(using client: OMGClient,

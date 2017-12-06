@@ -11,7 +11,7 @@
 /// - success: The request and post processing operations were successful resulting in the serialization
 ///             of the provided associated Data
 /// - fail: The request encountered an error resulting in a failure
-public enum Response<Data, Error> {
+public enum Response<Data> {
     case success(data: Data)
-    case fail(error: Error)
+    case fail(error: OmiseGOError)
 }

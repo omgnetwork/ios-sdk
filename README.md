@@ -43,14 +43,14 @@ $ pod install
 
 ### Initialization
 
-Before using the SDK to retrieve a resource, you need to initialize the client (`APIClient`) with an `APIConfiguration` object.
+Before using the SDK to retrieve a resource, you need to initialize a client (`APIClient`) with an `APIConfiguration` object.
 You should do this as soon as you obtain a valid authentication token corresponding to the current user from the Wallet API.
 
 ```swift
-let configuration = APIConfiguration(baseURL: "your.base.url",
+let configuration = OMGConfiguration(baseURL: "your.base.url",
                                      apiKey: "apiKey",
                                      authenticationToken: "authenticationToken")
-APIClient.setup(withConfig: configuration)
+let client = OMGClient(config: configuration)
 ```
 
 Where:
@@ -61,11 +61,11 @@ Where:
 
 ### Retrieving resources
 
-Once the SDK is initialized, you can then retrieve different resources.
+Once you have an initialized client, you can retrieve different resources.
 Each call take a `Callback` closure that returns a `Response` enum:
 
 ```swift
-public enum Response<Data, OmiseGOError> {
+public enum Response<Data> {
     case success(data: Data)
     case fail(error: OmiseGOError)
 }
@@ -85,8 +85,8 @@ An `Error` returned by the OmiseGO Wallet server will be mapped to an `APIError`
 #### Get the current user:
 
 ```swift
-User.getCurrent { (result) in
-    switch result {
+User.getCurrent(using: client) { (userResult) in
+    switch userResult {
     case .success(data: let user):
         //TODO: Do something with the user
     case .fail(error: let error):
@@ -98,10 +98,10 @@ User.getCurrent { (result) in
 #### Get the addresses of the current user:
 
 ```swift
-Address.getAll { (addresses) in
-    switch result {
+Address.getAll(using: client) { (addressesResult) in
+    switch addressesResult {
     case .success(data: let addresses):
-        //TODO: Do something with the balances
+        //TODO: Do something with the addresses
     case .fail(error: let error):
         //TODO: Handle the error
     }
@@ -111,8 +111,8 @@ Address.getAll { (addresses) in
 > Note: For now a user will have only one address so for the sake of simplicity you can get this address using:
 
 ```swift
-Address.getMain { (address) in
-    switch result {
+Address.getMain(using: client) { (addressResult) in
+    switch addressResult {
     case .success(data: let address):
         //TODO: Do something with the address
     case .fail(error: let error):
@@ -124,8 +124,8 @@ Address.getMain { (address) in
 #### Get the provider settings:
 
 ```swift
-Setting.get { (result) in
-    switch result {
+Setting.get(using: client) { (settingResult) in
+    switch settingResult {
     case .success(data: let settings):
         //TODO: Do something with the settings
     case .fail(error: let error):

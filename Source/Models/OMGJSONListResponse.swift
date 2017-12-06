@@ -7,7 +7,7 @@
 //
 
 /// A struct representing a list response containing a data array of items.
-public struct OMGJSONListResponse<Item: Decodable> {
+public struct OMGJSONListResponse<Item: Decodable>: Decodable {
 
     let data: [Item]
 
@@ -29,19 +29,6 @@ extension OMGJSONListResponse: RandomAccessCollection {
 
     public var endIndex: (Array<Item>.Index) {
         return data.endIndex
-    }
-
-}
-
-extension OMGJSONListResponse: Decodable {
-
-    private enum CodingKeys: String, CodingKey {
-        case data
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([Item].self, forKey: .data)
     }
 
 }

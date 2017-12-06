@@ -7,12 +7,17 @@
 //
 
 /// Represents a balance of a minted token
-public struct Balance {
+public struct Balance: Decodable {
 
     /// The minted token corresponding to the balance
     public let mintedToken: MintedToken
     /// The total amount of minted token available
     public let amount: Double
+
+    private enum CodingKeys: String, CodingKey {
+        case mintedToken = "minted_token"
+        case amount
+    }
 }
 
 extension Balance {
@@ -29,21 +34,6 @@ extension Balance {
         let displayableAmount: Double = self.amount / self.mintedToken.subUnitToUnit
         let formattedDisplayAmount = formatter.string(from: NSNumber(value: displayableAmount))
         return formattedDisplayAmount ?? ""
-    }
-
-}
-
-extension Balance: Decodable {
-
-    private enum CodingKeys: String, CodingKey {
-        case mintedToken = "minted_token"
-        case amount
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
-        amount = try container.decode(Double.self, forKey: .amount)
     }
 
 }
