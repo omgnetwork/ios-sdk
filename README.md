@@ -26,7 +26,17 @@ It supports the following functionalities:
 $ gem install cocoapods
 ```
 
-To integrate the OmiseGO SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
+To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
+
+### Beta Installation
+
+Until the `omisego` SDK is released, you will need to specify the git URL for this pod:
+
+```ruby
+pod 'OmiseGO', :git => 'ssh://git@phabricator.omisego.io/source/sdk-ios.git'
+```
+
+### Installation
 
 ```ruby
 pod 'OmiseGO', '~> 1.0'

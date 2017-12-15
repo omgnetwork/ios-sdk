@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name = 'OmiseGO'
-  s.version = '0.8.4'
+  s.version = '0.9.0'
   s.license = 'Apache'
-  s.summary = 'The OmiseGO iOS SDK'
+  s.summary = 'The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.'
   s.homepage = 'https://omisego.network/'
   s.social_media_url = 'https://twitter.com/omise_go'
   s.authors = { 'OmiseGO team' => 'omg@omise.co' }
