@@ -33,7 +33,7 @@ To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the 
 Until the `omisego` SDK is released, you will need to specify the git URL for this pod:
 
 ```ruby
-pod 'OmiseGO', :git => 'ssh://git@phabricator.omisego.io/source/sdk-ios.git'
+pod 'OmiseGO', :git => 'ssh://git@github.com:omisego/ios-sdk.git'
 ```
 
 ### Installation
