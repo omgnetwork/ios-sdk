@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://omisego.network/'
   s.social_media_url = 'https://twitter.com/omise_go'
   s.authors = { 'OmiseGO team' => 'omg@omise.co' }
-  s.source = { :git => 'ssh://git@github.com:omisego/ios-sdk.git', :tag => s.version }
+  s.source = { :git => 'git@github.com:omisego/ios-sdk.git', :tag => s.version }
 
   s.platform = :ios, '9.0'
 
