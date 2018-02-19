@@ -144,6 +144,112 @@ Setting.get(using: client) { (settingResult) in
 }
 ```
 
+### QR codes
+
+This SDK offers the possibility to generate and consume transaction requests.
+Typically these actions should be done through the generation and scan of QR codes.
+
+#### Generation
+
+To generate a new transaction request you can call:
+
+```swift
+let params = TransactionRequestCreateParams(type: .receive,
+                                            mintedTokenId: "a_token_id",
+                                            amount: 13.37,
+                                            address: "receiver_address",
+                                            correlationId: "correlation_id")
+TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
+    switch transactionRequestResult {
+    case .success(data: let transactionRequest):
+        //TODO: Do something with the transaction request (get the QR code representation for example)
+    case .fail(error: let error):
+        //TODO: Handle the error
+}
+```
+
+Where `params` is a `TransactionRequestCreateParams` struct constructed using:
+
+`type`: The QR code type, only supports `.receive` for now.
+
+`mintedTokenId`: The id of the desired token.
+
+`amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
+
+`address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
+
+`correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+
+A `TransactionRequest` object is passed to the success callback, you can get its QR code representation using `transactionRequest.qrImage()`.
+
+#### Scanning
+
+You can then use the integrated `QRScannerViewController` to scan the generated QR code.
+
+You first need to initialize the view controller using:
+
+```swift
+if let vc = QRScannerViewController(delegate: self, client: client, cancelButtonTitle: "Cancel") {
+  self.present(vc, animated: true, completion: nil)
+}
+```
+
+> Note: that the initialization of the controller may fail if the device doesn't support video capture (ie: the iOS simulator).
+
+The `QRScannerViewControllerDelegate` offers the following interface:
+
+```swift
+func scannerDidCancel(scanner: QRScannerViewController) {
+    // Handle tap on cancel button: Typically dismiss the scanner
+}
+
+func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest) {
+    // Handle success scan, typically consume the transactionRequest and dismiss the scanner
+}
+
+func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
+    // Handle error
+}
+```
+
+When the scanner successfully decodes a transaction request it will call its delegate method `scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)`.
+
+You should use this `transactionRequest` to generate a `TransactionConsumeParams` in order to consume the request.
+
+#### Consumption
+
+```swift
+guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+                                            address: nil,
+                                            amount: nil,
+                                            idempotencyToken: self.idemPotencyToken,
+                                            correlationId: nil,
+                                            metadata: [:]) else { return }
+TransactionConsume.consumeTransactionRequest(using: client, params: params) { (transactionConsumeResult) in
+    switch transactionConsumeResult {
+    case .success(data: let transactionConsume):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+}
+```
+
+Where `params` is a `TransactionConsumeParams` struct constructed using:
+
+`transactionRequest`: The transactionRequest obtained from the QR scanner.
+
+`address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
+
+`amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
+> Note that if the amount was not specified in the transaction request it needs to be specified here, otherwise the init will fail.
+
+`idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
+
+`correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+
+`metadata`: A dictionary of additional data to be stored for this transaction consumption.
+
 # Tests
 
 In order to run the live tests (bound to a working server) you need to fill the corresponding variables in the file `LiveTestCase.swift`.

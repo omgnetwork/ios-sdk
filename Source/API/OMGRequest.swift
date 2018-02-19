@@ -91,6 +91,9 @@ public class OMGRequest<ResultType: Decodable> {
         request.addValue(auth, forHTTPHeaderField: "Authorization")
         request.addValue(client.acceptHeader(), forHTTPHeaderField: "Accept")
         request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
+        endpoint.additionalHeaders?.forEach({ (key, value) in
+            request.addValue(value, forHTTPHeaderField: key)
+        })
 
         switch endpoint.task {
         case .requestPlain: break

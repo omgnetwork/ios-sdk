@@ -25,6 +25,7 @@ class LiveTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        self.continueAfterFailure = false
         self.loadEnvKeys()
         if !self.areKeysValid() {
             XCTFail("Replace base url, authentication token and API Key at the top of this file!")

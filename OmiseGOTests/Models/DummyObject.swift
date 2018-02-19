@@ -9,7 +9,11 @@
 import UIKit
 @testable import OmiseGO
 
-struct DummyTestObject: Decodable {
+struct DummyTestObject: Parametrable, Decodable {
+
+    func encodedPayload() -> Data? {
+        return try? JSONEncoder().encode(self)
+    }
 
     var object: String = ""
 

@@ -9,20 +9,6 @@
 import XCTest
 @testable import OmiseGO
 
-struct MetadataDummy: Decodable {
-
-    let metadata: [String: Any]
-
-    private enum CodingKeys: String, CodingKey {
-        case metadata
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
-    }
-}
-
 class DecodeTests: XCTestCase {
 
     func jsonData(withFileName name: String) throws -> Data {
@@ -37,7 +23,10 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata")
             let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
-            let metadata = decodedData.metadata
+            guard let metadata = decodedData.metadata else {
+                XCTFail("Failed to decode metadata")
+                return
+            }
             XCTAssertEqual(metadata["a_string"] as? String, "some_string")
             XCTAssertEqual(metadata["an_integer"] as? Int, 1)
             XCTAssertEqual(metadata["a_bool"] as? Bool, true)
@@ -68,7 +57,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata_null")
             let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
-            XCTAssertEqual(decodedData.metadata.count, 0)
+            XCTAssertEqual(decodedData.metadata!.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -192,6 +181,43 @@ class DecodeTests: XCTestCase {
             case .invalidParameters: XCTAssertTrue(true)
             default: XCTFail("Failed to decode the error code")
             }
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionRequestDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction_request")
+            let decodedData = try JSONDecoder().decode(TransactionRequest.self, from: jsonData)
+            XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
+            XCTAssertEqual(decodedData.mintedTokenId, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+            XCTAssertEqual(decodedData.amount, 1337)
+            XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
+            XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionConsumeDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction_consume")
+            let decodedData = try JSONDecoder().decode(TransactionConsume.self, from: jsonData)
+            XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
+            XCTAssertEqual(decodedData.status, .confirmed)
+            XCTAssertEqual(decodedData.amount, 1337)
+            let mintedToken = decodedData.mintedToken
+            XCTAssertEqual(mintedToken.id, "MNT:123")
+            XCTAssertEqual(mintedToken.symbol, "MNT")
+            XCTAssertEqual(mintedToken.name, "Mint")
+            XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+            XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+            XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
+            XCTAssertEqual(decodedData.transferId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
+            XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+            XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+            XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

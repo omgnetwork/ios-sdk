@@ -12,16 +12,16 @@ import XCTest
 class UserTests: XCTestCase {
 
     func testEquatable() {
-        let user1 = User(id: "123", providerUserId: "", username: "", metadata: [:])
-        let user2 = User(id: "123", providerUserId: "", username: "", metadata: [:])
-        let user3 = User(id: "321", providerUserId: "", username: "", metadata: [:])
+        let user1 = StubGenerator.user(id: "123")
+        let user2 = StubGenerator.user(id: "123")
+        let user3 = StubGenerator.user(id: "321")
         XCTAssertEqual(user1, user2)
         XCTAssertNotEqual(user1, user3)
     }
 
     func testHashable() {
-        let user1 = User(id: "123", providerUserId: "", username: "", metadata: [:])
-        let user2 = User(id: "123", providerUserId: "", username: "", metadata: [:])
+        let user1 = StubGenerator.user(id: "123")
+        let user2 = StubGenerator.user(id: "123")
         let set: Set<User> = [user1, user2]
         XCTAssertEqual(user1.hashValue, "123".hashValue)
         XCTAssertEqual(set.count, 1)

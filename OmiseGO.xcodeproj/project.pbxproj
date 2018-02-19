@@ -21,15 +21,28 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F573520341A2600F54296 /* APIEndpointTest.swift */; };
+		0313D6D720317696003E99BA /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D120317695003E99BA /* QRReader.swift */; };
+		0313D6D820317696003E99BA /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D220317695003E99BA /* QRScannerView.swift */; };
+		0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D320317695003E99BA /* QRScannerViewModel.swift */; };
+		0313D6DA20317696003E99BA /* QRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D420317695003E99BA /* QRScannerOverlayView.swift */; };
+		0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D520317695003E99BA /* QRScannerLoadingView.swift */; };
+		0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D620317695003E99BA /* QRScannerViewController.swift */; };
+		0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6DD203176AC003E99BA /* QRGenerator.swift */; };
+		0313D6E12031772F003E99BA /* QRGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6E02031772F003E99BA /* QRGeneratorTest.swift */; };
+		0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6E22031776E003E99BA /* QRReaderTest.swift */; };
 		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
 		031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863FC1F8F678300D13862 /* SettingFixtureTests.swift */; };
 		031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB10E1F9861AD0095468F /* FixtureTestCase.swift */; };
+		0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334869D2036C7EC0013B37A /* StubGenerator.swift */; };
 		033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */; };
 		033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */; };
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
 		0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
+		0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE822028508900F7B42E /* TransactionRequestParams.swift */; };
+		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
 		037032A51FBBE6B100DBCDDD /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0370328D1FBBE6B100DBCDDD /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */; };
 		037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */; };
@@ -50,9 +63,19 @@
 		037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A31FBBE6B100DBCDDD /* OMGRequest.swift */; };
 		037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BB1FBBE7A300DBCDDD /* Tool.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
+		038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E4202AE93900E40715 /* QRTestHelper.swift */; };
+		038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */; };
+		038CB3E9202B02B300E40715 /* TransactionConsumeParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */; };
+		0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390B2472028652400B1F65E /* TransactionRequestTest.swift */; };
+		03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8D202866E400F65F20 /* EncodeTests.swift */; };
+		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
+		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
 		03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E8181F8E14570009D5E0 /* ClientTests.swift */; };
 		03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
+		03BEACB32031833F003A3B0D /* MockQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB22031833F003A3B0D /* MockQRReader.swift */; };
+		03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */; };
+		03BEACB72031A046003A3B0D /* QRScannerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */; };
 		03C2C0791FB93E5200B794AC /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C0781FB93E5200B794AC /* DecodeTests.swift */; };
 		03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */; };
 		03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */; };
@@ -62,6 +85,10 @@
 		03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C671FC2886600F21C7B /* BalanceTests.swift */; };
 		03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C691FC28D5E00F21C7B /* UserTests.swift */; };
 		03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */; };
+		03FE64492032960200345281 /* MetadataDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64482032960200345281 /* MetadataDummy.swift */; };
+		03FE644C2032A8FE00345281 /* TransactionConsume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644A2032A39100345281 /* TransactionConsume.swift */; };
+		03FE644E2032AA7400345281 /* TransactionConsumeFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */; };
+		03FE64502032C6BF00345281 /* TransactionConsumeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */; };
 		217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,15 +103,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030F573520341A2600F54296 /* APIEndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointTest.swift; sourceTree = "<group>"; };
+		0313D6D120317695003E99BA /* QRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
+		0313D6D220317695003E99BA /* QRScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
+		0313D6D320317695003E99BA /* QRScannerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewModel.swift; sourceTree = "<group>"; };
+		0313D6D420317695003E99BA /* QRScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerOverlayView.swift; sourceTree = "<group>"; };
+		0313D6D520317695003E99BA /* QRScannerLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerLoadingView.swift; sourceTree = "<group>"; };
+		0313D6D620317695003E99BA /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		0313D6DD203176AC003E99BA /* QRGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
+		0313D6E02031772F003E99BA /* QRGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGeneratorTest.swift; sourceTree = "<group>"; };
+		0313D6E22031776E003E99BA /* QRReaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderTest.swift; sourceTree = "<group>"; };
 		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
 		031863FC1F8F678300D13862 /* SettingFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFixtureTests.swift; sourceTree = "<group>"; };
 		031BB10E1F9861AD0095468F /* FixtureTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTestCase.swift; sourceTree = "<group>"; };
+		0334869D2036C7EC0013B37A /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLiveTests.swift; sourceTree = "<group>"; };
 		033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLiveTests.swift; sourceTree = "<group>"; };
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
 		0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveTestCase.swift; path = ../LiveTestCase.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
+		0365DE822028508900F7B42E /* TransactionRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParams.swift; sourceTree = "<group>"; };
+		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		0370328D1FBBE6B100DBCDDD /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
 		0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
 		037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
@@ -106,11 +146,21 @@
 		037032A41FBBE6B100DBCDDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		037032BB1FBBE7A300DBCDDD /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
+		038CB3E4202AE93900E40715 /* QRTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTestHelper.swift; sourceTree = "<group>"; };
+		038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumeParams.swift; sourceTree = "<group>"; };
+		038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeParamsTest.swift; sourceTree = "<group>"; };
+		0390B2472028652400B1F65E /* TransactionRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestTest.swift; sourceTree = "<group>"; };
+		03939D8D202866E400F65F20 /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
+		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
+		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
 		03A5E8181F8E14570009D5E0 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyObject.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB91F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03BEACB22031833F003A3B0D /* MockQRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQRReader.swift; sourceTree = "<group>"; };
+		03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerTest.swift; sourceTree = "<group>"; };
+		03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewModelTest.swift; sourceTree = "<group>"; };
 		03C2C0781FB93E5200B794AC /* DecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
 		03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFixtureTest.swift; sourceTree = "<group>"; };
 		03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureClient.swift; sourceTree = "<group>"; };
@@ -120,6 +170,10 @@
 		03F84C671FC2886600F21C7B /* BalanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTests.swift; sourceTree = "<group>"; };
 		03F84C691FC28D5E00F21C7B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenTests.swift; sourceTree = "<group>"; };
+		03FE64482032960200345281 /* MetadataDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataDummy.swift; sourceTree = "<group>"; };
+		03FE644A2032A39100345281 /* TransactionConsume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsume.swift; sourceTree = "<group>"; };
+		03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeFixtureTests.swift; sourceTree = "<group>"; };
+		03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeTest.swift; sourceTree = "<group>"; };
 		217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFixtureTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +196,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0313D6D020317695003E99BA /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				0313D6DD203176AC003E99BA /* QRGenerator.swift */,
+				0313D6D120317695003E99BA /* QRReader.swift */,
+				0313D6D220317695003E99BA /* QRScannerView.swift */,
+				0313D6D320317695003E99BA /* QRScannerViewModel.swift */,
+				0313D6D420317695003E99BA /* QRScannerOverlayView.swift */,
+				0313D6D520317695003E99BA /* QRScannerLoadingView.swift */,
+				0313D6D620317695003E99BA /* QRScannerViewController.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		0313D6DF2031772F003E99BA /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				0313D6E02031772F003E99BA /* QRGeneratorTest.swift */,
+				0313D6E22031776E003E99BA /* QRReaderTest.swift */,
+				03BEACB22031833F003A3B0D /* MockQRReader.swift */,
+				03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */,
+				03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 		031443001F8CAA68003DD5BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +241,8 @@
 				217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */,
 				031863FC1F8F678300D13862 /* SettingFixtureTests.swift */,
 				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
+				03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */,
+				03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */,
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
 			);
 			path = FixtureTests;
@@ -183,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				0370328D1FBBE6B100DBCDDD /* OmiseGO.h */,
+				0313D6D020317695003E99BA /* QRCode */,
 				0370328E1FBBE6B100DBCDDD /* Models */,
 				037032981FBBE6B100DBCDDD /* Operations */,
 				0370329B1FBBE6B100DBCDDD /* API */,
@@ -204,6 +287,10 @@
 				037032951FBBE6B100DBCDDD /* Reponse.swift */,
 				037032961FBBE6B100DBCDDD /* Object.swift */,
 				037032971FBBE6B100DBCDDD /* MintedToken.swift */,
+				0365DE822028508900F7B42E /* TransactionRequestParams.swift */,
+				0365DE8420285FE700F7B42E /* TransactionRequest.swift */,
+				038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */,
+				03FE644A2032A39100345281 /* TransactionConsume.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,6 +325,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		038CB3E3202AE92A00E40715 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				038CB3E4202AE93900E40715 /* QRTestHelper.swift */,
+				03FE64482032960200345281 /* MetadataDummy.swift */,
+				0334869D2036C7EC0013B37A /* StubGenerator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		03BCCC9F1F8B311600F604DB = {
 			isa = PBXGroup;
 			children = (
@@ -259,11 +356,16 @@
 		03BCCCB61F8B311600F604DB /* OmiseGOTests */ = {
 			isa = PBXGroup;
 			children = (
+				0313D6DF2031772F003E99BA /* QRCode */,
+				038CB3E3202AE92A00E40715 /* Helpers */,
 				03F84C641FC2881A00F21C7B /* ModelTests */,
 				0345BE231F96FD7E00B4CA16 /* LiveTests */,
 				031443031F8CAD88003DD5BE /* FixtureTests */,
 				03A5E8181F8E14570009D5E0 /* ClientTests.swift */,
 				03C2C0781FB93E5200B794AC /* DecodeTests.swift */,
+				03939D8D202866E400F65F20 /* EncodeTests.swift */,
+				03939D912029672F00F65F20 /* OMGRequestTest.swift */,
+				030F573520341A2600F54296 /* APIEndpointTest.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
 				031443001F8CAA68003DD5BE /* Models */,
 			);
@@ -277,6 +379,9 @@
 				03F84C651FC2883100F21C7B /* AddressTests.swift */,
 				03F84C691FC28D5E00F21C7B /* UserTests.swift */,
 				03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */,
+				0390B2472028652400B1F65E /* TransactionRequestTest.swift */,
+				038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */,
+				03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -428,24 +533,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0313D6D720317696003E99BA /* QRReader.swift in Sources */,
+				0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */,
 				037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */,
 				037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */,
+				0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */,
+				0313D6D820317696003E99BA /* QRScannerView.swift in Sources */,
 				037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */,
 				037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */,
+				038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */,
 				037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */,
+				0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */,
 				037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */,
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
 				037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */,
+				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
 				037032B31FBBE6B100DBCDDD /* OMGClient.swift in Sources */,
+				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
 				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
 				037032A91FBBE6B100DBCDDD /* Address.swift in Sources */,
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
+				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
 				037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
 				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
 				037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */,
+				03FE644C2032A8FE00345281 /* TransactionConsume.swift in Sources */,
+				0313D6DA20317696003E99BA /* QRScannerOverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,25 +569,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */,
+				038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */,
+				03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */,
+				03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */,
+				03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */,
+				0313D6E12031772F003E99BA /* QRGeneratorTest.swift in Sources */,
 				0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */,
 				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
+				0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */,
 				0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */,
 				034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */,
 				03C2C0791FB93E5200B794AC /* DecodeTests.swift in Sources */,
 				217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */,
 				03CEF4C11FB01CB5009B8CEB /* AuthenticationLiveTest.swift in Sources */,
+				03BEACB32031833F003A3B0D /* MockQRReader.swift in Sources */,
 				03F84C661FC2883100F21C7B /* AddressTests.swift in Sources */,
+				03BEACB72031A046003A3B0D /* QRScannerViewModelTest.swift in Sources */,
 				0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */,
+				03FE64492032960200345281 /* MetadataDummy.swift in Sources */,
 				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,
 				03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */,
 				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */,
+				03FE644E2032AA7400345281 /* TransactionConsumeFixtureTests.swift in Sources */,
+				0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */,
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */,
+				030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */,
 				03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
+				03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */,
+				03FE64502032C6BF00345281 /* TransactionConsumeTest.swift in Sources */,
 				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
+				038CB3E9202B02B300E40715 /* TransactionConsumeParamsTest.swift in Sources */,
 				03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */,
 				031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */,
 			);

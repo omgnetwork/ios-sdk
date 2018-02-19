@@ -23,6 +23,9 @@ enum APIEndpoint {
     case getCurrentUser
     case getAddresses
     case getSettings
+    case transactionRequestCreate(params: TransactionRequestCreateParams)
+    case transactionRequestGet(params: TransactionRequestGetParams)
+    case transactionRequestConsume(params: TransactionConsumeParams)
     case logout
     case custom(path: String, task: Task)
 
@@ -34,6 +37,12 @@ enum APIEndpoint {
             return "/me.list_balances"
         case .getSettings:
             return "/me.get_settings"
+        case .transactionRequestCreate:
+            return "/me.create_transaction_request"
+        case .transactionRequestGet:
+            return "/me.get_transaction_request"
+        case .transactionRequestConsume:
+            return "/me.consume_transaction_request"
         case .logout:
             return "/logout"
         case .custom(let path, _):
@@ -45,8 +54,22 @@ enum APIEndpoint {
         switch self {
         case .getCurrentUser, .getAddresses, .getSettings, .logout: // Send no parameters
             return .requestPlain
+        case .transactionRequestCreate(params: let params):
+            return .requestParameters(parameters: params)
+        case .transactionRequestGet(params: let params):
+            return .requestParameters(parameters: params)
+        case .transactionRequestConsume(params: let params):
+            return .requestParameters(parameters: params)
         case .custom(_, let task):
             return task
+        }
+    }
+
+    var additionalHeaders: [String: String]? {
+        switch self {
+        case .transactionRequestConsume(params: let params):
+            return ["Idempotency-Token": params.idempotencyToken]
+        default: return nil
         }
     }
 
