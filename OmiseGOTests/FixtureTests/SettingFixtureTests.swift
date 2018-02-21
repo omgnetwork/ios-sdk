@@ -18,9 +18,9 @@ class SettingFixtureTests: FixtureTestCase {
             switch result {
             case .success(let setting):
                 XCTAssertTrue(setting.mintedTokens.count == 2)
-                XCTAssertEqual(setting.mintedTokens[0].id, "MNT:123")
-                XCTAssertEqual(setting.mintedTokens[0].symbol, "MNT")
-                XCTAssertEqual(setting.mintedTokens[0].name, "Mint")
+                XCTAssertEqual(setting.mintedTokens[0].id, "BTC:123")
+                XCTAssertEqual(setting.mintedTokens[0].symbol, "BTC")
+                XCTAssertEqual(setting.mintedTokens[0].name, "Bitcoin")
                 XCTAssertEqual(setting.mintedTokens[0].subUnitToUnit, 100000)
                 XCTAssertEqual(setting.mintedTokens[1].id, "OMG:123")
                 XCTAssertEqual(setting.mintedTokens[1].symbol, "OMG")

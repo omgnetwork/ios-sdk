@@ -208,9 +208,9 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
             let mintedToken = decodedData.mintedToken
-            XCTAssertEqual(mintedToken.id, "MNT:123")
-            XCTAssertEqual(mintedToken.symbol, "MNT")
-            XCTAssertEqual(mintedToken.name, "Mint")
+            XCTAssertEqual(mintedToken.id, "BTC:123")
+            XCTAssertEqual(mintedToken.symbol, "BTC")
+            XCTAssertEqual(mintedToken.name, "Bitcoin")
             XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")

@@ -6,9 +6,9 @@
     "minted_tokens": [
       {
         "object": "minted_token",
-        "id": "MNT:123",
-        "symbol": "MNT",
-        "name": "Mint",
+        "id": "BTC:123",
+        "symbol": "BTC",
+        "name": "Bitcoin",
         "subunit_to_unit": 100000
       },
       {

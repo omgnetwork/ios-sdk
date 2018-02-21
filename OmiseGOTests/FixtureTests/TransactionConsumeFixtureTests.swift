@@ -35,9 +35,9 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                 case .success(data: let transactionConsume):
                     XCTAssertEqual(transactionConsume.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                     let mintedToken = transactionConsume.mintedToken
-                    XCTAssertEqual(mintedToken.id, "MNT:123")
-                    XCTAssertEqual(mintedToken.symbol, "MNT")
-                    XCTAssertEqual(mintedToken.name, "Mint")
+                    XCTAssertEqual(mintedToken.id, "BTC:123")
+                    XCTAssertEqual(mintedToken.symbol, "BTC")
+                    XCTAssertEqual(mintedToken.name, "Bitcoin")
                     XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
                     XCTAssertEqual(transactionConsume.amount, 1337)
                     XCTAssertEqual(transactionConsume.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")

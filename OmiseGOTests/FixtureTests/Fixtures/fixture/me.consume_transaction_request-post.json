@@ -8,9 +8,9 @@
     "amount": 1337,
     "minted_token": {
         "object": "minted_token",
-        "id": "MNT:123",
-        "symbol": "MNT",
-        "name": "Mint",
+        "id": "BTC:123",
+        "symbol": "BTC",
+        "name": "Bitcoin",
         "subunit_to_unit": 100000
     },
     "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",
