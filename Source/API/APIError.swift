@@ -37,8 +37,10 @@ public struct APIError {
         case unknownServerError
         case accessTokenNotFound
         case accessTokenExpired
+        case missingIdempotencyToken
         case other(String)
 
+        //swiftlint:disable:next cyclomatic_complexity
         init(code: String) {
             switch code {
             case "client:invalid_parameter":
@@ -59,6 +61,8 @@ public struct APIError {
                 self = .accessTokenNotFound
             case "user:access_token_expired":
                 self = .accessTokenExpired
+            case "client:no_idempotency_token_provided":
+                self = .missingIdempotencyToken
             case let code:
                 self = .other(code)
             }
@@ -88,6 +92,8 @@ public struct APIError {
                 return "user:access_token_not_found"
             case .accessTokenExpired:
                 return "user:access_token_expired"
+            case .missingIdempotencyToken:
+                return "client:no_idempotency_token_provided"
             case .other(let code):
                 return code
             }
