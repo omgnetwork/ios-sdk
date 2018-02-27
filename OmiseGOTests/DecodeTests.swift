@@ -9,7 +9,14 @@
 import XCTest
 @testable import OmiseGO
 
+//swiftlint:disable:next type_body_length
 class DecodeTests: XCTestCase {
+
+    let jsonDecoder: JSONDecoder = {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        return jsonDecoder
+    }()
 
     func jsonData(withFileName name: String) throws -> Data {
         let bundle = Bundle(for: FixtureClient.self)
@@ -19,10 +26,27 @@ class DecodeTests: XCTestCase {
         return try Data(contentsOf: fixtureFileURL)
     }
 
+    func testCustomDateDecodingStrategy() {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        do {
+            let jsonData = try self.jsonData(withFileName: "dates")
+            let decodedData = try self.jsonDecoder.decode(DateDummy.self, from: jsonData)
+            XCTAssertEqual(decodedData.date1,
+                           "2018-01-01T01:00:00.000000Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"))
+            XCTAssertEqual(decodedData.date2,
+                           "2018-01-01T02:00:00.000Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
+            XCTAssertEqual(decodedData.date3,
+                           "2018-01-01T03:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
     func testMetadaDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata")
-            let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
+            let decodedData =  try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
             guard let metadata = decodedData.metadata else {
                 XCTFail("Failed to decode metadata")
                 return
@@ -56,7 +80,7 @@ class DecodeTests: XCTestCase {
     func testMetadaNullDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata_null")
-            let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
+            let decodedData =  try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
             XCTAssertEqual(decodedData.metadata!.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -66,7 +90,7 @@ class DecodeTests: XCTestCase {
     func testJSONResponseDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "json_response")
-            let decodedData =  try JSONDecoder().decode(OMGJSONResponse<[String: String]>.self, from: jsonData)
+            let decodedData =  try self.jsonDecoder.decode(OMGJSONResponse<[String: String]>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
@@ -84,17 +108,41 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "json_list_response")
             let decodedData =
-                try JSONDecoder().decode(OMGJSONResponse<OMGJSONListResponse<String>>.self, from: jsonData)
+                try self.jsonDecoder.decode(OMGJSONResponse<OMGJSONListResponse<String>>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
-            case .success(data: let list):
+            case .success(data: let listResponse):
+                let list = listResponse.data
                 XCTAssertTrue(list.count == 2)
                 XCTAssertEqual(list[0], "value_1")
                 XCTAssertEqual(list[1], "value_2")
-                XCTAssertEqual(list.startIndex, 0)
-                XCTAssertEqual(list.endIndex, 2)
-                XCTAssertEqual(list[0...1], ["value_1", "value_2"])
+            case .fail(error: let error):
+                XCTFail(error.localizedDescription)
+            }
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testJSONPaginatedListReponseDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "json_list_response")
+            let decodedData =
+                try self.jsonDecoder.decode(OMGJSONResponse<OMGJSONPaginatedListResponse<String>>.self, from: jsonData)
+            XCTAssertEqual(decodedData.version, "1")
+            XCTAssertEqual(decodedData.success, true)
+            switch decodedData.data {
+            case .success(data: let listResponse):
+                let list = listResponse.data
+                XCTAssertTrue(list.count == 2)
+                XCTAssertEqual(list[0], "value_1")
+                XCTAssertEqual(list[1], "value_2")
+                let pagination = listResponse.pagination
+                XCTAssertEqual(pagination.currentPage, 1)
+                XCTAssertEqual(pagination.perPage, 10)
+                XCTAssertEqual(pagination.isFirstPage, true)
+                XCTAssertEqual(pagination.isLastPage, true)
             case .fail(error: let error):
                 XCTFail(error.localizedDescription)
             }
@@ -106,7 +154,7 @@ class DecodeTests: XCTestCase {
     func testUserDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "user")
-            let decodedData = try JSONDecoder().decode(User.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(User.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertEqual(decodedData.providerUserId, "wijf-fbancomw-dqwjudb")
             XCTAssertEqual(decodedData.username, "john.doe@example.com")
@@ -118,7 +166,7 @@ class DecodeTests: XCTestCase {
     func testMintedTokenDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "minted_token")
-            let decodedData = try JSONDecoder().decode(MintedToken.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(MintedToken.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "OMG:123")
             XCTAssertEqual(decodedData.symbol, "OMG")
             XCTAssertEqual(decodedData.name, "OmiseGO")
@@ -131,7 +179,7 @@ class DecodeTests: XCTestCase {
     func testSettingDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "setting")
-            let decodedData = try JSONDecoder().decode(Setting.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(Setting.self, from: jsonData)
             XCTAssertTrue(decodedData.mintedTokens.count == 1)
             XCTAssertEqual(decodedData.mintedTokens[0].id, "OMG:123")
             XCTAssertEqual(decodedData.mintedTokens[0].symbol, "OMG")
@@ -145,7 +193,7 @@ class DecodeTests: XCTestCase {
     func testBalanceDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "balance")
-            let decodedData = try JSONDecoder().decode(Balance.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(Balance.self, from: jsonData)
             XCTAssertEqual(decodedData.amount, 103100)
             XCTAssertEqual(decodedData.mintedToken.id, "OMG:123")
             XCTAssertEqual(decodedData.mintedToken.symbol, "OMG")
@@ -159,7 +207,7 @@ class DecodeTests: XCTestCase {
     func testAddressDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "address")
-            let decodedData = try JSONDecoder().decode(Address.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(Address.self, from: jsonData)
             XCTAssertEqual(decodedData.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
             XCTAssertTrue(decodedData.balances.count == 1)
             XCTAssertEqual(decodedData.balances[0].amount, 103100)
@@ -175,7 +223,7 @@ class DecodeTests: XCTestCase {
     func testAPIErrorDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "api_error")
-            let decodedData = try JSONDecoder().decode(APIError.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(APIError.self, from: jsonData)
             XCTAssertEqual(decodedData.description, "Invalid parameters")
             switch decodedData.code {
             case .invalidParameters: XCTAssertTrue(true)
@@ -189,7 +237,7 @@ class DecodeTests: XCTestCase {
     func testTransactionRequestDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "transaction_request")
-            let decodedData = try JSONDecoder().decode(TransactionRequest.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(TransactionRequest.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.mintedTokenId, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(decodedData.amount, 1337)
@@ -203,7 +251,7 @@ class DecodeTests: XCTestCase {
     func testTransactionConsumeDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "transaction_consume")
-            let decodedData = try JSONDecoder().decode(TransactionConsume.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(TransactionConsume.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
@@ -218,6 +266,40 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
             XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction")
+            let decodedData = try self.jsonDecoder.decode(Transaction.self, from: jsonData)
+            XCTAssertEqual(decodedData.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(decodedData.amount, 1000)
+            XCTAssertEqual(decodedData.from, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(decodedData.to, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            let mintedToken = decodedData.mintedToken
+            XCTAssertEqual(mintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(mintedToken.symbol, "BTC")
+            XCTAssertEqual(mintedToken.name, "Bitcoin")
+            XCTAssertEqual(mintedToken.subUnitToUnit, 100)
+            XCTAssertEqual(decodedData.status, .confirmed)
+            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testPaginationDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "pagination")
+            let decodedData = try self.jsonDecoder.decode(Pagination.self, from: jsonData)
+            XCTAssertEqual(decodedData.currentPage, 1)
+            XCTAssertEqual(decodedData.perPage, 10)
+            XCTAssertEqual(decodedData.isFirstPage, true)
+            XCTAssertEqual(decodedData.isLastPage, true)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

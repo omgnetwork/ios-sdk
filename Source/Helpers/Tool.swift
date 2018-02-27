@@ -12,7 +12,26 @@ func omiseGOWarn(_ message: String) {
 
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
+    jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
     return try jsonDecoder.decode(ObjectType.self, from: data)
+}
+
+func dateDecodingStrategy(decoder: Decoder) throws -> Date {
+    let container = try decoder.singleValueContainer()
+    let dateStr = try container.decode(String.self)
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .iso8601)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+    if let date = formatter.date(from: dateStr) {
+        return date
+    }
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    if let date = formatter.date(from: dateStr) {
+        return date
+    }
+    throw OmiseGOError.unexpected(message: "Invalid date")
 }
 
 extension Date {

@@ -13,22 +13,10 @@ public struct OMGJSONListResponse<Item: Decodable>: Decodable {
 
 }
 
-extension OMGJSONListResponse: RandomAccessCollection {
+/// A struct representing a list response containing a data array of items and a pagination object.
+public struct OMGJSONPaginatedListResponse<Item: Decodable>: Decodable {
 
-    public subscript(index: Array<Item>.Index) -> Item {
-        return data[index]
-    }
-
-    public subscript(bounds: Range<Array<Item>.Index>) -> ArraySlice<Item> {
-        return data[bounds]
-    }
-
-    public var startIndex: (Array<Item>.Index) {
-        return data.startIndex
-    }
-
-    public var endIndex: (Array<Item>.Index) {
-        return data.endIndex
-    }
+    public let data: [Item]
+    public let pagination: Pagination
 
 }

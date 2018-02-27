@@ -2,11 +2,6 @@
 ---
 
 The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.
-It supports the following functionalities:
-- Retrieve the current user
-- Get the user addresses and balances
-- List the settings for a node
-
 
 # Requirements
 ---
@@ -28,18 +23,16 @@ $ gem install cocoapods
 
 To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
 
-### Beta Installation
-
-Until the `omisego` SDK is released, you will need to specify the git URL for this pod:
-
-```ruby
-pod 'OmiseGO', :git => 'ssh://git@github.com:omisego/ios-sdk.git'
-```
-
 ### Installation
 
 ```ruby
-pod 'OmiseGO', '~> 1.0'
+pod 'OmiseGO'
+```
+
+Alternatively you can also specify a tag:
+
+```ruby
+pod 'OmiseGO', '~> 0.9.3'
 ```
 
 Then, run the following command:
@@ -67,7 +60,7 @@ Where:
 `baseURL` is the URL of the OmiseGO Wallet API.
 `apiKey` is the api key generated from your OmiseGO admin panel.
 `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
-> You can find more info on how to retrieve this token in the OmiseGO server SDK documentations.
+> You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
 
 ### Retrieving resources
 
@@ -143,6 +136,67 @@ Setting.get(using: client) { (settingResult) in
     }
 }
 ```
+
+#### Get the user's transactions:
+
+This returns a paginated filtered list of transactions.
+
+In order to get this list you will need to create a `TransactionListParams` object:
+
+```swift
+let params = TransactionListParams(paginationParams: paginationParams, address: nil)
+```
+
+Where
+- `address` is an optional address that belongs to the current user (primary address by default)
+- `paginationParams` is a `PaginationParams<Transaction>` object:
+
+```swift
+let paginationParams = PaginationParams<Transaction>(
+    page: 1,
+    perPage: 10,
+    searchTerm: nil,
+    searchTerms: nil,
+    sortBy: .createdAt,
+    sortDirection: .descending
+)
+```
+
+Where
+- `page` is the page you wish to receive.
+- `perPage` is the number of results per page.
+- `sortBy` is the sorting field. Available values: `.id`, `.status`, `.from`, `.to`, `.createdAt`, `.updatedAt`
+- `sortDir` is the sorting direction. Available values: `.ascending`, `.descending`
+- `searchTerm` is a term to search for in ALL of the searchable fields. Conflict with search_terms, only use one of them. See list of searchable fields below (same as search_terms).
+- `searchTerms` is a dictionary of fields to search in with the following available fields: `.id`, `.status`, `.from`, `.to`, `.createdAt`, `.updatedAt`. Ex: `[.from: "someAddress", .id: "someId"]`
+
+Then you can call:
+
+```swift
+Transaction.get(
+    using: client,
+    params: params) { (transactionsResult) in
+        switch transactionsResult {
+        case .success(let paginatedList):
+            //TODO: Do something with the paginated list of transactions
+        case .fail(let error):
+            //TODO: Handle the error
+        }
+}
+```
+
+The `paginatedList` here is an object
+
+Where
+- `data` is an array of transactions
+- `pagination` is a `Pagination` object
+
+Where
+`perPage` is the number of results per page.
+`currentPage` is the retrieved page.
+`isFirstPage` is a bool indicating if the page received is the first page
+`isLastPage` is a bool indicating if the page received is the last page
+
 
 ### QR codes
 

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import OmiseGO
+import OmiseGO
 
 class BalanceTests: XCTestCase {
 
@@ -72,8 +72,8 @@ class BalanceTests: XCTestCase {
     }
 
     func testHashable() {
-        let mintedToken1 = MintedToken(id: "OMG", symbol: "", name: "", subUnitToUnit: 1)
-        let mintedToken2 = MintedToken(id: "BTC", symbol: "", name: "", subUnitToUnit: 1)
+        let mintedToken1 = StubGenerator.mintedToken(id: "OMG", subUnitToUnit: 1)
+        let mintedToken2 = StubGenerator.mintedToken(id: "BTC", subUnitToUnit: 1)
         let balance1 = StubGenerator.balance(mintedToken: mintedToken1, amount: 1)
         let balance2 = StubGenerator.balance(mintedToken: mintedToken1, amount: 1)
         let balance3 = StubGenerator.balance(mintedToken: mintedToken1, amount: 10)

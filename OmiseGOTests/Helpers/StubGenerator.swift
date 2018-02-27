@@ -18,8 +18,10 @@ class StubGenerator {
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)
         //swiftlint:disable:next force_try
         let data = try! Data(contentsOf: fixtureFileURL)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
         //swiftlint:disable:next force_try
-        return try! JSONDecoder().decode(T.self, from: data)
+        return try! decoder.decode(T.self, from: data)
     }
 
     class func address(address: String? = nil,
@@ -112,6 +114,41 @@ class StubGenerator {
             )
     }
 
+    class func transaction(
+        id: String? = nil,
+        status: TransactionConsumeStatus? = nil,
+        amount: Double? = nil,
+        mintedToken: MintedToken? = nil,
+        from: String? = nil,
+        to: String? = nil,
+        createdAt: Date? = nil,
+        updatedAt: Date? = nil)
+        -> Transaction {
+            let v: Transaction = self.stub(forResource: "transaction")
+            return Transaction(
+                id: id ?? v.id,
+                status: status ?? v.status,
+                amount: amount ?? v.amount,
+                mintedToken: mintedToken ?? v.mintedToken,
+                from: from ?? v.from,
+                to: to ?? v.to,
+                createdAt: createdAt ?? v.createdAt,
+                updatedAt: updatedAt ?? v.updatedAt)
+    }
+
+    class func pagination(
+        perPage: Int? = nil,
+        currentPage: Int? = nil,
+        isFirstPage: Bool? = nil,
+        isLastPage: Bool? = nil)
+        -> Pagination {
+            let v: Pagination = self.stub(forResource: "pagination")
+            return Pagination(perPage: perPage ?? v.perPage,
+                              currentPage: currentPage ?? v.currentPage,
+                              isFirstPage: isFirstPage ?? v.isFirstPage,
+                              isLastPage: isLastPage ?? v.isLastPage)
+    }
+
     class func transactionRequestCreateParams(
         type: TransactionRequestType? = .receive,
         mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
@@ -164,6 +201,30 @@ class StubGenerator {
                 username: username ?? v.username,
                 metadata: metadata ?? v.metadata
             )
+    }
+
+    class func paginationParams<T: Paginable>(
+        page: Int? = 1,
+        perPage: Int? = 20,
+        searchTerm: String? = nil,
+        searchTerms: [T.SearchableFields: String]? = nil,
+        sortBy: T.SortableFields,
+        sortDirection: SortDirection? = .ascending)
+        -> PaginationParams<T> {
+            return PaginationParams(page: page!,
+                                    perPage: perPage!,
+                                    searchTerm: searchTerm,
+                                    searchTerms: searchTerms,
+                                    sortBy: sortBy,
+                                    sortDirection: sortDirection!)
+    }
+
+    class func transactionListParams(
+        paginationParams: PaginationParams<Transaction>? = StubGenerator.paginationParams(sortBy: .id),
+        address: String? = nil)
+        -> TransactionListParams {
+            return TransactionListParams(paginationParams: paginationParams!,
+                                         address: address)
     }
 
 }

@@ -27,3 +27,25 @@ public extension Listable where Self: Decodable {
         })
     }
 }
+
+/// Represents an object that can be retrieved in a paginated collection
+public protocol PaginatedListable {}
+
+public extension PaginatedListable where Self: Decodable {
+    public typealias ListRequest = OMGRequest<OMGJSONPaginatedListResponse<Self>>
+    public typealias ListRequestCallback = (Response<OMGJSONPaginatedListResponse<Self>>) -> Void
+
+    @discardableResult
+    internal static func list(using client: OMGClient,
+                              endpoint: APIEndpoint,
+                              callback: @escaping ListRequestCallback) -> ListRequest? {
+        return client.request(toEndpoint: endpoint, callback: { (result) in
+            switch result {
+            case .success(let list):
+                callback(.success(data: list))
+            case .fail(let error):
+                callback(.fail(error: error))
+            }
+        })
+    }
+}

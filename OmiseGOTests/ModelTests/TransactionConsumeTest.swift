@@ -7,11 +7,9 @@
 //
 
 import XCTest
-@testable import OmiseGO
+import OmiseGO
 
 class TransactionConsumeTest: XCTestCase {
-
-    let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1)
 
     func testEquatable() {
         let transactionConsume1 = StubGenerator.transactionConsume(id: "1")

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import OmiseGO
+import OmiseGO
 
 class TransactionConsumeFixtureTests: FixtureTestCase {
 

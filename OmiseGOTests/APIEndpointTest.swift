@@ -14,11 +14,14 @@ class APIEndpointTest: XCTestCase {
     let validTransactionConsumeParams = StubGenerator.transactionConsumeParams()
     let validTransactionCreateParams = StubGenerator.transactionRequestCreateParams()
     let validTransactionGetParams = StubGenerator.transactionRequestGetParams()
+    let validTransactionListParams = StubGenerator.transactionListParams()
 
     func testPath() {
         XCTAssertEqual(APIEndpoint.getCurrentUser.path, "/me.get")
         XCTAssertEqual(APIEndpoint.getAddresses.path, "/me.list_balances")
         XCTAssertEqual(APIEndpoint.getSettings.path, "/me.get_settings")
+        XCTAssertEqual(APIEndpoint.getTransactions(params: self.validTransactionListParams).path,
+                       "/me.list_transactions")
         XCTAssertEqual(APIEndpoint.transactionRequestCreate(params: self.validTransactionCreateParams).path,
                        "/me.create_transaction_request")
         XCTAssertEqual(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).path,
@@ -40,6 +43,10 @@ class APIEndpointTest: XCTestCase {
         }
         switch APIEndpoint.getSettings.task {
         case .requestPlain: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIEndpoint.getTransactions(params: self.validTransactionListParams).task {
+        case .requestParameters: break
         default: XCTFail("Wrong task")
         }
         switch APIEndpoint.logout.task {
@@ -65,6 +72,7 @@ class APIEndpointTest: XCTestCase {
         XCTAssertNil(APIEndpoint.getAddresses.additionalHeaders)
         XCTAssertNil(APIEndpoint.getSettings.additionalHeaders)
         XCTAssertNil(APIEndpoint.logout.additionalHeaders)
+        XCTAssertNil(APIEndpoint.getTransactions(params: self.validTransactionListParams).additionalHeaders)
         XCTAssertNil(APIEndpoint.transactionRequestCreate(params: self.validTransactionCreateParams).additionalHeaders)
         XCTAssertNil(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).additionalHeaders)
         XCTAssertEqual(

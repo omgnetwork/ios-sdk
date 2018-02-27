@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import OmiseGO
+import OmiseGO
 
 class LiveTestCase: XCTestCase {
 

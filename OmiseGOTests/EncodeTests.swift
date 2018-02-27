@@ -17,6 +17,7 @@ extension String {
 
 }
 
+//swiftlint:disable:next type_body_length
 class EncodeTests: XCTestCase {
 
     func testMetadaEncoding() {
@@ -170,6 +171,101 @@ class EncodeTests: XCTestCase {
                     "metadata":{},
                     "correlation_id":"321",
                     "address":"456"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testPaginationParamsEncoding() {
+        do {
+            let paginationParams = PaginationParams<SortableDummy>(
+                page: 1,
+                perPage: 20,
+                searchTerm: "test",
+                searchTerms: nil,
+                sortBy: .aSortableAttribute,
+                sortDirection: .ascending)
+            let encodedData = try JSONEncoder().encode(paginationParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "search_term":"test",
+                    "per_page":20,
+                    "sort_dir":"asc",
+                    "sort_by":"a_sortable_attribute",
+                    "page":1
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testPaginationParamsEncodingWithBothSearchTermAndSearchTerms() {
+        do {
+            let paginationParams = PaginationParams<SortableDummy>(
+                    page: 1,
+                    perPage: 20,
+                    searchTerm: "test",
+                    searchTerms: [.aSearchableAttribute: "test"],
+                    sortBy: .aSortableAttribute,
+                    sortDirection: .ascending)
+            let encodedData = try JSONEncoder().encode(paginationParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "per_page":20,
+                    "search_terms":{"a_searchable_attribute":"test"},
+                    "sort_dir":"asc",
+                    "sort_by":"a_sortable_attribute",
+                    "page":1
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testPaginationParamsEncodingWithNilValues() {
+        do {
+            let paginationParams = PaginationParams<SortableDummy>(
+                page: 1,
+                perPage: 20,
+                searchTerm: nil,
+                searchTerms: nil,
+                sortBy: .aSortableAttribute,
+                sortDirection: .ascending)
+            let encodedData = try JSONEncoder().encode(paginationParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "per_page":20,
+                    "sort_dir":"asc",
+                    "sort_by":"a_sortable_attribute",
+                    "page":1
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionListParamsEncoding() {
+        do {
+            let transactionParams = TransactionListParams(
+                paginationParams: StubGenerator.paginationParams(
+                    searchTerm: "test",
+                    sortBy: .createdAt,
+                    sortDirection: .descending),
+                address: "123")
+            let encodedData = try JSONEncoder().encode(transactionParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "page":1,
+                    "search_term":"test",
+                    "per_page":20,
+                    "sort_dir":"desc",
+                    "sort_by":"created_at",
+                    "address":"123"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

@@ -90,6 +90,6 @@ class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
 extension OmiseGO.APIEndpoint {
     var fixtureFilePath: String {
         let filePath = makeURL(withBaseURL: "fixture")!.absoluteString
-        return (filePath + "-post" as NSString).appendingPathExtension("json")! as String
+        return (filePath as NSString).appendingPathExtension("json")! as String
     }
 }

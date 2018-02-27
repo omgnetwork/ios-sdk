@@ -23,6 +23,7 @@ enum APIEndpoint {
     case getCurrentUser
     case getAddresses
     case getSettings
+    case getTransactions(params: TransactionListParams)
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumeParams)
@@ -37,6 +38,8 @@ enum APIEndpoint {
             return "/me.list_balances"
         case .getSettings:
             return "/me.get_settings"
+        case .getTransactions:
+            return "/me.list_transactions"
         case .transactionRequestCreate:
             return "/me.create_transaction_request"
         case .transactionRequestGet:
@@ -59,6 +62,8 @@ enum APIEndpoint {
         case .transactionRequestGet(params: let params):
             return .requestParameters(parameters: params)
         case .transactionRequestConsume(params: let params):
+            return .requestParameters(parameters: params)
+        case .getTransactions(params: let params):
             return .requestParameters(parameters: params)
         case .custom(_, let task):
             return task
