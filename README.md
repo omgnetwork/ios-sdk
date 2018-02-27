@@ -1,17 +1,39 @@
-# OmiseGO
+# OmiseGO iOS SDK
+
+The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily interact with the [OmiseGO eWallet](https://github.com/omisego/ewallet).
+
 ---
 
-The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.
+# Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Initialization](#initialization)
+  - [Retrieving resources](#retrieving-resources)
+    - [Get the current user](#get-the-current-user)
+    - [Get the addresses of the current user](#get-the-addresses-of-the-current-user)
+    - [Get the provider settings](#get-the-provider-settings)
+    - [Get the current user's transactions](#get-the-current-users-transactions)
+  - [QR codes](#qr-codes)
+    - [Generation](#generation)
+    - [Scanning](#scanning)
+    - [Consumption](#consumption)
+- [Tests](#tests)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
 
 # Requirements
----
 
 - iOS 9.0+
 - Xcode 9+
 - Swift 4.0
 
-# Installation
 ---
+
+# Installation
 
 ### CocoaPods
 
@@ -29,10 +51,10 @@ To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the 
 pod 'OmiseGO'
 ```
 
-Alternatively you can also specify a tag:
+Alternatively you can also specify a version ([read more about the Podfile] (https://guides.cocoapods.org/using/the-podfile.html)):
 
 ```ruby
-pod 'OmiseGO', '~> 0.9.3'
+pod 'OmiseGO', '~> 0.9'
 ```
 
 Then, run the following command:
@@ -41,8 +63,9 @@ Then, run the following command:
 $ pod install
 ```
 
-# Usage
 ---
+
+# Usage
 
 ### Initialization
 
@@ -57,9 +80,9 @@ let client = OMGClient(config: configuration)
 ```
 
 Where:
-`baseURL` is the URL of the OmiseGO Wallet API.
-`apiKey` is the api key generated from your OmiseGO admin panel.
-`authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
+- `baseURL` is the URL of the OmiseGO Wallet API.
+- `apiKey` is the api key generated from your OmiseGO admin panel.
+- `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
 > You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
 
 ### Retrieving resources
@@ -137,7 +160,7 @@ Setting.get(using: client) { (settingResult) in
 }
 ```
 
-#### Get the user's transactions:
+#### Get the current user's transactions:
 
 This returns a paginated filtered list of transactions.
 
@@ -162,7 +185,7 @@ let paginationParams = PaginationParams<Transaction>(
 )
 ```
 
-Where
+Where:
 - `page` is the page you wish to receive.
 - `perPage` is the number of results per page.
 - `sortBy` is the sorting field. Available values: `.id`, `.status`, `.from`, `.to`, `.createdAt`, `.updatedAt`
@@ -187,15 +210,15 @@ Transaction.get(
 
 The `paginatedList` here is an object
 
-Where
+Where:
 - `data` is an array of transactions
 - `pagination` is a `Pagination` object
 
-Where
-`perPage` is the number of results per page.
-`currentPage` is the retrieved page.
-`isFirstPage` is a bool indicating if the page received is the first page
-`isLastPage` is a bool indicating if the page received is the last page
+  Where:
+  - `perPage` is the number of results per page.
+  - `currentPage` is the retrieved page.
+  - `isFirstPage` is a bool indicating if the page received is the first page
+  - `isLastPage` is a bool indicating if the page received is the last page
 
 
 ### QR codes
@@ -222,17 +245,14 @@ TransactionRequest.generateTransactionRequest(using: client, params: params) { (
 }
 ```
 
-Where `params` is a `TransactionRequestCreateParams` struct constructed using:
+Where:
+- `params` is a `TransactionRequestCreateParams` struct constructed using:
 
-`type`: The QR code type, only supports `.receive` for now.
-
-`mintedTokenId`: The id of the desired token.
-
-`amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
-
-`address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
-
-`correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+  - `type`: The QR code type, only supports `.receive` for now.
+  - `mintedTokenId`: The id of the desired token.
+  - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
+  - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
+  - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
 
 A `TransactionRequest` object is passed to the success callback, you can get its QR code representation using `transactionRequest.qrImage()`.
 
@@ -292,20 +312,17 @@ TransactionConsume.consumeTransactionRequest(using: client, params: params) { (t
 
 Where `params` is a `TransactionConsumeParams` struct constructed using:
 
-`transactionRequest`: The transactionRequest obtained from the QR scanner.
-
-`address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
-
-`mintedTokenId`: (optional) The minted token id to use for the consumption.
-
-`amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
+- `transactionRequest`: The transactionRequest obtained from the QR scanner.
+- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
+- `mintedTokenId`: (optional) The minted token id to use for the consumption.
+- `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the amount was not specified in the transaction request it needs to be specified here, otherwise the init will fail.
 
-`idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
+- `idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
+- `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+- `metadata`: A dictionary of additional data to be stored for this transaction consumption.
 
-`correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
-
-`metadata`: A dictionary of additional data to be stored for this transaction consumption.
+---
 
 # Tests
 
@@ -322,6 +339,14 @@ The variables are:
 You can then for example run the tests with the following command:
 `xcodebuild -project OmiseGO.xcodeproj -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" test`
 
+---
+
+# Contributing
+
+See [how you can help](.github/CONTRIBUTING.md).
+
+---
+
 # License
 
-OmiseGO is released under the Apache license. See LICENSE for details.
+The OmiseGO iOS SDK is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
