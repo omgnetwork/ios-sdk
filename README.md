@@ -275,6 +275,7 @@ You should use this `transactionRequest` to generate a `TransactionConsumeParams
 ```swift
 guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                             address: nil,
+                                            mintedTokenId: nil,
                                             amount: nil,
                                             idempotencyToken: self.idemPotencyToken,
                                             correlationId: nil,
@@ -295,6 +296,8 @@ Where `params` is a `TransactionConsumeParams` struct constructed using:
 
 `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
 
+`mintedTokenId`: (optional) The minted token id to use for the consumption.
+
 `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the amount was not specified in the transaction request it needs to be specified here, otherwise the init will fail.
 
@@ -306,25 +309,18 @@ Where `params` is a `TransactionConsumeParams` struct constructed using:
 
 # Tests
 
-In order to run the live tests (bound to a working server) you need to fill the corresponding variables in the file `LiveTestCase.swift`.
-```
-/// Replace with yours!
-var validBaseURL = ""
-/// Replace with yours!
-var validAPIKey = ""
-/// Replace with yours!
-var validAuthenticationToken = ""
-```
+In order to run the live tests (bound to a working server) you need to fill the corresponding variables in the plist file `secret.plist`.
 
-> Note: These en can also be provided with environment variables, making it easier and safer for CI to run since you don't need to hardcode them.
+> Note: Alternatively, these keys can be provided with environment variables, making it easier and safer for CI to run since you don't need to keep them in the source code.
 
 The variables are:
 - `OMG_BASE_URL`
 - `OMG_API_KEY`
 - `OMG_AUTHENTICATION_TOKEN`
+- `OMG_MINTED_TOKEN_ID`
 
 You can then for example run the tests with the following command:
-`xcodebuild -project OmiseGO.xcodeproj -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" test`
+`xcodebuild -project OmiseGO.xcodeproj -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" test`
 
 # License
 

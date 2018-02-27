@@ -5,7 +5,13 @@
     "object": "transaction_request",
     "type": "receive",
     "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
-    "token_id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+    "minted_token": {
+      "object": "minted_token",
+      "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "subunit_to_unit": 100000
+    },
     "amount": 1337,
     "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
     "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",

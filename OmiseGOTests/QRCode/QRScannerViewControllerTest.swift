@@ -44,7 +44,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
     func testCallsDelegateWithTransactionRequest() {
         let mockedTR = TransactionRequest(id: "123",
                                           type: .receive,
-                                          mintedTokenId: "",
+                                          mintedToken: StubGenerator.mintedToken(),
                                           amount: nil, address: "",
                                           correlationId: "",
                                           status: .valid)

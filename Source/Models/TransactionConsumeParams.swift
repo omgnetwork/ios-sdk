@@ -12,12 +12,14 @@ public struct TransactionConsumeParams {
     public let transactionRequestId: String
     public let amount: Double
     public let address: String?
+    public let mintedTokenId: String?
     public let idempotencyToken: String
     public let correlationId: String?
     public let metadata: [String: Any]
 
     public init?(transactionRequest: TransactionRequest,
                  address: String?,
+                 mintedTokenId: String?,
                  amount: Double? = nil,
                  idempotencyToken: String,
                  correlationId: String?,
@@ -26,6 +28,7 @@ public struct TransactionConsumeParams {
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
         self.address = address
+        self.mintedTokenId = mintedTokenId
         self.idempotencyToken = idempotencyToken
         self.correlationId = correlationId
         self.metadata = metadata
@@ -39,6 +42,7 @@ extension TransactionConsumeParams: Parametrable {
         case transactionRequestId = "transaction_request_id"
         case amount
         case address
+        case mintedTokenId = "token_id"
         case metadata
         case correlationId = "correlation_id"
     }
@@ -52,6 +56,7 @@ extension TransactionConsumeParams: Parametrable {
         try container.encode(transactionRequestId, forKey: .transactionRequestId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
+        try container.encode(mintedTokenId, forKey: .mintedTokenId)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(correlationId, forKey: .correlationId)
     }

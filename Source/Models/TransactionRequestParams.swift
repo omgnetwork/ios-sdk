@@ -64,9 +64,9 @@ extension TransactionRequestCreateParams: Parametrable {
 }
 
 /// Represents a structure used to retrieve a transaction request from its id
-public struct TransactionRequestGetParams: Parametrable {
+struct TransactionRequestGetParams: Parametrable {
 
-    public let id: String
+    let id: String
 
     func encodedPayload() -> Data? {
         return try? JSONEncoder().encode(self)

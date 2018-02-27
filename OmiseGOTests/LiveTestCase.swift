@@ -5,6 +5,7 @@
 //  Created by Mederic Petit on 18/10/2017 BE.
 //  Copyright © 2017 OmiseGO. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 import XCTest
@@ -12,12 +13,15 @@ import OmiseGO
 
 class LiveTestCase: XCTestCase {
 
-    /// Replace with yours!
-    var validBaseURL = ""
-    /// Replace with yours!
-    var validAPIKey = ""
-    /// Replace with yours!
-    var validAuthenticationToken = ""
+    private static let BASE_URL = "OMG_BASE_URL"
+    private static let OMG_API_KEY = "OMG_API_KEY"
+    private static let OMG_AUTHENTICATION_TOKEN = "OMG_AUTHENTICATION_TOKEN"
+    private static let OMG_MINTED_TOKEN_ID = "OMG_MINTED_TOKEN_ID"
+
+    var validBaseURL: String = ""
+    var validAPIKey: String = ""
+    var validAuthenticationToken: String = ""
+    var validMintedTokenId: String = ""
 
     let invalidBaseURL = "an invalid base url"
     let invalidAPIKey = "an invalid api key"
@@ -28,7 +32,10 @@ class LiveTestCase: XCTestCase {
         self.continueAfterFailure = false
         self.loadEnvKeys()
         if !self.areKeysValid() {
-            XCTFail("Replace base url, authentication token and API Key at the top of this file!")
+            XCTFail("""
+                Missing values for required constants.
+                Replace the in secret.plist or pass them as environment variables.
+            """)
         }
         self.testClient = OMGClient(config: self.validConfig())
     }
@@ -42,7 +49,11 @@ class LiveTestCase: XCTestCase {
     }
 
     func areKeysValid() -> Bool {
-        return !(self.validBaseURL == "" || self.validAPIKey == "" || self.validAuthenticationToken == "")
+        return
+            self.validBaseURL != ""
+            && self.validAPIKey != ""
+            && self.validAuthenticationToken != ""
+            && self.validMintedTokenId != ""
     }
 
     /// This function loads the keys from the environment variables,
@@ -54,14 +65,35 @@ class LiveTestCase: XCTestCase {
     /// OMG_BASE_URL="https://some.base.url" \
     /// OMG_API_KEY="someKey" \
     /// OMG_AUTHENTICATION_TOKEN="someToken" \
+    /// OMG_MINTED_TOKEN_ID="someMintedTokenId" \
     /// test
     private func loadEnvKeys() {
-        self.validBaseURL = self.validBaseURL != "" ? self.validBaseURL :
-            ProcessInfo.processInfo.environment["OMG_BASE_URL"]!
-        self.validAPIKey = self.validAPIKey != "" ? self.validAPIKey :
-            ProcessInfo.processInfo.environment["OMG_API_KEY"]!
-        self.validAuthenticationToken = self.validAuthenticationToken != "" ? self.validAuthenticationToken :
-            ProcessInfo.processInfo.environment["OMG_AUTHENTICATION_TOKEN"]!
+        let plistSecrets = self.loadSecretPlistFile()
+        self.validBaseURL =
+            plistSecrets?[LiveTestCase.BASE_URL] != nil &&
+            plistSecrets![LiveTestCase.BASE_URL] != "" ?
+            plistSecrets![LiveTestCase.BASE_URL]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.BASE_URL]!
+        self.validAPIKey =
+            plistSecrets?[LiveTestCase.OMG_API_KEY] != nil &&
+            plistSecrets![LiveTestCase.OMG_API_KEY] != "" ?
+            plistSecrets![LiveTestCase.OMG_API_KEY]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_API_KEY]!
+        self.validAuthenticationToken =
+            plistSecrets?[LiveTestCase.OMG_AUTHENTICATION_TOKEN] != nil &&
+            plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN] != "" ?
+            plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_AUTHENTICATION_TOKEN]!
+        self.validMintedTokenId =
+            plistSecrets?[LiveTestCase.OMG_MINTED_TOKEN_ID] != nil &&
+            plistSecrets![LiveTestCase.OMG_MINTED_TOKEN_ID] != "" ?
+            plistSecrets![LiveTestCase.OMG_MINTED_TOKEN_ID]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_MINTED_TOKEN_ID]!
+    }
+
+    private func loadSecretPlistFile() -> [String: String]? {
+        guard let path = Bundle(for: LiveTestCase.self).path(forResource: "secret", ofType: "plist") else { return nil }
+        return NSDictionary(contentsOfFile: path) as? [String: String]
     }
 
 }

@@ -96,7 +96,7 @@ class StubGenerator {
     class func transactionRequest(
         id: String? = nil,
         type: TransactionRequestType? = nil,
-        mintedTokenId: String? = nil,
+        mintedToken: MintedToken? = nil,
         amount: Double? = nil,
         address: String? = nil,
         correlationId: String? = nil,
@@ -106,7 +106,7 @@ class StubGenerator {
             return TransactionRequest(
                 id: id ?? v.id,
                 type: type ?? v.type,
-                mintedTokenId: mintedTokenId ?? v.mintedTokenId,
+                mintedToken: mintedToken ?? v.mintedToken,
                 amount: amount ?? v.amount,
                 address: address ?? v.address,
                 correlationId: correlationId ?? v.correlationId,
@@ -174,6 +174,7 @@ class StubGenerator {
     class func transactionConsumeParams(
         transactionRequest: TransactionRequest? = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+        mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
         idempotencyToken: String? = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
@@ -181,6 +182,7 @@ class StubGenerator {
             return TransactionConsumeParams(
                 transactionRequest: transactionRequest!,
                 address: address!,
+                mintedTokenId: mintedTokenId!,
                 amount: amount!,
                 idempotencyToken: idempotencyToken!,
                 correlationId: correlationId!,

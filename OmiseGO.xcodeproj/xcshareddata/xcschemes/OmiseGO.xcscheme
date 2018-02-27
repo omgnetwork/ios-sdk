@@ -56,6 +56,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "OMG_MINTED_TOKEN_ID"
+            value = "$(OMG_MINTED_TOKEN_ID)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "OMG_API_KEY"
             value = "$(OMG_API_KEY)"
             isEnabled = "YES">

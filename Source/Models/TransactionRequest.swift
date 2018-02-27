@@ -18,17 +18,17 @@ public enum TransactionRequestType: String, Codable {
 ///
 /// - valid: The transaction request is valid and ready to be consumed
 /// - expired: The transaction request is expired and can't be consumed
-public enum TransactionRequestStatus: String, Codable {
+public enum TransactionRequestStatus: String, Decodable {
     case valid
     case expired
 }
 
 /// Represents a transaction request
-public struct TransactionRequest: Codable {
+public struct TransactionRequest: Decodable {
 
     public let id: String
     public let type: TransactionRequestType
-    public let mintedTokenId: String
+    public let mintedToken: MintedToken
     public let amount: Double?
     public let address: String?
     public let correlationId: String?
@@ -37,21 +37,11 @@ public struct TransactionRequest: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
-        case mintedTokenId = "token_id"
+        case mintedToken = "minted_token"
         case amount
         case address
         case correlationId = "correlation_id"
         case status
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(type, forKey: .type)
-        try container.encode(mintedTokenId, forKey: .mintedTokenId)
-        try container.encode(amount, forKey: .amount)
-        try container.encode(address, forKey: .address)
-        try container.encode(status, forKey: .status)
     }
 
 }
