@@ -44,7 +44,7 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                     XCTAssertEqual(transactionConsume.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                     XCTAssertEqual(transactionConsume.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                     XCTAssertEqual(transactionConsume.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                    XCTAssertEqual(transactionConsume.transferId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
+                    XCTAssertEqual(transactionConsume.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
                     XCTAssertEqual(transactionConsume.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
                     XCTAssertEqual(transactionConsume.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
                     XCTAssertEqual(transactionConsume.status, .confirmed)

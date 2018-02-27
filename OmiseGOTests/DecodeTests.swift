@@ -262,7 +262,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-            XCTAssertEqual(decodedData.transferId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
+            XCTAssertEqual(decodedData.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
             XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
             XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
@@ -276,14 +276,22 @@ class DecodeTests: XCTestCase {
             let jsonData = try self.jsonData(withFileName: "transaction")
             let decodedData = try self.jsonDecoder.decode(Transaction.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(decodedData.amount, 1000)
-            XCTAssertEqual(decodedData.from, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(decodedData.to, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            let mintedToken = decodedData.mintedToken
-            XCTAssertEqual(mintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(mintedToken.symbol, "BTC")
-            XCTAssertEqual(mintedToken.name, "Bitcoin")
-            XCTAssertEqual(mintedToken.subUnitToUnit, 100)
+            let from = decodedData.from
+            XCTAssertEqual(from.address, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            let fromMintedToken = from.mintedToken
+            XCTAssertEqual(fromMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(fromMintedToken.symbol, "BTC")
+            XCTAssertEqual(fromMintedToken.name, "Bitcoin")
+            XCTAssertEqual(fromMintedToken.subUnitToUnit, 100)
+            let to = decodedData.to
+            XCTAssertEqual(to.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            let toMintedToken = to.mintedToken
+            XCTAssertEqual(toMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(toMintedToken.symbol, "BTC")
+            XCTAssertEqual(toMintedToken.name, "Bitcoin")
+            XCTAssertEqual(toMintedToken.subUnitToUnit, 100)
+            let exchange = decodedData.exchange
+            XCTAssertEqual(exchange.rate, 1)
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate())
             XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate())
@@ -300,6 +308,32 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.perPage, 10)
             XCTAssertEqual(decodedData.isFirstPage, true)
             XCTAssertEqual(decodedData.isLastPage, true)
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionSourceDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction_source")
+            let decodedData = try self.jsonDecoder.decode(TransactionSource.self, from: jsonData)
+            XCTAssertEqual(decodedData.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(decodedData.amount, 1000)
+            let mintedToken: MintedToken = decodedData.mintedToken
+            XCTAssertEqual(mintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(mintedToken.symbol, "BTC")
+            XCTAssertEqual(mintedToken.name, "Bitcoin")
+            XCTAssertEqual(mintedToken.subUnitToUnit, 100)
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionExchangeDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction_exchange")
+            let decodedData = try self.jsonDecoder.decode(TransactionExchange.self, from: jsonData)
+            XCTAssertEqual(decodedData.rate, 1)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

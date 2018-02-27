@@ -23,20 +23,18 @@ public struct Transaction: Decodable {
 
     public let id: String
     public let status: TransactionConsumeStatus
-    public let amount: Double
-    public let mintedToken: MintedToken
-    public let from: String
-    public let to: String
+    public let from: TransactionSource
+    public let to: TransactionSource
+    public let exchange: TransactionExchange
     public let createdAt: Date
     public let updatedAt: Date
 
     private enum CodingKeys: String, CodingKey {
         case id
         case status
-        case amount
         case from
         case to
-        case mintedToken = "minted_token"
+        case exchange
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }

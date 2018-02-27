@@ -28,25 +28,27 @@ class TransactionTests: FixtureTestCase {
                 switch result {
                 case .success(data: let paginatedList):
                     let transactions = paginatedList.data
-                    XCTAssertEqual(transactions.count, 1)
                     let transaction = transactions.first!
                     XCTAssertEqual(transaction.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-                    XCTAssertEqual(transaction.amount, 1000)
-                    XCTAssertEqual(transaction.from, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-                    XCTAssertEqual(transaction.to, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-                    let mintedToken = transaction.mintedToken
-                    XCTAssertEqual(mintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-                    XCTAssertEqual(mintedToken.symbol, "BTC")
-                    XCTAssertEqual(mintedToken.name, "Bitcoin")
-                    XCTAssertEqual(mintedToken.subUnitToUnit, 100)
+                    let from = transaction.from
+                    XCTAssertEqual(from.address, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                    let fromMintedToken = from.mintedToken
+                    XCTAssertEqual(fromMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                    XCTAssertEqual(fromMintedToken.symbol, "BTC")
+                    XCTAssertEqual(fromMintedToken.name, "Bitcoin")
+                    XCTAssertEqual(fromMintedToken.subUnitToUnit, 100)
+                    let to = transaction.to
+                    XCTAssertEqual(to.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                    let toMintedToken = to.mintedToken
+                    XCTAssertEqual(toMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                    XCTAssertEqual(toMintedToken.symbol, "BTC")
+                    XCTAssertEqual(toMintedToken.name, "Bitcoin")
+                    XCTAssertEqual(toMintedToken.subUnitToUnit, 100)
+                    let exchange = transaction.exchange
+                    XCTAssertEqual(exchange.rate, 1)
                     XCTAssertEqual(transaction.status, .confirmed)
                     XCTAssertEqual(transaction.createdAt, "2018-01-01T00:00:00Z".toDate())
                     XCTAssertEqual(transaction.updatedAt, "2018-01-01T10:00:00Z".toDate())
-                    let pagination = paginatedList.pagination
-                    XCTAssertEqual(pagination.currentPage, 1)
-                    XCTAssertEqual(pagination.perPage, 10)
-                    XCTAssertEqual(pagination.isFirstPage, true)
-                    XCTAssertEqual(pagination.isLastPage, true)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }

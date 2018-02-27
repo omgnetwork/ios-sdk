@@ -74,7 +74,7 @@ class StubGenerator {
         mintedToken: MintedToken? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
-        transferId: String? = nil,
+        transactionId: String? = nil,
         userId: String? = nil,
         transactionRequestId: String? = nil,
         address: String? = nil)
@@ -86,7 +86,7 @@ class StubGenerator {
                                       mintedToken: mintedToken ?? v.mintedToken,
                                       correlationId: correlationId ?? v.correlationId,
                                       idempotencyToken: idempotencyToken ?? v.idempotencyToken,
-                                      transferId: transferId ?? v.transferId,
+                                      transactionId: transactionId ?? v.transactionId,
                                       userId: userId ?? v.userId,
                                       transactionRequestId: transactionRequestId ?? v.transactionRequestId,
                                       address: address ?? v.address)
@@ -117,10 +117,9 @@ class StubGenerator {
     class func transaction(
         id: String? = nil,
         status: TransactionConsumeStatus? = nil,
-        amount: Double? = nil,
-        mintedToken: MintedToken? = nil,
-        from: String? = nil,
-        to: String? = nil,
+        from: TransactionSource? = nil,
+        to: TransactionSource? = nil,
+        exchange: TransactionExchange? = nil,
         createdAt: Date? = nil,
         updatedAt: Date? = nil)
         -> Transaction {
@@ -128,12 +127,30 @@ class StubGenerator {
             return Transaction(
                 id: id ?? v.id,
                 status: status ?? v.status,
-                amount: amount ?? v.amount,
-                mintedToken: mintedToken ?? v.mintedToken,
                 from: from ?? v.from,
                 to: to ?? v.to,
+                exchange: exchange ?? v.exchange,
                 createdAt: createdAt ?? v.createdAt,
                 updatedAt: updatedAt ?? v.updatedAt)
+    }
+
+    class func transactionSource(
+        address: String? = nil,
+        amount: Double? = nil,
+        mintedToken: MintedToken? = nil)
+        -> TransactionSource {
+            let v: TransactionSource = self.stub(forResource: "transaction_source")
+            return TransactionSource(address: address ?? v.address,
+                                     amount: amount ?? v.amount,
+                                     mintedToken: mintedToken ?? v.mintedToken)
+
+    }
+
+    class func transactionExchange(
+        rate: Double? = nil)
+        -> TransactionExchange {
+            let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
+            return TransactionExchange(rate: rate ?? v.rate)
     }
 
     class func pagination(

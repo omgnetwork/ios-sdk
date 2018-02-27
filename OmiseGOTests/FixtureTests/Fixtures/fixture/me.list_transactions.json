@@ -7,22 +7,43 @@
       {
         "object": "transaction",
         "id": "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-        "amount": 1000,
-        "from": "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-        "to": "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-        "minted_token": {
-          "object": "minted_token",
-          "id": "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-          "symbol": "BTC",
-          "name": "Bitcoin",
-          "subunit_to_unit": 100,
-          "created_at": "2018-01-01T00:00:00Z",
-          "updated_at": "2018-01-01T10:00:00Z"
+        "from": {
+          "object": "transaction_source",
+          "address": "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+          "amount": 1000,
+          "minted_token": {
+            "object": "minted_token",
+            "id": "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+            "symbol": "BTC",
+            "name": "Bitcoin",
+            "subunit_to_unit": 100,
+            "created_at": "2018-01-01T00:00:00Z",
+            "updated_at": "2018-01-01T10:00:00Z"
+          }
+        },
+        "to": {
+          "object": "transaction_source",
+          "address": "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+          "amount": 1000,
+          "minted_token": {
+            "object": "minted_token",
+            "id": "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+            "symbol": "BTC",
+            "name": "Bitcoin",
+            "subunit_to_unit": 100,
+            "created_at": "2018-01-01T00:00:00Z",
+            "updated_at": "2018-01-01T10:00:00Z"
+          }
+        },
+        "exchange": {
+          "object": "exchange",
+          "rate": 1
         },
         "status": "confirmed",
         "created_at": "2018-01-01T00:00:00Z",
         "updated_at": "2018-01-01T10:00:00Z"
-      }
+        }
+
     ],
     "pagination": {
       "per_page": 10,

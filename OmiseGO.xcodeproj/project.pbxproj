@@ -41,6 +41,8 @@
 		0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
+		0355969920453069000E38DA /* TransactionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969820453069000E38DA /* TransactionSource.swift */; };
+		0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969A2045315F000E38DA /* TransactionExchange.swift */; };
 		0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE822028508900F7B42E /* TransactionRequestParams.swift */; };
 		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
 		037032A51FBBE6B100DBCDDD /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0370328D1FBBE6B100DBCDDD /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,6 +137,8 @@
 		0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveTestCase.swift; path = ../LiveTestCase.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
+		0355969820453069000E38DA /* TransactionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSource.swift; sourceTree = "<group>"; };
+		0355969A2045315F000E38DA /* TransactionExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExchange.swift; sourceTree = "<group>"; };
 		0365DE822028508900F7B42E /* TransactionRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParams.swift; sourceTree = "<group>"; };
 		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		0370328D1FBBE6B100DBCDDD /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
@@ -318,6 +322,8 @@
 				0365DE8420285FE700F7B42E /* TransactionRequest.swift */,
 				038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */,
 				03FE644A2032A39100345281 /* TransactionConsume.swift */,
+				0355969820453069000E38DA /* TransactionSource.swift */,
+				0355969A2045315F000E38DA /* TransactionExchange.swift */,
 				039DA974203FA94100CCC56A /* PaginationParams.swift */,
 				039DA976203FAB0600CCC56A /* TransactionListParams.swift */,
 				039DA972203FA72800CCC56A /* Transaction.swift */,
@@ -583,6 +589,7 @@
 				037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */,
 				0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */,
 				037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */,
+				0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */,
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
 				037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */,
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
@@ -593,6 +600,7 @@
 				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
 				037032A91FBBE6B100DBCDDD /* Address.swift in Sources */,
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
+				0355969920453069000E38DA /* TransactionSource.swift in Sources */,
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
