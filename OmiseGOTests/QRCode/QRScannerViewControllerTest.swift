@@ -2,8 +2,8 @@
 //  QRScannerViewControllerTest.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 12/2/2561 BE.
-//  Copyright © 2561 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 12/2/2018 BE.
+//  Copyright © 2018 OmiseGO. All rights reserved.
 //
 
 import XCTest

@@ -2,8 +2,8 @@
 //  Balance.swift
 //  OmiseGO
 //
-//  Created by Thibault Denizet on 12/10/2560 BE.
-//  Copyright © 2560 OmiseGO. All rights reserved.
+//  Created by Thibault Denizet on 12/10/2017 BE.
+//  Copyright © 2017 OmiseGO. All rights reserved.
 //
 
 /// Represents an address containing a list of balances

@@ -2,8 +2,8 @@
 //  Setting.swift
 //  OmiseGO
 //
-//  Created by Mederic Petit on 12/10/2560 BE.
-//  Copyright © 2560 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 12/10/2017 BE.
+//  Copyright © 2017 OmiseGO. All rights reserved.
 //
 
 /// Represents the global settings of the provider
