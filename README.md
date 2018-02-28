@@ -196,7 +196,7 @@ Where:
 Then you can call:
 
 ```swift
-Transaction.get(
+Transaction.list(
     using: client,
     params: params) { (transactionsResult) in
         switch transactionsResult {
