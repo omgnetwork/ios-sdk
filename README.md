@@ -45,8 +45,6 @@ $ gem install cocoapods
 
 To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
 
-### Installation
-
 ```ruby
 pod 'OmiseGO'
 ```
@@ -62,6 +60,28 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
+
+```bash
+brew install carthage
+```
+
+To integrate the `omisego` SDK into your Xcode project using Carthage, add the following line in your `Cartfile`:
+
+```
+github "omisego/ios-sdk"
+```
+
+Then, run the following command:
+
+```bash
+carthage update --platform ios
+```
+
+Drag the built `OmiseGO.framework` into your Xcode project.
 
 ---
 
