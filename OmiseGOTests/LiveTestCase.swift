@@ -34,7 +34,7 @@ class LiveTestCase: XCTestCase {
         if !self.areKeysValid() {
             XCTFail("""
                 Missing values for required constants.
-                Replace the in secret.plist or pass them as environment variables.
+                Replace them in secret.plist or pass them as environment variables.
             """)
         }
         self.testClient = OMGClient(config: self.validConfig())

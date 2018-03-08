@@ -1,5 +1,5 @@
 //
-//  TransactionTests.swift
+//  TransactionFixtureTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 23/2/18.
@@ -9,8 +9,9 @@
 import XCTest
 import OmiseGO
 
-class TransactionTests: FixtureTestCase {
+class TransactionFixtureTests: FixtureTestCase {
 
+    //swiftlint:disable:next function_body_length
     func testGetListOfTransactions() {
         let expectation =
             self.expectation(description: "Get the list of transactions for the current user")
@@ -47,6 +48,7 @@ class TransactionTests: FixtureTestCase {
                     let exchange = transaction.exchange
                     XCTAssertEqual(exchange.rate, 1)
                     XCTAssertEqual(transaction.status, .confirmed)
+                    XCTAssertEqual(transaction.metadata.count, 0)
                     XCTAssertEqual(transaction.createdAt, "2018-01-01T00:00:00Z".toDate())
                     XCTAssertEqual(transaction.updatedAt, "2018-01-01T10:00:00Z".toDate())
                 case .fail(error: let error):

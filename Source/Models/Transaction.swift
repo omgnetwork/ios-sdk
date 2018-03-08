@@ -19,15 +19,20 @@ public enum TransactionStatus: String, Decodable {
 }
 
 /// Represents a transaction
-public struct Transaction: Decodable {
+public struct Transaction {
 
     public let id: String
     public let status: TransactionConsumeStatus
     public let from: TransactionSource
     public let to: TransactionSource
     public let exchange: TransactionExchange
+    public let metadata: [String: Any]
     public let createdAt: Date
     public let updatedAt: Date
+
+}
+
+extension Transaction: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -35,8 +40,21 @@ public struct Transaction: Decodable {
         case from
         case to
         case exchange
+        case metadata
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        status = try container.decode(TransactionConsumeStatus.self, forKey: .status)
+        from = try container.decode(TransactionSource.self, forKey: .from)
+        to = try container.decode(TransactionSource.self, forKey: .to)
+        exchange = try container.decode(TransactionExchange.self, forKey: .exchange)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
     }
 
 }

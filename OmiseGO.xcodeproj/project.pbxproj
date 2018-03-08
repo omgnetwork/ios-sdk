@@ -75,7 +75,7 @@
 		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
 		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
 		0396627E203FFD6B004E5640 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627D203FFD6B004E5640 /* Extension.swift */; };
-		03966280203FFF3E004E5640 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627F203FFF3E004E5640 /* TransactionTests.swift */; };
+		03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */; };
 		03966282204005E8004E5640 /* TransactionLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03966281204005E8004E5640 /* TransactionLiveTests.swift */; };
 		0396628420400CE8004E5640 /* TransactionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396628320400CE8004E5640 /* TransactionTest.swift */; };
 		039DA973203FA72800CCC56A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA972203FA72800CCC56A /* Transaction.swift */; };
@@ -172,7 +172,7 @@
 		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
 		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
 		0396627D203FFD6B004E5640 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		0396627F203FFF3E004E5640 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
+		0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFixtureTests.swift; sourceTree = "<group>"; };
 		03966281204005E8004E5640 /* TransactionLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionLiveTests.swift; sourceTree = "<group>"; };
 		0396628320400CE8004E5640 /* TransactionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTest.swift; sourceTree = "<group>"; };
 		039DA972203FA72800CCC56A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
 				03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */,
 				03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */,
-				0396627F203FFF3E004E5640 /* TransactionTests.swift */,
+				0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */,
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
 			);
 			path = FixtureTests;
@@ -656,7 +656,7 @@
 				03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
 				03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */,
-				03966280203FFF3E004E5640 /* TransactionTests.swift in Sources */,
+				03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */,
 				03FE64502032C6BF00345281 /* TransactionConsumeTest.swift in Sources */,
 				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
 				038CB3E9202B02B300E40715 /* TransactionConsumeParamsTest.swift in Sources */,

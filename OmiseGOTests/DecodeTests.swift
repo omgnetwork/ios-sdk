@@ -295,6 +295,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate())
             XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate())
+            XCTAssertEqual(decodedData.metadata.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

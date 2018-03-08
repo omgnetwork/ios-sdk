@@ -120,6 +120,7 @@ class StubGenerator {
         from: TransactionSource? = nil,
         to: TransactionSource? = nil,
         exchange: TransactionExchange? = nil,
+        metadata: [String: Any]? = nil,
         createdAt: Date? = nil,
         updatedAt: Date? = nil)
         -> Transaction {
@@ -130,6 +131,7 @@ class StubGenerator {
                 from: from ?? v.from,
                 to: to ?? v.to,
                 exchange: exchange ?? v.exchange,
+                metadata: metadata ?? v.metadata,
                 createdAt: createdAt ?? v.createdAt,
                 updatedAt: updatedAt ?? v.updatedAt)
     }
