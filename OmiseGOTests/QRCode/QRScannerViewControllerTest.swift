@@ -11,7 +11,6 @@ import XCTest
 
 class QRScannerViewControllerTest: FixtureTestCase {
 
-    //swiftlint:disable:next weak_delegate
     var mockDelegate: MockQRVCDelegate!
     var mockViewModel: MockQRViewModel!
     var sut: QRScannerViewController!

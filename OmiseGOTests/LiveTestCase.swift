@@ -5,7 +5,6 @@
 //  Created by Mederic Petit on 18/10/2017 BE.
 //  Copyright © 2017 OmiseGO. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import Foundation
 import XCTest

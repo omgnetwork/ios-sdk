@@ -9,7 +9,6 @@
 import XCTest
 @testable import OmiseGO
 
-//swiftlint:disable:next type_body_length
 class DecodeTests: XCTestCase {
 
     let jsonDecoder: JSONDecoder = {

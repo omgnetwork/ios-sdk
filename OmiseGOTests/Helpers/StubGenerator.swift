@@ -5,7 +5,6 @@
 //  Created by Mederic Petit on 16/2/2018 BE.
 //  Copyright © 2018 OmiseGO. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 @testable import OmiseGO
 
@@ -16,11 +15,9 @@ class StubGenerator {
         let directoryURL = bundle.url(forResource: "Fixtures/objects", withExtension: nil)!
         let filePath = (resource as NSString).appendingPathExtension("json")! as String
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)
-        //swiftlint:disable:next force_try
         let data = try! Data(contentsOf: fixtureFileURL)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
-        //swiftlint:disable:next force_try
         return try! decoder.decode(T.self, from: data)
     }
 

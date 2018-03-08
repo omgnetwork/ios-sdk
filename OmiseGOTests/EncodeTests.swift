@@ -17,7 +17,6 @@ extension String {
 
 }
 
-//swiftlint:disable:next type_body_length
 class EncodeTests: XCTestCase {
 
     func testMetadaEncoding() {

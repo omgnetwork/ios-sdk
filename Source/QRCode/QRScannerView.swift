@@ -40,7 +40,6 @@ class QRScannerView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        //swiftlint:disable:next line_length
         omiseGOWarn("init(coder:) shouldn't be called direcly, please use the designed init(frame:readerPreviewLayer:) instead")
         return nil
     }

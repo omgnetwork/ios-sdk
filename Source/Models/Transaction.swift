@@ -5,7 +5,6 @@
 //  Created by Mederic Petit on 23/2/18.
 //  Copyright © 2018 OmiseGO. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 /// The status of a transaction
 ///

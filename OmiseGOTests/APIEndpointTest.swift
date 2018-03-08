@@ -31,7 +31,6 @@ class APIEndpointTest: XCTestCase {
         XCTAssertEqual(APIEndpoint.logout.path, "/logout")
     }
 
-    //swiftlint:disable:next cyclomatic_complexity
     func testTask() {
         switch APIEndpoint.getCurrentUser.task {
         case .requestPlain: break

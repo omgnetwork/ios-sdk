@@ -16,7 +16,6 @@ struct QRTestHelper {
                                               options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
         let features = detector.features(in: CIImage(image: image)!)
         var result: String = ""
-        //swiftlint:disable:next force_cast
         for feature in features as! [CIQRCodeFeature] {
             result += feature.messageString ?? ""
         }

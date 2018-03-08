@@ -5,7 +5,6 @@
 //  Created by Mederic Petit on 5/2/2018 BE.
 //  Copyright © 2018 OmiseGO. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 /// The different types of request that can be generated
 ///
