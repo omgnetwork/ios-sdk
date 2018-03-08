@@ -31,14 +31,16 @@ func dateDecodingStrategy(decoder: Decoder) throws -> Date {
     if let date = formatter.date(from: dateStr) {
         return date
     }
-    throw OmiseGOError.unexpected(message: "Invalid date")
+    throw OmiseGOError.unexpected(message: "Invalid date format")
 }
 
 extension Date {
 
-    func toString(withFormat format: String? = "yyyy-MM-dd'T'HH:mm:ssZZZZZ") -> String {
+    func toString(withFormat format: String? = "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
+                  timeZone: TimeZone? = TimeZone.current) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.timeZone = timeZone!
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: self)
     }
@@ -106,7 +108,7 @@ extension KeyedDecodingContainerProtocol {
             } else if let nestedArray = try? decode([Any].self, forKey: key) {
                 dictionary[key.stringValue] = nestedArray
             } else if try decodeNil(forKey: key) {
-                dictionary[key.stringValue] = true
+                dictionary[key.stringValue] = nil
             }
         }
         return dictionary
@@ -119,6 +121,8 @@ extension UnkeyedDecodingContainer {
         while isAtEnd == false {
             if let value = try? decode(Bool.self) {
                 array.append(value)
+            } else if let value = try? decode(Int.self) {
+                array.append(value)
             } else if let value = try? decode(Double.self) {
                 array.append(value)
             } else if let value = try? decode(String.self) {
@@ -130,6 +134,11 @@ extension UnkeyedDecodingContainer {
             }
         }
         return array
+    }
+
+    mutating func decode(_ type: [Any].Type) throws -> [Any] {
+        var nestedContainer = try self.nestedUnkeyedContainer()
+        return try nestedContainer.decodeJSONArray()
     }
 
     mutating func decode(_ type: [String: Any].Type) throws -> [String: Any] {
@@ -181,7 +190,7 @@ extension KeyedEncodingContainerProtocol {
 
     mutating func encode(_ value: [Any], forKey key: Key) throws {
         var container = self.nestedUnkeyedContainer(forKey: key)
-        try container.encodeJSONArray(value)
+        try container.encode(value)
     }
 
     mutating func encodeIfPresent(_ value: [Any]?, forKey key: Key) throws {
@@ -192,7 +201,7 @@ extension KeyedEncodingContainerProtocol {
 }
 
 extension UnkeyedEncodingContainer {
-    mutating func encodeJSONArray(_ value: [Any]) throws {
+    mutating func encode(_ value: [Any]) throws {
         try value.enumerated().forEach({ (index, value) in
             switch value {
             case let value as Bool:
@@ -204,9 +213,9 @@ extension UnkeyedEncodingContainer {
             case let value as Double:
                 try encode(value)
             case let value as [String: Any]:
-                try encode(value)
+                try encodeJSONDictionary(value)
             case let value as [Any]:
-                try encode(value)
+                try encodeJSONArray(value)
             //swiftlint:disable:next syntactic_sugar
             case Optional<Any>.none:
                 try encodeNil()
@@ -221,6 +230,11 @@ extension UnkeyedEncodingContainer {
 
     mutating func encodeJSONDictionary(_ value: [String: Any]) throws {
         var nestedContainer = self.nestedContainer(keyedBy: JSONCodingKeys.self)
+        try nestedContainer.encode(value)
+    }
+
+    private mutating func encodeJSONArray(_ value: [Any]) throws {
+        var nestedContainer = self.nestedUnkeyedContainer()
         try nestedContainer.encode(value)
     }
 }

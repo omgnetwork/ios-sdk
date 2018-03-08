@@ -36,6 +36,7 @@ public class OMGClient {
                 callback?(.fail(error: error))
             }
         } catch let error {
+            // Can't actually throw another error
             performCallback {
                 callback?(.fail(error: .other(error: error)))
             }
@@ -46,11 +47,6 @@ public class OMGClient {
 
     func performCallback(_ callback: @escaping () -> Void) {
         OperationQueue.main.addOperation(callback)
-    }
-
-    public func cancelAllOperations() {
-        session.invalidateAndCancel()
-        operationQueue.cancelAllOperations()
     }
 
     func encodedAuthorizationHeader() throws -> String {

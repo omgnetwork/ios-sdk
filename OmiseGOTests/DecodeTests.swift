@@ -43,6 +43,19 @@ class DecodeTests: XCTestCase {
         }
     }
 
+    func testCustomInvalidDateDecodingStrategy() {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        do {
+            let jsonData = try self.jsonData(withFileName: "dates_invalid")
+            _ = try self.jsonDecoder.decode(DateInvalidDummy.self, from: jsonData)
+        } catch let error as OmiseGOError {
+            XCTAssertEqual(error.message, "unexpected error: Invalid date format")
+        } catch _ {
+            XCTFail("Unexpected error")
+        }
+    }
+
     func testMetadaDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata")
@@ -55,6 +68,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(metadata["an_integer"] as? Int, 1)
             XCTAssertEqual(metadata["a_bool"] as? Bool, true)
             XCTAssertEqual(metadata["a_double"] as? Double, 12.34)
+            XCTAssertNil(metadata["a_null_key"])
             guard let object: [String: Any] = metadata["an_object"] as? [String: Any] else {
                 XCTFail("could not decode object")
                 return
@@ -72,6 +86,34 @@ class DecodeTests: XCTestCase {
             XCTAssertTrue(array.count == 2)
             XCTAssertEqual(array[0] as? String, "value_1")
             XCTAssertEqual(array[1] as? String, "value_2")
+            guard let metadataArray = decodedData.metadataArray else {
+                XCTFail("Could not decode array")
+                return
+            }
+            XCTAssertEqual(metadataArray[0] as? String, "value_1")
+            XCTAssertEqual(metadataArray[1] as? Int, 1)
+            XCTAssertEqual(metadataArray[2] as? Bool, true)
+            XCTAssertEqual(metadataArray[3] as? Double, 13.37)
+            guard let nestedObjectInArray = metadataArray[4] as? [String: Any] else {
+                XCTFail("Could not decode nested object in array")
+                return
+            }
+            XCTAssertEqual(nestedObjectInArray["a_key"] as? String, "a_value")
+            guard let nestedArrayInArray = metadataArray[5] as? [Any] else {
+                XCTFail("Could not decode nested array in array")
+                return
+            }
+            XCTAssertEqual(nestedArrayInArray[0] as? String, "a_nested_value")
+            guard let optionalMetadata = decodedData.optionalMetadata else {
+                XCTFail("Could not decode optional metadata")
+                return
+            }
+            XCTAssertEqual(optionalMetadata["a_string"] as? String, "some_string")
+            guard let optionalMetadataArray = decodedData.optionalMetadataArray else {
+                XCTFail("Could not decode optional metadata")
+                return
+            }
+            XCTAssertEqual(optionalMetadataArray[0] as? String, "a_value")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

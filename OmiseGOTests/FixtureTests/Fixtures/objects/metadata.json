@@ -12,6 +12,21 @@
     },
     "an_array": [
       "value_1", "value_2"
-    ]
-  }
+    ],
+    "a_null_key": null
+  },
+  "metadata_array":[
+    "value_1",
+    1,
+    true,
+    13.37,
+    {
+      "a_key": "a_value"
+    },
+    ["a_nested_value"]
+  ],
+  "optional_metadata": {
+    "a_string": "some_string"
+  },
+  "optional_metadata_array": ["a_value"]
 }

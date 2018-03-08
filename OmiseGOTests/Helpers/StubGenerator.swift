@@ -43,10 +43,17 @@ class StubGenerator {
                 amount: amount ?? v.amount)
     }
 
-    class func metadata(metadata: [String: Any]? = nil)
+    class func metadata(
+        metadata: [String: Any]? = nil,
+        metadataArray: [Any]? = nil)
         -> MetadataDummy {
             let v: MetadataDummy = self.stub(forResource: "metadata")
-            return MetadataDummy(metadata: metadata ?? v.metadata!)
+                return MetadataDummy(metadata: metadata ?? v.metadata!,
+                                     metadataArray: metadataArray ?? v.metadataArray!,
+                                     optionalMetadata: nil,
+                                     optionalMetadataArray: nil,
+                                     unavailableMetadata: nil,
+                                     unavailableMetadataArray: nil)
     }
 
     class func mintedToken(id: String? = nil,

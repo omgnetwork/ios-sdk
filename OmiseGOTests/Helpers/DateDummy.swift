@@ -21,3 +21,14 @@ struct DateDummy: Decodable {
     }
 
 }
+
+
+struct DateInvalidDummy: Decodable {
+
+    let invalidDate: Date
+
+    enum CodingKeys: String, CodingKey {
+        case invalidDate = "invalid_date"
+    }
+
+}

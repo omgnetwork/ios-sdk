@@ -26,80 +26,6 @@ public struct APIError {
         }
     }
 
-    public enum APIErrorCode: Decodable {
-
-        case invalidParameters
-        case invalidVersion
-        case permissionError
-        case endPointNotFound
-        case invalidAPIKey
-        case internalServerError
-        case unknownServerError
-        case accessTokenNotFound
-        case accessTokenExpired
-        case missingIdempotencyToken
-        case other(String)
-
-        //swiftlint:disable:next cyclomatic_complexity
-        init(code: String) {
-            switch code {
-            case "client:invalid_parameter":
-                self = .invalidParameters
-            case "client:invalid_version":
-                self = .invalidVersion
-            case "client:permission_error":
-                self = .permissionError
-            case "client:endpoint_not_found":
-                self = .endPointNotFound
-            case "client:invalid_api_key":
-                self = .invalidAPIKey
-            case "server:internal_server_error":
-                self = .internalServerError
-            case "server:unknown_error":
-                self = .unknownServerError
-            case "user:access_token_not_found":
-                self = .accessTokenNotFound
-            case "user:access_token_expired":
-                self = .accessTokenExpired
-            case "client:no_idempotency_token_provided":
-                self = .missingIdempotencyToken
-            case let code:
-                self = .other(code)
-            }
-        }
-
-        public init(from decoder: Decoder) throws {
-            self.init(code: try decoder.singleValueContainer().decode(String.self))
-        }
-
-        public var code: String {
-            switch self {
-            case .invalidParameters:
-                return "client:invalid_parameter"
-            case .invalidVersion:
-                return "client:invalid_version"
-            case .permissionError:
-                return "client:permission_error"
-            case .endPointNotFound:
-                return "client:endpoint_not_found"
-            case .invalidAPIKey:
-                return "client:invalid_api_key"
-            case .internalServerError:
-                return "server:internal_server_error"
-            case .unknownServerError:
-                return "server:unknown_error"
-            case .accessTokenNotFound:
-                return "user:access_token_not_found"
-            case .accessTokenExpired:
-                return "user:access_token_expired"
-            case .missingIdempotencyToken:
-                return "client:no_idempotency_token_provided"
-            case .other(let code):
-                return code
-            }
-        }
-    }
-
 }
 
 extension APIError: CustomDebugStringConvertible {
@@ -126,4 +52,93 @@ extension APIError: Decodable {
         description = try container.decode(String.self, forKey: .description)
     }
 
+}
+
+// Represents the different API error codes
+public enum APIErrorCode: Decodable {
+
+    case invalidParameters
+    case invalidVersion
+    case permissionError
+    case endPointNotFound
+    case invalidAPIKey
+    case internalServerError
+    case unknownServerError
+    case accessTokenNotFound
+    case accessTokenExpired
+    case missingIdempotencyToken
+    case other(String)
+
+    //swiftlint:disable:next cyclomatic_complexity
+    init(code: String) {
+        switch code {
+        case "client:invalid_parameter":
+            self = .invalidParameters
+        case "client:invalid_version":
+            self = .invalidVersion
+        case "client:permission_error":
+            self = .permissionError
+        case "client:endpoint_not_found":
+            self = .endPointNotFound
+        case "client:invalid_api_key":
+            self = .invalidAPIKey
+        case "server:internal_server_error":
+            self = .internalServerError
+        case "server:unknown_error":
+            self = .unknownServerError
+        case "user:access_token_not_found":
+            self = .accessTokenNotFound
+        case "user:access_token_expired":
+            self = .accessTokenExpired
+        case "client:no_idempotency_token_provided":
+            self = .missingIdempotencyToken
+        case let code:
+            self = .other(code)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        self.init(code: try decoder.singleValueContainer().decode(String.self))
+    }
+
+    public var code: String {
+        switch self {
+        case .invalidParameters:
+            return "client:invalid_parameter"
+        case .invalidVersion:
+            return "client:invalid_version"
+        case .permissionError:
+            return "client:permission_error"
+        case .endPointNotFound:
+            return "client:endpoint_not_found"
+        case .invalidAPIKey:
+            return "client:invalid_api_key"
+        case .internalServerError:
+            return "server:internal_server_error"
+        case .unknownServerError:
+            return "server:unknown_error"
+        case .accessTokenNotFound:
+            return "user:access_token_not_found"
+        case .accessTokenExpired:
+            return "user:access_token_expired"
+        case .missingIdempotencyToken:
+            return "client:no_idempotency_token_provided"
+        case .other(let code):
+            return code
+        }
+    }
+}
+
+extension APIErrorCode: Hashable {
+
+    public var hashValue: Int {
+        return self.code.hashValue
+    }
+
+}
+
+// MARK: Equatable
+
+public func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
+    return lhs.code == rhs.code
 }

@@ -26,9 +26,18 @@ class EncodeTests: XCTestCase {
                                        "a_bool": true,
                                        "a_double": 12.34,
                                        "an_object": ["a_key": "a_value",
-                                                     "a_nested_object": ["a_nested_key": "a_nested_value"]],
+                                                     "a_nested_object": ["a_nested_key": "a_nested_value"],
+                                                     "a_nil_value": nil],
                                        "an_array": ["value_1", "value_2"]]
-        let metadataDummy = MetadataDummy(metadata: metadata)
+        let metadataArray: [Any] = ["value_1", 123, true, 13.37, ["a_key": "a_value"], ["a_value", nil]]
+        let optionalMetadata: [String: Any] = ["a_key": "a_value"]
+        let optionalMetadataArray: [Any] = ["a_value"]
+        let metadataDummy = MetadataDummy(metadata: metadata,
+                                          metadataArray: metadataArray,
+                                          optionalMetadata: optionalMetadata,
+                                          optionalMetadataArray: optionalMetadataArray,
+                                          unavailableMetadata: nil,
+                                          unavailableMetadataArray: nil)
         guard let encodedData = metadataDummy.encodedPayload() else {
             XCTFail("Could not encode metadata")
             return
@@ -45,23 +54,90 @@ class EncodeTests: XCTestCase {
                         "a_nested_object":{
                             "a_nested_key":"a_nested_value"
                         },
-                        "a_key":"a_value"},
+                        "a_key":"a_value",
+                        "a_nil_value": null},
                     "a_string":"some_string"
+                },
+                "optional_metadata_array":["a_value"],
+                "metadata_array":[
+                    "value_1",
+                    123,
+                    true,
+                    13.369999999999999,
+                    {"a_key":"a_value"},
+                    ["a_value",null]
+                ],
+                "optional_metadata":{
+                    "a_key":"a_value"
                 }
             }
             """.uglifiedEncodedString())
     }
 
     func testMetadaNullEncoding() {
-        let metadataDummy = MetadataDummy(metadata: nil)
+        let metadataDummy = MetadataDummy(metadata: nil,
+                                          metadataArray: nil,
+                                          optionalMetadata: nil,
+                                          optionalMetadataArray: nil,
+                                          unavailableMetadata: nil,
+                                          unavailableMetadataArray: nil)
         guard let encodedData = metadataDummy.encodedPayload() else {
             XCTFail("Could not encode metadata")
             return
         }
         let jsonString = String(data: encodedData, encoding: .utf8)!
         XCTAssertEqual(jsonString, """
-            {"metadata":{}}
+            {
+                "metadata_array":[],
+                "metadata":{}
+            }
         """.uglifiedEncodedString())
+    }
+
+    func testInvalidJSONDictionaryEncoding() {
+        let data = "an encoded string".data(using: .utf8)!
+        let metadata: [String: Any] = ["invalid_data": data]
+        let metadataDummy = MetadataDummy(metadata: metadata,
+                                          metadataArray: nil,
+                                          optionalMetadata: nil,
+                                          optionalMetadataArray: nil,
+                                          unavailableMetadata: nil,
+                                          unavailableMetadataArray: nil)
+        do {
+            _ = try JSONEncoder().encode(metadataDummy)
+        } catch let error as EncodingError {
+            switch error {
+            case .invalidValue(let value, let context):
+                XCTAssertEqual(value as? Data, data)
+                XCTAssertEqual(context.debugDescription, "Invalid JSON value")
+            }
+
+        } catch _ {
+            XCTFail("Unexpected error")
+        }
+    }
+
+    func testInvalidJSONArrayEncoding() {
+        let data = "an encoded string".data(using: .utf8)!
+        let metadataArray: [Any] = [data]
+        let metadataDummy = MetadataDummy(metadata: nil,
+                                          metadataArray: metadataArray,
+                                          optionalMetadata: nil,
+                                          optionalMetadataArray: nil,
+                                          unavailableMetadata: nil,
+                                          unavailableMetadataArray: nil)
+        do {
+            _ = try JSONEncoder().encode(metadataDummy)
+        } catch let error as EncodingError {
+            switch error {
+            case .invalidValue(let value, let context):
+                XCTAssertEqual(value as? Data, data)
+                XCTAssertEqual(context.debugDescription, "Invalid JSON value")
+            }
+
+        } catch _ {
+            XCTFail("Unexpected error")
+        }
     }
 
     func testTransactionRequestCreateParamsEncodingWithoutAmount() {
@@ -73,6 +149,8 @@ class EncodeTests: XCTestCase {
                                                address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                                correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
             let encodedData = try JSONEncoder().encode(transactionRequestParams)
+            let encodedPayload = transactionRequestParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":null,
@@ -115,6 +193,8 @@ class EncodeTests: XCTestCase {
             let transactionRequestParams =
                 TransactionRequestGetParams(id: "0a8a4a98-794b-419e-b92d-514e83657e75")
             let encodedData = try JSONEncoder().encode(transactionRequestParams)
+            let encodedPayload = transactionRequestParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
              encoding: .utf8)!, """
                 {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
@@ -141,6 +221,8 @@ class EncodeTests: XCTestCase {
                                                                     correlationId: "321",
                                                                     metadata: [:])
             let encodedData = try JSONEncoder().encode(transactionConsumeParams)
+            let encodedPayload = transactionConsumeParams!.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
@@ -166,6 +248,8 @@ class EncodeTests: XCTestCase {
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
             let encodedData = try JSONEncoder().encode(paginationParams)
+            let encodedPayload = paginationParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "search_term":"test",
@@ -236,6 +320,8 @@ class EncodeTests: XCTestCase {
                     sortDirection: .descending),
                 address: "123")
             let encodedData = try JSONEncoder().encode(transactionParams)
+            let encodedPayload = transactionParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "page":1,

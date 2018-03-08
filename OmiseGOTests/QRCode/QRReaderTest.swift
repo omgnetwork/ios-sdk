@@ -7,7 +7,8 @@
 //
 
 import XCTest
-import OmiseGO
+@testable import OmiseGO
+import AVFoundation
 
 class QRReaderTest: XCTestCase {
 
@@ -16,6 +17,10 @@ class QRReaderTest: XCTestCase {
             XCTAssertEqual(value, "123")
         }
         reader.mockValueFound(value: "123")
+    }
+
+    func testIsAvailable() {
+        XCTAssertFalse(QRReader.isAvailable())
     }
 
 }
