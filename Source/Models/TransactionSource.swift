@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 27/2/18.
-//  Copyright © 2018 OmiseGO. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a transaction source contained in a transaction object

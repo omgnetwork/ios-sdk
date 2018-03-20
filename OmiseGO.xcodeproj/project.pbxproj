@@ -284,7 +284,6 @@
 				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
 				03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */,
 				03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */,
-				0396627F203FFF3E004E5640 /* TransactionTests.swift */,
 				03D793B5204FE1080055D7BC /* ListableTests.swift */,
 				0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */,
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
@@ -506,7 +505,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = OmiseGO;
+				ORGANIZATIONNAME = "Omise Go Pte. Ltd.";
 				TargetAttributes = {
 					035149D61F95F2570056E530 = {
 						CreatedOnToolsVersion = 9.0;

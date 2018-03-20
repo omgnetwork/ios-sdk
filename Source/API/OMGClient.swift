@@ -2,8 +2,8 @@
 //  OMGClient.swift
 //  OmiseGO
 //
-//  Created by Mederic Petit on 9/10/2017 BE.
-//  Copyright © 2017 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 9/10/2017.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents an OMGClient that should be initialized using an OMGConfiguration

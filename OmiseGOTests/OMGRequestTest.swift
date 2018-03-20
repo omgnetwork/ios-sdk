@@ -2,8 +2,8 @@
 //  OMGRequestTest.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 6/2/2018 BE.
-//  Copyright © 2018 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 6/2/2018.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import XCTest

@@ -2,8 +2,8 @@
 //  TransactionConsumeParams.swift
 //  OmiseGO
 //
-//  Created by Mederic Petit on 7/2/2018 BE.
-//  Copyright © 2018 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 7/2/2018.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a structure used to consume a transaction request

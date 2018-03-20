@@ -2,8 +2,8 @@
 //  Response.swift
 //  OmiseGO
 //
-//  Created by Mederic Petit on 9/10/2017 BE.
-//  Copyright © 2017 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 9/10/2017.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Used to represent whether an API request was successfull or encountered an error.

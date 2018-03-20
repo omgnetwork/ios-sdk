@@ -2,8 +2,8 @@
 //  Balance.swift
 //  OmiseGO
 //
-//  Created by Mederic Petit on 12/10/2017 BE.
-//  Copyright © 2017 OmiseGO. All rights reserved.
+//  Created by Mederic Petit on 12/10/2017.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a balance of a minted token
