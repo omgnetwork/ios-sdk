@@ -1,5 +1,5 @@
-excluded:
-- OmiseGOTests
+included:
+- Source
 line_length: 140
 disabled_rules:
 - identifier_name

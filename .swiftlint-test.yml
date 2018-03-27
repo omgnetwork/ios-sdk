@@ -1,0 +1,12 @@
+included:
+- OmiseGOTests
+line_length: 160
+disabled_rules:
+- identifier_name
+- force_try
+- force_cast
+- cyclomatic_complexity
+- function_body_length
+- type_body_length
+- weak_delegate
+- file_length
