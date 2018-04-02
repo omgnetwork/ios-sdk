@@ -6,20 +6,6 @@
 	objectVersion = 48;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		035149D61F95F2570056E530 /* UniversalOmiseGO */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 035149D71F95F2570056E530 /* Build configuration list for PBXAggregateTarget "UniversalOmiseGO" */;
-			buildPhases = (
-				035149DA1F95F2610056E530 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = UniversalOmiseGO;
-			productName = UniversalOmiseGO;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		0313D6D720317696003E99BA /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D120317695003E99BA /* QRReader.swift */; };
 		0313D6D820317696003E99BA /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D220317695003E99BA /* QRScannerView.swift */; };
@@ -639,10 +625,6 @@
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Omise Go Pte. Ltd.";
 				TargetAttributes = {
-					035149D61F95F2570056E530 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-					};
 					03BCCCA81F8B311600F604DB = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
@@ -668,7 +650,6 @@
 			targets = (
 				03BCCCA81F8B311600F604DB /* OmiseGO */,
 				03BCCCB11F8B311600F604DB /* OmiseGOTests */,
-				035149D61F95F2570056E530 /* UniversalOmiseGO */,
 			);
 		};
 /* End PBXProject section */
@@ -693,19 +674,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		035149DA1F95F2610056E530 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"OmiseGO\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"OmiseGO\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/OmiseGO.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/OmiseGO.framework/Modules/OmiseGO.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/OmiseGO.framework/Modules/OmiseGO.swiftmodule\"\nfi\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/OmiseGO.framework/OmiseGO\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/OmiseGO.framework/OmiseGO\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/OmiseGO.framework/OmiseGO\"\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/OmiseGO.framework\" \"${PROJECT_DIR}\"\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"";
-		};
 		03F5C0121F8CD7080079E073 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -937,22 +905,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		035149D81F95F2570056E530 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		035149D91F95F2570056E530 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		03BCCCBB1F8B311600F604DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1158,15 +1110,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		035149D71F95F2570056E530 /* Build configuration list for PBXAggregateTarget "UniversalOmiseGO" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				035149D81F95F2570056E530 /* Debug */,
-				035149D91F95F2570056E530 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		03BCCCA31F8B311600F604DB /* Build configuration list for PBXProject "OmiseGO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
