@@ -47,8 +47,6 @@ extension OMGError: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension OMGError: LocalizedError {
 
-    public var errorDescription: String {
-        return self.message
-    }
+    public var errorDescription: String? { return self.message }
 
 }
