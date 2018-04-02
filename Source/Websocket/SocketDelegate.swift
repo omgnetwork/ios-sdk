@@ -8,13 +8,13 @@
 
 public protocol SocketConnectionDelegate: class {
     func didConnect()
-    func didDisconnect(_ error: OmiseGOError?)
+    func didDisconnect(_ error: OMGError?)
 }
 
 public protocol EventDelegate: class {
     func didStartListening()
     func didStopListening()
-    func didReceiveError(_ error: OmiseGOError)
+    func didReceiveError(_ error: OMGError)
 }
 
 public protocol UserEventDelegate: EventDelegate {

@@ -38,7 +38,7 @@ class LogoutFixtureTests: FixtureTestCase {
 
                 _ = try RequestParameters(config: client.config).encodedAuthorizationHeader()
                 XCTFail("Should not be able to encode header after logout")
-            } catch let error as OmiseGOError {
+            } catch let error as OMGError {
                 switch error {
                 case .configuration(message: _):
                     XCTAssertTrue(true)

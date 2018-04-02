@@ -13,5 +13,5 @@
 /// - fail: The request encountered an error resulting in a failure
 public enum Response<Data> {
     case success(data: Data)
-    case fail(error: OmiseGOError)
+    case fail(error: OMGError)
 }

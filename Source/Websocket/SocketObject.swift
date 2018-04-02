@@ -22,7 +22,7 @@ extension GenericObject: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let objectType: String? = try container.decodeIfPresent(String.self, forKey: .objectType)
         guard let decodedObject = try GenericObjectEnum(objectType: objectType, decoder: decoder) else {
-            throw OmiseGOError.socketError(message: "Unknown object type")
+            throw OMGError.socketError(message: "Unknown object type")
         }
         self.object = decodedObject
     }
@@ -36,7 +36,7 @@ public enum WebsocketObject {
 enum GenericObjectEnum {
 
     case transactionConsumption(object: TransactionConsumption)
-    case error(error: OmiseGOError)
+    case error(error: OMGError)
     case other(object: [String: Any])
 
 }
@@ -50,10 +50,10 @@ extension GenericObjectEnum {
         }
         switch objectType {
         case "error":
-            self = .error(error: try OmiseGOError.api(apiError: APIError(from: decoder)))
+            self = .error(error: try OMGError.api(apiError: APIError(from: decoder)))
         case "transaction_consumption":
             self = .transactionConsumption(object: try TransactionConsumption(from: decoder))
-        default: self = .error(error: OmiseGOError.socketError(message: "Invalid payload"))
+        default: self = .error(error: OMGError.socketError(message: "Invalid payload"))
         }
     }
 

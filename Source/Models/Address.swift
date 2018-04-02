@@ -22,10 +22,10 @@ extension Address: Listable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getAll(using client: OMGHTTPClient,
+    public static func getAll(using client: HTTPClient,
                               callback: @escaping Address.ListRequestCallback) -> Address.ListRequest? {
         return self.list(using: client, endpoint: .getAddresses, callback: callback)
     }
@@ -35,16 +35,16 @@ extension Address: Listable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getMain(using client: OMGHTTPClient,
+    public static func getMain(using client: HTTPClient,
                                callback: @escaping Address.RetrieveRequestCallback) -> Address.ListRequest? {
         return self.list(using: client, endpoint: .getAddresses, callback: { (response) in
             switch response {
             case .success(data: let addresses):
                 if addresses.isEmpty {
-                    callback(Response.fail(error: OmiseGOError.unexpected(message: "No balance received.")))
+                    callback(Response.fail(error: OMGError.unexpected(message: "No balance received.")))
                 } else {
                     callback(.success(data: addresses.first!))
                 }

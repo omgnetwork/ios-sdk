@@ -73,11 +73,11 @@ extension Transaction: PaginatedListable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - params: The TransactionListParams object to use to scope the results
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func list(using client: OMGHTTPClient,
+    public static func list(using client: HTTPClient,
                             params: TransactionListParams,
                             callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
         return self.list(using: client, endpoint: .getTransactions(params: params), callback: callback)

@@ -1,12 +1,12 @@
 //
-//  OMGJSONResponse.swift
+//  JSONResponse.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 10/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-struct OMGJSONResponse<ObjectType: Decodable> {
+struct JSONResponse<ObjectType: Decodable> {
 
     let version: String
     let success: Bool
@@ -14,7 +14,7 @@ struct OMGJSONResponse<ObjectType: Decodable> {
 
 }
 
-extension OMGJSONResponse: Decodable {
+extension JSONResponse: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case version

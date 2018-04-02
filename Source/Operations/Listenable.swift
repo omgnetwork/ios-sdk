@@ -14,7 +14,7 @@ public extension Listenable {
     /// Stop listening for events
     ///
     /// - Parameter client: The client used when starting to listen
-    public func stopListening(withClient client: OMGSocketClient) {
+    public func stopListening(withClient client: SocketClient) {
         client.leaveChannel(withTopic: self.socketTopic)
     }
 }
@@ -26,7 +26,7 @@ public extension Listenable where Self == User {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: UserEventDelegate?) {
+    public func startListeningEvents(withClient client: SocketClient, eventDelegate: UserEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
     }
 
@@ -40,7 +40,7 @@ public extension Listenable where Self == TransactionRequest {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: TransactionRequestEventDelegate?) {
+    public func startListeningEvents(withClient client: SocketClient, eventDelegate: TransactionRequestEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
     }
 
@@ -54,7 +54,7 @@ public extension Listenable where Self == TransactionConsumption {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: TransactionConsumptionEventDelegate?) {
+    public func startListeningEvents(withClient client: SocketClient, eventDelegate: TransactionConsumptionEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
     }
 

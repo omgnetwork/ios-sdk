@@ -11,12 +11,12 @@ import XCTest
 
 class RequestBuilderTests: XCTestCase {
 
-    var httpConfig = OMGConfiguration(baseURL: "https://example.com",
-                                      apiKey: "123",
-                                      authenticationToken: "123")
-    var socketConfig = OMGConfiguration(baseURL: "wss://example.com",
-                                        apiKey: "123",
-                                        authenticationToken: "123")
+    var httpConfig = ClientConfiguration(baseURL: "https://example.com",
+                                         apiKey: "123",
+                                         authenticationToken: "123")
+    var socketConfig = ClientConfiguration(baseURL: "wss://example.com",
+                                           apiKey: "123",
+                                           authenticationToken: "123")
     var requestBuilder: RequestBuilder!
 
     override func setUp() {

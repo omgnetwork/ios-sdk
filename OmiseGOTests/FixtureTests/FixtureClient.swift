@@ -9,10 +9,10 @@
 import Foundation
 @testable import OmiseGO
 
-class FixtureClient: OMGHTTPClient {
+class FixtureClient: HTTPClient {
     let fixturesDirectoryURL: URL
 
-    public override init(config: OMGConfiguration) {
+    public override init(config: ClientConfiguration) {
         let bundle = Bundle(for: FixtureClient.self)
         self.fixturesDirectoryURL = bundle.url(forResource: "Fixtures", withExtension: nil)!
 
@@ -21,7 +21,7 @@ class FixtureClient: OMGHTTPClient {
 
     @discardableResult
     override func request<ResultType>(toEndpoint endpoint: APIEndpoint,
-                                      callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
+                                      callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
         do {
             let request: FixtureRequest<ResultType> = FixtureRequest(client: self,
                                                                      endpoint: endpoint,
@@ -29,7 +29,7 @@ class FixtureClient: OMGHTTPClient {
             return try request.start()
         } catch let error as NSError {
             operationQueue.addOperation { callback?(.fail(error: .other(error: error))) }
-        } catch let error as OmiseGOError {
+        } catch let error as OMGError {
             operationQueue.addOperation { callback?(.fail(error: error)) }
         }
 
@@ -37,7 +37,7 @@ class FixtureClient: OMGHTTPClient {
     }
 }
 
-class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
+class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
     var fixtureClient: FixtureClient? {
         return client as? FixtureClient
     }
@@ -74,7 +74,7 @@ class FixtureRequest<ResultType: Decodable>: OMGRequest<ResultType> {
             return performCallback(.fail(error: .unexpected(message: "empty response.")))
         }
         do {
-            let response: OMGJSONResponse<ResultType> = try deserializeData(data)
+            let response: JSONResponse<ResultType> = try deserializeData(data)
             return performCallback(response.data)
         } catch let error {
             return performCallback(.fail(error: .other(error: error)))

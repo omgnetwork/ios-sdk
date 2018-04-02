@@ -8,10 +8,10 @@
 
 struct RequestParameters {
 
-    private let config: OMGConfiguration
+    private let config: ClientConfiguration
     private let authScheme = "OMGClient"
 
-    init(config: OMGConfiguration) {
+    init(config: ClientConfiguration) {
         self.config = config
     }
 
@@ -21,12 +21,12 @@ struct RequestParameters {
 
     func encodedAuthorizationHeader() throws -> String {
         guard let authenticationToken = self.config.authenticationToken else {
-            throw OmiseGOError.configuration(message: "Please provide an authentication token before using the SDK")
+            throw OMGError.configuration(message: "Please provide an authentication token before using the SDK")
         }
         let keys = "\(self.config.apiKey):\(authenticationToken)"
         let data = keys.data(using: .utf8, allowLossyConversion: false)
         guard let encodedKey = data?.base64EncodedString() else {
-            throw OmiseGOError.configuration(message: "bad API key or authentication token (encoding failed.)")
+            throw OMGError.configuration(message: "bad API key or authentication token (encoding failed.)")
         }
 
         return "\(authScheme) \(encodedKey)"

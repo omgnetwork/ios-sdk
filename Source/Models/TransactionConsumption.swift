@@ -115,11 +115,11 @@ extension TransactionConsumption: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - params: The TransactionConsumptionParams object describing the transaction request to be consumed.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func consumeTransactionRequest(using client: OMGHTTPClient,
+    public static func consumeTransactionRequest(using client: HTTPClient,
                                                  params: TransactionConsumptionParams,
                                                  callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
@@ -133,10 +133,10 @@ extension TransactionConsumption: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func approve(using client: OMGHTTPClient,
+    public func approve(using client: HTTPClient,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
             let params = TransactionConsumptionConfirmationParams(id: id)
@@ -148,10 +148,10 @@ extension TransactionConsumption: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func reject(using client: OMGHTTPClient,
+    public func reject(using client: HTTPClient,
                        callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
             let params = TransactionConsumptionConfirmationParams(id: id)

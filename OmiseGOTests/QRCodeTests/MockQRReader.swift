@@ -23,7 +23,7 @@ class MockQRVCDelegate: QRScannerViewControllerDelegate {
 
     var didCancel: Bool = false
     var transactionRequest: TransactionRequest?
-    var error: OmiseGOError?
+    var error: OMGError?
 
     init(asyncExpectation: XCTestExpectation? = nil) {
         self.asyncExpectation = asyncExpectation
@@ -39,7 +39,7 @@ class MockQRVCDelegate: QRScannerViewControllerDelegate {
         self.asyncExpectation?.fulfill()
     }
 
-    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
         self.error = error
         self.asyncExpectation?.fulfill()
     }

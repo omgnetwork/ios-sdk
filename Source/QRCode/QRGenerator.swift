@@ -1,5 +1,5 @@
 //
-//  QRCode.swift
+//  QRGenerator.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 6/2/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct QRCode {
+struct QRGenerator {
 
     static func generateQRCode(fromData data: Data, outputSize: CGSize) -> UIImage? {
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }

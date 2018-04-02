@@ -1,5 +1,5 @@
 //
-//  OMGRequestTest.swift
+//  RequestTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 6/2/2018.
@@ -9,15 +9,15 @@
 import XCTest
 @testable import OmiseGO
 
-class OMGRequestTest: XCTestCase {
+class RequestTest: XCTestCase {
 
-    let client: OMGHTTPClient = OMGHTTPClient(config: OMGConfiguration(baseURL: "https://example.com",
-                                                                       apiKey: "123",
-                                                                       authenticationToken: "123"))
+    let client: HTTPClient = HTTPClient(config: ClientConfiguration(baseURL: "https://example.com",
+                                                                    apiKey: "123",
+                                                                    authenticationToken: "123"))
 
     func testStartRequest() {
-        let request: OMGRequest<DummyTestObject> =
-            OMGRequest(client: client,
+        let request: Request<DummyTestObject> =
+            Request(client: client,
                        endpoint: APIEndpoint.custom(path: "/test",
                                                     task: Task.requestPlain)) { _ in}
         do {
@@ -30,8 +30,8 @@ class OMGRequestTest: XCTestCase {
     }
 
     func testCancelRequest() {
-        let request: OMGRequest<DummyTestObject> =
-            OMGRequest(client: client,
+        let request: Request<DummyTestObject> =
+            Request(client: client,
                        endpoint: APIEndpoint.custom(path: "/test",
                                                     task: Task.requestPlain)) { _ in}
         do {

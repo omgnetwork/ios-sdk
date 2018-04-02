@@ -13,10 +13,10 @@ class AuthenticationLiveTest: LiveTestCase {
 
     func testInvalidAuthenticationToken() {
         let expectation = self.expectation(description: "Error token not found")
-        let config = OMGConfiguration(baseURL: self.validBaseURL,
-                                      apiKey: self.validAPIKey,
-                                      authenticationToken: self.invalidAuthenticationToken)
-        let client = OMGHTTPClient(config: config)
+        let config = ClientConfiguration(baseURL: self.validBaseURL,
+                                        apiKey: self.validAPIKey,
+                                        authenticationToken: self.invalidAuthenticationToken)
+        let client = HTTPClient(config: config)
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {
@@ -40,10 +40,10 @@ class AuthenticationLiveTest: LiveTestCase {
 
     func testInvalidAPIKey() {
         let expectation = self.expectation(description: "Invalid API key")
-        let config = OMGConfiguration(baseURL: self.validBaseURL,
-                                      apiKey: self.invalidAPIKey,
-                                      authenticationToken: self.validAuthenticationToken)
-        let client = OMGHTTPClient(config: config)
+        let config = ClientConfiguration(baseURL: self.validBaseURL,
+                                         apiKey: self.invalidAPIKey,
+                                         authenticationToken: self.validAuthenticationToken)
+        let client = HTTPClient(config: config)
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {

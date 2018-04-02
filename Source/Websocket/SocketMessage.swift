@@ -10,9 +10,9 @@ class SocketMessage {
 
     let dataSent: SocketPayloadSend?
     var dataReceived: SocketPayloadReceive?
-    var error: OmiseGOError?
+    var error: OMGError?
     var receivedResponse: GenericObjectEnum?
-    private var errorHandler: ((OmiseGOError) -> Void)?
+    private var errorHandler: ((OMGError) -> Void)?
     private var successHandler: ((GenericObjectEnum) -> Void)?
 
     init(socketPayload: SocketPayloadSend) {
@@ -31,7 +31,7 @@ class SocketMessage {
     }
 
     @discardableResult
-    func onError(_ handler: @escaping ((OmiseGOError) -> Void)) -> SocketMessage {
+    func onError(_ handler: @escaping ((OMGError) -> Void)) -> SocketMessage {
         self.errorHandler = handler
         return self
     }

@@ -11,9 +11,9 @@ import XCTest
 
 class RequestParametersTests: XCTestCase {
 
-    var config = OMGConfiguration(baseURL: "https://example.com",
-                                  apiKey: "123",
-                                  authenticationToken: "123")
+    var config = ClientConfiguration(baseURL: "https://example.com",
+                                     apiKey: "123",
+                                     authenticationToken: "123")
     var requestParameters: RequestParameters!
 
     override func setUp() {

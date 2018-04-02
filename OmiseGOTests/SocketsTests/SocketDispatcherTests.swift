@@ -32,7 +32,7 @@ class SocketDispatcherTests: XCTestCase {
 
     func testDispatchErrorCallsError() {
         let userDispatcher = SocketDispatcher.user(handler: self.delegate)
-        userDispatcher.dispatchError(OmiseGOError.socketError(message: "dummy_error"))
+        userDispatcher.dispatchError(OMGError.socketError(message: "dummy_error"))
         XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
     }
 

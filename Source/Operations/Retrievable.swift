@@ -10,18 +10,18 @@
 public protocol Retrievable {}
 
 public extension Retrievable where Self: Decodable {
-    public typealias RetrieveRequest = OMGRequest<Self>
+    public typealias RetrieveRequest = Request<Self>
     public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
-    internal static func retrieve(using client: OMGHTTPClient,
+    internal static func retrieve(using client: HTTPClient,
                                   endpoint: APIEndpoint,
                                   callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)
     }
 
     @discardableResult
-    internal func retrieve(using client: OMGHTTPClient,
+    internal func retrieve(using client: HTTPClient,
                            endpoint: APIEndpoint,
                            callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)

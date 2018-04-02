@@ -17,7 +17,7 @@ class RequestBuilder {
 
     func buildHTTPURLRequest(withEndpoint endpoint: APIEndpoint) throws -> URLRequest {
         guard let requestURL = endpoint.makeURL(withBaseURL: self.requestParameters.baseURL()) else {
-            throw OmiseGOError.configuration(message: "Invalid request")
+            throw OMGError.configuration(message: "Invalid request")
         }
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"

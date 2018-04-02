@@ -38,7 +38,7 @@ class SocketMessageTests: XCTestCase {
         let expectation = self.expectation(description: "Calls success handler when succeed")
         let payload = StubGenerator.socketPayloadReceive(data: GenericObject(object: .error(error: .unexpected(message: "dummy error"))),
                                                          success: false)
-        let handler: ((OmiseGOError) -> Void) = { error in
+        let handler: ((OMGError) -> Void) = { error in
             XCTAssertEqual(error.message, "unexpected error: dummy error")
             expectation.fulfill()
         }

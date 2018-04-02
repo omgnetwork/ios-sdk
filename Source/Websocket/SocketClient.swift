@@ -1,5 +1,5 @@
 //
-//  OMGSocketClient.swift
+//  SocketClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/3/18.
@@ -8,7 +8,7 @@
 
 import Starscream
 
-public class OMGSocketClient {
+public class SocketClient {
 
     private var awaitingResponse: [String: SocketMessage] = [:]
     private var channels: [String: SocketChannel] = [:]
@@ -22,7 +22,7 @@ public class OMGSocketClient {
     private var messageReference: UInt64 = UInt64.min
     private var shouldBeConnected: Bool = false
     private var webSocket: WebSocketClient!
-    private var config: OMGConfiguration!
+    private var config: ClientConfiguration!
 
     public weak var delegate: SocketConnectionDelegate?
 
@@ -31,8 +31,8 @@ public class OMGSocketClient {
     /// - Parameter
     ///   - config: The configuration object
     ///   - delegate: The delegate that should receive connection events
-    /// - Note: the baseURL of the OMGConfiguration needs to be a socket url (wss://your.domain.com)
-    public init(config: OMGConfiguration, delegate: SocketConnectionDelegate?) {
+    /// - Note: the baseURL of the ClientConfiguration needs to be a socket url (wss://your.domain.com)
+    public init(config: ClientConfiguration, delegate: SocketConnectionDelegate?) {
         self.config = config
         self.delegate = delegate
         self.initWebSocket()
@@ -180,7 +180,7 @@ public class OMGSocketClient {
 
 }
 
-extension OMGSocketClient: SocketSendable {
+extension SocketClient: SocketSendable {
 
     @discardableResult
     func send(topic: String, event: SocketEventSend) -> SocketMessage {
@@ -191,7 +191,7 @@ extension OMGSocketClient: SocketSendable {
 
 }
 
-extension OMGSocketClient: WebSocketDelegate {
+extension SocketClient: WebSocketDelegate {
 
     public func websocketDidConnect(socket: WebSocketClient) {
         self.delegate?.didConnect()

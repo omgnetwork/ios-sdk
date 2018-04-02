@@ -28,7 +28,7 @@ enum SocketDispatcher {
         self.commonHandler?.didStopListening()
     }
 
-    func dispatchError(_ error: OmiseGOError) {
+    func dispatchError(_ error: OMGError) {
         self.commonHandler?.didReceiveError(error)
     }
 

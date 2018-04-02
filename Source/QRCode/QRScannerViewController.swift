@@ -28,7 +28,7 @@ public protocol QRScannerViewControllerDelegate: class {
     /// - Parameters:
     ///   - scanner: The QR scanner view controller
     ///   - error: The error returned by the scanner
-    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError)
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError)
 }
 
 /// The view controller managing the scanner
@@ -44,7 +44,7 @@ public class QRScannerViewController: UIViewController {
     }()
 
     init?(delegate: QRScannerViewControllerDelegate,
-          client: OMGHTTPClient,
+          client: HTTPClient,
           cancelButtonTitle: String,
           viewModel: QRScannerViewModelProtocol) {
         guard viewModel.isQRCodeAvailable() else {
@@ -63,10 +63,10 @@ public class QRScannerViewController: UIViewController {
     /// - Parameters:
     ///   - delegate: The delegate that will receive the events from the scanner
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - cancelButtonTitle: The title of the cancel button
     /// - Returns: An optional cancellable request.
-    public convenience init?(delegate: QRScannerViewControllerDelegate, client: OMGHTTPClient, cancelButtonTitle: String) {
+    public convenience init?(delegate: QRScannerViewControllerDelegate, client: HTTPClient, cancelButtonTitle: String) {
         self.init(delegate: delegate,
                   client: client,
                   cancelButtonTitle: cancelButtonTitle,

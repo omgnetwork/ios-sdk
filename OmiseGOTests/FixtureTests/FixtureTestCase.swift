@@ -15,7 +15,7 @@ class FixtureTestCase: XCTestCase {
         return FixtureClient(config: self.validConfig)
     }
 
-    let validConfig: OMGConfiguration = OMGConfiguration(baseURL: "https://example.com",
+    let validConfig: ClientConfiguration = ClientConfiguration(baseURL: "https://example.com",
                                                          apiKey: "apikey",
                                                          authenticationToken: "authenticationtoken")
 

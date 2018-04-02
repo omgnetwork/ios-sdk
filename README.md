@@ -57,7 +57,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 $ gem install cocoapods
 ```
 
-To integrate the `omisego` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
+To integrate the `OmiseGO` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
 
 ```ruby
 pod 'OmiseGO'
@@ -109,14 +109,14 @@ This section describes the use of the http client in order to retrieve or create
 
 ### Initialization of the HTTP client
 
-Before using the SDK to retrieve a resource, you need to initialize an `OMGHTTPClient` with an `OMGConfiguration` object.
+Before using the SDK to retrieve a resource, you need to initialize an `HTTPClient` with a `ClientConfiguration` object.
 You should do this as soon as you obtain a valid authentication token corresponding to the current user from the Wallet API.
 
 ```swift
-let configuration = OMGConfiguration(baseURL: "https://your.base.url/api",
-                                     apiKey: "apiKey",
-                                     authenticationToken: "authenticationToken")
-let client = OMGHTTPClient(config: configuration)
+let configuration = ClientConfiguration(baseURL: "https://your.base.url/api",
+                                        apiKey: "apiKey",
+                                        authenticationToken: "authenticationToken")
+let client = HTTPClient(config: configuration)
 ```
 
 Where:
@@ -133,12 +133,12 @@ Each call take a `Callback` closure that returns a `Response` enum:
 ```swift
 public enum Response<Data> {
     case success(data: Data)
-    case fail(error: OmiseGOError)
+    case fail(error: OMGError)
 }
 ```
 
 You can then use a switch-case to access the `data` if the call succeeded or `error` if the call failed.
-The `OmiseGOError` represents an error that have occurred before, during or after the request. It's an enum with 5 cases:
+The `OMGError` represents an error that have occurred before, during or after the request. It's an enum with 5 cases:
 ```swift
 case unexpected(message: String)
 case configuration(message: String)
@@ -408,7 +408,7 @@ func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: Tran
     // Handle success scan, typically consume the transactionRequest and dismiss the scanner
 }
 
-func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
+func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
     // Handle error
 }
 ```
@@ -425,13 +425,13 @@ This section describes the use of the socket client in order to listen for event
 ### Initialization of the websocket client
 
 
-Similarly to the HTTP client, the `OMGSocketClient` needs to be first initialized  with a `OMGConfiguration` before using it. The initializer takes an optional `SocketConnectionDelegate` delegate which can be used to listen for connection change events (connection and disconnection).
+Similarly to the HTTP client, the `SocketClient` needs to be first initialized  with a `ClientConfiguration` before using it. The initializer takes an optional `SocketConnectionDelegate` delegate which can be used to listen for connection change events (connection and disconnection).
 
 ```swift
-let configuration = OMGConfiguration(baseURL: "wss://your.base.url/api/socket",
-                                     apiKey: "apiKey",
-                                     authenticationToken: "authenticationToken")
-let client = OMGSocketClient(config: configuration, delegate: self)
+let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/socket",
+                                        apiKey: "apiKey",
+                                        authenticationToken: "authenticationToken")
+let client = SocketClient(config: configuration, delegate: self)
 ```
 
 Where:
@@ -442,13 +442,13 @@ Where:
 
 ### Listenable resources
 
-Some resources are listenable, meaning that an `OMGSocketClient` can be used establish a websocket connection and an object conforming to a subclass of the `EventDelegate` protocol can be used to listen for events incoming on this resource.
+Some resources are listenable, meaning that a `SocketClient` can be used establish a websocket connection and an object conforming to a subclass of the `EventDelegate` protocol can be used to listen for events incoming on this resource.
 The `EventDelegate` protocol contains 3 common methods for all event delegates:
 
 ```swift
 func didStartListening()
 func didStopListening()
-func didReceiveError(_ error: OmiseGOError)
+func didReceiveError(_ error: OMGError)
 ```
 
 - `didStartListening` can be used to know when the socket channel has been established and is ready to receive events.
@@ -464,7 +464,7 @@ When creating a `TransactionRequest` that requires a confirmation it is possible
 `transactionRequest.startListeningEvents(withClient: client, eventDelegate: self)`
 
 Where:
-- `client` is a `OMGSocketClient`
+- `client` is a `SocketClient`
 - `eventDelegate` is a `TransactionRequestEventDelegate` that will receive incoming events.
 
 An object conforming to `TransactionRequestEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
@@ -480,7 +480,7 @@ Similarly to transaction request events, a `TransactionConsumption` can be liste
 `consumption.startListeningEvents(withClient: client, eventDelegate: self)`
 
 Where:
-- `client` is a `OMGSocketClient`
+- `client` is a `SocketClient`
 - `eventDelegate` is a `TransactionConsumptionEventDelegate` that will receive incoming events.
 
 An object conforming to `TransactionConsumptionEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionConfirmation(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
@@ -495,7 +495,7 @@ A `User` can also be listened and will receive all events that are related to hi
 `user.startListeningEvents(withClient: self.socketClient, eventDelegate: self)`
 
 Where:
-- `client` is a `OMGSocketClient`
+- `client` is a `SocketClient`
 - `eventDelegate` is a `UserEventDelegate` that will receive incoming events.
 
 An object conforming to `UserEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceive(_ object: WebsocketObject, forEvent event: SocketEvent)`.
@@ -505,7 +505,7 @@ This method will be called when any event regarding the user is received. `Webso
 
 #### Stop listening for events
 
-When you don't need to receive events anymore, you should call `stopListening(withClient client: OMGSocketClient)` for the corresponding `Listenable` object. This will leave the corresponding socket channel and close the connection if no other channel is active.
+When you don't need to receive events anymore, you should call `stopListening(withClient client: SocketClient)` for the corresponding `Listenable` object. This will leave the corresponding socket channel and close the connection if no other channel is active.
 
 ---
 

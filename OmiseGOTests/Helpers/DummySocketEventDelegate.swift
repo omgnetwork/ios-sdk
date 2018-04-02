@@ -26,7 +26,7 @@ class DummySocketEventDelegate {
     var didReceiveTransactionConsumptionApproved: TransactionConsumption?
     var didReceiveTransactionConsumptionRejected: TransactionConsumption?
     var didReceiveEvent: SocketEvent?
-    var didReceiveError: OmiseGOError?
+    var didReceiveError: OMGError?
 
 }
 
@@ -48,7 +48,7 @@ extension DummySocketEventDelegate: UserEventDelegate {
         self.joinExpectation?.fulfill()
     }
 
-    func didReceiveError(_ error: OmiseGOError) {
+    func didReceiveError(_ error: OMGError) {
         self.didReceiveError = error
         self.joinExpectation?.fulfill()
     }

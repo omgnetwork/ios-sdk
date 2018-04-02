@@ -39,23 +39,23 @@ class LiveTestCase: XCTestCase {
                 Replace them in secret.plist or pass them as environment variables.
             """)
         }
-        self.testClient = OMGHTTPClient(config: self.validHTTPConfig())
-        self.testSocketClient = OMGSocketClient(config: self.validSocketConfig(), delegate: nil)
+        self.testClient = HTTPClient(config: self.validHTTPConfig())
+        self.testSocketClient = SocketClient(config: self.validSocketConfig(), delegate: nil)
     }
 
-    var testClient: OMGHTTPClient!
-    var testSocketClient: OMGSocketClient!
+    var testClient: HTTPClient!
+    var testSocketClient: SocketClient!
 
-    private func validHTTPConfig() -> OMGConfiguration {
-        return OMGConfiguration(baseURL: validBaseURL,
-                                apiKey: validAPIKey,
-                                authenticationToken: validAuthenticationToken)
+    private func validHTTPConfig() -> ClientConfiguration {
+        return ClientConfiguration(baseURL: validBaseURL,
+                                   apiKey: validAPIKey,
+                                   authenticationToken: validAuthenticationToken)
     }
 
-    private func validSocketConfig() -> OMGConfiguration {
-        return OMGConfiguration(baseURL: validWebsocketURL,
-                                apiKey: validAPIKey,
-                                authenticationToken: validAuthenticationToken)
+    private func validSocketConfig() -> ClientConfiguration {
+        return ClientConfiguration(baseURL: validWebsocketURL,
+                                   apiKey: validAPIKey,
+                                   authenticationToken: validAuthenticationToken)
     }
 
     func areKeysValid() -> Bool {

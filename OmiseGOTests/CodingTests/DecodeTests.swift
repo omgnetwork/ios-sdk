@@ -48,7 +48,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "dates_invalid")
             _ = try self.jsonDecoder.decode(DateInvalidDummy.self, from: jsonData)
-        } catch let error as OmiseGOError {
+        } catch let error as OMGError {
             XCTAssertEqual(error.message, "unexpected error: Invalid date format")
         } catch _ {
             XCTFail("Unexpected error")
@@ -131,7 +131,7 @@ class DecodeTests: XCTestCase {
     func testJSONResponseDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "json_response")
-            let decodedData =  try self.jsonDecoder.decode(OMGJSONResponse<[String: String]>.self, from: jsonData)
+            let decodedData =  try self.jsonDecoder.decode(JSONResponse<[String: String]>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
@@ -149,7 +149,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "json_list_response")
             let decodedData =
-                try self.jsonDecoder.decode(OMGJSONResponse<OMGJSONListResponse<String>>.self, from: jsonData)
+                try self.jsonDecoder.decode(JSONResponse<JSONListResponse<String>>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
@@ -170,7 +170,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "json_list_response")
             let decodedData =
-                try self.jsonDecoder.decode(OMGJSONResponse<OMGJSONPaginatedListResponse<String>>.self, from: jsonData)
+                try self.jsonDecoder.decode(JSONResponse<JSONPaginatedListResponse<String>>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {

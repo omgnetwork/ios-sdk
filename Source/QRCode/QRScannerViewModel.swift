@@ -10,7 +10,7 @@ import AVFoundation
 
 typealias LoadingClosure = ((Bool) -> Void)
 typealias OnGetTransactionRequestClosure = ((TransactionRequest) -> Void)
-typealias OnErrorClosure = ((OmiseGOError) -> Void)
+typealias OnErrorClosure = ((OMGError) -> Void)
 
 protocol QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure? { get set }
@@ -38,9 +38,9 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
             }
         })
     }()
-    private let client: OMGHTTPClient
+    private let client: HTTPClient
 
-    init(client: OMGHTTPClient) {
+    init(client: HTTPClient) {
         self.client = client
     }
 

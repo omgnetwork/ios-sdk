@@ -13,7 +13,7 @@ class QRGeneratorTest: XCTestCase {
 
     func testImageSize() {
         let data = "Test data".data(using: .isoLatin1)!
-        if let qrCode = QRCode.generateQRCode(fromData: data, outputSize: CGSize(width: 150, height: 150)) {
+        if let qrCode = QRGenerator.generateQRCode(fromData: data, outputSize: CGSize(width: 150, height: 150)) {
             XCTAssertEqual(qrCode.size.width, 150)
             XCTAssertEqual(qrCode.size.height, 150)
         } else {
@@ -24,7 +24,7 @@ class QRGeneratorTest: XCTestCase {
     func testGeneratedQRCodeContainsInputText() {
         let inputText = "Test data"
         let data = inputText.data(using: .isoLatin1)!
-        if let qrCode = QRCode.generateQRCode(fromData: data, outputSize: CGSize(width: 200, height: 200)) {
+        if let qrCode = QRGenerator.generateQRCode(fromData: data, outputSize: CGSize(width: 200, height: 200)) {
             let decodedText = QRTestHelper.readQRCode(fromImage: qrCode)
             XCTAssertEqual(decodedText, inputText)
         } else {

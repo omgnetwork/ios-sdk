@@ -1,5 +1,5 @@
 //
-//  OMGRequest.swift
+//  Request.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
@@ -7,17 +7,17 @@
 //
 
 /// Represents a cancellable request
-public class OMGRequest<ResultType: Decodable> {
+public class Request<ResultType: Decodable> {
 
     public typealias Callback = (Response<ResultType>) -> Void
 
-    let client: OMGHTTPClient
+    let client: HTTPClient
     let endpoint: APIEndpoint
-    let callback: OMGRequest.Callback?
+    let callback: Request.Callback?
 
     var task: URLSessionTask?
 
-    init(client: OMGHTTPClient, endpoint: APIEndpoint, callback: Callback?) {
+    init(client: HTTPClient, endpoint: APIEndpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback
@@ -64,7 +64,7 @@ public class OMGRequest<ResultType: Decodable> {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
-            let response: OMGJSONResponse<ResultType> = try deserializeData(data)
+            let response: JSONResponse<ResultType> = try deserializeData(data)
             return response.data
         } catch let error {
             return .fail(error: .other(error: error))

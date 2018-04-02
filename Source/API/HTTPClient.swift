@@ -1,23 +1,23 @@
 //
-//  OMGHTTPClient.swift
+//  HTTPClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents an OMGHTTPClient that should be initialized using an OMGConfiguration
-public class OMGHTTPClient {
+/// Represents an HTTPClient that should be initialized using an ClientConfiguration
+public class HTTPClient {
 
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
-    var config: OMGConfiguration
+    var config: ClientConfiguration
 
     /// Initialize a client using a configuration object
     ///
     /// - Parameter config: The configuration object
-    public init(config: OMGConfiguration) {
+    public init(config: ClientConfiguration) {
         self.config = config
         self.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
                                   delegate: nil,
@@ -33,13 +33,13 @@ public class OMGHTTPClient {
 
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
-                             callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
+                             callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
         do {
-            let request: OMGRequest<ResultType> = OMGRequest(client: self,
+            let request: Request<ResultType> = Request(client: self,
                                                              endpoint: endpoint,
                                                              callback: callback)
             return try request.start()
-        } catch let error as OmiseGOError {
+        } catch let error as OMGError {
             performCallback {
                 callback?(.fail(error: error))
             }
@@ -54,16 +54,16 @@ public class OMGHTTPClient {
 
 }
 
-extension OMGHTTPClient {
+extension HTTPClient {
 
     /// Logout the current user (invalidate the provided authenticationToken).
     ///
     /// - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     @discardableResult
-    public func logout(withCallback callback: @escaping OMGRequest<EmptyResponse>.Callback)
-        -> OMGRequest<EmptyResponse>? {
-        let request: OMGRequest<EmptyResponse>? = self.request(toEndpoint: .logout) { (result) in
+    public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
+        -> Request<EmptyResponse>? {
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: .logout) { (result) in
             switch result {
             case .success(data: let data):
                 self.config.authenticationToken = nil

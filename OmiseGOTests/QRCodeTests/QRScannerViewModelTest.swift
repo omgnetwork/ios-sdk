@@ -25,7 +25,7 @@ class QRScannerViewModelTest: FixtureTestCase {
     func testDoesntCallWithTheSameIdTwiceIfCallFailed() {
         let exp = expectation(description: "Doesn't call API with the same id twice if the previous call failed")
         let stub = QRScannerViewModel(client:
-            OMGHTTPClient(config: OMGConfiguration(baseURL: "", apiKey: "", authenticationToken: "")))
+            HTTPClient(config: ClientConfiguration(baseURL: "", apiKey: "", authenticationToken: "")))
         stub.onError = { (error) in
             defer { exp.fulfill() }
             XCTAssert(stub.loadedIds.contains("123"))

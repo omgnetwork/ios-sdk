@@ -54,7 +54,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
     }
 
     func testCallsDelegateWithError() {
-        let error = OmiseGOError.unexpected(message: "Test")
+        let error = OMGError.unexpected(message: "Test")
         self.mockViewModel.onError?(error)
         XCTAssertNotNil(self.mockDelegate.error)
     }

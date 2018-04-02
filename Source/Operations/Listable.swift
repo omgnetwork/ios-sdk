@@ -10,11 +10,11 @@
 public protocol Listable {}
 
 public extension Listable where Self: Decodable {
-    public typealias ListRequest = OMGRequest<OMGJSONListResponse<Self>>
+    public typealias ListRequest = Request<JSONListResponse<Self>>
     public typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
-    internal static func list(using client: OMGHTTPClient,
+    internal static func list(using client: HTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { (result) in
@@ -32,11 +32,11 @@ public extension Listable where Self: Decodable {
 public protocol PaginatedListable {}
 
 public extension PaginatedListable where Self: Decodable {
-    public typealias ListRequest = OMGRequest<OMGJSONPaginatedListResponse<Self>>
-    public typealias ListRequestCallback = (Response<OMGJSONPaginatedListResponse<Self>>) -> Void
+    public typealias ListRequest = Request<JSONPaginatedListResponse<Self>>
+    public typealias ListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
 
     @discardableResult
-    internal static func list(using client: OMGHTTPClient,
+    internal static func list(using client: HTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { (result) in

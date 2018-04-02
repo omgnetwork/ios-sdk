@@ -1,5 +1,5 @@
 //
-//  OmiseGOError.swift
+//  OMGError.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
@@ -12,7 +12,7 @@
 /// - configuration: A configuration error has occured
 /// - api: An API error has occured
 /// - other: Other types of errors
-public enum OmiseGOError: Error {
+public enum OMGError: Error {
     case unexpected(message: String)
     case configuration(message: String)
     case api(apiError: APIError)
@@ -40,12 +40,12 @@ public enum OmiseGOError: Error {
 
 }
 
-extension OmiseGOError: CustomStringConvertible, CustomDebugStringConvertible {
+extension OMGError: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String { return self.message }
     public var debugDescription: String { return self.message }
 }
 
-extension OmiseGOError: LocalizedError {
+extension OMGError: LocalizedError {
 
     public var errorDescription: String {
         return self.message

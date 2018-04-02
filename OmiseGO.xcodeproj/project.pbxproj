@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F573520341A2600F54296 /* APIEndpointTest.swift */; };
 		0313D6D720317696003E99BA /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D120317695003E99BA /* QRReader.swift */; };
 		0313D6D820317696003E99BA /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D220317695003E99BA /* QRScannerView.swift */; };
 		0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D320317695003E99BA /* QRScannerViewModel.swift */; };
@@ -29,16 +28,34 @@
 		0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D520317695003E99BA /* QRScannerLoadingView.swift */; };
 		0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D620317695003E99BA /* QRScannerViewController.swift */; };
 		0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6DD203176AC003E99BA /* QRGenerator.swift */; };
-		0313D6E12031772F003E99BA /* QRGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6E02031772F003E99BA /* QRGeneratorTest.swift */; };
-		0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6E22031776E003E99BA /* QRReaderTest.swift */; };
 		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
 		031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863FC1F8F678300D13862 /* SettingFixtureTests.swift */; };
 		031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB10E1F9861AD0095468F /* FixtureTestCase.swift */; };
+		031EA6842071DD8C00A34D16 /* DummyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6832071DD8B00A34D16 /* DummyObject.swift */; };
+		031EA6902071DE8000A34D16 /* APIEndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6862071DE7F00A34D16 /* APIEndpointTest.swift */; };
+		031EA6912071DE8000A34D16 /* RequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6872071DE7F00A34D16 /* RequestTest.swift */; };
+		031EA6922071DE8000A34D16 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6882071DE7F00A34D16 /* HTTPClientTests.swift */; };
+		031EA6932071DE8000A34D16 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA68A2071DE7F00A34D16 /* EncodeTests.swift */; };
+		031EA6942071DE8000A34D16 /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA68B2071DE7F00A34D16 /* DecodeTests.swift */; };
+		031EA6952071DE8000A34D16 /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA68D2071DE7F00A34D16 /* APIErrorTests.swift */; };
+		031EA6962071DE8000A34D16 /* RequestParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA68E2071DE7F00A34D16 /* RequestParametersTests.swift */; };
+		031EA6972071DE8000A34D16 /* RequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA68F2071DE7F00A34D16 /* RequestBuilderTests.swift */; };
+		031EA6A52071DEC800A34D16 /* SocketDispatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6992071DEC700A34D16 /* SocketDispatcherTests.swift */; };
+		031EA6A62071DEC800A34D16 /* FixtureSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA69A2071DEC700A34D16 /* FixtureSocketClient.swift */; };
+		031EA6A72071DEC800A34D16 /* SocketClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA69B2071DEC700A34D16 /* SocketClientTests.swift */; };
+		031EA6A82071DEC800A34D16 /* SocketChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA69C2071DEC700A34D16 /* SocketChannelTests.swift */; };
+		031EA6A92071DEC800A34D16 /* SocketMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA69D2071DEC700A34D16 /* SocketMessageTests.swift */; };
+		031EA6AA2071DEC800A34D16 /* QRGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA69F2071DEC800A34D16 /* QRGeneratorTest.swift */; };
+		031EA6AB2071DEC800A34D16 /* QRScannerViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A02071DEC800A34D16 /* QRScannerViewTest.swift */; };
+		031EA6AC2071DEC800A34D16 /* MockQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A12071DEC800A34D16 /* MockQRReader.swift */; };
+		031EA6AD2071DEC800A34D16 /* QRScannerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A22071DEC800A34D16 /* QRScannerViewModelTest.swift */; };
+		031EA6AE2071DEC800A34D16 /* QRScannerViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A32071DEC800A34D16 /* QRScannerViewControllerTest.swift */; };
+		031EA6AF2071DEC800A34D16 /* QRReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A42071DEC800A34D16 /* QRReaderTest.swift */; };
+		031EA6B12071DF6500A34D16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6B02071DF6500A34D16 /* LiveTestCase.swift */; };
 		0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334869D2036C7EC0013B37A /* StubGenerator.swift */; };
 		033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */; };
 		033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */; };
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
-		0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
 		034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BAC102057DDB7005E0CD3 /* SocketObject.swift */; };
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
@@ -48,8 +65,8 @@
 		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
 		0365F4F120565011000DA61A /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365F4F020565011000DA61A /* Listenable.swift */; };
 		037032A51FBBE6B100DBCDDD /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0370328D1FBBE6B100DBCDDD /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */; };
-		037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */; };
+		037032A61FBBE6B100DBCDDD /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370328F1FBBE6B100DBCDDD /* JSONResponse.swift */; };
+		037032A71FBBE6B100DBCDDD /* JSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032901FBBE6B100DBCDDD /* JSONListResponse.swift */; };
 		037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032911FBBE6B100DBCDDD /* Setting.swift */; };
 		037032A91FBBE6B100DBCDDD /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032921FBBE6B100DBCDDD /* Address.swift */; };
 		037032AA1FBBE6B100DBCDDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032931FBBE6B100DBCDDD /* User.swift */; };
@@ -59,20 +76,18 @@
 		037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032971FBBE6B100DBCDDD /* MintedToken.swift */; };
 		037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032991FBBE6B100DBCDDD /* Retrievable.swift */; };
 		037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329A1FBBE6B100DBCDDD /* Listable.swift */; };
-		037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */; };
+		037032B11FBBE6B100DBCDDD /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329C1FBBE6B100DBCDDD /* ClientConfiguration.swift */; };
 		037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329D1FBBE6B100DBCDDD /* APIError.swift */; };
-		037032B31FBBE6B100DBCDDD /* OMGHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */; };
+		037032B31FBBE6B100DBCDDD /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */; };
 		037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */; };
-		037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */; };
-		037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A31FBBE6B100DBCDDD /* OMGRequest.swift */; };
+		037032B61FBBE6B100DBCDDD /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A11FBBE6B100DBCDDD /* OMGError.swift */; };
+		037032B81FBBE6B100DBCDDD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A31FBBE6B100DBCDDD /* Request.swift */; };
 		037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BB1FBBE7A300DBCDDD /* Tool.swift */; };
 		0370519E2040756F009FD899 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370519D2040756F009FD899 /* secret.plist */; };
 		037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */; };
 		0371E0BE2062377600A75BCC /* TransactionRequestParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */; };
-		0371E0C020623DBE00A75BCC /* RequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */; };
-		0371E0C220623DCB00A75BCC /* RequestParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */; };
 		0377EB70205228730036A9D6 /* SocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EB6F205228730036A9D6 /* SocketDelegate.swift */; };
-		0377EBAE20564E7A0036A9D6 /* OMGSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */; };
+		0377EBAE20564E7A0036A9D6 /* SocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAB20564E7A0036A9D6 /* SocketClient.swift */; };
 		0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */; };
 		0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */; };
 		0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBB120564ECF0036A9D6 /* SocketPayload.swift */; };
@@ -83,12 +98,8 @@
 		038CB3E7202AF81900E40715 /* TransactionConsumptionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */; };
 		038CB3E9202B02B300E40715 /* TransactionConsumptionParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */; };
 		0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390B2472028652400B1F65E /* TransactionRequestTest.swift */; };
-		03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8D202866E400F65F20 /* EncodeTests.swift */; };
 		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
-		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
-		039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A62064A8C40073951A /* OMGSocketClientTests.swift */; };
 		039656A92064D3B20073951A /* DummyWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */; };
-		039656AB2064D3EC0073951A /* FixtureSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656AA2064D3EC0073951A /* FixtureSocketClient.swift */; };
 		0396627E203FFD6B004E5640 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627D203FFD6B004E5640 /* Extension.swift */; };
 		03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */; };
 		03966282204005E8004E5640 /* TransactionLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03966281204005E8004E5640 /* TransactionLiveTests.swift */; };
@@ -97,28 +108,17 @@
 		039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA974203FA94100CCC56A /* PaginationParams.swift */; };
 		039DA977203FAB0600CCC56A /* TransactionListParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA976203FAB0600CCC56A /* TransactionListParams.swift */; };
 		039DA979203FB53F00CCC56A /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA978203FB53F00CCC56A /* Pagination.swift */; };
-		03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E8181F8E14570009D5E0 /* ClientTests.swift */; };
-		03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */; };
 		03B1E7392040127600134CB4 /* DateDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B1E7382040127600134CB4 /* DateDummy.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
-		03BEACB32031833F003A3B0D /* MockQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB22031833F003A3B0D /* MockQRReader.swift */; };
-		03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */; };
-		03BEACB72031A046003A3B0D /* QRScannerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */; };
-		03C2C0791FB93E5200B794AC /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C0781FB93E5200B794AC /* DecodeTests.swift */; };
 		03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */; };
 		03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */; };
 		03CEF4C11FB01CB5009B8CEB /* AuthenticationLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEF4C01FB01CB5009B8CEB /* AuthenticationLiveTest.swift */; };
-		03D793B2204FA0100055D7BC /* QRScannerViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B1204FA0100055D7BC /* QRScannerViewTest.swift */; };
 		03D793B4204FA2490055D7BC /* ToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B3204FA2490055D7BC /* ToolsTests.swift */; };
 		03D793B6204FE1080055D7BC /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B5204FE1080055D7BC /* ListableTests.swift */; };
 		03D793B8204FE1D90055D7BC /* ListableDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B7204FE1D90055D7BC /* ListableDummy.swift */; };
-		03D793BC204FEB8B0055D7BC /* OmiseGOErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */; };
-		03D793BE204FEE5C0055D7BC /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */; };
+		03D793BC204FEB8B0055D7BC /* OMGErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */; };
 		03E8E6712060BDDE0036CC9E /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6702060BDDE0036CC9E /* RequestParameters.swift */; };
 		03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6722060C5320036CC9E /* SocketEvent.swift */; };
-		03F119C420636CB600C1772C /* SocketMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C320636CB600C1772C /* SocketMessageTests.swift */; };
-		03F119C62063784200C1772C /* SocketChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C52063784200C1772C /* SocketChannelTests.swift */; };
-		03F119CA2063A2C300C1772C /* SocketDispatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */; };
 		03F119CC2063A31E00C1772C /* DummySocketEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */; };
 		03F5C0111F8CB1F80079E073 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F5C0101F8CB19D0079E073 /* Fixtures */; };
 		03F6B9BF203FC38700BB202C /* PaginableDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6B9BE203FC38700BB202C /* PaginableDummy.swift */; };
@@ -147,7 +147,6 @@
 
 /* Begin PBXFileReference section */
 		011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGOTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		030F573520341A2600F54296 /* APIEndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointTest.swift; sourceTree = "<group>"; };
 		0313D6D120317695003E99BA /* QRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
 		0313D6D220317695003E99BA /* QRScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		0313D6D320317695003E99BA /* QRScannerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewModel.swift; sourceTree = "<group>"; };
@@ -155,16 +154,34 @@
 		0313D6D520317695003E99BA /* QRScannerLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerLoadingView.swift; sourceTree = "<group>"; };
 		0313D6D620317695003E99BA /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		0313D6DD203176AC003E99BA /* QRGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
-		0313D6E02031772F003E99BA /* QRGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGeneratorTest.swift; sourceTree = "<group>"; };
-		0313D6E22031776E003E99BA /* QRReaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderTest.swift; sourceTree = "<group>"; };
 		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
 		031863FC1F8F678300D13862 /* SettingFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFixtureTests.swift; sourceTree = "<group>"; };
 		031BB10E1F9861AD0095468F /* FixtureTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTestCase.swift; sourceTree = "<group>"; };
+		031EA6832071DD8B00A34D16 /* DummyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyObject.swift; sourceTree = "<group>"; };
+		031EA6862071DE7F00A34D16 /* APIEndpointTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpointTest.swift; sourceTree = "<group>"; };
+		031EA6872071DE7F00A34D16 /* RequestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTest.swift; sourceTree = "<group>"; };
+		031EA6882071DE7F00A34D16 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
+		031EA68A2071DE7F00A34D16 /* EncodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
+		031EA68B2071DE7F00A34D16 /* DecodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
+		031EA68D2071DE7F00A34D16 /* APIErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
+		031EA68E2071DE7F00A34D16 /* RequestParametersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestParametersTests.swift; sourceTree = "<group>"; };
+		031EA68F2071DE7F00A34D16 /* RequestBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTests.swift; sourceTree = "<group>"; };
+		031EA6992071DEC700A34D16 /* SocketDispatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketDispatcherTests.swift; sourceTree = "<group>"; };
+		031EA69A2071DEC700A34D16 /* FixtureSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureSocketClient.swift; sourceTree = "<group>"; };
+		031EA69B2071DEC700A34D16 /* SocketClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClientTests.swift; sourceTree = "<group>"; };
+		031EA69C2071DEC700A34D16 /* SocketChannelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketChannelTests.swift; sourceTree = "<group>"; };
+		031EA69D2071DEC700A34D16 /* SocketMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketMessageTests.swift; sourceTree = "<group>"; };
+		031EA69F2071DEC800A34D16 /* QRGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGeneratorTest.swift; sourceTree = "<group>"; };
+		031EA6A02071DEC800A34D16 /* QRScannerViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewTest.swift; sourceTree = "<group>"; };
+		031EA6A12071DEC800A34D16 /* MockQRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockQRReader.swift; sourceTree = "<group>"; };
+		031EA6A22071DEC800A34D16 /* QRScannerViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewModelTest.swift; sourceTree = "<group>"; };
+		031EA6A32071DEC800A34D16 /* QRScannerViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerTest.swift; sourceTree = "<group>"; };
+		031EA6A42071DEC800A34D16 /* QRReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderTest.swift; sourceTree = "<group>"; };
+		031EA6B02071DF6500A34D16 /* LiveTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveTestCase.swift; sourceTree = "<group>"; };
 		0334869D2036C7EC0013B37A /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLiveTests.swift; sourceTree = "<group>"; };
 		033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLiveTests.swift; sourceTree = "<group>"; };
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
-		0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveTestCase.swift; path = ../LiveTestCase.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
 		034BAC102057DDB7005E0CD3 /* SocketObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketObject.swift; sourceTree = "<group>"; };
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
@@ -174,8 +191,8 @@
 		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		0365F4F020565011000DA61A /* Listenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listenable.swift; sourceTree = "<group>"; };
 		0370328D1FBBE6B100DBCDDD /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
-		0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
-		037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
+		0370328F1FBBE6B100DBCDDD /* JSONResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
+		037032901FBBE6B100DBCDDD /* JSONListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONListResponse.swift; sourceTree = "<group>"; };
 		037032911FBBE6B100DBCDDD /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		037032921FBBE6B100DBCDDD /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		037032931FBBE6B100DBCDDD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -185,21 +202,19 @@
 		037032971FBBE6B100DBCDDD /* MintedToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MintedToken.swift; sourceTree = "<group>"; };
 		037032991FBBE6B100DBCDDD /* Retrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
 		0370329A1FBBE6B100DBCDDD /* Listable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
-		0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGConfiguration.swift; sourceTree = "<group>"; };
+		0370329C1FBBE6B100DBCDDD /* ClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		0370329D1FBBE6B100DBCDDD /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGHTTPClient.swift; sourceTree = "<group>"; };
+		0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
-		037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
-		037032A31FBBE6B100DBCDDD /* OMGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGRequest.swift; sourceTree = "<group>"; };
+		037032A11FBBE6B100DBCDDD /* OMGError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
+		037032A31FBBE6B100DBCDDD /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		037032A41FBBE6B100DBCDDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		037032BB1FBBE7A300DBCDDD /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		0370519D2040756F009FD899 /* secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestLiveTests.swift; sourceTree = "<group>"; };
 		0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParamsTest.swift; sourceTree = "<group>"; };
-		0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderTests.swift; sourceTree = "<group>"; };
-		0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParametersTests.swift; sourceTree = "<group>"; };
 		0377EB6F205228730036A9D6 /* SocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
-		0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGSocketClient.swift; sourceTree = "<group>"; };
+		0377EBAB20564E7A0036A9D6 /* SocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClient.swift; sourceTree = "<group>"; };
 		0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketMessage.swift; sourceTree = "<group>"; };
 		0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketChannel.swift; sourceTree = "<group>"; };
 		0377EBB120564ECF0036A9D6 /* SocketPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
@@ -210,12 +225,8 @@
 		038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionParams.swift; sourceTree = "<group>"; };
 		038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionParamsTest.swift; sourceTree = "<group>"; };
 		0390B2472028652400B1F65E /* TransactionRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestTest.swift; sourceTree = "<group>"; };
-		03939D8D202866E400F65F20 /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
-		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
-		039656A62064A8C40073951A /* OMGSocketClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGSocketClientTests.swift; sourceTree = "<group>"; };
 		039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyWebSocketDelegate.swift; sourceTree = "<group>"; };
-		039656AA2064D3EC0073951A /* FixtureSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureSocketClient.swift; sourceTree = "<group>"; };
 		0396627D203FFD6B004E5640 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFixtureTests.swift; sourceTree = "<group>"; };
 		03966281204005E8004E5640 /* TransactionLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionLiveTests.swift; sourceTree = "<group>"; };
@@ -224,30 +235,19 @@
 		039DA974203FA94100CCC56A /* PaginationParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParams.swift; sourceTree = "<group>"; };
 		039DA976203FAB0600CCC56A /* TransactionListParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListParams.swift; sourceTree = "<group>"; };
 		039DA978203FB53F00CCC56A /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
-		03A5E8181F8E14570009D5E0 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
-		03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyObject.swift; sourceTree = "<group>"; };
 		03B1E7382040127600134CB4 /* DateDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDummy.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB91F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03BEACB22031833F003A3B0D /* MockQRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQRReader.swift; sourceTree = "<group>"; };
-		03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerTest.swift; sourceTree = "<group>"; };
-		03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewModelTest.swift; sourceTree = "<group>"; };
-		03C2C0781FB93E5200B794AC /* DecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
 		03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFixtureTest.swift; sourceTree = "<group>"; };
 		03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureClient.swift; sourceTree = "<group>"; };
 		03CEF4C01FB01CB5009B8CEB /* AuthenticationLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationLiveTest.swift; sourceTree = "<group>"; };
-		03D793B1204FA0100055D7BC /* QRScannerViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewTest.swift; sourceTree = "<group>"; };
 		03D793B3204FA2490055D7BC /* ToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTests.swift; sourceTree = "<group>"; };
 		03D793B5204FE1080055D7BC /* ListableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		03D793B7204FE1D90055D7BC /* ListableDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableDummy.swift; sourceTree = "<group>"; };
-		03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOErrorTests.swift; sourceTree = "<group>"; };
-		03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
+		03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGErrorTests.swift; sourceTree = "<group>"; };
 		03E8E6702060BDDE0036CC9E /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
 		03E8E6722060C5320036CC9E /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
-		03F119C320636CB600C1772C /* SocketMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketMessageTests.swift; sourceTree = "<group>"; };
-		03F119C52063784200C1772C /* SocketChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChannelTests.swift; sourceTree = "<group>"; };
-		03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDispatcherTests.swift; sourceTree = "<group>"; };
 		03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySocketEventDelegate.swift; sourceTree = "<group>"; };
 		03F5C0101F8CB19D0079E073 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
 		03F6B9BE203FC38700BB202C /* PaginableDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginableDummy.swift; sourceTree = "<group>"; };
@@ -302,27 +302,6 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
-		0313D6DF2031772F003E99BA /* QRCode */ = {
-			isa = PBXGroup;
-			children = (
-				0313D6E02031772F003E99BA /* QRGeneratorTest.swift */,
-				03D793B1204FA0100055D7BC /* QRScannerViewTest.swift */,
-				0313D6E22031776E003E99BA /* QRReaderTest.swift */,
-				03BEACB22031833F003A3B0D /* MockQRReader.swift */,
-				03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */,
-				03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */,
-			);
-			path = QRCode;
-			sourceTree = "<group>";
-		};
-		031443001F8CAA68003DD5BE /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		031443031F8CAD88003DD5BE /* FixtureTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,10 +322,64 @@
 			path = FixtureTests;
 			sourceTree = "<group>";
 		};
+		031EA6852071DE7F00A34D16 /* HTTPTests */ = {
+			isa = PBXGroup;
+			children = (
+				031EA6862071DE7F00A34D16 /* APIEndpointTest.swift */,
+				031EA6872071DE7F00A34D16 /* RequestTest.swift */,
+				031EA6882071DE7F00A34D16 /* HTTPClientTests.swift */,
+			);
+			path = HTTPTests;
+			sourceTree = "<group>";
+		};
+		031EA6892071DE7F00A34D16 /* CodingTests */ = {
+			isa = PBXGroup;
+			children = (
+				031EA68A2071DE7F00A34D16 /* EncodeTests.swift */,
+				031EA68B2071DE7F00A34D16 /* DecodeTests.swift */,
+			);
+			path = CodingTests;
+			sourceTree = "<group>";
+		};
+		031EA68C2071DE7F00A34D16 /* APITests */ = {
+			isa = PBXGroup;
+			children = (
+				031EA68D2071DE7F00A34D16 /* APIErrorTests.swift */,
+				031EA68E2071DE7F00A34D16 /* RequestParametersTests.swift */,
+				031EA68F2071DE7F00A34D16 /* RequestBuilderTests.swift */,
+			);
+			path = APITests;
+			sourceTree = "<group>";
+		};
+		031EA6982071DEC700A34D16 /* SocketsTests */ = {
+			isa = PBXGroup;
+			children = (
+				031EA6992071DEC700A34D16 /* SocketDispatcherTests.swift */,
+				031EA69A2071DEC700A34D16 /* FixtureSocketClient.swift */,
+				031EA69B2071DEC700A34D16 /* SocketClientTests.swift */,
+				031EA69C2071DEC700A34D16 /* SocketChannelTests.swift */,
+				031EA69D2071DEC700A34D16 /* SocketMessageTests.swift */,
+			);
+			path = SocketsTests;
+			sourceTree = "<group>";
+		};
+		031EA69E2071DEC800A34D16 /* QRCodeTests */ = {
+			isa = PBXGroup;
+			children = (
+				031EA69F2071DEC800A34D16 /* QRGeneratorTest.swift */,
+				031EA6A02071DEC800A34D16 /* QRScannerViewTest.swift */,
+				031EA6A12071DEC800A34D16 /* MockQRReader.swift */,
+				031EA6A22071DEC800A34D16 /* QRScannerViewModelTest.swift */,
+				031EA6A32071DEC800A34D16 /* QRScannerViewControllerTest.swift */,
+				031EA6A42071DEC800A34D16 /* QRReaderTest.swift */,
+			);
+			path = QRCodeTests;
+			sourceTree = "<group>";
+		};
 		0345BE231F96FD7E00B4CA16 /* LiveTests */ = {
 			isa = PBXGroup;
 			children = (
-				0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */,
+				031EA6B02071DF6500A34D16 /* LiveTestCase.swift */,
 				0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */,
 				0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */,
 				0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */,
@@ -376,8 +409,8 @@
 		0370328E1FBBE6B100DBCDDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */,
-				037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */,
+				0370328F1FBBE6B100DBCDDD /* JSONResponse.swift */,
+				037032901FBBE6B100DBCDDD /* JSONListResponse.swift */,
 				037032911FBBE6B100DBCDDD /* Setting.swift */,
 				037032921FBBE6B100DBCDDD /* Address.swift */,
 				037032931FBBE6B100DBCDDD /* User.swift */,
@@ -412,12 +445,12 @@
 		0370329B1FBBE6B100DBCDDD /* API */ = {
 			isa = PBXGroup;
 			children = (
-				0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */,
+				0370329C1FBBE6B100DBCDDD /* ClientConfiguration.swift */,
 				0370329D1FBBE6B100DBCDDD /* APIError.swift */,
-				0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */,
+				0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */,
 				037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */,
-				037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */,
-				037032A31FBBE6B100DBCDDD /* OMGRequest.swift */,
+				037032A11FBBE6B100DBCDDD /* OMGError.swift */,
+				037032A31FBBE6B100DBCDDD /* Request.swift */,
 				037BAA9A205F701E004A3952 /* RequestBuilder.swift */,
 				03E8E6702060BDDE0036CC9E /* RequestParameters.swift */,
 			);
@@ -435,6 +468,7 @@
 		038CB3E3202AE92A00E40715 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				031EA6832071DD8B00A34D16 /* DummyObject.swift */,
 				038CB3E4202AE93900E40715 /* QRTestHelper.swift */,
 				03FE64482032960200345281 /* MetadataDummy.swift */,
 				03B1E7382040127600134CB4 /* DateDummy.swift */,
@@ -471,24 +505,18 @@
 		03BCCCB61F8B311600F604DB /* OmiseGOTests */ = {
 			isa = PBXGroup;
 			children = (
-				03F119C220636CAA00C1772C /* Sockets */,
-				0313D6DF2031772F003E99BA /* QRCode */,
+				031EA69E2071DEC800A34D16 /* QRCodeTests */,
+				031EA6982071DEC700A34D16 /* SocketsTests */,
 				038CB3E3202AE92A00E40715 /* Helpers */,
 				03F84C641FC2881A00F21C7B /* ModelTests */,
 				0345BE231F96FD7E00B4CA16 /* LiveTests */,
 				031443031F8CAD88003DD5BE /* FixtureTests */,
-				03A5E8181F8E14570009D5E0 /* ClientTests.swift */,
-				03C2C0781FB93E5200B794AC /* DecodeTests.swift */,
-				03939D8D202866E400F65F20 /* EncodeTests.swift */,
-				03939D912029672F00F65F20 /* OMGRequestTest.swift */,
-				0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */,
-				0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */,
-				030F573520341A2600F54296 /* APIEndpointTest.swift */,
-				03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */,
-				03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */,
+				031EA68C2071DE7F00A34D16 /* APITests */,
+				031EA6892071DE7F00A34D16 /* CodingTests */,
+				031EA6852071DE7F00A34D16 /* HTTPTests */,
+				03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */,
 				03D793B3204FA2490055D7BC /* ToolsTests.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
-				031443001F8CAA68003DD5BE /* Models */,
 				0370519D2040756F009FD899 /* secret.plist */,
 			);
 			path = OmiseGOTests;
@@ -498,7 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				0377EB6F205228730036A9D6 /* SocketDelegate.swift */,
-				0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */,
+				0377EBAB20564E7A0036A9D6 /* SocketClient.swift */,
 				0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */,
 				0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */,
 				0377EBB120564ECF0036A9D6 /* SocketPayload.swift */,
@@ -507,18 +535,6 @@
 				03E8E6722060C5320036CC9E /* SocketEvent.swift */,
 			);
 			path = Websocket;
-			sourceTree = "<group>";
-		};
-		03F119C220636CAA00C1772C /* Sockets */ = {
-			isa = PBXGroup;
-			children = (
-				03F119C320636CB600C1772C /* SocketMessageTests.swift */,
-				03F119C52063784200C1772C /* SocketChannelTests.swift */,
-				03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */,
-				039656A62064A8C40073951A /* OMGSocketClientTests.swift */,
-				039656AA2064D3EC0073951A /* FixtureSocketClient.swift */,
-			);
-			path = Sockets;
 			sourceTree = "<group>";
 		};
 		03F84C641FC2881A00F21C7B /* ModelTests */ = {
@@ -796,37 +812,37 @@
 			files = (
 				0313D6D720317696003E99BA /* QRReader.swift in Sources */,
 				0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */,
-				037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */,
+				037032A71FBBE6B100DBCDDD /* JSONListResponse.swift in Sources */,
 				037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */,
 				0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */,
 				039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */,
 				0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */,
 				037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */,
 				0313D6D820317696003E99BA /* QRScannerView.swift in Sources */,
-				037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */,
+				037032A61FBBE6B100DBCDDD /* JSONResponse.swift in Sources */,
 				037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */,
 				038CB3E7202AF81900E40715 /* TransactionConsumptionParams.swift in Sources */,
 				037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */,
 				0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */,
-				037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */,
+				037032B11FBBE6B100DBCDDD /* ClientConfiguration.swift in Sources */,
 				0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */,
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
 				03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */,
 				037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */,
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
 				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
-				037032B31FBBE6B100DBCDDD /* OMGHTTPClient.swift in Sources */,
-				0377EBAE20564E7A0036A9D6 /* OMGSocketClient.swift in Sources */,
+				037032B31FBBE6B100DBCDDD /* HTTPClient.swift in Sources */,
+				0377EBAE20564E7A0036A9D6 /* SocketClient.swift in Sources */,
 				039DA979203FB53F00CCC56A /* Pagination.swift in Sources */,
 				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
-				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
+				037032B81FBBE6B100DBCDDD /* Request.swift in Sources */,
 				037032A91FBBE6B100DBCDDD /* Address.swift in Sources */,
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
 				0355969920453069000E38DA /* TransactionSource.swift in Sources */,
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
-				037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */,
+				037032B61FBBE6B100DBCDDD /* OMGError.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
 				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
 				0365F4F120565011000DA61A /* Listenable.swift in Sources */,
@@ -847,66 +863,66 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */,
-				0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */,
+				031EA6902071DE8000A34D16 /* APIEndpointTest.swift in Sources */,
 				038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */,
-				03F119C420636CB600C1772C /* SocketMessageTests.swift in Sources */,
-				03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */,
+				031EA6A82071DEC800A34D16 /* SocketChannelTests.swift in Sources */,
 				03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */,
 				039656A92064D3B20073951A /* DummyWebSocketDelegate.swift in Sources */,
-				0371E0C220623DCB00A75BCC /* RequestParametersTests.swift in Sources */,
-				03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */,
-				03D793BE204FEE5C0055D7BC /* APIErrorTests.swift in Sources */,
-				0313D6E12031772F003E99BA /* QRGeneratorTest.swift in Sources */,
-				039656AB2064D3EC0073951A /* FixtureSocketClient.swift in Sources */,
 				03B1E7392040127600134CB4 /* DateDummy.swift in Sources */,
-				03F119C62063784200C1772C /* SocketChannelTests.swift in Sources */,
 				0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */,
 				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
 				0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */,
+				031EA6842071DD8C00A34D16 /* DummyObject.swift in Sources */,
 				0396627E203FFD6B004E5640 /* Extension.swift in Sources */,
 				0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */,
 				034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */,
-				03C2C0791FB93E5200B794AC /* DecodeTests.swift in Sources */,
+				031EA6942071DE8000A34D16 /* DecodeTests.swift in Sources */,
 				217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */,
 				03D793B4204FA2490055D7BC /* ToolsTests.swift in Sources */,
-				03D793B2204FA0100055D7BC /* QRScannerViewTest.swift in Sources */,
+				031EA6A62071DEC800A34D16 /* FixtureSocketClient.swift in Sources */,
 				03CEF4C11FB01CB5009B8CEB /* AuthenticationLiveTest.swift in Sources */,
-				03D793BC204FEB8B0055D7BC /* OmiseGOErrorTests.swift in Sources */,
-				03BEACB32031833F003A3B0D /* MockQRReader.swift in Sources */,
+				03D793BC204FEB8B0055D7BC /* OMGErrorTests.swift in Sources */,
+				031EA6A52071DEC800A34D16 /* SocketDispatcherTests.swift in Sources */,
 				03F84C661FC2883100F21C7B /* AddressTests.swift in Sources */,
-				03BEACB72031A046003A3B0D /* QRScannerViewModelTest.swift in Sources */,
-				0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */,
 				03FE64492032960200345281 /* MetadataDummy.swift in Sources */,
+				031EA6912071DE8000A34D16 /* RequestTest.swift in Sources */,
+				031EA6922071DE8000A34D16 /* HTTPClientTests.swift in Sources */,
 				038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */,
 				03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */,
 				03D793B6204FE1080055D7BC /* ListableTests.swift in Sources */,
+				031EA6972071DE8000A34D16 /* RequestBuilderTests.swift in Sources */,
+				031EA6962071DE8000A34D16 /* RequestParametersTests.swift in Sources */,
 				03D793B8204FE1D90055D7BC /* ListableDummy.swift in Sources */,
+				031EA6A72071DEC800A34D16 /* SocketClientTests.swift in Sources */,
+				031EA6932071DE8000A34D16 /* EncodeTests.swift in Sources */,
 				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */,
+				031EA6AE2071DEC800A34D16 /* QRScannerViewControllerTest.swift in Sources */,
 				0396628420400CE8004E5640 /* TransactionTest.swift in Sources */,
 				03FE644E2032AA7400345281 /* TransactionConsumptionFixtureTests.swift in Sources */,
 				0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */,
 				037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */,
+				031EA6AD2071DEC800A34D16 /* QRScannerViewModelTest.swift in Sources */,
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
+				031EA6AF2071DEC800A34D16 /* QRReaderTest.swift in Sources */,
+				031EA6AA2071DEC800A34D16 /* QRGeneratorTest.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */,
-				03F119CA2063A2C300C1772C /* SocketDispatcherTests.swift in Sources */,
+				031EA6952071DE8000A34D16 /* APIErrorTests.swift in Sources */,
+				031EA6A92071DEC800A34D16 /* SocketMessageTests.swift in Sources */,
+				031EA6AB2071DEC800A34D16 /* QRScannerViewTest.swift in Sources */,
 				03966282204005E8004E5640 /* TransactionLiveTests.swift in Sources */,
 				03F6B9BF203FC38700BB202C /* PaginableDummy.swift in Sources */,
-				030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */,
 				03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */,
 				03F119CC2063A31E00C1772C /* DummySocketEventDelegate.swift in Sources */,
 				0371E0BE2062377600A75BCC /* TransactionRequestParamsTest.swift in Sources */,
+				031EA6AC2071DEC800A34D16 /* MockQRReader.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
-				03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */,
 				03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */,
 				03FE64502032C6BF00345281 /* TransactionConsumptionTest.swift in Sources */,
-				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
+				031EA6B12071DF6500A34D16 /* LiveTestCase.swift in Sources */,
 				038CB3E9202B02B300E40715 /* TransactionConsumptionParamsTest.swift in Sources */,
-				03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */,
 				031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */,
-				0371E0C020623DBE00A75BCC /* RequestBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

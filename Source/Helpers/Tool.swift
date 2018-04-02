@@ -53,7 +53,7 @@ extension String {
         if let date = formatter.date(from: self) {
             return date
         }
-        throw OmiseGOError.unexpected(message: "Invalid date format")
+        throw OMGError.unexpected(message: "Invalid date format")
     }
 
 }

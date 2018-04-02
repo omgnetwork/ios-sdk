@@ -1,5 +1,5 @@
 //
-//  ClientTests.swift
+//  HTTPClientTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 11/10/2017.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class ClientTests: XCTestCase {
+class HTTPClientTests: XCTestCase {
 
     func testInvalidURL() {
         let expectation = self.expectation(description: "Invalid url")
@@ -17,12 +17,12 @@ class ClientTests: XCTestCase {
         let socketURL: String = "invalid socket url @"
         let apiKey: String = "dummy_apikey"
         let authenticationToken: String = "dummy_authenticationtoken"
-        let config = OMGConfiguration(baseURL: URL,
-                                      apiKey: apiKey,
-                                      authenticationToken: authenticationToken)
-        let client = OMGHTTPClient(config: config)
+        let config = ClientConfiguration(baseURL: URL,
+                                         apiKey: apiKey,
+                                         authenticationToken: authenticationToken)
+        let client = HTTPClient(config: config)
         let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
-        let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
+        let request: Request<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {
                 expectation.fulfill()
             }

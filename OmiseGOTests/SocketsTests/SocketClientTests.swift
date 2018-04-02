@@ -1,5 +1,5 @@
 //
-//  OMGSocketClientTests.swift
+//  SocketClientTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 23/3/18.
@@ -10,15 +10,15 @@ import XCTest
 import Starscream
 @testable import OmiseGO
 
-class OMGSocketClientTests: XCTestCase {
+class SocketClientTests: XCTestCase {
 
     var websocket: FixtureWebsocketClient!
-    var socketClient: OMGSocketClient!
+    var socketClient: SocketClient!
 
     override func setUp() {
         super.setUp()
         self.websocket = FixtureWebsocketClient()
-        self.socketClient = OMGSocketClient(websocketClient: self.websocket)
+        self.socketClient = SocketClient(websocketClient: self.websocket)
     }
 
     func testJoinChannelWritesJoinData() {

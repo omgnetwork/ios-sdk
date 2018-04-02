@@ -14,7 +14,7 @@ class ResponseLiveTest: LiveTestCase {
     func testWrongEndpoint() {
         let expectation = self.expectation(description: "Error response")
         let endpoint = APIEndpoint.custom(path: "/not_exising", task: .requestPlain)
-        let request: OMGRequest<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):
