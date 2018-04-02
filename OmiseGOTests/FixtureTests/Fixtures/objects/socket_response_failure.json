@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "success": false,
+  "topic": "a_topic",
+  "ref": "1",
+  "event": "an_event",
+  "data": {
+    "object": "error",
+    "code": "client:invalid_parameter",
+    "description": "Invalid parameters"
+  }
+}

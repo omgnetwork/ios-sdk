@@ -16,6 +16,7 @@ public enum OmiseGOError: Error {
     case unexpected(message: String)
     case configuration(message: String)
     case api(apiError: APIError)
+    case socketError(message: String)
     case other(error: Error)
 
     public var message: String {
@@ -26,6 +27,8 @@ public enum OmiseGOError: Error {
             return "configuration error: \(message)"
         case .other(let error):
             return "I/O error: \(error.localizedDescription)"
+        case .socketError(let message):
+            return "socket error: \(message)"
         case .api(let error):
             return error.description
         }

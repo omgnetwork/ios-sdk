@@ -22,6 +22,7 @@ class UserFixtureTests: FixtureTestCase {
                 XCTAssertEqual(user.username, "john.doe@example.com")
                 XCTAssertEqual(user.metadata["first_name"] as? String, "John")
                 XCTAssertEqual(user.metadata["last_name"] as? String, "Doe")
+                XCTAssertEqual(user.socketTopic, "user:cec34607-0761-4a59-8357-18963e42a1aa")
                 if let object = user.metadata["object"] as? [String: Any] {
                     XCTAssertEqual(object["my_key"] as? String, "my_value")
                     if let nestedObject = object["my_nested_object"] as? [String: Any] {

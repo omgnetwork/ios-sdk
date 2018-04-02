@@ -9,8 +9,11 @@
 /// Represents a transaction source contained in a transaction object
 public struct TransactionSource: Decodable {
 
+    /// The address of the source
     public let address: String
+    /// The amount of token (down to subunit to unit)
     public let amount: Double
+    /// The minted token of the source
     public let mintedToken: MintedToken
 
     private enum CodingKeys: String, CodingKey {

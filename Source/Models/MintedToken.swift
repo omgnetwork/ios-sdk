@@ -34,10 +34,8 @@ extension MintedToken: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: MintedToken, rhs: MintedToken) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: MintedToken, rhs: MintedToken) -> Bool {
-    return lhs.id == rhs.id
 }

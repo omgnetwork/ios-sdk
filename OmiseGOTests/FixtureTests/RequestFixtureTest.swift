@@ -12,14 +12,9 @@ import XCTest
 class RequestFixtureTest: FixtureTestCase {
 
     func testBuildRequest() {
-        let request: OMGRequest<DummyTestObject> =
-            OMGRequest(client: self.testCustomClient,
-                       endpoint: APIEndpoint.custom(path: "", task: .requestPlain)) { _ in}
         do {
-            guard let urlRequest = try request.buildURLRequest() else {
-                XCTFail("Failed to build the request")
-                return
-            }
+            let requestParams = RequestParameters(config: self.testCustomClient.config)
+            let urlRequest = try RequestBuilder(requestParameters: requestParams).buildHTTPURLRequest(withEndpoint: .custom(path: "", task: .requestPlain))
             guard let httpHeaders = urlRequest.allHTTPHeaderFields else {
                 XCTFail("Missing HTTP headers")
                 return

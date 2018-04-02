@@ -16,7 +16,7 @@ class AuthenticationLiveTest: LiveTestCase {
         let config = OMGConfiguration(baseURL: self.validBaseURL,
                                       apiKey: self.validAPIKey,
                                       authenticationToken: self.invalidAuthenticationToken)
-        let client = OMGClient(config: config)
+        let client = OMGHTTPClient(config: config)
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {
@@ -43,7 +43,7 @@ class AuthenticationLiveTest: LiveTestCase {
         let config = OMGConfiguration(baseURL: self.validBaseURL,
                                       apiKey: self.invalidAPIKey,
                                       authenticationToken: self.validAuthenticationToken)
-        let client = OMGClient(config: config)
+        let client = OMGHTTPClient(config: config)
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {

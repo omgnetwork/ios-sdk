@@ -48,12 +48,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
     }
 
     func testCallsDelegateWithTransactionRequest() {
-        let mockedTR = TransactionRequest(id: "123",
-                                          type: .receive,
-                                          mintedToken: StubGenerator.mintedToken(),
-                                          amount: nil, address: "",
-                                          correlationId: "",
-                                          status: .valid)
+        let mockedTR = StubGenerator.transactionRequest()
         self.mockViewModel.onGetTransactionRequest?(mockedTR)
         XCTAssertEqual(self.mockDelegate.transactionRequest, mockedTR)
     }

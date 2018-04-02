@@ -8,9 +8,11 @@
 
 /// The different types of request that can be generated
 ///
-/// - receive: The initiator wants to receive a specified token
+/// - receive: The requester wants to receive an amount of token
+/// - send: The requester wants to send an amount of token
 public enum TransactionRequestType: String, Codable {
     case receive
+    case send
 }
 
 /// The status of the transaction request
@@ -23,15 +25,49 @@ public enum TransactionRequestStatus: String, Decodable {
 }
 
 /// Represents a transaction request
-public struct TransactionRequest: Decodable {
+public struct TransactionRequest {
 
+    /// The unique identifier of the request
     public let id: String
+    /// The type of the request (send of receive)
     public let type: TransactionRequestType
+    /// The minted token for the request
+    /// In the case of a type "send", this will be the token taken from the requester
+    /// In the case of a type "receive" this will be the token received by the requester
     public let mintedToken: MintedToken
+    /// The amount of minted token to use for the transaction (down to subunit to unit)
+    /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
+    /// The address from which to send or receive the minted tokens
     public let address: String?
+    /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
+    /// The status of the request (valid or expired)
     public let status: TransactionRequestStatus
+    /// The topic which can be listened in order to receive events regarding this request
+    public let socketTopic: String
+    /// A boolean indicating if the request needs a confirmation from the requester before being proceeded
+    public let requireConfirmation: Bool
+    /// The maximum number of time that this request can be consumed
+    public let maxConsumptions: Int?
+    /// The amount of time in milisecond during which a consumption is valid
+    public let consumptionLifetime: Int?
+    /// The date when the request will expire and not be consumable anymore
+    public let expirationDate: Date?
+    /// The reason why the request expired
+    public let expirationReason: String?
+    /// The date when the request expired
+    public let expiredAt: Date?
+    /// Allow or not the consumer to override the amount specified in the request
+    public let allowAmountOverride: Bool
+    /// Additional metadata for the request
+    public let metadata: [String: Any]
+
+}
+
+extension TransactionRequest: Listenable {}
+
+extension TransactionRequest: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -41,6 +77,35 @@ public struct TransactionRequest: Decodable {
         case address
         case correlationId = "correlation_id"
         case status
+        case socketTopic = "socket_topic"
+        case requireConfirmation = "require_confirmation"
+        case maxConsumptions = "max_consumptions"
+        case consumptionLifetime = "consumption_lifetime"
+        case expirationDate = "expiration_date"
+        case expirationReason = "expiration_reason"
+        case expiredAt = "expired_at"
+        case allowAmountOverride = "allow_amount_override"
+        case metadata
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        type = try container.decode(TransactionRequestType.self, forKey: .type)
+        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
+        amount = try container.decodeIfPresent(Double.self, forKey: .amount)
+        address = try container.decodeIfPresent(String.self, forKey: .address)
+        correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
+        status = try container.decode(TransactionRequestStatus.self, forKey: .status)
+        socketTopic = try container.decode(String.self, forKey: .socketTopic)
+        requireConfirmation = try container.decode(Bool.self, forKey: .requireConfirmation)
+        maxConsumptions = try container.decodeIfPresent(Int.self, forKey: .maxConsumptions)
+        consumptionLifetime = try container.decodeIfPresent(Int.self, forKey: .consumptionLifetime)
+        expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
+        expirationReason = try container.decodeIfPresent(String.self, forKey: .expirationReason)
+        expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
+        allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
     }
 
 }
@@ -69,7 +134,7 @@ extension TransactionRequest: Retrievable {
     ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func generateTransactionRequest(using client: OMGClient,
+    public static func generateTransactionRequest(using client: OMGHTTPClient,
                                                   params: TransactionRequestCreateParams,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
@@ -87,7 +152,7 @@ extension TransactionRequest: Retrievable {
     ///   - id: The id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func retrieveTransactionRequest(using client: OMGClient,
+    public static func retrieveTransactionRequest(using client: OMGHTTPClient,
                                                   id: String,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
@@ -105,10 +170,8 @@ extension TransactionRequest: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: TransactionRequest, rhs: TransactionRequest) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: TransactionRequest, rhs: TransactionRequest) -> Bool {
-    return lhs.id == rhs.id
 }

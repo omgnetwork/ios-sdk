@@ -15,6 +15,11 @@ public struct TransactionListParams {
     /// An optional address owned by the current user
     public let address: String?
 
+    /// Initialize the params used to query a paginated list of transactions
+    ///
+    /// - Parameters:
+    ///   - paginationParams: The params to use for the pagination
+    ///   - address: An optional address belonging to the current user
     public init(paginationParams: PaginationParams<Transaction>, address: String?) {
         self.paginationParams = paginationParams
         self.address = address
@@ -33,10 +38,6 @@ extension TransactionListParams: Parametrable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(address, forKey: .address)
         try paginationParams.encode(to: encoder)
-    }
-
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
     }
 
 }

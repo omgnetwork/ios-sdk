@@ -10,7 +10,7 @@
 
 struct ListableDummy: Decodable, Listable {
 
-    static func list(using client: OMGClient,
+    static func list(using client: OMGHTTPClient,
                      callback: @escaping ListRequestCallback) {
         let endpoint = APIEndpoint.custom(path: "dummy.listable.failure", task: .requestPlain)
         self.list(using: client, endpoint: endpoint, callback: callback)
@@ -20,7 +20,7 @@ struct ListableDummy: Decodable, Listable {
 
 struct PaginatedListableDummy: Decodable, PaginatedListable {
 
-    static func list(using client: OMGClient,
+    static func list(using client: OMGHTTPClient,
                      callback: @escaping PaginatedListableDummy.ListRequestCallback) {
         let endpoint = APIEndpoint.custom(path: "dummy.listable.failure", task: .requestPlain)
         self.list(using: client, endpoint: endpoint, callback: callback)

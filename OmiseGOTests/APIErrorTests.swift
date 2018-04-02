@@ -33,41 +33,57 @@ class APIErrorTests: XCTestCase {
 class APIErrorCodeTests: XCTestCase {
 
     func testAPIErrorCodeInit() {
-        XCTAssertEqual(APIErrorCode(code: "client:invalid_parameter"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:invalid_parameter"),
                        APIErrorCode.invalidParameters)
-        XCTAssertEqual(APIErrorCode(code: "client:invalid_version"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:invalid_version"),
                        APIErrorCode.invalidVersion)
-        XCTAssertEqual(APIErrorCode(code: "client:permission_error"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:permission_error"),
                        APIErrorCode.permissionError)
-        XCTAssertEqual(APIErrorCode(code: "client:endpoint_not_found"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:endpoint_not_found"),
                        APIErrorCode.endPointNotFound)
-        XCTAssertEqual(APIErrorCode(code: "client:invalid_api_key"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:invalid_api_key"),
                        APIErrorCode.invalidAPIKey)
-        XCTAssertEqual(APIErrorCode(code: "server:internal_server_error"),
+        XCTAssertEqual(APIErrorCode(rawValue: "server:internal_server_error"),
                        APIErrorCode.internalServerError)
-        XCTAssertEqual(APIErrorCode(code: "server:unknown_error"),
+        XCTAssertEqual(APIErrorCode(rawValue: "server:unknown_error"),
                        APIErrorCode.unknownServerError)
-        XCTAssertEqual(APIErrorCode(code: "user:access_token_not_found"),
+        XCTAssertEqual(APIErrorCode(rawValue: "user:access_token_not_found"),
                        APIErrorCode.accessTokenNotFound)
-        XCTAssertEqual(APIErrorCode(code: "user:access_token_expired"),
+        XCTAssertEqual(APIErrorCode(rawValue: "user:access_token_expired"),
                        APIErrorCode.accessTokenExpired)
-        XCTAssertEqual(APIErrorCode(code: "client:no_idempotency_token_provided"),
+        XCTAssertEqual(APIErrorCode(rawValue: "client:no_idempotency_token_provided"),
                        APIErrorCode.missingIdempotencyToken)
-        XCTAssertEqual(APIErrorCode(code: "an other code"),
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction:same_address"),
+                       APIErrorCode.sameAddress)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
+                       APIErrorCode.websocketError)
+        XCTAssertEqual(APIErrorCode(rawValue: "request:expired"),
+                       APIErrorCode.requestExpired)
+        XCTAssertEqual(APIErrorCode(rawValue: "request:max_consumptions_reached"),
+                       APIErrorCode.maxConsumptionsReached)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:not_owner"),
+                       APIErrorCode.notOwnerOfTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),
+                       APIErrorCode.invalidMintedTokenForTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:forbidden_channel"),
+                       APIErrorCode.forbiddenChannel)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:channel_not_found"),
+                       APIErrorCode.channelNotFound)
+        XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }
 
     func testEquatable() {
-        let error1 = APIErrorCode(code: "client:invalid_parameter")
-        let error2 = APIErrorCode(code: "client:invalid_parameter")
-        let error3 = APIErrorCode(code: "client:invalid_version")
+        let error1 = APIErrorCode(rawValue: "client:invalid_parameter")
+        let error2 = APIErrorCode(rawValue: "client:invalid_parameter")
+        let error3 = APIErrorCode(rawValue: "client:invalid_version")
         XCTAssertEqual(error1, error2)
         XCTAssertNotEqual(error1, error3)
     }
 
     func testHashable() {
-        let error1 = APIErrorCode(code: "client:invalid_parameter")
-        let error2 = APIErrorCode(code: "client:invalid_parameter")
+        let error1 = APIErrorCode(rawValue: "client:invalid_parameter")!
+        let error2 = APIErrorCode(rawValue: "client:invalid_parameter")!
         let set: Set<APIErrorCode> = [error1, error2]
         XCTAssertEqual(error1.hashValue, "client:invalid_parameter".hashValue)
         XCTAssertEqual(set.count, 1)

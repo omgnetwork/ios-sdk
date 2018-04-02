@@ -57,6 +57,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "OMG_WEBSOCKET_URL"
+            value = "${OMG_WEBSOCKET_URL}"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "OMG_MINTED_TOKEN_ID"
             value = "$(OMG_MINTED_TOKEN_ID)"
             isEnabled = "YES">

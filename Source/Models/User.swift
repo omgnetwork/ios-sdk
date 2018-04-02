@@ -7,7 +7,7 @@
 //
 
 /// Represents the current user
-public struct User {
+public struct User: Listenable {
 
     /// The uniq identifier on the wallet server side
     public let id: String
@@ -17,6 +17,8 @@ public struct User {
     public let username: String
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
+    /// The socket URL from where to receive from
+    public let socketTopic: String
 
 }
 
@@ -27,6 +29,7 @@ extension User: Decodable {
         case providerUserId = "provider_user_id"
         case username
         case metadata
+        case socketTopic = "socket_topic"
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +38,7 @@ extension User: Decodable {
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
         do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
+        socketTopic = try container.decode(String.self, forKey: .socketTopic)
     }
 
 }
@@ -49,7 +53,7 @@ extension User: Retrievable {
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getCurrent(using client: OMGClient,
+    public static func getCurrent(using client: OMGHTTPClient,
                                   callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getCurrentUser, callback: callback)
     }
@@ -62,10 +66,8 @@ extension User: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: User, rhs: User) -> Bool {
-    return lhs.id == rhs.id
 }

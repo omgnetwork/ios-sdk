@@ -44,7 +44,7 @@ public class QRScannerViewController: UIViewController {
     }()
 
     init?(delegate: QRScannerViewControllerDelegate,
-          client: OMGClient,
+          client: OMGHTTPClient,
           cancelButtonTitle: String,
           viewModel: QRScannerViewModelProtocol) {
         guard viewModel.isQRCodeAvailable() else {
@@ -66,7 +66,7 @@ public class QRScannerViewController: UIViewController {
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - cancelButtonTitle: The title of the cancel button
     /// - Returns: An optional cancellable request.
-    public convenience init?(delegate: QRScannerViewControllerDelegate, client: OMGClient, cancelButtonTitle: String) {
+    public convenience init?(delegate: QRScannerViewControllerDelegate, client: OMGHTTPClient, cancelButtonTitle: String) {
         self.init(delegate: delegate,
                   client: client,
                   cancelButtonTitle: cancelButtonTitle,

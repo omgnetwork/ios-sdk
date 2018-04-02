@@ -14,7 +14,7 @@ public extension Listable where Self: Decodable {
     public typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
-    internal static func list(using client: OMGClient,
+    internal static func list(using client: OMGHTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { (result) in
@@ -36,7 +36,7 @@ public extension PaginatedListable where Self: Decodable {
     public typealias ListRequestCallback = (Response<OMGJSONPaginatedListResponse<Self>>) -> Void
 
     @discardableResult
-    internal static func list(using client: OMGClient,
+    internal static func list(using client: OMGHTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { (result) in

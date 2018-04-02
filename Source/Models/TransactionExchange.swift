@@ -9,6 +9,7 @@
 /// Represents a transaction exchange
 public struct TransactionExchange: Decodable {
 
+    /// The exchange rate used in the transaction
     public let rate: Double
 
 }

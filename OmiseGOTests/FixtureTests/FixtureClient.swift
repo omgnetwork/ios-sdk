@@ -9,7 +9,7 @@
 import Foundation
 @testable import OmiseGO
 
-class FixtureClient: OMGClient {
+class FixtureClient: OMGHTTPClient {
     let fixturesDirectoryURL: URL
 
     public override init(config: OMGConfiguration) {

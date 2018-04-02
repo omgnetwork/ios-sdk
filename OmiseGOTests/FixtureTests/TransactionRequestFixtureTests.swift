@@ -30,6 +30,16 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                     XCTAssertEqual(transactionRequest.amount, 1337)
                     XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                     XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+                    XCTAssertEqual(transactionRequest.status, .valid)
+                    XCTAssertEqual(transactionRequest.socketTopic, "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc")
+                    XCTAssertTrue(transactionRequest.requireConfirmation)
+                    XCTAssertEqual(transactionRequest.maxConsumptions, 1)
+                    XCTAssertEqual(transactionRequest.consumptionLifetime, 1000)
+                    XCTAssertEqual(transactionRequest.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+                    XCTAssertEqual(transactionRequest.expirationReason, "Expired")
+                    XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+                    XCTAssertTrue(transactionRequest.allowAmountOverride)
+                    XCTAssertTrue(transactionRequest.metadata.isEmpty)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }
@@ -53,6 +63,16 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                         XCTAssertEqual(transactionRequest.amount, 1337)
                         XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                         XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+                        XCTAssertEqual(transactionRequest.status, .valid)
+                        XCTAssertEqual(transactionRequest.socketTopic, "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc")
+                        XCTAssertTrue(transactionRequest.requireConfirmation)
+                        XCTAssertEqual(transactionRequest.maxConsumptions, 1)
+                        XCTAssertEqual(transactionRequest.consumptionLifetime, 1000)
+                        XCTAssertEqual(transactionRequest.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+                        XCTAssertEqual(transactionRequest.expirationReason, "Expired")
+                        XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+                        XCTAssertTrue(transactionRequest.allowAmountOverride)
+                        XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     case .fail(error: let error):
                         XCTFail("\(error)")
                     }

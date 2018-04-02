@@ -8,17 +8,31 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [CocoaPods](#cocoapods)
+  - [Carthage](#carthage)
 - [Usage](#usage)
-  - [Initialization](#initialization)
-  - [Retrieving resources](#retrieving-resources)
-    - [Get the current user](#get-the-current-user)
-    - [Get the addresses of the current user](#get-the-addresses-of-the-current-user)
-    - [Get the provider settings](#get-the-provider-settings)
-    - [Get the current user's transactions](#get-the-current-users-transactions)
-  - [QR codes](#qr-codes)
-    - [Generation](#generation)
-    - [Scanning](#scanning)
-    - [Consumption](#consumption)
+  - [HTTP Requests](#http-requests)
+    - [Initialization](#initialization-of-the-http-client)
+    - [Retrieving resources](#retrieving-resources)
+      - [Get the current user](#get-the-current-user)
+      - [Get the addresses of the current user](#get-the-addresses-of-the-current-user)
+      - [Get the provider settings](#get-the-provider-settings)
+      - [Get the current user's transactions](#get-the-current-users-transactions)
+    - [Transferring tokens](#transferring-tokens)
+      - [Generate a transaction request](#generate-a-transaction-request)
+      - [Consume a transaction request](#consume-a-transaction-request)
+      - [Approve a transaction consumption](#approve-a-transaction-consumption)
+      - [Reject a transaction consumption](#reject-a-transaction-consumption)
+    - [QR codes](#qr-codes)
+      - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
+      - [Scan a QR code](#scan-a-qr-code)
+  - [Websockets Requests](#websockets-requests)
+    - [Initialization](#initialization-of-the-websocket-client)
+    - [Listenable resources](#listenable-resources)
+      - [Transaction request events](#transaction-request-events)
+      - [Transaction consumption events](#transaction-consumption-events)
+      - [User events](#user-events)
+      - [Stop listening](#stop-listening-for-events)
 - [Tests](#tests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -27,7 +41,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 
 # Requirements
 
-- iOS 9.0+
+- iOS 10.0+
 - Xcode 9+
 - Swift 4.0
 
@@ -87,21 +101,27 @@ Drag the built `OmiseGO.framework` into your Xcode project.
 
 # Usage
 
-### Initialization
+Different part of the SDK work with 2 different protocols: http(s) and ws(s).
 
-Before using the SDK to retrieve a resource, you need to initialize a client (`APIClient`) with an `APIConfiguration` object.
+## HTTP Requests
+
+This section describes the use of the http client in order to retrieve or create resources.
+
+### Initialization of the HTTP client
+
+Before using the SDK to retrieve a resource, you need to initialize an `OMGHTTPClient` with an `OMGConfiguration` object.
 You should do this as soon as you obtain a valid authentication token corresponding to the current user from the Wallet API.
 
 ```swift
-let configuration = OMGConfiguration(baseURL: "your.base.url",
+let configuration = OMGConfiguration(baseURL: "https://your.base.url/api",
                                      apiKey: "apiKey",
                                      authenticationToken: "authenticationToken")
-let client = OMGClient(config: configuration)
+let client = OMGHTTPClient(config: configuration)
 ```
 
 Where:
-- `baseURL` is the URL of the OmiseGO Wallet API.
-- `apiKey` is the api key generated from your OmiseGO admin panel.
+- `baseURL` is the URL of the OmiseGO Wallet API, this needs to be an http(s) url.
+- `apiKey` is the API key (typically generated on the admin panel)
 - `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
 > You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
 
@@ -118,14 +138,15 @@ public enum Response<Data> {
 ```
 
 You can then use a switch-case to access the `data` if the call succeeded or `error` if the call failed.
-The `OmiseGOError` represents an error that have occurred before, during or after the request. It's an enum with 4 cases:
+The `OmiseGOError` represents an error that have occurred before, during or after the request. It's an enum with 5 cases:
 ```swift
 case unexpected(message: String)
 case configuration(message: String)
 case api(apiError: APIError)
+case socketError(message: String)
 case other(error: Error)
 ```
-An `Error` returned by the OmiseGO Wallet server will be mapped to an `APIError` which contains informations about the failure.
+An error returned by the OmiseGO Wallet server will be mapped to an `APIError` which contains informations about the failure.
 > There are some errors that you really want to handle, especially the ones related to authentication failure. This may occur if the `authenticationToken` is invalid or expired, you can check this using the `isAuthorizationError()` method on `APIError`. If the `authenticationToken` is invalid, you should query a new one and setup the client again.
 
 #### Get the current user:
@@ -241,21 +262,27 @@ Where:
   - `isLastPage` is a bool indicating if the page received is the last page
 
 
-### QR codes
+### Transferring tokens
 
-This SDK offers the possibility to generate and consume transaction requests.
-Typically these actions should be done through the generation and scan of QR codes.
+In order to transfer tokens between 2 addresses, the SDK offers the possibility to generate and consume transaction requests.
+To make a transaction happen, a `TransactionRequest` needs to be created and consumed by a `TransactionConsumption`.
 
-#### Generation
+#### Generate a transaction request
 
-To generate a new transaction request you can call:
+To generate a transaction request you can call:
 
 ```swift
 let params = TransactionRequestCreateParams(type: .receive,
-                                            mintedTokenId: "a_token_id",
-                                            amount: 13.37,
-                                            address: "receiver_address",
-                                            correlationId: "correlation_id")
+                                            mintedTokenId: "a token id",
+                                            amount: 1337,
+                                            address: "an address",
+                                            correlationId: "a correlation id",
+                                            requireConfirmation: false,
+                                            maxConsumptions: 10,
+                                            consumptionLifetime: 60000,
+                                            expirationDate: nil,
+                                            allowAmountOverride: true,
+                                            metadata: [:])!
 TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
     switch transactionRequestResult {
     case .success(data: let transactionRequest):
@@ -268,15 +295,95 @@ TransactionRequest.generateTransactionRequest(using: client, params: params) { (
 Where:
 - `params` is a `TransactionRequestCreateParams` struct constructed using:
 
-  - `type`: The QR code type, only supports `.receive` for now.
+  - `type`: The QR code type, `.receive` or `.send`.
   - `mintedTokenId`: The id of the desired token.
+  In the case of a type "send", this will be the token taken from the requester. In the case of a type "receive" this will be the token received by the requester
   - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
   - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
   - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+  - `requireConfirmation`: (optional) A boolean indicating if the request [needs a confirmation](#transaction-request-events) from the requester before being proceeded
+  - `maxConsumptions`: (optional) The maximum number of time that this request can be consumed
+  - `consumptionLifetime`: (optional) The amount of time in millisecond during which a consumption is valid
+  - `expirationDate`: (optional) The date when the request will expire and not be consumable anymore
+  - `allowAmountOverride`: (optional) Allow or not the consumer to override the amount specified in the request. This needs to be true if the amount is not specified
+  > Note that if `amount` is nil and `allowAmountOverride` is false the init will fail and return `nil`.
 
-A `TransactionRequest` object is passed to the success callback, you can get its QR code representation using `transactionRequest.qrImage()`.
+  - `metadata`: Additional metadata embedded with the request
 
-#### Scanning
+#### Consume a transaction request
+
+The previously created `transactionRequest` can then be consumed:
+
+```swift
+guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
+                                                address: "an address",
+                                                mintedTokenId: "a minted token",
+                                                amount: 1337,
+                                                idempotencyToken: "an idempotency token",
+                                                expirationDate: nil,
+                                                correlationId: "a correlation id",
+                                                metadata: [:])!
+TransactionConsumption.consumeTransactionRequest(using: client, params: params) { (transactionConsumptionResult) in
+    switch transactionConsumptionResult {
+    case .success(data: let transactionConsumption):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+}
+```
+
+Where `params` is a `TransactionConsumptionParams` struct constructed using:
+
+- `transactionRequest`: The transactionRequest obtained from the QR scanner.
+- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
+- `mintedTokenId`: (optional) The minted token id to use for the consumption.
+- `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
+> Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
+
+- `idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
+- `expirationDate`: (optional) The date when the consumption will expire.
+- `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
+- `metadata`: A dictionary of additional data to be stored for this transaction consumption.
+
+
+#### Approve a transaction consumption
+
+
+```swift
+transactionConsumption.approve(using:client, callback: { (result) in
+    switch result {
+    case .success(data: let transactionConsumption):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+})
+```
+
+#### Reject a transaction consumption
+
+```swift
+transactionConsumption.reject(using:client, callback: { (result) in
+    switch result {
+    case .success(data: let transactionConsumption):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+})
+```
+
+### QR codes
+
+To improve the UX of the transfers, the SDK offers the possibility to generate a QR code from a `TransactionRequest` and scan it in order to generate a `TransactionConsumption`
+
+#### Create a QR code representation of a transaction request
+
+Once a `TransactionRequest` is created you can get its QR code representation using `transactionRequest.qrImage()`.
+This method takes an optional `CGSize` param that can be used to define the expected size of the generated QR image.
+
+#### Scan a QR code
 
 You can then use the integrated `QRScannerViewController` to scan the generated QR code.
 
@@ -306,41 +413,99 @@ func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: O
 }
 ```
 
-When the scanner successfully decodes a transaction request it will call its delegate method `scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)`.
+When the scanner successfully decodes a `TransactionRequest` it will call its delegate method `scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)`.
 
-You should use this `transactionRequest` to generate a `TransactionConsumeParams` in order to consume the request.
+You should use this `TransactionRequest` to generate a `TransactionConsumptionParams` in order to [consume the request](#consume-a-transaction-request).
 
-#### Consumption
+
+## Websockets Requests
+
+This section describes the use of the socket client in order to listen for events for a resource.
+
+### Initialization of the websocket client
+
+
+Similarly to the HTTP client, the `OMGSocketClient` needs to be first initialized  with a `OMGConfiguration` before using it. The initializer takes an optional `SocketConnectionDelegate` delegate which can be used to listen for connection change events (connection and disconnection).
 
 ```swift
-guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
-                                            address: nil,
-                                            mintedTokenId: nil,
-                                            amount: nil,
-                                            idempotencyToken: self.idemPotencyToken,
-                                            correlationId: nil,
-                                            metadata: [:]) else { return }
-TransactionConsume.consumeTransactionRequest(using: client, params: params) { (transactionConsumeResult) in
-    switch transactionConsumeResult {
-    case .success(data: let transactionConsume):
-        // Handle success
-    case .fail(error: let error):
-        // Handle error
-    }
-}
+let configuration = OMGConfiguration(baseURL: "wss://your.base.url/api/socket",
+                                     apiKey: "apiKey",
+                                     authenticationToken: "authenticationToken")
+let client = OMGSocketClient(config: configuration, delegate: self)
 ```
 
-Where `params` is a `TransactionConsumeParams` struct constructed using:
+Where:
+- `baseURL` is the URL of the OmiseGO Wallet API, this needs to be an ws(s) url.
+- `apiKey` is the API key (typically generated on the admin panel)
+- `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
+> You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
 
-- `transactionRequest`: The transactionRequest obtained from the QR scanner.
-- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
-- `mintedTokenId`: (optional) The minted token id to use for the consumption.
-- `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
-> Note that if the amount was not specified in the transaction request it needs to be specified here, otherwise the init will fail.
+### Listenable resources
 
-- `idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
-- `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
-- `metadata`: A dictionary of additional data to be stored for this transaction consumption.
+Some resources are listenable, meaning that an `OMGSocketClient` can be used establish a websocket connection and an object conforming to a subclass of the `EventDelegate` protocol can be used to listen for events incoming on this resource.
+The `EventDelegate` protocol contains 3 common methods for all event delegates:
+
+```swift
+func didStartListening()
+func didStopListening()
+func didReceiveError(_ error: OmiseGOError)
+```
+
+- `didStartListening` can be used to know when the socket channel has been established and is ready to receive events.
+- `didStopListening` can be used to know when the socket channel connection is closed and is not receiving events anymore.
+- `didReceiveError` is called when there is an incoming error object.
+
+And for each of the listenable resource there is an other specific method to receive related events:
+
+#### Transaction request events
+
+When creating a `TransactionRequest` that requires a confirmation it is possible to listen for all incoming confirmation using:
+
+`transactionRequest.startListeningEvents(withClient: client, eventDelegate: self)`
+
+Where:
+- `client` is a `OMGSocketClient`
+- `eventDelegate` is a `TransactionRequestEventDelegate` that will receive incoming events.
+
+An object conforming to `TransactionRequestEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+
+This method will be called when a `TransactionConsumption` is trying to consume the `TransactionRequest`.
+This allows the requester to [confirm](#confirm-a-transaction-consumption) or not the consumption if legitimate.
+
+
+#### Transaction consumption events
+
+Similarly to transaction request events, a `TransactionConsumption` can be listened for incoming confirmations using:
+
+`consumption.startListeningEvents(withClient: client, eventDelegate: self)`
+
+Where:
+- `client` is a `OMGSocketClient`
+- `eventDelegate` is a `TransactionConsumptionEventDelegate` that will receive incoming events.
+
+An object conforming to `TransactionConsumptionEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionConfirmation(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+
+This method will be called when a `TransactionConsumption` is confirmed by the requester.
+
+
+#### User events
+
+A `User` can also be listened and will receive all events that are related to him:
+
+`user.startListeningEvents(withClient: self.socketClient, eventDelegate: self)`
+
+Where:
+- `client` is a `OMGSocketClient`
+- `eventDelegate` is a `UserEventDelegate` that will receive incoming events.
+
+An object conforming to `UserEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceive(_ object: WebsocketObject, forEvent event: SocketEvent)`.
+
+This method will be called when any event regarding the user is received. `WebsocketObject` can be enumerated to get the corresponding object received.
+
+
+#### Stop listening for events
+
+When you don't need to receive events anymore, you should call `stopListening(withClient client: OMGSocketClient)` for the corresponding `Listenable` object. This will leave the corresponding socket channel and close the connection if no other channel is active.
 
 ---
 
@@ -352,12 +517,15 @@ In order to run the live tests (bound to a working server) you need to fill the 
 
 The variables are:
 - `OMG_BASE_URL`
+- `OMG_WEBSOCKET_URL`
 - `OMG_API_KEY`
 - `OMG_AUTHENTICATION_TOKEN`
 - `OMG_MINTED_TOKEN_ID`
 
 You can then for example run the tests with the following command:
-`xcodebuild -project OmiseGO.xcodeproj -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" test`
+
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/socket" test`
+
 
 ---
 

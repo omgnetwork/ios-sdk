@@ -11,7 +11,7 @@ import XCTest
 
 class APIEndpointTest: XCTestCase {
 
-    let validTransactionConsumeParams = StubGenerator.transactionConsumeParams()
+    let validTransactionConsumptionParams = StubGenerator.transactionConsumptionParams()
     let validTransactionCreateParams = StubGenerator.transactionRequestCreateParams()
     let validTransactionGetParams = StubGenerator.transactionRequestGetParams()
     let validTransactionListParams = StubGenerator.transactionListParams()
@@ -26,7 +26,7 @@ class APIEndpointTest: XCTestCase {
                        "/me.create_transaction_request")
         XCTAssertEqual(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).path,
                        "/me.get_transaction_request")
-        XCTAssertEqual(APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumeParams).path,
+        XCTAssertEqual(APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).path,
                        "/me.consume_transaction_request")
         XCTAssertEqual(APIEndpoint.logout.path, "/logout")
     }
@@ -60,7 +60,7 @@ class APIEndpointTest: XCTestCase {
         case .requestParameters: break
         default: XCTFail("Wrong task")
         }
-        switch APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumeParams).task {
+        switch APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).task {
         case .requestParameters: break
         default: XCTFail("Wrong task")
         }
@@ -75,8 +75,8 @@ class APIEndpointTest: XCTestCase {
         XCTAssertNil(APIEndpoint.transactionRequestCreate(params: self.validTransactionCreateParams).additionalHeaders)
         XCTAssertNil(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).additionalHeaders)
         XCTAssertEqual(
-            APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumeParams).additionalHeaders!,
-            ["Idempotency-Token": self.validTransactionConsumeParams.idempotencyToken])
+            APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).additionalHeaders!,
+            ["Idempotency-Token": self.validTransactionConsumptionParams.idempotencyToken])
     }
 
     func testMakeURL() {

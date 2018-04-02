@@ -22,7 +22,6 @@ struct DateDummy: Decodable {
 
 }
 
-
 struct DateInvalidDummy: Decodable {
 
     let invalidDate: Date

@@ -25,7 +25,7 @@ extension Address: Listable {
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getAll(using client: OMGClient,
+    public static func getAll(using client: OMGHTTPClient,
                               callback: @escaping Address.ListRequestCallback) -> Address.ListRequest? {
         return self.list(using: client, endpoint: .getAddresses, callback: callback)
     }
@@ -38,7 +38,7 @@ extension Address: Listable {
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getMain(using client: OMGClient,
+    public static func getMain(using client: OMGHTTPClient,
                                callback: @escaping Address.RetrieveRequestCallback) -> Address.ListRequest? {
         return self.list(using: client, endpoint: .getAddresses, callback: { (response) in
             switch response {
@@ -63,10 +63,8 @@ extension Address: Hashable {
         return self.address.hashValue
     }
 
-}
+    public static func == (lhs: Address, rhs: Address) -> Bool {
+        return lhs.address == rhs.address
+    }
 
-// MARK: Equatable
-
-public func == (lhs: Address, rhs: Address) -> Bool {
-    return lhs.address == rhs.address
 }

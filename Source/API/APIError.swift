@@ -41,7 +41,6 @@ extension APIError: Error {}
 extension APIError: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case object
         case code
         case description
     }
@@ -67,11 +66,30 @@ public enum APIErrorCode: Decodable {
     case accessTokenNotFound
     case accessTokenExpired
     case missingIdempotencyToken
+    case sameAddress
+    case websocketError
+    case requestExpired
+    case maxConsumptionsReached
+    case notOwnerOfTransactionConsumption
+    case invalidMintedTokenForTransactionConsumption
+    case forbiddenChannel
+    case channelNotFound
     case other(String)
 
+    public init(from decoder: Decoder) throws {
+        self.init(rawValue: try decoder.singleValueContainer().decode(String.self))!
+    }
+
+    public var code: String {
+        return self.rawValue
+    }
+}
+
+extension APIErrorCode: RawRepresentable {
+
     //swiftlint:disable:next cyclomatic_complexity
-    init(code: String) {
-        switch code {
+    public init?(rawValue: String) {
+        switch rawValue {
         case "client:invalid_parameter":
             self = .invalidParameters
         case "client:invalid_version":
@@ -92,16 +110,28 @@ public enum APIErrorCode: Decodable {
             self = .accessTokenExpired
         case "client:no_idempotency_token_provided":
             self = .missingIdempotencyToken
+        case "transaction:same_address":
+            self = .sameAddress
+        case "websocket:connect_error":
+            self = .websocketError
+        case "request:expired":
+            self = .requestExpired
+        case "request:max_consumptions_reached":
+            self = .maxConsumptionsReached
+        case "transaction_consumption:not_owner":
+            self = .notOwnerOfTransactionConsumption
+        case "transaction_consumption:invalid_minted_token":
+            self = .invalidMintedTokenForTransactionConsumption
+        case "websocket:forbidden_channel":
+            self = .forbiddenChannel
+        case "websocket:channel_not_found":
+            self = .channelNotFound
         case let code:
             self = .other(code)
         }
     }
 
-    public init(from decoder: Decoder) throws {
-        self.init(code: try decoder.singleValueContainer().decode(String.self))
-    }
-
-    public var code: String {
+    public var rawValue: String {
         switch self {
         case .invalidParameters:
             return "client:invalid_parameter"
@@ -123,10 +153,29 @@ public enum APIErrorCode: Decodable {
             return "user:access_token_expired"
         case .missingIdempotencyToken:
             return "client:no_idempotency_token_provided"
+        case .sameAddress:
+            return "transaction:same_address"
+        case .websocketError:
+            return "websocket:connect_error"
+        case .requestExpired:
+            return "request:expired"
+        case .maxConsumptionsReached:
+            return "request:max_consumptions_reached"
+        case .notOwnerOfTransactionConsumption:
+            return "transaction_consumption:not_owner"
+        case .invalidMintedTokenForTransactionConsumption:
+            return "transaction_consumption:invalid_minted_token"
+        case .forbiddenChannel:
+            return "websocket:forbidden_channel"
+        case .channelNotFound:
+            return "websocket:channel_not_found"
         case .other(let code):
             return code
         }
     }
+
+    public typealias RawValue = String
+
 }
 
 extension APIErrorCode: Hashable {
@@ -135,10 +184,8 @@ extension APIErrorCode: Hashable {
         return self.code.hashValue
     }
 
-}
+    public static func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
+        return lhs.code == rhs.code
+    }
 
-// MARK: Equatable
-
-public func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
-    return lhs.code == rhs.code
 }

@@ -1,15 +1,14 @@
 //
-//  OMGClient.swift
+//  OMGHTTPClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents an OMGClient that should be initialized using an OMGConfiguration
-public class OMGClient {
+/// Represents an OMGHTTPClient that should be initialized using an OMGConfiguration
+public class OMGHTTPClient {
 
-    let authScheme = "OMGClient"
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
@@ -25,54 +24,37 @@ public class OMGClient {
                                   delegateQueue: self.operationQueue)
     }
 
+    /// Update the configured authentication token for future requests
+    ///
+    /// - Parameter token: The updated authentication token
+    public func updateAuthenticationToken(_ token: String) {
+        self.config.authenticationToken = token
+    }
+
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                              callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
         do {
-            let request: OMGRequest<ResultType> = OMGRequest(client: self, endpoint: endpoint, callback: callback)
+            let request: OMGRequest<ResultType> = OMGRequest(client: self,
+                                                             endpoint: endpoint,
+                                                             callback: callback)
             return try request.start()
         } catch let error as OmiseGOError {
             performCallback {
                 callback?(.fail(error: error))
             }
-        } catch let error {
-            // Can't actually throw another error
-            performCallback {
-                callback?(.fail(error: .other(error: error)))
-            }
-        }
+        } catch {}
 
         return nil
     }
 
-    func performCallback(_ callback: @escaping () -> Void) {
+    private func performCallback(_ callback: @escaping () -> Void) {
         OperationQueue.main.addOperation(callback)
-    }
-
-    func encodedAuthorizationHeader() throws -> String {
-        guard let authenticationToken = self.config.authenticationToken else {
-            throw OmiseGOError.configuration(message: "Please provide an authentication token before using the SDK")
-        }
-        let keys = "\(self.config.apiKey):\(authenticationToken)"
-        let data = keys.data(using: .utf8, allowLossyConversion: false)
-        guard let encodedKey = data?.base64EncodedString() else {
-            throw OmiseGOError.configuration(message: "bad API key or authentication token (encoding failed.)")
-        }
-
-        return "\(authScheme) \(encodedKey)"
-    }
-
-    func contentTypeHeader() -> String {
-        return "application/vnd.omisego.v\(self.config.apiVersion)+json; charset=utf-8"
-    }
-
-    func acceptHeader() -> String {
-        return "application/vnd.omisego.v\(self.config.apiVersion)+json"
     }
 
 }
 
-extension OMGClient {
+extension OMGHTTPClient {
 
     /// Logout the current user (invalidate the provided authenticationToken).
     ///

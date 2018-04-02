@@ -6,8 +6,12 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-protocol Parametrable: Encodable {
-    func encodedPayload() -> Data?
+protocol Parametrable: Encodable {}
+
+extension Parametrable {
+    func encodedPayload() throws -> Data {
+        return try serialize(self)
+    }
 }
 
 /// Represents an HTTP task.
@@ -26,7 +30,9 @@ enum APIEndpoint {
     case getTransactions(params: TransactionListParams)
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
-    case transactionRequestConsume(params: TransactionConsumeParams)
+    case transactionRequestConsume(params: TransactionConsumptionParams)
+    case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
+    case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
     case logout
     case custom(path: String, task: Task)
 
@@ -46,6 +52,10 @@ enum APIEndpoint {
             return "/me.get_transaction_request"
         case .transactionRequestConsume:
             return "/me.consume_transaction_request"
+        case .transactionConsumptionApprove:
+            return "/me.approve_transaction_consumption"
+        case .transactionConsumptionReject:
+            return "/me.reject_transaction_consumption"
         case .logout:
             return "/logout"
         case .custom(let path, _):
@@ -64,6 +74,10 @@ enum APIEndpoint {
         case .transactionRequestConsume(params: let params):
             return .requestParameters(parameters: params)
         case .getTransactions(params: let params):
+            return .requestParameters(parameters: params)
+        case .transactionConsumptionApprove(params: let params):
+            return .requestParameters(parameters: params)
+        case .transactionConsumptionReject(params: let params):
             return .requestParameters(parameters: params)
         case .custom(_, let task):
             return task

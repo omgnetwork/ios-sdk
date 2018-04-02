@@ -29,13 +29,28 @@ public protocol Searchable {
 /// Represents a structure used to query and filter a list
 public struct PaginationParams<T: Paginable> {
 
+    /// The page requested (0 and 1 are the same)
     public let page: Int
+    /// The number of result expected per page
     public let perPage: Int
+    /// The global search term used to search in any of the SearchableFields
     public let searchTerm: String?
+    /// A dictionary where each key is a Searchable field that and each value is a search term
     public let searchTerms: [T.SearchableFields: Any]?
+    /// The field to sort by
     public let sortBy: T.SortableFields
+    /// The sort direction (ascending or descending)
     public let sortDirection: SortDirection
 
+    /// Initialize the params used to query a paginated collection
+    ///
+    /// - Parameters:
+    ///   - page: The page requested (0 and 1 are the same)
+    ///   - perPage: The number of result expected per page
+    ///   - searchTerm: The global search term used to search in any of the SearchableFields
+    ///   - searchTerms: A dictionary where each key is a Searchable field that and each value is a search term
+    ///   - sortBy: The field to sort by
+    ///   - sortDirection: The sort direction (ascending or descending)
     public init(page: Int,
                 perPage: Int,
                 searchTerm: String?,
@@ -61,10 +76,6 @@ extension PaginationParams: Parametrable {
         case searchTerms = "search_terms"
         case sortBy = "sort_by"
         case sortDirection = "sort_dir"
-    }
-
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -13,11 +13,14 @@ class ClientTests: XCTestCase {
 
     func testInvalidURL() {
         let expectation = self.expectation(description: "Invalid url")
-        let url: String = "invalid url @"
+        let URL: String = "invalid url @"
+        let socketURL: String = "invalid socket url @"
         let apiKey: String = "dummy_apikey"
         let authenticationToken: String = "dummy_authenticationtoken"
-        let config = OMGConfiguration(baseURL: url, apiKey: apiKey, authenticationToken: authenticationToken)
-        let client = OMGClient(config: config)
+        let config = OMGConfiguration(baseURL: URL,
+                                      apiKey: apiKey,
+                                      authenticationToken: authenticationToken)
+        let client = OMGHTTPClient(config: config)
         let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
         let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {

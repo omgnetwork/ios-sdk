@@ -40,11 +40,13 @@
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
 		0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
+		034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BAC102057DDB7005E0CD3 /* SocketObject.swift */; };
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
 		0355969920453069000E38DA /* TransactionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969820453069000E38DA /* TransactionSource.swift */; };
 		0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969A2045315F000E38DA /* TransactionExchange.swift */; };
 		0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE822028508900F7B42E /* TransactionRequestParams.swift */; };
 		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
+		0365F4F120565011000DA61A /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365F4F020565011000DA61A /* Listenable.swift */; };
 		037032A51FBBE6B100DBCDDD /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0370328D1FBBE6B100DBCDDD /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */; };
 		037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */; };
@@ -59,21 +61,34 @@
 		037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329A1FBBE6B100DBCDDD /* Listable.swift */; };
 		037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */; };
 		037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329D1FBBE6B100DBCDDD /* APIError.swift */; };
-		037032B31FBBE6B100DBCDDD /* OMGClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329E1FBBE6B100DBCDDD /* OMGClient.swift */; };
+		037032B31FBBE6B100DBCDDD /* OMGHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */; };
 		037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */; };
 		037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */; };
 		037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A31FBBE6B100DBCDDD /* OMGRequest.swift */; };
 		037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BB1FBBE7A300DBCDDD /* Tool.swift */; };
 		0370519E2040756F009FD899 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370519D2040756F009FD899 /* secret.plist */; };
 		037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */; };
+		0371E0BE2062377600A75BCC /* TransactionRequestParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */; };
+		0371E0C020623DBE00A75BCC /* RequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */; };
+		0371E0C220623DCB00A75BCC /* RequestParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */; };
+		0377EB70205228730036A9D6 /* SocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EB6F205228730036A9D6 /* SocketDelegate.swift */; };
+		0377EBAE20564E7A0036A9D6 /* OMGSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */; };
+		0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */; };
+		0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */; };
+		0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBB120564ECF0036A9D6 /* SocketPayload.swift */; };
+		037BAA99205F64CC004A3952 /* SocketDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA98205F64CC004A3952 /* SocketDispatcher.swift */; };
+		037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA9A205F701E004A3952 /* RequestBuilder.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
 		038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E4202AE93900E40715 /* QRTestHelper.swift */; };
-		038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */; };
-		038CB3E9202B02B300E40715 /* TransactionConsumeParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */; };
+		038CB3E7202AF81900E40715 /* TransactionConsumptionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */; };
+		038CB3E9202B02B300E40715 /* TransactionConsumptionParamsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */; };
 		0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390B2472028652400B1F65E /* TransactionRequestTest.swift */; };
 		03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8D202866E400F65F20 /* EncodeTests.swift */; };
 		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
 		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
+		039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A62064A8C40073951A /* OMGSocketClientTests.swift */; };
+		039656A92064D3B20073951A /* DummyWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */; };
+		039656AB2064D3EC0073951A /* FixtureSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656AA2064D3EC0073951A /* FixtureSocketClient.swift */; };
 		0396627E203FFD6B004E5640 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627D203FFD6B004E5640 /* Extension.swift */; };
 		03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */; };
 		03966282204005E8004E5640 /* TransactionLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03966281204005E8004E5640 /* TransactionLiveTests.swift */; };
@@ -99,6 +114,12 @@
 		03D793B8204FE1D90055D7BC /* ListableDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B7204FE1D90055D7BC /* ListableDummy.swift */; };
 		03D793BC204FEB8B0055D7BC /* OmiseGOErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */; };
 		03D793BE204FEE5C0055D7BC /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */; };
+		03E8E6712060BDDE0036CC9E /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6702060BDDE0036CC9E /* RequestParameters.swift */; };
+		03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6722060C5320036CC9E /* SocketEvent.swift */; };
+		03F119C420636CB600C1772C /* SocketMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C320636CB600C1772C /* SocketMessageTests.swift */; };
+		03F119C62063784200C1772C /* SocketChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C52063784200C1772C /* SocketChannelTests.swift */; };
+		03F119CA2063A2C300C1772C /* SocketDispatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */; };
+		03F119CC2063A31E00C1772C /* DummySocketEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */; };
 		03F5C0111F8CB1F80079E073 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F5C0101F8CB19D0079E073 /* Fixtures */; };
 		03F6B9BF203FC38700BB202C /* PaginableDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6B9BE203FC38700BB202C /* PaginableDummy.swift */; };
 		03F84C661FC2883100F21C7B /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C651FC2883100F21C7B /* AddressTests.swift */; };
@@ -106,10 +127,12 @@
 		03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C691FC28D5E00F21C7B /* UserTests.swift */; };
 		03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */; };
 		03FE64492032960200345281 /* MetadataDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64482032960200345281 /* MetadataDummy.swift */; };
-		03FE644C2032A8FE00345281 /* TransactionConsume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644A2032A39100345281 /* TransactionConsume.swift */; };
-		03FE644E2032AA7400345281 /* TransactionConsumeFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */; };
-		03FE64502032C6BF00345281 /* TransactionConsumeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */; };
+		03FE644C2032A8FE00345281 /* TransactionConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644A2032A39100345281 /* TransactionConsumption.swift */; };
+		03FE644E2032AA7400345281 /* TransactionConsumptionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */; };
+		03FE64502032C6BF00345281 /* TransactionConsumptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644F2032C6BF00345281 /* TransactionConsumptionTest.swift */; };
+		0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */; };
 		217782191FB5579F002CBCA7 /* AddressFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */; };
+		BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +146,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGOTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		030F573520341A2600F54296 /* APIEndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointTest.swift; sourceTree = "<group>"; };
 		0313D6D120317695003E99BA /* QRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
 		0313D6D220317695003E99BA /* QRScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
@@ -142,11 +166,13 @@
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
 		0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveTestCase.swift; path = ../LiveTestCase.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
+		034BAC102057DDB7005E0CD3 /* SocketObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketObject.swift; sourceTree = "<group>"; };
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
 		0355969820453069000E38DA /* TransactionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSource.swift; sourceTree = "<group>"; };
 		0355969A2045315F000E38DA /* TransactionExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExchange.swift; sourceTree = "<group>"; };
 		0365DE822028508900F7B42E /* TransactionRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParams.swift; sourceTree = "<group>"; };
 		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
+		0365F4F020565011000DA61A /* Listenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listenable.swift; sourceTree = "<group>"; };
 		0370328D1FBBE6B100DBCDDD /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
 		0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
 		037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
@@ -161,7 +187,7 @@
 		0370329A1FBBE6B100DBCDDD /* Listable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
 		0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGConfiguration.swift; sourceTree = "<group>"; };
 		0370329D1FBBE6B100DBCDDD /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		0370329E1FBBE6B100DBCDDD /* OMGClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGClient.swift; sourceTree = "<group>"; };
+		0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGHTTPClient.swift; sourceTree = "<group>"; };
 		037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmiseGOError.swift; sourceTree = "<group>"; };
 		037032A31FBBE6B100DBCDDD /* OMGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGRequest.swift; sourceTree = "<group>"; };
@@ -169,14 +195,27 @@
 		037032BB1FBBE7A300DBCDDD /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		0370519D2040756F009FD899 /* secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestLiveTests.swift; sourceTree = "<group>"; };
+		0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParamsTest.swift; sourceTree = "<group>"; };
+		0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderTests.swift; sourceTree = "<group>"; };
+		0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParametersTests.swift; sourceTree = "<group>"; };
+		0377EB6F205228730036A9D6 /* SocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
+		0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGSocketClient.swift; sourceTree = "<group>"; };
+		0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketMessage.swift; sourceTree = "<group>"; };
+		0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketChannel.swift; sourceTree = "<group>"; };
+		0377EBB120564ECF0036A9D6 /* SocketPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
+		037BAA98205F64CC004A3952 /* SocketDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDispatcher.swift; sourceTree = "<group>"; };
+		037BAA9A205F701E004A3952 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
 		038CB3E4202AE93900E40715 /* QRTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTestHelper.swift; sourceTree = "<group>"; };
-		038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumeParams.swift; sourceTree = "<group>"; };
-		038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeParamsTest.swift; sourceTree = "<group>"; };
+		038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionParams.swift; sourceTree = "<group>"; };
+		038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionParamsTest.swift; sourceTree = "<group>"; };
 		0390B2472028652400B1F65E /* TransactionRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestTest.swift; sourceTree = "<group>"; };
 		03939D8D202866E400F65F20 /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
 		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
+		039656A62064A8C40073951A /* OMGSocketClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGSocketClientTests.swift; sourceTree = "<group>"; };
+		039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyWebSocketDelegate.swift; sourceTree = "<group>"; };
+		039656AA2064D3EC0073951A /* FixtureSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureSocketClient.swift; sourceTree = "<group>"; };
 		0396627D203FFD6B004E5640 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFixtureTests.swift; sourceTree = "<group>"; };
 		03966281204005E8004E5640 /* TransactionLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionLiveTests.swift; sourceTree = "<group>"; };
@@ -204,6 +243,12 @@
 		03D793B7204FE1D90055D7BC /* ListableDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableDummy.swift; sourceTree = "<group>"; };
 		03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmiseGOErrorTests.swift; sourceTree = "<group>"; };
 		03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
+		03E8E6702060BDDE0036CC9E /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
+		03E8E6722060C5320036CC9E /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
+		03F119C320636CB600C1772C /* SocketMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketMessageTests.swift; sourceTree = "<group>"; };
+		03F119C52063784200C1772C /* SocketChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChannelTests.swift; sourceTree = "<group>"; };
+		03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDispatcherTests.swift; sourceTree = "<group>"; };
+		03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySocketEventDelegate.swift; sourceTree = "<group>"; };
 		03F5C0101F8CB19D0079E073 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
 		03F6B9BE203FC38700BB202C /* PaginableDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginableDummy.swift; sourceTree = "<group>"; };
 		03F84C651FC2883100F21C7B /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
@@ -211,10 +256,15 @@
 		03F84C691FC28D5E00F21C7B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenTests.swift; sourceTree = "<group>"; };
 		03FE64482032960200345281 /* MetadataDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataDummy.swift; sourceTree = "<group>"; };
-		03FE644A2032A39100345281 /* TransactionConsume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsume.swift; sourceTree = "<group>"; };
-		03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeFixtureTests.swift; sourceTree = "<group>"; };
-		03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumeTest.swift; sourceTree = "<group>"; };
+		03FE644A2032A39100345281 /* TransactionConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumption.swift; sourceTree = "<group>"; };
+		03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionFixtureTests.swift; sourceTree = "<group>"; };
+		03FE644F2032C6BF00345281 /* TransactionConsumptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionTest.swift; sourceTree = "<group>"; };
+		16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.release.xcconfig"; sourceTree = "<group>"; };
 		217782181FB5579F002CBCA7 /* AddressFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressFixtureTests.swift; sourceTree = "<group>"; };
+		47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.debug.xcconfig"; sourceTree = "<group>"; };
+		6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.release.xcconfig"; sourceTree = "<group>"; };
+		F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */,
+				BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +335,7 @@
 				031863FC1F8F678300D13862 /* SettingFixtureTests.swift */,
 				034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */,
 				03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */,
-				03FE644D2032AA7400345281 /* TransactionConsumeFixtureTests.swift */,
+				03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */,
 				03D793B5204FE1080055D7BC /* ListableTests.swift */,
 				0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */,
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
@@ -315,6 +367,7 @@
 				037032981FBBE6B100DBCDDD /* Operations */,
 				0370329B1FBBE6B100DBCDDD /* API */,
 				037032BA1FBBE79500DBCDDD /* Helpers */,
+				03C0D44E205111940051F28E /* Websocket */,
 				037032A41FBBE6B100DBCDDD /* Info.plist */,
 			);
 			path = Source;
@@ -334,8 +387,8 @@
 				037032971FBBE6B100DBCDDD /* MintedToken.swift */,
 				0365DE822028508900F7B42E /* TransactionRequestParams.swift */,
 				0365DE8420285FE700F7B42E /* TransactionRequest.swift */,
-				038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */,
-				03FE644A2032A39100345281 /* TransactionConsume.swift */,
+				038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */,
+				03FE644A2032A39100345281 /* TransactionConsumption.swift */,
 				0355969820453069000E38DA /* TransactionSource.swift */,
 				0355969A2045315F000E38DA /* TransactionExchange.swift */,
 				039DA974203FA94100CCC56A /* PaginationParams.swift */,
@@ -351,6 +404,7 @@
 			children = (
 				037032991FBBE6B100DBCDDD /* Retrievable.swift */,
 				0370329A1FBBE6B100DBCDDD /* Listable.swift */,
+				0365F4F020565011000DA61A /* Listenable.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -360,10 +414,12 @@
 			children = (
 				0370329C1FBBE6B100DBCDDD /* OMGConfiguration.swift */,
 				0370329D1FBBE6B100DBCDDD /* APIError.swift */,
-				0370329E1FBBE6B100DBCDDD /* OMGClient.swift */,
+				0370329E1FBBE6B100DBCDDD /* OMGHTTPClient.swift */,
 				037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */,
 				037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */,
 				037032A31FBBE6B100DBCDDD /* OMGRequest.swift */,
+				037BAA9A205F701E004A3952 /* RequestBuilder.swift */,
+				03E8E6702060BDDE0036CC9E /* RequestParameters.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -386,6 +442,8 @@
 				0334869D2036C7EC0013B37A /* StubGenerator.swift */,
 				0396627D203FFD6B004E5640 /* Extension.swift */,
 				03D793B7204FE1D90055D7BC /* ListableDummy.swift */,
+				03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */,
+				039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -396,6 +454,8 @@
 				0370328C1FBBE6B100DBCDDD /* Source */,
 				03BCCCB61F8B311600F604DB /* OmiseGOTests */,
 				03BCCCAA1F8B311600F604DB /* Products */,
+				649C021CF591BDE2E21A5A3A /* Pods */,
+				94103946F5B0996795C54D8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -411,6 +471,7 @@
 		03BCCCB61F8B311600F604DB /* OmiseGOTests */ = {
 			isa = PBXGroup;
 			children = (
+				03F119C220636CAA00C1772C /* Sockets */,
 				0313D6DF2031772F003E99BA /* QRCode */,
 				038CB3E3202AE92A00E40715 /* Helpers */,
 				03F84C641FC2881A00F21C7B /* ModelTests */,
@@ -420,6 +481,8 @@
 				03C2C0781FB93E5200B794AC /* DecodeTests.swift */,
 				03939D8D202866E400F65F20 /* EncodeTests.swift */,
 				03939D912029672F00F65F20 /* OMGRequestTest.swift */,
+				0371E0BF20623DBE00A75BCC /* RequestBuilderTests.swift */,
+				0371E0C120623DCB00A75BCC /* RequestParametersTests.swift */,
 				030F573520341A2600F54296 /* APIEndpointTest.swift */,
 				03D793BB204FEB8B0055D7BC /* OmiseGOErrorTests.swift */,
 				03D793BD204FEE5C0055D7BC /* APIErrorTests.swift */,
@@ -431,6 +494,33 @@
 			path = OmiseGOTests;
 			sourceTree = "<group>";
 		};
+		03C0D44E205111940051F28E /* Websocket */ = {
+			isa = PBXGroup;
+			children = (
+				0377EB6F205228730036A9D6 /* SocketDelegate.swift */,
+				0377EBAB20564E7A0036A9D6 /* OMGSocketClient.swift */,
+				0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */,
+				0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */,
+				0377EBB120564ECF0036A9D6 /* SocketPayload.swift */,
+				034BAC102057DDB7005E0CD3 /* SocketObject.swift */,
+				037BAA98205F64CC004A3952 /* SocketDispatcher.swift */,
+				03E8E6722060C5320036CC9E /* SocketEvent.swift */,
+			);
+			path = Websocket;
+			sourceTree = "<group>";
+		};
+		03F119C220636CAA00C1772C /* Sockets */ = {
+			isa = PBXGroup;
+			children = (
+				03F119C320636CB600C1772C /* SocketMessageTests.swift */,
+				03F119C52063784200C1772C /* SocketChannelTests.swift */,
+				03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */,
+				039656A62064A8C40073951A /* OMGSocketClientTests.swift */,
+				039656AA2064D3EC0073951A /* FixtureSocketClient.swift */,
+			);
+			path = Sockets;
+			sourceTree = "<group>";
+		};
 		03F84C641FC2881A00F21C7B /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,11 +529,32 @@
 				03F84C691FC28D5E00F21C7B /* UserTests.swift */,
 				03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */,
 				0390B2472028652400B1F65E /* TransactionRequestTest.swift */,
-				038CB3E8202B02B300E40715 /* TransactionConsumeParamsTest.swift */,
-				03FE644F2032C6BF00345281 /* TransactionConsumeTest.swift */,
+				038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */,
+				0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */,
+				03FE644F2032C6BF00345281 /* TransactionConsumptionTest.swift */,
 				0396628320400CE8004E5640 /* TransactionTest.swift */,
 			);
 			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		649C021CF591BDE2E21A5A3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */,
+				16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */,
+				6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */,
+				C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		94103946F5B0996795C54D8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */,
+				011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,11 +575,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03BCCCBD1F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGO" */;
 			buildPhases = (
+				66B9F6BC22AA32602097E785 /* [CP] Check Pods Manifest.lock */,
 				03BCCCA41F8B311600F604DB /* Sources */,
 				03BCCCA51F8B311600F604DB /* Frameworks */,
 				03BCCCA61F8B311600F604DB /* Headers */,
 				03BCCCA71F8B311600F604DB /* Resources */,
 				03F5C0121F8CD7080079E073 /* ShellScript */,
+				5632E7794FE43E9D02D7F72C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -483,9 +596,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03BCCCC01F8B311600F604DB /* Build configuration list for PBXNativeTarget "OmiseGOTests" */;
 			buildPhases = (
+				D088747A892AA9488AFE35A5 /* [CP] Check Pods Manifest.lock */,
 				03BCCCAE1F8B311600F604DB /* Sources */,
 				03BCCCAF1F8B311600F604DB /* Frameworks */,
 				03BCCCB01F8B311600F604DB /* Resources */,
+				9572BE689AFEE773A29E9FBD /* [CP] Embed Pods Frameworks */,
+				C8E20E935E8DCE1EE49C171F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -587,6 +703,90 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint\n    swiftlint lint --config .swiftlint-test.yml\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		5632E7794FE43E9D02D7F72C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66B9F6BC22AA32602097E785 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OmiseGO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9572BE689AFEE773A29E9FBD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8E20E935E8DCE1EE49C171F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D088747A892AA9488AFE35A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OmiseGOTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -598,21 +798,25 @@
 				0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */,
 				037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */,
 				037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */,
+				0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */,
 				039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */,
 				0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */,
+				037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */,
 				0313D6D820317696003E99BA /* QRScannerView.swift in Sources */,
 				037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */,
 				037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */,
-				038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */,
+				038CB3E7202AF81900E40715 /* TransactionConsumptionParams.swift in Sources */,
 				037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */,
 				0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */,
 				037032B11FBBE6B100DBCDDD /* OMGConfiguration.swift in Sources */,
 				0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */,
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
+				03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */,
 				037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */,
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
 				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
-				037032B31FBBE6B100DBCDDD /* OMGClient.swift in Sources */,
+				037032B31FBBE6B100DBCDDD /* OMGHTTPClient.swift in Sources */,
+				0377EBAE20564E7A0036A9D6 /* OMGSocketClient.swift in Sources */,
 				039DA979203FB53F00CCC56A /* Pagination.swift in Sources */,
 				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
 				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
@@ -625,9 +829,16 @@
 				037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
 				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
+				0365F4F120565011000DA61A /* Listenable.swift in Sources */,
+				0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */,
 				039DA977203FAB0600CCC56A /* TransactionListParams.swift in Sources */,
+				034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */,
+				0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */,
+				0377EB70205228730036A9D6 /* SocketDelegate.swift in Sources */,
+				03E8E6712060BDDE0036CC9E /* RequestParameters.swift in Sources */,
 				037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */,
-				03FE644C2032A8FE00345281 /* TransactionConsume.swift in Sources */,
+				037BAA99205F64CC004A3952 /* SocketDispatcher.swift in Sources */,
+				03FE644C2032A8FE00345281 /* TransactionConsumption.swift in Sources */,
 				0313D6DA20317696003E99BA /* QRScannerOverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,14 +847,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */,
 				0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */,
 				038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */,
+				03F119C420636CB600C1772C /* SocketMessageTests.swift in Sources */,
 				03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */,
 				03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */,
+				039656A92064D3B20073951A /* DummyWebSocketDelegate.swift in Sources */,
+				0371E0C220623DCB00A75BCC /* RequestParametersTests.swift in Sources */,
 				03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */,
 				03D793BE204FEE5C0055D7BC /* APIErrorTests.swift in Sources */,
 				0313D6E12031772F003E99BA /* QRGeneratorTest.swift in Sources */,
+				039656AB2064D3EC0073951A /* FixtureSocketClient.swift in Sources */,
 				03B1E7392040127600134CB4 /* DateDummy.swift in Sources */,
+				03F119C62063784200C1772C /* SocketChannelTests.swift in Sources */,
 				0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */,
 				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
 				0390B2482028652400B1F65E /* TransactionRequestTest.swift in Sources */,
@@ -668,24 +885,28 @@
 				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */,
 				0396628420400CE8004E5640 /* TransactionTest.swift in Sources */,
-				03FE644E2032AA7400345281 /* TransactionConsumeFixtureTests.swift in Sources */,
+				03FE644E2032AA7400345281 /* TransactionConsumptionFixtureTests.swift in Sources */,
 				0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */,
 				037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */,
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */,
+				03F119CA2063A2C300C1772C /* SocketDispatcherTests.swift in Sources */,
 				03966282204005E8004E5640 /* TransactionLiveTests.swift in Sources */,
 				03F6B9BF203FC38700BB202C /* PaginableDummy.swift in Sources */,
 				030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */,
 				03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */,
+				03F119CC2063A31E00C1772C /* DummySocketEventDelegate.swift in Sources */,
+				0371E0BE2062377600A75BCC /* TransactionRequestParamsTest.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
 				03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */,
 				03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */,
-				03FE64502032C6BF00345281 /* TransactionConsumeTest.swift in Sources */,
+				03FE64502032C6BF00345281 /* TransactionConsumptionTest.swift in Sources */,
 				03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */,
-				038CB3E9202B02B300E40715 /* TransactionConsumeParamsTest.swift in Sources */,
+				038CB3E9202B02B300E40715 /* TransactionConsumptionParamsTest.swift in Sources */,
 				03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */,
 				031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */,
+				0371E0C020623DBE00A75BCC /* RequestBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +986,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -819,7 +1040,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -831,6 +1052,7 @@
 		};
 		03BCCCBE1F8B311600F604DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -844,7 +1066,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.omisego.OmiseGO;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -858,6 +1080,7 @@
 		};
 		03BCCCBF1F8B311600F604DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -871,7 +1094,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.omisego.OmiseGO;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -884,8 +1107,9 @@
 		};
 		03BCCCC11F8B311600F604DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OmiseGOTests/Info.plist;
@@ -900,8 +1124,9 @@
 		};
 		03BCCCC21F8B311600F604DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OmiseGOTests/Info.plist;

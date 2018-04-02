@@ -44,10 +44,8 @@ extension Balance: Hashable {
         return self.mintedToken.hashValue ^ self.amount.hashValue
     }
 
-}
+    public static func == (lhs: Balance, rhs: Balance) -> Bool {
+        return lhs.mintedToken == rhs.mintedToken && lhs.amount == rhs.amount
+    }
 
-// MARK: Equatable
-
-public func == (lhs: Balance, rhs: Balance) -> Bool {
-    return lhs.mintedToken == rhs.mintedToken && lhs.amount == rhs.amount
 }

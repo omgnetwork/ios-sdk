@@ -20,13 +20,21 @@ public enum TransactionStatus: String, Decodable {
 /// Represents a transaction
 public struct Transaction {
 
+    /// The unique identifier of the transaction
     public let id: String
-    public let status: TransactionConsumeStatus
+    /// The status of the transaction (pending, confirmed or failed)
+    public let status: TransactionConsumptionStatus
+    /// The source reprensenting the source of the funds
     public let from: TransactionSource
+    /// The source representing the destination of the funds
     public let to: TransactionSource
+    /// Contains info of the exchange made during the transaction (if any)
     public let exchange: TransactionExchange
+    /// Additional metadata for the consumption
     public let metadata: [String: Any]
+    /// The creation date of the transaction
     public let createdAt: Date
+    /// The update date of the transaction
     public let updatedAt: Date
 
 }
@@ -47,7 +55,7 @@ extension Transaction: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        status = try container.decode(TransactionConsumeStatus.self, forKey: .status)
+        status = try container.decode(TransactionConsumptionStatus.self, forKey: .status)
         from = try container.decode(TransactionSource.self, forKey: .from)
         to = try container.decode(TransactionSource.self, forKey: .to)
         exchange = try container.decode(TransactionExchange.self, forKey: .exchange)
@@ -69,7 +77,7 @@ extension Transaction: PaginatedListable {
     ///   - params: The TransactionListParams object to use to scope the results
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func list(using client: OMGClient,
+    public static func list(using client: OMGHTTPClient,
                             params: TransactionListParams,
                             callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
         return self.list(using: client, endpoint: .getTransactions(params: params), callback: callback)
@@ -103,10 +111,8 @@ extension Transaction: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: Transaction, rhs: Transaction) -> Bool {
-    return lhs.id == rhs.id
 }

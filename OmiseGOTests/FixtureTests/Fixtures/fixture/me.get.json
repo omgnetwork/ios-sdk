@@ -6,6 +6,7 @@
       "id": "cec34607-0761-4a59-8357-18963e42a1aa",
       "provider_user_id": "wijf-fbancomw-dqwjudb",
       "username": "john.doe@example.com",
+      "socket_topic": "user:cec34607-0761-4a59-8357-18963e42a1aa",
       "metadata": {
           "first_name": "John",
           "last_name": "Doe",
