@@ -57,8 +57,16 @@ enum SocketDispatcher {
                                                 payload: GenericObjectEnum,
                                                 event: SocketEvent) {
         switch payload {
-        case .transactionConsumption(object: let transactionConsumption) where event == .transactionConsumptionRequest:
-            handler?.didReceiveTransactionConsumptionRequest(transactionConsumption, forEvent: event)
+        case .transactionConsumption(object: let transactionConsumption):
+            switch event {
+            case .transactionConsumptionRequest:
+                handler?.didReceiveTransactionConsumptionRequest(transactionConsumption, forEvent: event)
+            case .transactionConsumptionApproved:
+                handler?.didReceiveTransactionConsumptionApproval(transactionConsumption, forEvent: event)
+            case .transactionConsumptionRejected:
+                handler?.didReceiveTransactionConsumptionRejection(transactionConsumption, forEvent: event)
+            default: break
+            }
         case .error(error: let error):
             self.dispatchError(error)
         default: break

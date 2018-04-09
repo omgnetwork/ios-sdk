@@ -467,10 +467,21 @@ Where:
 - `client` is a `SocketClient`
 - `eventDelegate` is a `TransactionRequestEventDelegate` that will receive incoming events.
 
-An object conforming to `TransactionRequestEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+An object conforming to `TransactionRequestEventDelegate` needs to implement the 3 common methods mentioned above and also:
+
+- `didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
 
 This method will be called when a `TransactionConsumption` is trying to consume the `TransactionRequest`.
 This allows the requester to [confirm](#confirm-a-transaction-consumption) or not the consumption if legitimate.
+
+- `didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+
+If the `TransactionRequest` requires a confirmation then this method will be called when a `TransactionConsumption` is approved by the requester.
+If it doesn't require a confirmation it will be called when the request is consumed.
+
+- `didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+
+This method will be called when a `TransactionConsumption` is rejected by the requester.
 
 
 #### Transaction consumption events
@@ -483,10 +494,15 @@ Where:
 - `client` is a `SocketClient`
 - `eventDelegate` is a `TransactionConsumptionEventDelegate` that will receive incoming events.
 
-An object conforming to `TransactionConsumptionEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceiveTransactionConsumptionConfirmation(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+An object conforming to `TransactionConsumptionEventDelegate` needs to implement the 3 common methods mentioned above and also:
 
-This method will be called when a `TransactionConsumption` is confirmed by the requester.
+- `didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
 
+This method will be called when a `TransactionConsumption` is approved by the requester.
+
+- `didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+
+This method will be called when a `TransactionConsumption` is rejected by the requester.
 
 #### User events
 

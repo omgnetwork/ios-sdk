@@ -23,6 +23,8 @@ public protocol UserEventDelegate: EventDelegate {
 
 public protocol TransactionRequestEventDelegate: EventDelegate {
     func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
+    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
+    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
 }
 
 public protocol TransactionConsumptionEventDelegate: EventDelegate {

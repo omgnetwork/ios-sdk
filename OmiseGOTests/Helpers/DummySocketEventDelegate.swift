@@ -11,7 +11,7 @@ import XCTest
 
 class DummySocketEventDelegate {
 
-    let eventExpectation: XCTestExpectation?
+    var eventExpectation: XCTestExpectation?
     let joinExpectation: XCTestExpectation?
 
     init(eventExpectation: XCTestExpectation? = nil, joinExpectation: XCTestExpectation? = nil) {
