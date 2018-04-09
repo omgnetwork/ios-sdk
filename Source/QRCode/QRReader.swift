@@ -16,7 +16,7 @@ class QRReader: NSObject {
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         return AVCaptureVideoPreviewLayer(session: self.session)
     }()
-    private let sessionQueue: DispatchQueue = DispatchQueue(label: "io.omisego.qrqueue")
+    private let sessionQueue: DispatchQueue = DispatchQueue(label: "serial queue")
 
     init(onFindClosure: @escaping ((String) -> Void)) {
         self.didReadCode = onFindClosure

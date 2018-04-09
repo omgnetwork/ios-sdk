@@ -53,14 +53,13 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         self.stopScanning()
         self.onLoadingStateChange?(true)
         TransactionRequest.retrieveTransactionRequest(using: self.client, id: id) { (result) in
-            self.startScanning()
             self.onLoadingStateChange?(false)
             switch result {
             case .success(data: let transactionRequest):
-                // Allows to scan the same id again only if was valid
-                if let index = self.loadedIds.index(of: id) { self.loadedIds.remove(at: index) }
                 self.onGetTransactionRequest?(transactionRequest)
-            case .fail(error: let error): self.onError?(error)
+            case .fail(error: let error):
+                self.startScanning()
+                self.onError?(error)
             }
         }
     }

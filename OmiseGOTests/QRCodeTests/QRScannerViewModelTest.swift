@@ -36,22 +36,6 @@ class QRScannerViewModelTest: FixtureTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
 
-    func testCanCallTwiceIfCallSucceeded() {
-        let exp = expectation(description: "Can call with the same id twice if the previous call succeeded")
-        let stub = QRScannerViewModel(client: self.testCustomClient)
-        var counter = 0
-        stub.onGetTransactionRequest = { (transactionRequest) in
-            counter += 1
-            XCTAssert(!stub.loadedIds.contains("123"))
-            XCTAssertNotNil(transactionRequest)
-            if counter == 2 {
-                exp.fulfill()
-            } else { stub.loadTransactionRequest(withId: "123") }
-        }
-        stub.loadTransactionRequest(withId: "123")
-        waitForExpectations(timeout: 1, handler: nil)
-    }
-
     func testCallsOnLoadingStateChangeWhenRequesting() {
         let exp = expectation(description: "Calls onGetTransactionRequest when scanning a valid QRCode")
         let stub = QRScannerViewModel(client: self.testCustomClient)
