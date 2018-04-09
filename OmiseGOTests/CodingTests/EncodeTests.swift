@@ -236,7 +236,7 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testTransactionConsumptionParamsEncoding() {
+    func testTransactionConsumptionParamsWithoutAmountEncoding() {
         do {
             let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                         type: .receive,
@@ -257,6 +257,7 @@ class EncodeTests: XCTestCase {
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                                             address: "456",
                                                                             mintedTokenId: "BTC:123",
+                                                                            amount: nil,
                                                                             idempotencyToken: "123",
                                                                             correlationId: "321",
                                                                             expirationDate: Date(timeIntervalSince1970: 0),
@@ -266,7 +267,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "amount":1337,
+                    "amount":null,
                     "transaction_request_id":"0a8a4a98-794b-419e-b92d-514e83657e75",
                     "metadata":{},
                     "token_id":"BTC:123",

@@ -26,6 +26,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 transactionRequest: transactionRequest,
                 address: nil,
                 mintedTokenId: nil,
+                amount: nil,
                 idempotencyToken: "123",
                 correlationId: nil,
                 expirationDate: nil,

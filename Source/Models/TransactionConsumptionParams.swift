@@ -12,7 +12,7 @@ public struct TransactionConsumptionParams {
     /// The id of the transaction request to be consumed
     public let transactionRequestId: String
     /// The amount of minted token to transfer (down to subunit to unit)
-    public let amount: Double
+    public let amount: Double?
     /// The address to use for the consumption
     public let address: String?
     /// The id of the minted token to use for the request
@@ -45,12 +45,12 @@ public struct TransactionConsumptionParams {
     public init?(transactionRequest: TransactionRequest,
                  address: String?,
                  mintedTokenId: String?,
-                 amount: Double? = nil,
+                 amount: Double?,
                  idempotencyToken: String,
                  correlationId: String?,
                  expirationDate: Date?,
                  metadata: [String: Any]) {
-        guard let amount = (amount != nil ? amount : transactionRequest.amount) else { return nil }
+        guard transactionRequest.amount != nil || amount != nil else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
         self.address = address

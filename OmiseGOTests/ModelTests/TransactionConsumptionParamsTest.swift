@@ -17,6 +17,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
         XCTAssertNotNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                      address: nil,
                                                      mintedTokenId: nil,
+                                                     amount: nil,
                                                      idempotencyToken: "123",
                                                      correlationId: nil,
                                                      expirationDate: Date(timeIntervalSince1970: 0),
@@ -43,13 +44,14 @@ class TransactionConsumptionParamsTest: XCTestCase {
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
                                                   mintedTokenId: nil,
+                                                  amount: nil,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
                                                   expirationDate: nil,
                                                   metadata: [:]))
     }
 
-    func testAmountIsTakenFromParamsIfTransactionRequestAmountIsNil() {
+    func testInitCorrectlyWhenGivenAnAmount() {
         let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                     type: .receive,
                                                     mintedToken: StubGenerator.mintedToken(),
