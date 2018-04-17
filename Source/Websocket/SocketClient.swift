@@ -200,13 +200,12 @@ extension SocketClient: WebSocketDelegate {
 
     public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let wsError: WSError  = error as? WSError {
-            guard wsError.code != 403 else {
-                self.delegate?.didDisconnect(.socketError(message: "Authorization error"))
-                return
+            switch wsError.code {
+            case 403: self.delegate?.didDisconnect(.socketError(message: "Authorization error"))
+            case Int(CloseCode.normal.rawValue): self.delegate?.didDisconnect(nil)
+            default: self.delegate?.didDisconnect(.socketError(message: wsError.message))
             }
-            self.delegate?.didDisconnect(.socketError(message: wsError.message))
-        }
-        if let error = error {
+        } else if let error = error {
             self.delegate?.didDisconnect(.other(error: error))
         } else {
             self.delegate?.didDisconnect(nil)

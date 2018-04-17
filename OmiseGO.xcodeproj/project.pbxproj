@@ -583,7 +583,6 @@
 				03BCCCA61F8B311600F604DB /* Headers */,
 				03BCCCA71F8B311600F604DB /* Resources */,
 				03F5C0121F8CD7080079E073 /* ShellScript */,
-				5632E7794FE43E9D02D7F72C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -603,7 +602,6 @@
 				03BCCCAF1F8B311600F604DB /* Frameworks */,
 				03BCCCB01F8B311600F604DB /* Resources */,
 				9572BE689AFEE773A29E9FBD /* [CP] Embed Pods Frameworks */,
-				C8E20E935E8DCE1EE49C171F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -687,21 +685,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint\n    swiftlint lint --config .swiftlint-test.yml\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		5632E7794FE43E9D02D7F72C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		66B9F6BC22AA32602097E785 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -736,21 +719,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C8E20E935E8DCE1EE49C171F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D088747A892AA9488AFE35A5 /* [CP] Check Pods Manifest.lock */ = {
