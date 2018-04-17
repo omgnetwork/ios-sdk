@@ -260,7 +260,6 @@ class EncodeTests: XCTestCase {
                                                                             amount: nil,
                                                                             idempotencyToken: "123",
                                                                             correlationId: "321",
-                                                                            expirationDate: Date(timeIntervalSince1970: 0),
                                                                             metadata: [:])
             let encodedData = try self.encoder.encode(transactionConsumptionParams)
             let encodedPayload = try! transactionConsumptionParams!.encodedPayload()

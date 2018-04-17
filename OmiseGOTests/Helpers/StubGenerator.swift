@@ -256,7 +256,6 @@ class StubGenerator {
             amount: amount,
             idempotencyToken: idempotencyToken,
             correlationId: correlationId,
-            expirationDate: expirationDate,
             metadata: metadata
             )!
     }

@@ -320,7 +320,6 @@ guard let params = TransactionConsumptionParams(transactionRequest: transactionR
                                                 mintedTokenId: "a minted token",
                                                 amount: 1337,
                                                 idempotencyToken: "an idempotency token",
-                                                expirationDate: nil,
                                                 correlationId: "a correlation id",
                                                 metadata: [:])!
 TransactionConsumption.consumeTransactionRequest(using: client, params: params) { (transactionConsumptionResult) in
@@ -342,7 +341,6 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
 
 - `idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
-- `expirationDate`: (optional) The date when the consumption will expire.
 - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
 - `metadata`: A dictionary of additional data to be stored for this transaction consumption.
 

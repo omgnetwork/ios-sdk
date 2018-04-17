@@ -23,8 +23,6 @@ public struct TransactionConsumptionParams {
     public let idempotencyToken: String
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
-    /// The date when the consumption will expire
-    public let expirationDate: Date?
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
 
@@ -40,7 +38,6 @@ public struct TransactionConsumptionParams {
     ///   - amount: The amount of minted token to transfer (down to subunit to unit)
     ///   - idempotencyToken: The idempotency token to use for the consumption
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
-    ///   - expirationDate: The date when the consumption will expire
     ///   - metadata: Additional metadata for the consumption
     public init?(transactionRequest: TransactionRequest,
                  address: String?,
@@ -48,7 +45,6 @@ public struct TransactionConsumptionParams {
                  amount: Double?,
                  idempotencyToken: String,
                  correlationId: String?,
-                 expirationDate: Date?,
                  metadata: [String: Any]) {
         guard transactionRequest.amount != nil || amount != nil else { return nil }
         self.transactionRequestId = transactionRequest.id
@@ -57,7 +53,6 @@ public struct TransactionConsumptionParams {
         self.mintedTokenId = mintedTokenId
         self.idempotencyToken = idempotencyToken
         self.correlationId = correlationId
-        self.expirationDate = expirationDate
         self.metadata = metadata
     }
 

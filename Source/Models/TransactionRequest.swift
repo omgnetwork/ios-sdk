@@ -39,7 +39,7 @@ public struct TransactionRequest {
     /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
     /// The address from which to send or receive the minted tokens
-    public let address: String?
+    public let address: String
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
     /// The status of the request (valid or expired)
@@ -94,7 +94,7 @@ extension TransactionRequest: Decodable {
         type = try container.decode(TransactionRequestType.self, forKey: .type)
         mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
         amount = try container.decodeIfPresent(Double.self, forKey: .amount)
-        address = try container.decodeIfPresent(String.self, forKey: .address)
+        address = try container.decode(String.self, forKey: .address)
         correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         status = try container.decode(TransactionRequestStatus.self, forKey: .status)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)

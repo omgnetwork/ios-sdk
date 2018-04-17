@@ -198,7 +198,6 @@ extension TransactionRequestLiveTests {
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
-            expirationDate: nil,
             metadata: ["a_key": "a_value"])
         var transactionConsumptionResult: TransactionConsumption?
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(

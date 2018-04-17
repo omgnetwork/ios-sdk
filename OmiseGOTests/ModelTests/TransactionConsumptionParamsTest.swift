@@ -20,7 +20,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                      amount: nil,
                                                      idempotencyToken: "123",
                                                      correlationId: nil,
-                                                     expirationDate: Date(timeIntervalSince1970: 0),
                                                      metadata: [:]))
     }
 
@@ -47,7 +46,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                   amount: nil,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
-                                                  expirationDate: nil,
                                                   metadata: [:]))
     }
 
@@ -74,7 +72,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                               amount: 3000,
                                               idempotencyToken: "123",
                                               correlationId: nil,
-                                              expirationDate: nil,
                                               metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
@@ -87,7 +84,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                   amount: 3000,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
-                                                  expirationDate: nil,
                                                   metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
