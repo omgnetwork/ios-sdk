@@ -65,7 +65,7 @@ class SocketChannelTests: XCTestCase {
 
     func testJoinDoesntDispatchesAJoinEventOnFailure() {
         self.socketChannel.join()
-        self.sendable.triggerEvents(withPayload: self.failurePayload())
+        self.sendable.triggerEvents(withPayload: self.failPayload())
         XCTAssertFalse(self.delegate.didJoin)
         XCTAssertNil(self.delegate.didReceiveObject)
         XCTAssertNil(self.delegate.didReceiveError)
@@ -96,7 +96,7 @@ class SocketChannelTests: XCTestCase {
         self.socketChannel.leave {
             XCTFail("Should not call this closure")
         }
-        self.sendable.triggerEvents(withPayload: self.failurePayload())
+        self.sendable.triggerEvents(withPayload: self.failPayload())
         XCTAssertFalse(self.delegate.didLeave)
         XCTAssertNil(self.delegate.didReceiveObject)
         XCTAssertNil(self.delegate.didReceiveError)
@@ -106,7 +106,7 @@ class SocketChannelTests: XCTestCase {
     func testDispatchEventsToSuccessHandlerOnSuccess() {
         let message = SocketMessage(socketPayload: SocketPayloadSend(topic: "a_topic", event: .join, ref: "1", data: [:]))
         message.handleResponse(withPayload: self.successPayload())
-        self.socketChannel.dispatchEvents(message)
+        self.socketChannel.dispatchEvents(forMessage: message)
         XCTAssertNotNil(self.delegate.didReceiveObject)
         switch self.delegate.didReceiveObject! {
         case .transactionConsumption(object: let transactionConsumption): XCTAssertNotNil(transactionConsumption)
@@ -115,14 +115,19 @@ class SocketChannelTests: XCTestCase {
 
     func testDispatchEventsToErrorHandlerHandlerOnFailure() {
         let message = SocketMessage(socketPayload: SocketPayloadSend(topic: "a_topic", event: .join, ref: "1", data: [:]))
-        message.handleResponse(withPayload: self.failurePayload())
-        self.socketChannel.dispatchEvents(message)
-        XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy error")
+        message.handleResponse(withPayload: self.failPayload())
+        self.socketChannel.dispatchEvents(forMessage: message)
+        XCTAssertEqual(self.delegate.didReceiveError!.code, .websocketError)
     }
 
-    private func failurePayload() -> SocketPayloadReceive {
-        return StubGenerator.socketPayloadReceive(data: GenericObject.init(object: .error(error: .socketError(message: "dummy error"))),
-                                                  success: false)
+    private func failPayload(withErrorCode code: APIErrorCode = .websocketError,
+                             object: GenericObjectEnum? = nil) -> SocketPayloadReceive {
+        return SocketPayloadReceive(topic: "",
+                                    event: .reply,
+                                    ref: "1",
+                                    data: (object != nil ? GenericObject(object: object!) : nil),
+                                    version: "1", success: false,
+                                    error: .init(code: code, description: "dummy_error"))
     }
 
     private func successPayload() -> SocketPayloadReceive {

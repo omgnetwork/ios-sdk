@@ -14,6 +14,7 @@
 public enum TransactionConsumptionStatus: String, Decodable {
     case pending
     case confirmed
+    case approved
     case rejected
     case failed
     case expired
@@ -50,12 +51,21 @@ public struct TransactionConsumption {
     public let address: String
     /// The topic which can be listened in order to receive events regarding this consumption
     public let socketTopic: String
-    /// The date when the consumption got finalized
-    public let finalizedAt: Date?
+
     /// The date when the consumption will expire
     public let expirationDate: Date?
-    /// Tells if the consumption has been approved
-    public let approved: Bool
+    /// The date when the consumption got approved
+    public let approvedAt: Date?
+    /// The date when the consumption got rejected
+    public let rejectedAt: Date?
+    /// The date when the consumption got confirmed
+    public let confirmedAt: Date?
+    /// The date when the consumption failed
+    public let failedAt: Date?
+    /// The date when the consumption expired
+    public let expiredAt: Date?
+    /// The date when the consumption was created
+    public let createdAt: Date
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
 
@@ -79,9 +89,13 @@ extension TransactionConsumption: Decodable {
         case transactionRequest = "transaction_request"
         case address
         case socketTopic = "socket_topic"
-        case finalizedAt = "finalized_at"
         case expirationDate = "expiration_date"
-        case approved
+        case approvedAt = "approved_at"
+        case rejectedAt = "rejected_at"
+        case confirmedAt = "confirmed_at"
+        case failedAt = "failed_at"
+        case expiredAt = "expired_at"
+        case createdAt = "created_at"
         case metadata
     }
 
@@ -100,9 +114,13 @@ extension TransactionConsumption: Decodable {
         transactionRequest = try container.decode(TransactionRequest.self, forKey: .transactionRequest)
         address = try container.decode(String.self, forKey: .address)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
-        finalizedAt = try container.decodeIfPresent(Date.self, forKey: .finalizedAt)
         expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
-        approved = try container.decode(Bool.self, forKey: .approved)
+        approvedAt = try container.decodeIfPresent(Date.self, forKey: .approvedAt)
+        rejectedAt = try container.decodeIfPresent(Date.self, forKey: .rejectedAt)
+        confirmedAt = try container.decodeIfPresent(Date.self, forKey: .confirmedAt)
+        failedAt = try container.decodeIfPresent(Date.self, forKey: .failedAt)
+        expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
     }
 

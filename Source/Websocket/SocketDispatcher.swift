@@ -28,64 +28,64 @@ enum SocketDispatcher {
         self.commonHandler?.didStopListening()
     }
 
-    func dispatchError(_ error: OMGError) {
-        self.commonHandler?.didReceiveError(error)
+    func dispatchError(_ error: APIError) {
+        self.commonHandler?.onError(error)
     }
 
-    func dispatch(_ payload: GenericObjectEnum, event: SocketEvent) {
+    func dispatchPayload(_ payload: SocketPayloadReceive) {
         switch self {
         case .user(let handler):
-            self.handleUserEvents(withHandler: handler, payload: payload, event: event)
+            self.handleUserEvents(withHandler: handler, payload: payload)
         case .transactionRequest(let handler):
-            self.handleTransactionRequestEvents(withHandler: handler, payload: payload, event: event)
+            self.handleTransactionRequestEvents(withHandler: handler, payload: payload)
         case .transactionConsumption(let handler):
-            self.handleTransactionConsumptionEvents(withHandler: handler, payload: payload, event: event)
+            self.handleTransactionConsumptionEvents(withHandler: handler, payload: payload)
         }
     }
 
-    private func handleUserEvents(withHandler handler: UserEventDelegate?, payload: GenericObjectEnum, event: SocketEvent) {
-        switch payload {
-        case .transactionConsumption(object: let object):
-            handler?.didReceive(.transactionConsumption(object: object), forEvent: event)
-        case .error(error: let error):
+    private func handleUserEvents(withHandler handler: UserEventDelegate?, payload: SocketPayloadReceive) {
+        switch (payload.data?.object, payload.error) {
+        case (.transactionConsumption(object: let object)?, let error):
+            handler?.on(.transactionConsumption(object: object), error: error, forEvent: payload.event)
+        case (_, .some(let error)):
             self.dispatchError(error)
         default: break
         }
     }
 
     private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventDelegate?,
-                                                payload: GenericObjectEnum,
-                                                event: SocketEvent) {
-        switch payload {
-        case .transactionConsumption(object: let transactionConsumption):
-            switch event {
-            case .transactionConsumptionRequest:
-                handler?.didReceiveTransactionConsumptionRequest(transactionConsumption, forEvent: event)
-            case .transactionConsumptionApproved:
-                handler?.didReceiveTransactionConsumptionApproval(transactionConsumption, forEvent: event)
-            case .transactionConsumptionRejected:
-                handler?.didReceiveTransactionConsumptionRejection(transactionConsumption, forEvent: event)
-            default: break
-            }
-        case .error(error: let error):
+                                                payload: SocketPayloadReceive) {
+        switch (payload.data?.object, payload.error, payload.event) {
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
+              .none,
+              .transactionConsumptionRequest):
+            handler?.onTransactionConsumptionRequest(transactionConsumption)
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
+              .some(let error),
+              .transactionConsumptionFinalized):
+            handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
+              .none,
+              .transactionConsumptionFinalized):
+            handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
+        case (_, .some(let error), _):
             self.dispatchError(error)
         default: break
         }
     }
 
     private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventDelegate?,
-                                                    payload: GenericObjectEnum,
-                                                    event: SocketEvent) {
-        switch payload {
-        case .transactionConsumption(object: let transactionConsumption):
-            switch event {
-            case .transactionConsumptionApproved:
-                handler?.didReceiveTransactionConsumptionApproval(transactionConsumption, forEvent: event)
-            case .transactionConsumptionRejected:
-                handler?.didReceiveTransactionConsumptionRejection(transactionConsumption, forEvent: event)
-            default: break
-            }
-        case .error(error: let error):
+                                                    payload: SocketPayloadReceive) {
+        switch (payload.data?.object, payload.error, payload.event) {
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
+              .some(let error),
+              .transactionConsumptionFinalized):
+            handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
+              .none,
+              .transactionConsumptionFinalized):
+            handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
+        case (_, .some(let error), _):
             self.dispatchError(error)
         default: break
         }

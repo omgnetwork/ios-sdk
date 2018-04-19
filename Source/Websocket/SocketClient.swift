@@ -132,7 +132,7 @@ public class SocketClient {
 
     private func dispatch(message: SocketMessage) {
         guard let channel = channels[message.topic()] else { return }
-        channel.dispatchEvents(message)
+        channel.dispatchEvents(forMessage: message)
     }
 
     private func handleReconnect() {

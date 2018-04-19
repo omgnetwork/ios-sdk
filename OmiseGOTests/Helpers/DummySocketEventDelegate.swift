@@ -23,18 +23,19 @@ class DummySocketEventDelegate {
     var didLeave: Bool = false
     var didReceiveObject: WebsocketObject?
     var didReceiveTransactionConsumptionRequest: TransactionConsumption?
-    var didReceiveTransactionConsumptionApproved: TransactionConsumption?
-    var didReceiveTransactionConsumptionRejected: TransactionConsumption?
+    var didReceiveTransactionConsumptionFinalized: TransactionConsumption?
+    var didReceiveTransactionConsumptionError: APIError?
     var didReceiveEvent: SocketEvent?
-    var didReceiveError: OMGError?
+    var didReceiveError: APIError?
 
 }
 
 extension DummySocketEventDelegate: UserEventDelegate {
 
-    func didReceive(_ object: WebsocketObject, forEvent event: SocketEvent) {
+    func on(_ object: WebsocketObject, error: APIError?, forEvent event: SocketEvent) {
         self.didReceiveObject = object
         self.didReceiveEvent = event
+        self.didReceiveError = error
         self.eventExpectation?.fulfill()
     }
 
@@ -48,7 +49,7 @@ extension DummySocketEventDelegate: UserEventDelegate {
         self.joinExpectation?.fulfill()
     }
 
-    func didReceiveError(_ error: OMGError) {
+    func onError(_ error: APIError) {
         self.didReceiveError = error
         self.joinExpectation?.fulfill()
     }
@@ -57,9 +58,8 @@ extension DummySocketEventDelegate: UserEventDelegate {
 
 extension DummySocketEventDelegate: TransactionRequestEventDelegate {
 
-    func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
+    func onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption) {
         self.didReceiveTransactionConsumptionRequest = transactionConsumption
-        self.didReceiveEvent = event
         self.eventExpectation?.fulfill()
     }
 
@@ -67,15 +67,15 @@ extension DummySocketEventDelegate: TransactionRequestEventDelegate {
 
 extension DummySocketEventDelegate: TransactionConsumptionEventDelegate {
 
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.didReceiveTransactionConsumptionApproved = transactionConsumption
-        self.didReceiveEvent = event
+    func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
+        self.didReceiveTransactionConsumptionFinalized = transactionConsumption
         self.eventExpectation?.fulfill()
     }
 
-    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.didReceiveTransactionConsumptionRejected = transactionConsumption
-        self.didReceiveEvent = event
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption,
+                                                 error: APIError) {
+        self.didReceiveTransactionConsumptionFinalized = transactionConsumption
+        self.didReceiveTransactionConsumptionError = error
         self.eventExpectation?.fulfill()
     }
 

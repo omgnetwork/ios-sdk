@@ -46,8 +46,9 @@ struct SocketPayloadReceive: Decodable {
     let topic: String
     let event: SocketEvent
     let ref: String?
-    let data: GenericObject
+    let data: GenericObject?
     let version: String
     let success: Bool
+    let error: APIError?
 
 }

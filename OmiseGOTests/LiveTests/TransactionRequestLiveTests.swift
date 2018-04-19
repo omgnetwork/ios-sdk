@@ -47,10 +47,9 @@ class TransactionRequestLiveTests: LiveTestCase {
         transactionRequestEventDelegate.eventExpectation = self.expectation(description: "Receives an approved, but failed consumption")
         self.confirmConsumption(withConsumption: consumptionRequest)
         // 6) Wait for the failed consumption to be sent
-        let failedConsumption = self.waitForApproval(withDelegate: transactionRequestEventDelegate)
-        XCTAssertEqual(failedConsumption.status, .failed)
-        XCTAssertTrue(failedConsumption.approved)
-        XCTAssertNotNil(failedConsumption.finalizedAt)
+        let (error, failedConsumption) = self.waitForFailedFinalization(withDelegate: transactionRequestEventDelegate)
+        XCTAssertEqual(error.code, .transactionSameAddress)
+        XCTAssertEqual(failedConsumption, consumptionRequest)
     }
 
     func testGetATransactionRequest() {
@@ -74,10 +73,8 @@ class TransactionRequestLiveTests: LiveTestCase {
         let consumption = self.consumeTransactionRequest(transactionRequest: transactionRequest)
         XCTAssertNil(consumption)
         // 4) Wait for the failed consumption to be sent
-        let failedConsumption = self.waitForApproval(withDelegate: transactionRequestEventDelegate)
-        XCTAssertEqual(failedConsumption.status, .failed)
-        XCTAssertTrue(failedConsumption.approved)
-        XCTAssertNotNil(failedConsumption.finalizedAt)
+        let (error, _) = self.waitForFailedFinalization(withDelegate: transactionRequestEventDelegate)
+        XCTAssertEqual(error.code, .transactionSameAddress)
     }
 
     /// This test check that the rejection flow works as expected
@@ -102,13 +99,12 @@ class TransactionRequestLiveTests: LiveTestCase {
         transactionConsumptionEventDelegate.eventExpectation = self.expectation(description: "Receives a rejected consumption")
         self.rejectConsumption(withConsumption: consumptionRequest)
         // 7) Wait for the rejection to be sent
-        let rejectedConsumptionSentOnTransactionConsumptionListener = self.waitForRejection(withDelegate: transactionConsumptionEventDelegate)
-        let rejectedConsumptionSentOnTransactionRequestListener = self.waitForRejection(withDelegate: transactionRequestEventDelegate)
+        let rejectedConsumptionSentOnTransactionConsumptionListener = self.waitForSuccessFinalization(withDelegate: transactionConsumptionEventDelegate)
+        let rejectedConsumptionSentOnTransactionRequestListener = self.waitForSuccessFinalization(withDelegate: transactionRequestEventDelegate)
 
         XCTAssertEqual(rejectedConsumptionSentOnTransactionConsumptionListener, rejectedConsumptionSentOnTransactionRequestListener)
         XCTAssertEqual(rejectedConsumptionSentOnTransactionConsumptionListener.status, .rejected)
-        XCTAssertFalse(rejectedConsumptionSentOnTransactionConsumptionListener.approved)
-        XCTAssertNotNil(rejectedConsumptionSentOnTransactionConsumptionListener.finalizedAt)
+        XCTAssertNotNil(rejectedConsumptionSentOnTransactionConsumptionListener.rejectedAt)
     }
 
     func testChannelNotFound() {
@@ -121,9 +117,9 @@ class TransactionRequestLiveTests: LiveTestCase {
             XCTFail("Should get an error")
             return
         }
-        switch error {
-        case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .channelNotFound)
-        default: XCTFail("Should get an API error")
+        switch error.code {
+        case .channelNotFound: break
+        default: XCTFail("Should get a channel not found error")
         }
     }
 
@@ -223,7 +219,7 @@ extension TransactionRequestLiveTests {
                         XCTFail("\(error)")
                     } else {
                         switch error {
-                        case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .sameAddress)
+                        case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
                         default: XCTFail("Expected to receive same_address error")
                         }
                     }
@@ -255,24 +251,22 @@ extension TransactionRequestLiveTests {
     func waitForConsumption(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
         wait(for: [delegate.eventExpectation!], timeout: 15.0)
         XCTAssertNotNil(delegate.didReceiveTransactionConsumptionRequest)
-        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionRequest)
         return delegate.didReceiveTransactionConsumptionRequest!
     }
 
-    func waitForApproval(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
+    func waitForSuccessFinalization(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
         wait(for: [delegate.eventExpectation!], timeout: 15.0)
-        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionApproved)
-        XCTAssertNotNil(delegate.didReceiveEvent)
-        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionApproved)
-        return delegate.didReceiveTransactionConsumptionApproved!
+        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionFinalized)
+        return delegate.didReceiveTransactionConsumptionFinalized!
     }
 
-    func waitForRejection(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
+    func waitForFailedFinalization(withDelegate delegate: DummySocketEventDelegate) -> (APIError, TransactionConsumption) {
         wait(for: [delegate.eventExpectation!], timeout: 15.0)
-        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionRejected)
-        XCTAssertNotNil(delegate.didReceiveEvent)
-        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionRejected)
-        return delegate.didReceiveTransactionConsumptionRejected!
+        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionError)
+        let consumption = delegate.didReceiveTransactionConsumptionFinalized!
+        XCTAssertNotNil(consumption.failedAt)
+        XCTAssertEqual(consumption.status, .failed)
+        return (delegate.didReceiveTransactionConsumptionError!, consumption)
     }
 
     func confirmConsumption(withConsumption transactionConsumption: TransactionConsumption) {
@@ -284,7 +278,7 @@ extension TransactionRequestLiveTests {
                 XCTFail("Shouldn't succeed as we're trying to transfer between the same address")
             case .fail(error: let error):
                 switch error {
-                case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .sameAddress)
+                case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
                 default: XCTFail("Expected to receive same_address error")
                 }
             }
@@ -300,7 +294,7 @@ extension TransactionRequestLiveTests {
             switch result {
             case .success(data: let transactionConsumption):
                 XCTAssertEqual(transactionConsumption.status, .rejected)
-                XCTAssertFalse(transactionConsumption.approved)
+                XCTAssertNotNil(transactionConsumption.rejectedAt)
             case .fail:
                 XCTFail("Shouldn't receive error")
 

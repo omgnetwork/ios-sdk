@@ -4,6 +4,7 @@
   "topic": "a_topic",
   "ref": "1",
   "event": "an_event",
+  "error": null,
   "data": {
     "object": "transaction_consumption",
     "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
@@ -49,9 +50,14 @@
     },
     "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
     "socket_topic": "transaction_consumption:8eb0160e-1c96-481a-88e1-899399cc84dc",
-    "finalized_at": "2018-01-01T00:00:00Z",
     "expiration_date": "2019-01-01T00:00:00Z",
-    "approved": true,
+    "expiration_date": "2019-01-01T00:00:00Z",
+    "approved_at": "2018-01-02T00:00:00Z",
+    "rejected_at": null,
+    "confirmed_at": "2019-01-02T00:00:00Z",
+    "failed_at": null,
+    "expired_at": null,
+    "created_at": "2018-01-01T00:00:00Z",
     "metadata": {}
   }
 }

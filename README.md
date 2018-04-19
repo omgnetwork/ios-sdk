@@ -54,7 +54,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```bash
-$ gem install cocoapods
+gem install cocoapods
 ```
 
 To integrate the `OmiseGO` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
@@ -446,12 +446,12 @@ The `EventDelegate` protocol contains 3 common methods for all event delegates:
 ```swift
 func didStartListening()
 func didStopListening()
-func didReceiveError(_ error: OMGError)
+func onError(_ error: APIError)
 ```
 
 - `didStartListening` can be used to know when the socket channel has been established and is ready to receive events.
 - `didStopListening` can be used to know when the socket channel connection is closed and is not receiving events anymore.
-- `didReceiveError` is called when there is an incoming error object.
+- `onError` is called when there is an incoming error object.
 
 And for each of the listenable resource there is an other specific method to receive related events:
 
@@ -467,19 +467,18 @@ Where:
 
 An object conforming to `TransactionRequestEventDelegate` needs to implement the 3 common methods mentioned above and also:
 
-- `didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+- `onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption)`.
 
 This method will be called when a `TransactionConsumption` is trying to consume the `TransactionRequest`.
 This allows the requester to [confirm](#confirm-a-transaction-consumption) or not the consumption if legitimate.
 
-- `didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+- `onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption)`.
 
-If the `TransactionRequest` requires a confirmation then this method will be called when a `TransactionConsumption` is approved by the requester.
-If it doesn't require a confirmation it will be called when the request is consumed.
+This method will be called if a `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 addresses.
 
-- `didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+- `onFailedTransactionConsumptionFinalized(_ error: APIError)`.
 
-This method will be called when a `TransactionConsumption` is rejected by the requester.
+This method will be called if a `TransactionConsumption` fails to consume the request.
 
 
 #### Transaction consumption events
@@ -494,13 +493,13 @@ Where:
 
 An object conforming to `TransactionConsumptionEventDelegate` needs to implement the 3 common methods mentioned above and also:
 
-- `didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+- `onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption)`.
 
-This method will be called when a `TransactionConsumption` is approved by the requester.
+This method will be called if the `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 addresses.
 
-- `didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)`.
+- `onFailedTransactionConsumptionFinalized(_ error: APIError)`.
 
-This method will be called when a `TransactionConsumption` is rejected by the requester.
+This method will be called if the `TransactionConsumption` fails to consume the request.
 
 #### User events
 
@@ -512,7 +511,7 @@ Where:
 - `client` is a `SocketClient`
 - `eventDelegate` is a `UserEventDelegate` that will receive incoming events.
 
-An object conforming to `UserEventDelegate` needs to implement the 3 common methods mentioned above and also `didReceive(_ object: WebsocketObject, forEvent event: SocketEvent)`.
+An object conforming to `UserEventDelegate` needs to implement the 3 common methods mentioned above and also `on(_ object: WebsocketObject, error: APIError?, forEvent event: SocketEvent)`.
 
 This method will be called when any event regarding the user is received. `WebsocketObject` can be enumerated to get the corresponding object received.
 

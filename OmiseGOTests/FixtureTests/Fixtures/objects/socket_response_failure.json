@@ -4,9 +4,10 @@
   "topic": "a_topic",
   "ref": "1",
   "event": "an_event",
-  "data": {
+  "error": {
     "object": "error",
     "code": "client:invalid_parameter",
     "description": "Invalid parameters"
-  }
+  },
+  "data": null,
 }

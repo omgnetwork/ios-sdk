@@ -54,7 +54,9 @@ class APIErrorCodeTests: XCTestCase {
         XCTAssertEqual(APIErrorCode(rawValue: "client:no_idempotency_token_provided"),
                        APIErrorCode.missingIdempotencyToken)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction:same_address"),
-                       APIErrorCode.sameAddress)
+                       APIErrorCode.transactionSameAddress)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction:insufficient_funds"),
+                       APIErrorCode.transactionInsufficientFunds)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
                        APIErrorCode.websocketError)
         XCTAssertEqual(APIErrorCode(rawValue: "request:expired"),
@@ -65,6 +67,10 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.notOwnerOfTransactionConsumption)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),
                        APIErrorCode.invalidMintedTokenForTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:expired"),
+                       APIErrorCode.transactionConsumptionExpired)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:unfinalized"),
+                       APIErrorCode.transactionConsumptionUnfinalized)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:forbidden_channel"),
                        APIErrorCode.forbiddenChannel)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:channel_not_found"),

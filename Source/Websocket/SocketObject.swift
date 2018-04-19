@@ -49,8 +49,6 @@ extension GenericObjectEnum {
             return
         }
         switch objectType {
-        case "error":
-            self = .error(error: try OMGError.api(apiError: APIError(from: decoder)))
         case "transaction_consumption":
             self = .transactionConsumption(object: try TransactionConsumption(from: decoder))
         default: self = .error(error: OMGError.socketError(message: "Invalid payload"))

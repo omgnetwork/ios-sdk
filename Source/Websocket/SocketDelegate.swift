@@ -14,20 +14,20 @@ public protocol SocketConnectionDelegate: class {
 public protocol EventDelegate: class {
     func didStartListening()
     func didStopListening()
-    func didReceiveError(_ error: OMGError)
+    func onError(_ error: APIError)
 }
 
 public protocol UserEventDelegate: EventDelegate {
-    func didReceive(_ object: WebsocketObject, forEvent event: SocketEvent)
+    func on(_ object: WebsocketObject, error: APIError?, forEvent event: SocketEvent)
 }
 
 public protocol TransactionRequestEventDelegate: EventDelegate {
-    func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
-    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
+    func onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption)
+    func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption)
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: APIError)
 }
 
 public protocol TransactionConsumptionEventDelegate: EventDelegate {
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
-    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
+    func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption)
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: APIError)
 }

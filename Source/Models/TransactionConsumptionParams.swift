@@ -48,7 +48,7 @@ public struct TransactionConsumptionParams {
                  metadata: [String: Any]) {
         guard transactionRequest.amount != nil || amount != nil else { return nil }
         self.transactionRequestId = transactionRequest.id
-        self.amount = amount
+        self.amount = amount == transactionRequest.amount ? nil : amount
         self.address = address
         self.mintedTokenId = mintedTokenId
         self.idempotencyToken = idempotencyToken

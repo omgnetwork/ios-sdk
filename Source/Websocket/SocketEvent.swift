@@ -17,8 +17,7 @@ enum SocketEventSend: String, Encodable {
 public enum SocketEvent: Decodable {
     case reply
     case transactionConsumptionRequest
-    case transactionConsumptionApproved
-    case transactionConsumptionRejected
+    case transactionConsumptionFinalized
     case other(event: String)
 
     public var eventName: String {
@@ -40,8 +39,7 @@ extension SocketEvent: RawRepresentable {
         switch rawValue {
         case "phx_reply": self = .reply
         case "transaction_consumption_request": self = .transactionConsumptionRequest
-        case "transaction_consumption_approved": self = .transactionConsumptionApproved
-        case "transaction_consumption_rejected": self = .transactionConsumptionRejected
+        case "transaction_consumption_finalized": self = .transactionConsumptionFinalized
         default: self = .other(event: rawValue)
         }
     }
@@ -50,8 +48,7 @@ extension SocketEvent: RawRepresentable {
         switch self {
         case .reply: return "phx_reply"
         case .transactionConsumptionRequest: return "transaction_consumption_request"
-        case .transactionConsumptionApproved: return "transaction_consumption_approved"
-        case .transactionConsumptionRejected: return "transaction_consumption_rejected"
+        case .transactionConsumptionFinalized: return "transaction_consumption_finalized"
         case .other(event: let event): return event
         }
     }

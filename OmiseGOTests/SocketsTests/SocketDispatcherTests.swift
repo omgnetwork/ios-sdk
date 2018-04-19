@@ -30,49 +30,138 @@ class SocketDispatcherTests: XCTestCase {
         XCTAssertTrue(self.delegate.didLeave)
     }
 
-    func testDispatchErrorCallsError() {
-        let userDispatcher = SocketDispatcher.user(handler: self.delegate)
-        userDispatcher.dispatchError(OMGError.socketError(message: "dummy_error"))
-        XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
-    }
-
     func testDispatchUserEventCallsDelegate() {
         let userDispatcher = SocketDispatcher.user(handler: self.delegate)
         let consumption = StubGenerator.transactionConsumption()
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
-        userDispatcher.dispatch(payload, event: .transactionConsumptionRequest)
+        userDispatcher.dispatchPayload(self.successPayload(withObject: payload))
         switch self.delegate.didReceiveObject! {
         case .transactionConsumption(object: let transactionConsumptionReceived):
             XCTAssertEqual(transactionConsumptionReceived, consumption)
         }
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRequest)
-        userDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
-        XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
+        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionFinalized)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertNil(self.delegate.didReceiveError)
     }
 
-    func testDispatchTransactionRequestEventCallsDelegate() {
-        let transactionRequestDispatcher = SocketDispatcher.transactionRequest(handler: self.delegate)
+    func testDispatchUserEventWithTransactionError() {
+        let userDispatcher = SocketDispatcher.user(handler: self.delegate)
         let consumption = StubGenerator.transactionConsumption()
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
-        transactionRequestDispatcher.dispatch(payload, event: .transactionConsumptionRequest)
-        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionRequest, consumption)
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRequest)
-        transactionRequestDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
-        XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
+        userDispatcher.dispatchPayload(
+            self.failPayload(withErrorCode: .transactionInsufficientFunds, object: payload)
+        )
+        switch self.delegate.didReceiveObject! {
+        case .transactionConsumption(object: let transactionConsumptionReceived):
+            XCTAssertEqual(transactionConsumptionReceived, consumption)
+        }
+        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionFinalized)
+        XCTAssertEqual(self.delegate.didReceiveError!.code, .transactionInsufficientFunds)
     }
 
-    func testDispatchTransactionConsumptionEventCallsDelegate() {
+    func testDispatchUserEventWithGenericError() {
+        let userDispatcher = SocketDispatcher.user(handler: self.delegate)
+        userDispatcher.dispatchPayload(self.failPayload(withErrorCode: .websocketError))
+        XCTAssertNil(self.delegate.didReceiveObject)
+        XCTAssertEqual(self.delegate.didReceiveError!.code, .websocketError)
+    }
+
+    func testDispatchTransactionRequestEventTransactionRequest() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionRequest(handler: self.delegate)
+        let consumption = StubGenerator.transactionConsumption()
+        let consumptionPayload = GenericObjectEnum.transactionConsumption(object: consumption)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.successPayload(withObject: consumptionPayload, event: .transactionConsumptionRequest)
+        )
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionRequest, consumption)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertNil(self.delegate.didReceiveError)
+    }
+
+    func testDispatchTransactionRequestEventFinalizedConsumptionSuccess() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionRequest(handler: self.delegate)
+        let consumption = StubGenerator.transactionConsumption()
+        let consumptionPayload = GenericObjectEnum.transactionConsumption(object: consumption)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.successPayload(withObject: consumptionPayload)
+        )
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionFinalized, consumption)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertNil(self.delegate.didReceiveError)
+    }
+
+    func testDispatchTransactionRequestEventFinalizedConsumptionError() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionRequest(handler: self.delegate)
+        let consumption = StubGenerator.transactionConsumption()
+        let consumptionPayload = GenericObjectEnum.transactionConsumption(object: consumption)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.failPayload(withErrorCode: .transactionInsufficientFunds, object: consumptionPayload)
+        )
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionFinalized, consumption)
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionError!.code, .transactionInsufficientFunds)
+        XCTAssertNil(self.delegate.didReceiveError)
+    }
+
+    func testDispatchTransactionRequestEventWithError() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionRequest(handler: self.delegate)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.failPayload(withErrorCode: .websocketError)
+        )
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionFinalized)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertEqual(self.delegate.didReceiveError!.code, .websocketError)
+    }
+
+    func testDispatchTransactionConsumptionEventFinalizedConsumptionSuccess() {
         let transactionConsumptionDispatcher = SocketDispatcher.transactionConsumption(handler: self.delegate)
         let consumption = StubGenerator.transactionConsumption()
-        let payload = GenericObjectEnum.transactionConsumption(object: consumption)
-        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionApproved)
-        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionApproved, consumption)
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionApproved)
-        transactionConsumptionDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
-        XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
-        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionRejected)
-        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionRejected, consumption)
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRejected)
+        let consumptionPayload = GenericObjectEnum.transactionConsumption(object: consumption)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.successPayload(withObject: consumptionPayload)
+        )
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionFinalized, consumption)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertNil(self.delegate.didReceiveError)
+    }
+
+    func testDispatchTransactionConsumptionEventFinalizedConsumptionError() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionConsumption(handler: self.delegate)
+        let consumption = StubGenerator.transactionConsumption()
+        let consumptionPayload = GenericObjectEnum.transactionConsumption(object: consumption)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.failPayload(withErrorCode: .transactionInsufficientFunds, object: consumptionPayload)
+        )
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionFinalized, consumption)
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionError!.code, .transactionInsufficientFunds)
+        XCTAssertNil(self.delegate.didReceiveError)
+    }
+
+    func testDispatchTransactionConsumptionEventWithError() {
+        let transactionConsumptionDispatcher = SocketDispatcher.transactionConsumption(handler: self.delegate)
+        transactionConsumptionDispatcher.dispatchPayload(
+            self.failPayload(withErrorCode: .websocketError)
+        )
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionFinalized)
+        XCTAssertNil(self.delegate.didReceiveTransactionConsumptionError)
+        XCTAssertEqual(self.delegate.didReceiveError!.code, .websocketError)
+    }
+
+    private func successPayload(withObject object: GenericObjectEnum,
+                                event: SocketEvent = .transactionConsumptionFinalized) -> SocketPayloadReceive {
+        return StubGenerator.socketPayloadReceive(event: event,
+                                                  data: GenericObject(object: object),
+                                                  success: true)
+    }
+
+    private func failPayload(withErrorCode code: APIErrorCode,
+                             object: GenericObjectEnum? = nil,
+                             event: SocketEvent = .transactionConsumptionFinalized) -> SocketPayloadReceive {
+        return SocketPayloadReceive(topic: "",
+                                    event: event,
+                                    ref: "1",
+                                    data: (object != nil ? GenericObject(object: object!) : nil),
+                                    version: "1", success: false,
+                                    error: .init(code: code, description: "dummy_error"))
     }
 
 }

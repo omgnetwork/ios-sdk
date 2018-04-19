@@ -322,9 +322,13 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             XCTAssertEqual(decodedData.socketTopic, "transaction_consumption:8eb0160e-1c96-481a-88e1-899399cc84dc")
-            XCTAssertEqual(decodedData.finalizedAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
-            XCTAssertTrue(decodedData.approved)
+            XCTAssertEqual(decodedData.approvedAt, "2018-01-02T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.rejectedAt, nil)
+            XCTAssertEqual(decodedData.confirmedAt, "2019-01-02T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.failedAt, nil)
+            XCTAssertEqual(decodedData.expiredAt, nil)
+            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.metadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -409,8 +413,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.ref, "1")
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
-            switch decodedData.data.object {
-            case .transactionConsumption(object: let transactionConsumption): XCTAssertNotNil(transactionConsumption)
+            switch decodedData.data?.object {
+            case .transactionConsumption(object: let transactionConsumption)?: XCTAssertNotNil(transactionConsumption)
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {
@@ -427,8 +431,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.ref, "1")
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, false)
-            switch decodedData.data.object {
-            case .error(error: let error): XCTAssertNotNil(error)
+            switch decodedData.error?.code {
+            case .some(let code) where code == .invalidParameters: break
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {
@@ -445,8 +449,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.ref, "1")
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
-            switch decodedData.data.object {
-            case .error(error: let error): XCTAssertEqual(error.message, "socket error: Invalid payload")
+            switch decodedData.data?.object {
+            case .error(error: let error)?: XCTAssertEqual(error.message, "socket error: Invalid payload")
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {

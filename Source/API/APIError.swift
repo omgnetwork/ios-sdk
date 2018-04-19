@@ -66,12 +66,15 @@ public enum APIErrorCode: Decodable {
     case accessTokenNotFound
     case accessTokenExpired
     case missingIdempotencyToken
-    case sameAddress
+    case transactionSameAddress
+    case transactionInsufficientFunds
     case websocketError
     case requestExpired
     case maxConsumptionsReached
     case notOwnerOfTransactionConsumption
     case invalidMintedTokenForTransactionConsumption
+    case transactionConsumptionExpired
+    case transactionConsumptionUnfinalized
     case forbiddenChannel
     case channelNotFound
     case other(String)
@@ -87,7 +90,7 @@ public enum APIErrorCode: Decodable {
 
 extension APIErrorCode: RawRepresentable {
 
-    //swiftlint:disable:next cyclomatic_complexity
+    //swiftlint:disable:next cyclomatic_complexity function_body_length
     public init?(rawValue: String) {
         switch rawValue {
         case "client:invalid_parameter":
@@ -111,7 +114,9 @@ extension APIErrorCode: RawRepresentable {
         case "client:no_idempotency_token_provided":
             self = .missingIdempotencyToken
         case "transaction:same_address":
-            self = .sameAddress
+            self = .transactionSameAddress
+        case "transaction:insufficient_funds":
+            self = .transactionInsufficientFunds
         case "websocket:connect_error":
             self = .websocketError
         case "request:expired":
@@ -122,6 +127,10 @@ extension APIErrorCode: RawRepresentable {
             self = .notOwnerOfTransactionConsumption
         case "transaction_consumption:invalid_minted_token":
             self = .invalidMintedTokenForTransactionConsumption
+        case "transaction_consumption:expired":
+            self = .transactionConsumptionExpired
+        case "transaction_consumption:unfinalized":
+            self = .transactionConsumptionUnfinalized
         case "websocket:forbidden_channel":
             self = .forbiddenChannel
         case "websocket:channel_not_found":
@@ -153,8 +162,10 @@ extension APIErrorCode: RawRepresentable {
             return "user:access_token_expired"
         case .missingIdempotencyToken:
             return "client:no_idempotency_token_provided"
-        case .sameAddress:
+        case .transactionSameAddress:
             return "transaction:same_address"
+        case .transactionInsufficientFunds:
+            return "transaction:insufficient_funds"
         case .websocketError:
             return "websocket:connect_error"
         case .requestExpired:
@@ -165,6 +176,10 @@ extension APIErrorCode: RawRepresentable {
             return "transaction_consumption:not_owner"
         case .invalidMintedTokenForTransactionConsumption:
             return "transaction_consumption:invalid_minted_token"
+        case .transactionConsumptionExpired:
+            return "transaction_consumption:expired"
+        case .transactionConsumptionUnfinalized:
+            return "transaction_consumption:unfinalized"
         case .forbiddenChannel:
             return "websocket:forbidden_channel"
         case .channelNotFound:

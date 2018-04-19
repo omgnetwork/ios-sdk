@@ -35,13 +35,9 @@ struct SocketChannel {
         })
     }
 
-    func dispatchEvents(_ message: SocketMessage) {
-        if let error = message.error {
-            self.dispatcher?.dispatchError(error)
-            return
-        }
+    func dispatchEvents(forMessage message: SocketMessage) {
         guard let payload = message.dataReceived else { return }
-        self.dispatcher?.dispatch(payload.data.object, event: payload.event)
+        self.dispatcher?.dispatchPayload(payload)
     }
 
 }

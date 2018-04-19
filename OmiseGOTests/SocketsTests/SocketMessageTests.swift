@@ -22,9 +22,9 @@ class SocketMessageTests: XCTestCase {
     func testCallsSuccessHandlerWhenSucceed() {
         let expectation = self.expectation(description: "Calls success handler when succeed")
         let payload = StubGenerator.socketPayloadReceive()
-        let handler: ((GenericObjectEnum) -> Void) = { response in
+        let handler: ((GenericObjectEnum?) -> Void) = { response in
             switch response {
-            case .transactionConsumption(object: let tc): XCTAssertNotNil(tc)
+            case .some(.transactionConsumption(object: let tc)): XCTAssertNotNil(tc)
             default: XCTFail("Unexpected response")
             }
             expectation.fulfill()
@@ -35,11 +35,11 @@ class SocketMessageTests: XCTestCase {
     }
 
     func testCallsErrorHandlerWhenFail() {
-        let expectation = self.expectation(description: "Calls success handler when succeed")
-        let payload = StubGenerator.socketPayloadReceive(data: GenericObject(object: .error(error: .unexpected(message: "dummy error"))),
+        let expectation = self.expectation(description: "Calls failure handler when fail")
+        let payload = StubGenerator.socketPayloadReceive(error: APIError.init(code: .websocketError, description: ""),
                                                          success: false)
-        let handler: ((OMGError) -> Void) = { error in
-            XCTAssertEqual(error.message, "unexpected error: dummy error")
+        let handler: ((APIError) -> Void) = { error in
+            XCTAssertEqual(error.code, .websocketError)
             expectation.fulfill()
         }
         self.socketMessage.onError(handler)

@@ -89,9 +89,13 @@ class StubGenerator {
         transactionRequest: TransactionRequest? = nil,
         address: String? = nil,
         socketTopic: String? = nil,
-        finalizedAt: Date? = nil,
         expirationDate: Date? = nil,
-        approved: Bool? = nil,
+        approvedAt: Date? = nil,
+        rejectedAt: Date? = nil,
+        confirmedAt: Date? = nil,
+        failedAt: Date? = nil,
+        expiredAt: Date? = nil,
+        createdAt: Date? = nil,
         metadata: [String: Any]? = nil)
         -> TransactionConsumption {
             let v: TransactionConsumption = self.stub(forResource: "transaction_consumption")
@@ -108,9 +112,13 @@ class StubGenerator {
                                           transactionRequest: transactionRequest ?? v.transactionRequest,
                                           address: address ?? v.address,
                                           socketTopic: socketTopic ?? v.socketTopic,
-                                          finalizedAt: finalizedAt ?? v.finalizedAt,
                                           expirationDate: expirationDate ?? v.expirationDate,
-                                          approved: approved ?? v.approved,
+                                          approvedAt: approvedAt ?? v.approvedAt,
+                                          rejectedAt: rejectedAt ?? v.rejectedAt,
+                                          confirmedAt: confirmedAt ?? v.confirmedAt,
+                                          failedAt: failedAt ?? v.failedAt,
+                                          expiredAt: expiredAt ?? v.expiredAt,
+                                          createdAt: createdAt ?? v.createdAt,
                                           metadata: metadata ?? v.metadata)
     }
 
@@ -307,6 +315,7 @@ class StubGenerator {
         ref: String? = nil,
         data: GenericObject? = nil,
         version: String? = nil,
+        error: APIError? = nil,
         success: Bool? = nil) -> SocketPayloadReceive {
         let v: SocketPayloadReceive = self.stub(forResource: "socket_response")
         return SocketPayloadReceive(topic: topic ?? v.topic,
@@ -314,7 +323,8 @@ class StubGenerator {
                                     ref: ref ?? v.ref,
                                     data: data ?? v.data,
                                     version: version ?? v.version,
-                                    success: success ?? v.success)
+                                    success: success ?? v.success,
+                                    error: error ?? v.error)
     }
 
 }

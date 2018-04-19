@@ -48,7 +48,12 @@
     "socket_topic": "transaction_consumption:8eb0160e-1c96-481a-88e1-899399cc84dc",
     "finalized_at": "2018-01-01T00:00:00Z",
     "expiration_date": "2019-01-01T00:00:00Z",
-    "approved": true,
+    "approved_at": "2018-01-02T00:00:00Z",
+    "rejected_at": null,
+    "confirmed_at": "2019-01-02T00:00:00Z",
+    "failed_at": null,
+    "expired_at": null,
+    "created_at": "2018-01-01T00:00:00Z",
     "metadata": {}
   }
 }
