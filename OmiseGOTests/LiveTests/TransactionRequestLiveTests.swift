@@ -209,7 +209,7 @@ extension TransactionRequestLiveTests {
                         XCTAssertEqual(transactionConsumption.amount, 1)
                         XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
                         XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)
-                        XCTAssertEqual(transactionConsumption.transactionRequestId, transactionRequest.id)
+                        XCTAssertEqual(transactionConsumption.transactionRequest.id, transactionRequest.id)
                         XCTAssertEqual(transactionConsumption.status, .pending)
                     } else {
                         XCTFail("Should raise a same address error")

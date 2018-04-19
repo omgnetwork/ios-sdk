@@ -45,10 +45,11 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                     XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
                     XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                     XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                    XCTAssertEqual(transactionConsumption.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
-                    XCTAssertEqual(transactionConsumption.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
-                    XCTAssertNil(transactionConsumption.accountId)
-                    XCTAssertEqual(transactionConsumption.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+                    let transaction = transactionConsumption.transaction!
+                    XCTAssertEqual(transaction.id, "6ca40f34-6eaa-43e1-b2e1-a94ff366098")
+                    let user = transactionConsumption.user!
+                    XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+                    XCTAssertNil(transactionConsumption.account)
                     let transactionRequest = transactionConsumption.transactionRequest
                     XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
                     XCTAssertEqual(transactionConsumption.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
@@ -87,10 +88,11 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                XCTAssertEqual(transactionConsumption.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
-                XCTAssertEqual(transactionConsumption.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
-                XCTAssertNil(transactionConsumption.accountId)
-                XCTAssertEqual(transactionConsumption.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+                let transaction = transactionConsumption.transaction!
+                XCTAssertEqual(transaction.id, "6ca40f34-6eaa-43e1-b2e1-a94ff366098")
+                let user = transactionConsumption.user!
+                XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+                XCTAssertNil(transactionConsumption.account)
                 let transactionRequest = transactionConsumption.transactionRequest
                 XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
                 XCTAssertEqual(transactionConsumption.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
@@ -129,10 +131,11 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                XCTAssertEqual(transactionConsumption.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
-                XCTAssertEqual(transactionConsumption.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
-                XCTAssertNil(transactionConsumption.accountId)
-                XCTAssertEqual(transactionConsumption.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+                let transaction = transactionConsumption.transaction!
+                XCTAssertEqual(transaction.id, "6ca40f34-6eaa-43e1-b2e1-a94ff366098")
+                let user = transactionConsumption.user!
+                XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+                XCTAssertNil(transactionConsumption.account)
                 let transactionRequest = transactionConsumption.transactionRequest
                 XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
                 XCTAssertEqual(transactionConsumption.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")

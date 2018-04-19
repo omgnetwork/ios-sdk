@@ -243,6 +243,8 @@ class EncodeTests: XCTestCase {
                                                         mintedToken: StubGenerator.mintedToken(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
                                                         amount: 1337,
                                                         address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
+                                                        user: StubGenerator.user(),
+                                                        account: nil,
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                         status: .valid,
                                                         socketTopic: "transaction_request:0a8a4a98-794b-419e-b92d-514e83657e75",

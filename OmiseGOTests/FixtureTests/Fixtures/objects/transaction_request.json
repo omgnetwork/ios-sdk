@@ -11,6 +11,15 @@
   },
   "amount": 1337,
   "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+  "user": {
+    "object": "user",
+    "id": "6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+    "provider_user_id": "a_provider_user_id",
+    "username": "john.doe@example.com",
+    "socket_topic": "user:6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+    "metadata": {}
+  },
+  "accountId": null,
   "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",
   "status": "valid",
   "socket_topic": "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc",

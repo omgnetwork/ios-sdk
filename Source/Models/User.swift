@@ -9,7 +9,7 @@
 /// Represents the current user
 public struct User: Listenable {
 
-    /// The uniq identifier on the wallet server side
+    /// The unique identifier on the wallet server side
     public let id: String
     /// The user identifier on the provider server side
     public let providerUserId: String

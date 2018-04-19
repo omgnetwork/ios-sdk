@@ -19,10 +19,42 @@
     },
     "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",
     "idempotency_token": "31009545-db10-4287-82f4-afb46d9741d8",
-    "transaction_id": "6ca40f34-6eaa-43e1-b2e1-a94ff3660988",
-    "user_id": "6f56efa1-caf9-4348-8e0f-f5af283f17ee",
-    "account_id": null,
-    "transaction_request_id": "907056a4-fc2d-47cb-af19-5e73aade7ece",
+    "transaction": {
+      "object": "transaction",
+      "id": "6ca40f34-6eaa-43e1-b2e1-a94ff366098",
+      "from": {
+        "object": "transaction_source",
+        "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+        "amount": 1337,
+        "minted_token": {
+          "object": "minted_token",
+          "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "subunit_to_unit": 100000
+        }
+      },
+      "to": {
+        "object": "transaction_source",
+        "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+        "amount": 1337,
+        "minted_token": {
+          "object": "minted_token",
+          "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "subunit_to_unit": 100000
+        }
+      },
+      "exchange": {
+        "object": "exchange",
+        "rate": 1
+      },
+      "metadata": {},
+      "status": "confirmed",
+      "created_at": "2018-01-01T00:00:00Z",
+      "updated_at": "2018-01-01T10:00:00Z"
+    },
     "transaction_request": {
       "object": "transaction_request",
       "type": "receive",
@@ -49,8 +81,16 @@
       "metadata": {}
     },
     "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+    "user": {
+      "object": "user",
+      "id": "6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+      "provider_user_id": "a_provider_user_id",
+      "username": "john.doe@example.com",
+      "socket_topic": "user:6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+      "metadata": {}
+    },
+    "accountId": null,
     "socket_topic": "transaction_consumption:8eb0160e-1c96-481a-88e1-899399cc84dc",
-    "expiration_date": "2019-01-01T00:00:00Z",
     "expiration_date": "2019-01-01T00:00:00Z",
     "approved_at": "2018-01-02T00:00:00Z",
     "rejected_at": null,

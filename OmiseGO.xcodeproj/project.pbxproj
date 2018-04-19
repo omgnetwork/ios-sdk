@@ -47,6 +47,8 @@
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
 		0355969920453069000E38DA /* TransactionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969820453069000E38DA /* TransactionSource.swift */; };
 		0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969A2045315F000E38DA /* TransactionExchange.swift */; };
+		036128A020872E7D00E13514 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0361289F20872E7D00E13514 /* Account.swift */; };
+		036128A22087315D00E13514 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036128A12087315D00E13514 /* Avatar.swift */; };
 		0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE822028508900F7B42E /* TransactionRequestParams.swift */; };
 		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
 		0365F4F120565011000DA61A /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365F4F020565011000DA61A /* Listenable.swift */; };
@@ -173,6 +175,8 @@
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
 		0355969820453069000E38DA /* TransactionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSource.swift; sourceTree = "<group>"; };
 		0355969A2045315F000E38DA /* TransactionExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExchange.swift; sourceTree = "<group>"; };
+		0361289F20872E7D00E13514 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		036128A12087315D00E13514 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		0365DE822028508900F7B42E /* TransactionRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParams.swift; sourceTree = "<group>"; };
 		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		0365F4F020565011000DA61A /* Listenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listenable.swift; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 				039DA976203FAB0600CCC56A /* TransactionListParams.swift */,
 				039DA972203FA72800CCC56A /* Transaction.swift */,
 				039DA978203FB53F00CCC56A /* Pagination.swift */,
+				0361289F20872E7D00E13514 /* Account.swift */,
+				036128A12087315D00E13514 /* Avatar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -752,6 +758,7 @@
 				037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */,
 				0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */,
 				039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */,
+				036128A22087315D00E13514 /* Avatar.swift in Sources */,
 				0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */,
 				037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */,
 				0313D6D820317696003E99BA /* QRScannerView.swift in Sources */,
@@ -761,6 +768,7 @@
 				037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */,
 				0313D6DC20317696003E99BA /* QRScannerViewController.swift in Sources */,
 				037032B11FBBE6B100DBCDDD /* ClientConfiguration.swift in Sources */,
+				036128A020872E7D00E13514 /* Account.swift in Sources */,
 				0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */,
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
 				03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */,
