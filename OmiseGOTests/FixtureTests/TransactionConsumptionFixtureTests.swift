@@ -148,6 +148,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(transactionConsumption.expiredAt, nil)
                 XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertTrue(transactionConsumption.metadata.isEmpty)
+                XCTAssertTrue(transactionConsumption.encryptedMetadata.isEmpty)
             case .fail(error: let error):
                 XCTFail("\(error)")
             }

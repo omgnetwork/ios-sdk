@@ -49,6 +49,8 @@ public struct TransactionConsumption {
     public let transactionRequest: TransactionRequest
     /// The topic which can be listened in order to receive events regarding this consumption
     public let socketTopic: String
+    /// The creation date of the consumption
+    public let createdAt: Date
     /// The date when the consumption will expire
     public let expirationDate: Date?
     /// The date when the consumption got approved
@@ -61,10 +63,10 @@ public struct TransactionConsumption {
     public let failedAt: Date?
     /// The date when the consumption expired
     public let expiredAt: Date?
-    /// The date when the consumption was created
-    public let createdAt: Date
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
+    /// Additional encrypted metadata for the consumption
+    public let encryptedMetadata: [String: Any]
 
 }
 
@@ -86,13 +88,14 @@ extension TransactionConsumption: Decodable {
         case address
         case socketTopic = "socket_topic"
         case expirationDate = "expiration_date"
+        case createdAt = "created_at"
         case approvedAt = "approved_at"
         case rejectedAt = "rejected_at"
         case confirmedAt = "confirmed_at"
         case failedAt = "failed_at"
         case expiredAt = "expired_at"
-        case createdAt = "created_at"
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
     }
 
     public init(from decoder: Decoder) throws {
@@ -117,6 +120,7 @@ extension TransactionConsumption: Decodable {
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
 
 }

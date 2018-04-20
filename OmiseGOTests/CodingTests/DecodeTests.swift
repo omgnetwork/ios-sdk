@@ -122,7 +122,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata_null")
             let decodedData =  try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
-            XCTAssertEqual(decodedData.metadata!.count, 0)
+            XCTAssertTrue(decodedData.metadata!.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -200,6 +200,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.providerUserId, "wijf-fbancomw-dqwjudb")
             XCTAssertEqual(decodedData.username, "john.doe@example.com")
             XCTAssertEqual(decodedData.socketTopic, "user:cec34607-0761-4a59-8357-18963e42a1aa")
+            XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -213,6 +217,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.symbol, "OMG")
             XCTAssertEqual(decodedData.name, "OmiseGO")
             XCTAssertEqual(decodedData.subUnitToUnit, 100000000)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -227,6 +235,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.mintedTokens[0].symbol, "OMG")
             XCTAssertEqual(decodedData.mintedTokens[0].name, "OmiseGO")
             XCTAssertEqual(decodedData.mintedTokens[0].subUnitToUnit, 100000000)
+            XCTAssertTrue(decodedData.mintedTokens[0].metadata.isEmpty)
+            XCTAssertTrue(decodedData.mintedTokens[0].encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.mintedTokens[0].createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.mintedTokens[0].updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -241,6 +253,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.mintedToken.symbol, "OMG")
             XCTAssertEqual(decodedData.mintedToken.name, "OmiseGO")
             XCTAssertEqual(decodedData.mintedToken.subUnitToUnit, 10000)
+            XCTAssertTrue(decodedData.mintedToken.metadata.isEmpty)
+            XCTAssertTrue(decodedData.mintedToken.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -257,6 +273,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.balances[0].mintedToken.symbol, "OMG")
             XCTAssertEqual(decodedData.balances[0].mintedToken.name, "OmiseGO")
             XCTAssertEqual(decodedData.balances[0].mintedToken.subUnitToUnit, 10000)
+            XCTAssertTrue(decodedData.balances[0].mintedToken.metadata.isEmpty)
+            XCTAssertTrue(decodedData.balances[0].mintedToken.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.balances[0].mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.balances[0].mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -293,11 +313,13 @@ class DecodeTests: XCTestCase {
             XCTAssertTrue(decodedData.requireConfirmation)
             XCTAssertEqual(decodedData.maxConsumptions, 1)
             XCTAssertEqual(decodedData.consumptionLifetime, 1000)
+            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.expirationReason, "Expired")
             XCTAssertEqual(decodedData.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.allowAmountOverride)
             XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -334,6 +356,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.expiredAt, nil)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -363,7 +386,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
-            XCTAssertEqual(decodedData.metadata.count, 0)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -473,7 +497,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.isMaster, false)
             let avatar = decodedData.avatar
             XCTAssertEqual(avatar.original, "original_url")
-            XCTAssertEqual(decodedData.metadata.count, 0)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetada.isEmpty)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
         } catch let thrownError {

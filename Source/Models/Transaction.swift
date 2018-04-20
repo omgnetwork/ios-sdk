@@ -32,9 +32,11 @@ public struct Transaction {
     public let exchange: TransactionExchange
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
+    /// Additional encrypted metadata for the consumption
+    public let encryptedMetadata: [String: Any]
     /// The creation date of the transaction
     public let createdAt: Date
-    /// The update date of the transaction
+    /// The last update date of the transaction
     public let updatedAt: Date
 
 }
@@ -48,6 +50,7 @@ extension Transaction: Decodable {
         case to
         case exchange
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -61,7 +64,8 @@ extension Transaction: Decodable {
         exchange = try container.decode(TransactionExchange.self, forKey: .exchange)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
 
 }

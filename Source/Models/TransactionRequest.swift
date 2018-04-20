@@ -60,12 +60,16 @@ public struct TransactionRequest {
     public let expirationDate: Date?
     /// The reason why the request expired
     public let expirationReason: String?
+    /// The creation date of the request
+    public let createdAt: Date?
     /// The date when the request expired
     public let expiredAt: Date?
     /// Allow or not the consumer to override the amount specified in the request
     public let allowAmountOverride: Bool
     /// Additional metadata for the request
     public let metadata: [String: Any]
+    /// Additional encrypted metadata for the request
+    public let encryptedMetadata: [String: Any]
 
 }
 
@@ -89,9 +93,11 @@ extension TransactionRequest: Decodable {
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
         case expirationReason = "expiration_reason"
+        case createdAt = "created_at"
         case expiredAt = "expired_at"
         case allowAmountOverride = "allow_amount_override"
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
     }
 
     public init(from decoder: Decoder) throws {
@@ -111,9 +117,11 @@ extension TransactionRequest: Decodable {
         consumptionLifetime = try container.decodeIfPresent(Int.self, forKey: .consumptionLifetime)
         expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
         expirationReason = try container.decodeIfPresent(String.self, forKey: .expirationReason)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
 
 }

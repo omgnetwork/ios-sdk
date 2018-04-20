@@ -161,23 +161,25 @@ class EncodeTests: XCTestCase {
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: true,
-                                               metadata: [:])!
+                                               metadata: [:],
+                                               encryptedMetadata: [:])!
             let encodedData = try self.encoder.encode(transactionRequestParams)
             let encodedPayload = try! transactionRequestParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "amount":null,
-                    "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
-                    "max_consumptions":1,
                     "require_confirmation":true,
-                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-                    "allow_amount_override":true,
                     "consumption_lifetime":1000,
-                    "expiration_date":"1970-01-01T00:00:00Z",
-                    "type":"receive",
+                    "allow_amount_override":true,
+                    "encrypted_metadata":{},
+                    "amount":null,
+                    "metadata":{},
                     "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-                    "metadata":{}
+                    "type":"receive",
+                    "max_consumptions":1,
+                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "expiration_date":"1970-01-01T00:00:00Z"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -198,21 +200,23 @@ class EncodeTests: XCTestCase {
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: false,
-                                               metadata: [:])!
+                                               metadata: [:],
+                                               encryptedMetadata: [:])!
             let encodedData = try self.encoder.encode(transactionRequestParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "amount":1337,
-                    "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
-                    "max_consumptions":1,
                     "require_confirmation":true,
-                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-                    "allow_amount_override":false,
                     "consumption_lifetime":1000,
-                    "expiration_date":"1970-01-01T00:00:00Z",
-                    "type":"receive",
+                    "allow_amount_override":false,
+                    "encrypted_metadata":{},
+                    "amount":1337,
+                    "metadata":{},
                     "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-                    "metadata":{}
+                    "type":"receive",
+                    "max_consumptions":1,
+                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "expiration_date":"1970-01-01T00:00:00Z"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -253,27 +257,31 @@ class EncodeTests: XCTestCase {
                                                         consumptionLifetime: 1000,
                                                         expirationDate: nil,
                                                         expirationReason: nil,
+                                                        createdAt: nil,
                                                         expiredAt: nil,
                                                         allowAmountOverride: true,
-                                                        metadata: [:])
+                                                        metadata: [:],
+                                                        encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                                             address: "456",
                                                                             mintedTokenId: "BTC:123",
                                                                             amount: nil,
                                                                             idempotencyToken: "123",
                                                                             correlationId: "321",
-                                                                            metadata: [:])
+                                                                            metadata: [:],
+                                                                            encryptedMetadata: [:])
             let encodedData = try self.encoder.encode(transactionConsumptionParams)
             let encodedPayload = try! transactionConsumptionParams!.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":null,
+                    "correlation_id":"321",
+                    "address":"456",
+                    "encrypted_metadata":{},
                     "transaction_request_id":"0a8a4a98-794b-419e-b92d-514e83657e75",
                     "metadata":{},
-                    "token_id":"BTC:123",
-                    "correlation_id":"321",
-                    "address":"456"
+                    "token_id":"BTC:123"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

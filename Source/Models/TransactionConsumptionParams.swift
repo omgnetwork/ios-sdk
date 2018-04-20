@@ -25,6 +25,8 @@ public struct TransactionConsumptionParams {
     public let correlationId: String?
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
+    /// Additional encrypted metadata for the consumption
+    public let encryptedMetadata: [String: Any]
 
     /// Initialize the params used to consume a transaction request
     /// Returns nil if the amount is nil and was not specified in the transaction request
@@ -45,7 +47,8 @@ public struct TransactionConsumptionParams {
                  amount: Double?,
                  idempotencyToken: String,
                  correlationId: String?,
-                 metadata: [String: Any]) {
+                 metadata: [String: Any] = [:],
+                 encryptedMetadata: [String: Any] = [:]) {
         guard transactionRequest.amount != nil || amount != nil else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount == transactionRequest.amount ? nil : amount
@@ -54,6 +57,7 @@ public struct TransactionConsumptionParams {
         self.idempotencyToken = idempotencyToken
         self.correlationId = correlationId
         self.metadata = metadata
+        self.encryptedMetadata = encryptedMetadata
     }
 
 }
@@ -66,6 +70,7 @@ extension TransactionConsumptionParams: Parametrable {
         case address
         case mintedTokenId = "token_id"
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
         case correlationId = "correlation_id"
     }
 
@@ -76,6 +81,7 @@ extension TransactionConsumptionParams: Parametrable {
         try container.encode(address, forKey: .address)
         try container.encode(mintedTokenId, forKey: .mintedTokenId)
         try container.encode(metadata, forKey: .metadata)
+        try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
         try container.encode(correlationId, forKey: .correlationId)
     }
 

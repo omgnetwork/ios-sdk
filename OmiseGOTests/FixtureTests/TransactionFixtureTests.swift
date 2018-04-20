@@ -48,7 +48,8 @@ class TransactionFixtureTests: FixtureTestCase {
                     let exchange = transaction.exchange
                     XCTAssertEqual(exchange.rate, 1)
                     XCTAssertEqual(transaction.status, .confirmed)
-                    XCTAssertEqual(transaction.metadata.count, 0)
+                    XCTAssertTrue(transaction.metadata.isEmpty)
+                    XCTAssertTrue(transaction.encryptedMetadata.isEmpty)
                     XCTAssertEqual(transaction.createdAt, "2018-01-01T00:00:00Z".toDate())
                     XCTAssertEqual(transaction.updatedAt, "2018-01-01T10:00:00Z".toDate())
                 case .fail(error: let error):

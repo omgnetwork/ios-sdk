@@ -6,6 +6,7 @@
   "description": "The account description",
   "master": false,
   "metadata": {},
+  "encrypted_metadata": {},
   "avatar": {
     "original": "original_url",
     "large": "large_url",

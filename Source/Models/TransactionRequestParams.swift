@@ -36,6 +36,8 @@ public struct TransactionRequestCreateParams {
     public let allowAmountOverride: Bool
     /// Additional metadata embedded with the request
     public let metadata: [String: Any]
+    /// Additional encrypted metadata embedded with the request
+    public let encryptedMetadata: [String: Any]
 
     /// Initialize the params used to generate a transaction request.
     /// Returns nil if allowAmountOverride is false and amount is nil
@@ -67,7 +69,8 @@ public struct TransactionRequestCreateParams {
                  consumptionLifetime: Int?,
                  expirationDate: Date?,
                  allowAmountOverride: Bool,
-                 metadata: [String: Any]) {
+                 metadata: [String: Any] = [:],
+                 encryptedMetadata: [String: Any] = [:]) {
         guard allowAmountOverride || amount != nil else { return nil }
         self.type = type
         self.mintedTokenId = mintedTokenId
@@ -80,6 +83,7 @@ public struct TransactionRequestCreateParams {
         self.expirationDate = expirationDate
         self.allowAmountOverride = allowAmountOverride
         self.metadata = metadata
+        self.encryptedMetadata = encryptedMetadata
     }
 
 }
@@ -98,6 +102,7 @@ extension TransactionRequestCreateParams: Parametrable {
         case expirationDate = "expiration_date"
         case allowAmountOverride = "allow_amount_override"
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
     }
 
     // Custom encoding as we need to encode amount event if nil
@@ -114,6 +119,7 @@ extension TransactionRequestCreateParams: Parametrable {
         try container.encode(expirationDate, forKey: .expirationDate)
         try container.encode(allowAmountOverride, forKey: .allowAmountOverride)
         try container.encode(metadata, forKey: .metadata)
+        try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }
 
 }

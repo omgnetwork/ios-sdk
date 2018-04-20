@@ -39,9 +39,11 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     consumptionLifetime: nil,
                                                     expirationDate: nil,
                                                     expirationReason: nil,
+                                                    createdAt: nil,
                                                     expiredAt: nil,
                                                     allowAmountOverride: true,
-                                                    metadata: [:])
+                                                    metadata: [:],
+                                                    encryptedMetadata: [:])
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
                                                   mintedTokenId: nil,
@@ -67,9 +69,11 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     consumptionLifetime: nil,
                                                     expirationDate: nil,
                                                     expirationReason: nil,
+                                                    createdAt: nil,
                                                     expiredAt: nil,
                                                     allowAmountOverride: true,
-                                                    metadata: [:])
+                                                    metadata: [:],
+                                                    encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
                                               mintedTokenId: nil,

@@ -37,9 +37,11 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                     XCTAssertEqual(transactionRequest.consumptionLifetime, 1000)
                     XCTAssertEqual(transactionRequest.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertEqual(transactionRequest.expirationReason, "Expired")
+                    XCTAssertEqual(transactionRequest.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertTrue(transactionRequest.allowAmountOverride)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
+                    XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }
@@ -70,9 +72,11 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                         XCTAssertEqual(transactionRequest.consumptionLifetime, 1000)
                         XCTAssertEqual(transactionRequest.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                         XCTAssertEqual(transactionRequest.expirationReason, "Expired")
+                        XCTAssertEqual(transactionRequest.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                         XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                         XCTAssertTrue(transactionRequest.allowAmountOverride)
                         XCTAssertTrue(transactionRequest.metadata.isEmpty)
+                        XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
                     case .fail(error: let error):
                         XCTFail("\(error)")
                     }

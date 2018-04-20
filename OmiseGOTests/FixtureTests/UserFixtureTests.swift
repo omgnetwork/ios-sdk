@@ -39,6 +39,9 @@ class UserFixtureTests: FixtureTestCase {
                 } else {
                     XCTFail("Failed to parse metadata array")
                 }
+                XCTAssertTrue(user.encryptedMetadata.isEmpty)
+                XCTAssertEqual(user.createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(user.updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(let error):
                 XCTFail("\(error)")
             }

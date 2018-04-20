@@ -282,7 +282,8 @@ let params = TransactionRequestCreateParams(type: .receive,
                                             consumptionLifetime: 60000,
                                             expirationDate: nil,
                                             allowAmountOverride: true,
-                                            metadata: [:])!
+                                            metadata: [:],
+                                            encryptedMetadata: [:])!
 TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
     switch transactionRequestResult {
     case .success(data: let transactionRequest):
@@ -309,6 +310,7 @@ Where:
   > Note that if `amount` is nil and `allowAmountOverride` is false the init will fail and return `nil`.
 
   - `metadata`: Additional metadata embedded with the request
+  - `encryptedMetadata`: Additional encrypted metadata embedded with the request
 
 #### Consume a transaction request
 
@@ -321,7 +323,8 @@ guard let params = TransactionConsumptionParams(transactionRequest: transactionR
                                                 amount: 1337,
                                                 idempotencyToken: "an idempotency token",
                                                 correlationId: "a correlation id",
-                                                metadata: [:])!
+                                                metadata: [:],
+                                                encryptedMetadata: [:])!
 TransactionConsumption.consumeTransactionRequest(using: client, params: params) { (transactionConsumptionResult) in
     switch transactionConsumptionResult {
     case .success(data: let transactionConsumption):
@@ -343,7 +346,7 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 - `idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
 - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
 - `metadata`: A dictionary of additional data to be stored for this transaction consumption.
-
+- `encryptedMetadata`: A dictionary of additional encrypted data to be stored for this transaction consumption.
 
 #### Approve a transaction consumption
 

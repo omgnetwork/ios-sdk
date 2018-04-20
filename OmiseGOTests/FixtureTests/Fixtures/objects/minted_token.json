@@ -2,5 +2,9 @@
   "id": "OMG:123",
   "symbol": "OMG",
   "name": "OmiseGO",
-  "subunit_to_unit": 100000000
+  "subunit_to_unit": 100000000,
+  "metadata": {},
+  "encrypted_metadata": {},
+  "created_at": "2018-01-01T00:00:00Z",
+  "updated_at": "2018-01-01T00:00:00Z"
 }

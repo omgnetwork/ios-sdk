@@ -23,6 +23,8 @@ public struct Account {
     public let avatar: Avatar
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
+    /// Any additional encrypted metadata that need to be stored as a dictionary
+    public let encryptedMetada: [String: Any]
     /// The creation date of the account
     public let createdAt: Date
     /// The date when the account was last updated
@@ -40,6 +42,7 @@ extension Account: Decodable {
         case isMaster = "master"
         case avatar
         case metadata
+        case encryptedMetadata = "encrypted_metadata"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -53,6 +56,7 @@ extension Account: Decodable {
         isMaster = try container.decode(Bool.self, forKey: .isMaster)
         avatar = try container.decode(Avatar.self, forKey: .avatar)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetada = try container.decode([String: Any].self, forKey: .encryptedMetadata)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
