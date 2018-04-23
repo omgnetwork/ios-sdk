@@ -68,7 +68,6 @@
 		037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329D1FBBE6B100DBCDDD /* APIError.swift */; };
 		037032B31FBBE6B100DBCDDD /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */; };
 		037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */; };
-		037032B61FBBE6B100DBCDDD /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A11FBBE6B100DBCDDD /* OMGError.swift */; };
 		037032B81FBBE6B100DBCDDD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032A31FBBE6B100DBCDDD /* Request.swift */; };
 		037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BB1FBBE7A300DBCDDD /* Tool.swift */; };
 		0370519E2040756F009FD899 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370519D2040756F009FD899 /* secret.plist */; };
@@ -104,7 +103,9 @@
 		03D793B4204FA2490055D7BC /* ToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B3204FA2490055D7BC /* ToolsTests.swift */; };
 		03D793B6204FE1080055D7BC /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B5204FE1080055D7BC /* ListableTests.swift */; };
 		03D793B8204FE1D90055D7BC /* ListableDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793B7204FE1D90055D7BC /* ListableDummy.swift */; };
-		03D793BC204FEB8B0055D7BC /* OMGErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */; };
+		03DE596B2089C35500E5AE6D /* AccountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE596A2089C35500E5AE6D /* AccountTest.swift */; };
+		03DE596D2089CAEF00E5AE6D /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE596C2089CAEF00E5AE6D /* OMGError.swift */; };
+		03DE596F2089CC9E00E5AE6D /* OMGErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE596E2089CC9E00E5AE6D /* OMGErrorTests.swift */; };
 		03E8E6712060BDDE0036CC9E /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6702060BDDE0036CC9E /* RequestParameters.swift */; };
 		03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E6722060C5320036CC9E /* SocketEvent.swift */; };
 		03F119CC2063A31E00C1772C /* DummySocketEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */; };
@@ -196,7 +197,6 @@
 		0370329D1FBBE6B100DBCDDD /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
-		037032A11FBBE6B100DBCDDD /* OMGError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		037032A31FBBE6B100DBCDDD /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		037032A41FBBE6B100DBCDDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		037032BB1FBBE7A300DBCDDD /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
@@ -235,7 +235,9 @@
 		03D793B3204FA2490055D7BC /* ToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTests.swift; sourceTree = "<group>"; };
 		03D793B5204FE1080055D7BC /* ListableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		03D793B7204FE1D90055D7BC /* ListableDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableDummy.swift; sourceTree = "<group>"; };
-		03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGErrorTests.swift; sourceTree = "<group>"; };
+		03DE596A2089C35500E5AE6D /* AccountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTest.swift; sourceTree = "<group>"; };
+		03DE596C2089CAEF00E5AE6D /* OMGError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
+		03DE596E2089CC9E00E5AE6D /* OMGErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGErrorTests.swift; sourceTree = "<group>"; };
 		03E8E6702060BDDE0036CC9E /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
 		03E8E6722060C5320036CC9E /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
 		03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySocketEventDelegate.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				039DA978203FB53F00CCC56A /* Pagination.swift */,
 				0361289F20872E7D00E13514 /* Account.swift */,
 				036128A12087315D00E13514 /* Avatar.swift */,
+				03DE596C2089CAEF00E5AE6D /* OMGError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,7 +444,6 @@
 				0370329D1FBBE6B100DBCDDD /* APIError.swift */,
 				0370329E1FBBE6B100DBCDDD /* HTTPClient.swift */,
 				037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */,
-				037032A11FBBE6B100DBCDDD /* OMGError.swift */,
 				037032A31FBBE6B100DBCDDD /* Request.swift */,
 				037BAA9A205F701E004A3952 /* RequestBuilder.swift */,
 				03E8E6702060BDDE0036CC9E /* RequestParameters.swift */,
@@ -506,7 +508,6 @@
 				031EA68C2071DE7F00A34D16 /* APITests */,
 				031EA6892071DE7F00A34D16 /* CodingTests */,
 				031EA6852071DE7F00A34D16 /* HTTPTests */,
-				03D793BB204FEB8B0055D7BC /* OMGErrorTests.swift */,
 				03D793B3204FA2490055D7BC /* ToolsTests.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
 				0370519D2040756F009FD899 /* secret.plist */,
@@ -541,6 +542,8 @@
 				0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */,
 				03FE644F2032C6BF00345281 /* TransactionConsumptionTest.swift */,
 				0396628320400CE8004E5640 /* TransactionTest.swift */,
+				03DE596A2089C35500E5AE6D /* AccountTest.swift */,
+				03DE596E2089CC9E00E5AE6D /* OMGErrorTests.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
 				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
 				037032B31FBBE6B100DBCDDD /* HTTPClient.swift in Sources */,
+				03DE596D2089CAEF00E5AE6D /* OMGError.swift in Sources */,
 				0377EBAE20564E7A0036A9D6 /* SocketClient.swift in Sources */,
 				039DA979203FB53F00CCC56A /* Pagination.swift in Sources */,
 				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
@@ -786,7 +790,6 @@
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
-				037032B61FBBE6B100DBCDDD /* OMGError.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
 				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
 				0365F4F120565011000DA61A /* Listenable.swift in Sources */,
@@ -825,7 +828,6 @@
 				03D793B4204FA2490055D7BC /* ToolsTests.swift in Sources */,
 				031EA6A62071DEC800A34D16 /* FixtureSocketClient.swift in Sources */,
 				03CEF4C11FB01CB5009B8CEB /* AuthenticationLiveTest.swift in Sources */,
-				03D793BC204FEB8B0055D7BC /* OMGErrorTests.swift in Sources */,
 				031EA6A52071DEC800A34D16 /* SocketDispatcherTests.swift in Sources */,
 				03F84C661FC2883100F21C7B /* AddressTests.swift in Sources */,
 				03FE64492032960200345281 /* MetadataDummy.swift in Sources */,
@@ -839,6 +841,7 @@
 				03D793B8204FE1D90055D7BC /* ListableDummy.swift in Sources */,
 				031EA6A72071DEC800A34D16 /* SocketClientTests.swift in Sources */,
 				031EA6932071DE8000A34D16 /* EncodeTests.swift in Sources */,
+				03DE596F2089CC9E00E5AE6D /* OMGErrorTests.swift in Sources */,
 				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */,
 				031EA6AE2071DEC800A34D16 /* QRScannerViewControllerTest.swift in Sources */,
@@ -863,6 +866,7 @@
 				031EA6AC2071DEC800A34D16 /* MockQRReader.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
 				03966280203FFF3E004E5640 /* TransactionFixtureTests.swift in Sources */,
+				03DE596B2089C35500E5AE6D /* AccountTest.swift in Sources */,
 				03FE64502032C6BF00345281 /* TransactionConsumptionTest.swift in Sources */,
 				031EA6B12071DF6500A34D16 /* LiveTestCase.swift in Sources */,
 				038CB3E9202B02B300E40715 /* TransactionConsumptionParamsTest.swift in Sources */,

@@ -25,10 +25,7 @@ class AuthenticationLiveTest: LiveTestCase {
             case .fail(error: let error):
                 switch error {
                 case .api(apiError: let apiError) where apiError.isAuthorizationError():
-                    switch apiError.code {
-                    case .accessTokenNotFound: XCTAssertTrue(true)
-                    default: XCTFail("Error should be token not found")
-                    }
+                    XCTAssertEqual(apiError.code, .accessTokenNotFound)
                 default:
                     XCTFail("Error should be an authorization error")
                 }
@@ -52,10 +49,7 @@ class AuthenticationLiveTest: LiveTestCase {
             case .fail(error: let error):
                 switch error {
                 case .api(apiError: let apiError) where apiError.isAuthorizationError():
-                    switch apiError.code {
-                    case .invalidAPIKey: XCTAssertTrue(true)
-                    default: XCTFail("Error should be invalid api key")
-                    }
+                    XCTAssertEqual(apiError.code, .invalidAPIKey)
                 default:
                     XCTFail("Error should be an authorization error")
                 }

@@ -40,10 +40,8 @@ class LogoutFixtureTests: FixtureTestCase {
                 XCTFail("Should not be able to encode header after logout")
             } catch let error as OMGError {
                 switch error {
-                case .configuration(message: _):
-                    XCTAssertTrue(true)
-                default:
-                    XCTFail("Should throw a configuration error")
+                case .configuration(message: _): break
+                default: XCTFail("Should throw a configuration error")
                 }
             } catch _ {}
         }

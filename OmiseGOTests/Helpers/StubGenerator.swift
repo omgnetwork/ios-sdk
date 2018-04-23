@@ -353,4 +353,29 @@ class StubGenerator {
                                     error: error ?? v.error)
     }
 
+    class func account(
+        id: String? = nil,
+        parentId: String? = nil,
+        name: String? = nil,
+        description: String? = nil,
+        isMaster: Bool? = nil,
+        avatar: Avatar? = nil,
+        metadata: [String: Any]? = nil,
+        encryptedMetada: [String: Any]? = nil,
+        createdAt: Date? = nil,
+        updatedAt: Date? = nil) -> Account {
+        let v: Account = self.stub(forResource: "account")
+        return Account(
+            id: id ?? v.id,
+            parentId: parentId ?? v.parentId,
+            name: name ?? v.name,
+            description: description ?? v.description,
+            isMaster: isMaster ?? v.isMaster,
+            avatar: avatar ?? v.avatar,
+            metadata: metadata ?? v.metadata,
+            encryptedMetada: encryptedMetada ?? v.encryptedMetada,
+            createdAt: createdAt ?? v.createdAt,
+            updatedAt: updatedAt ?? v.updatedAt)
+    }
+
 }

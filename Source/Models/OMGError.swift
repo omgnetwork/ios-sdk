@@ -13,6 +13,7 @@
 /// - api: An API error has occured
 /// - other: Other types of errors
 public enum OMGError: Error {
+
     case unexpected(message: String)
     case configuration(message: String)
     case api(apiError: APIError)
@@ -48,5 +49,19 @@ extension OMGError: CustomStringConvertible, CustomDebugStringConvertible {
 extension OMGError: LocalizedError {
 
     public var errorDescription: String? { return self.message }
+
+}
+
+extension OMGError: Equatable {
+
+    public static func == (lhs: OMGError, rhs: OMGError) -> Bool {
+        switch (lhs, rhs) {
+        case (.unexpected(message: let lhsMessage), .unexpected(message: let rhsMessage)): return lhsMessage == rhsMessage
+        case (.configuration(message: let lhsMessage), .configuration(message: let rhsMessage)): return lhsMessage == rhsMessage
+        case (.api(apiError: let lhsError), .api(apiError: let rhsError)): return lhsError == rhsError
+        case (.socketError(message: let lhsMessage), .socketError(message: let rhsMessage)): return lhsMessage == rhsMessage
+        default: return false
+        }
+    }
 
 }

@@ -117,10 +117,7 @@ class TransactionRequestLiveTests: LiveTestCase {
             XCTFail("Should get an error")
             return
         }
-        switch error.code {
-        case .channelNotFound: break
-        default: XCTFail("Should get a channel not found error")
-        }
+        XCTAssertEqual(error.code, .channelNotFound)
     }
 
 }

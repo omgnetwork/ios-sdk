@@ -53,6 +53,14 @@ extension APIError: Decodable {
 
 }
 
+extension APIError: Equatable {
+
+    public static func == (lhs: APIError, rhs: APIError) -> Bool {
+        return lhs.code == rhs.code
+    }
+
+}
+
 // Represents the different API error codes
 public enum APIErrorCode: Decodable {
 

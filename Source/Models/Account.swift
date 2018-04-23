@@ -62,3 +62,15 @@ extension Account: Decodable {
     }
 
 }
+
+extension Account: Hashable {
+
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+
+    public static func == (lhs: Account, rhs: Account) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+}

@@ -22,10 +22,7 @@ class ResponseLiveTest: LiveTestCase {
             case .fail(let error):
                 switch error {
                 case .api(apiError: let apiError):
-                    switch apiError.code {
-                    case .endPointNotFound: XCTAssertTrue(true)
-                    default: XCTFail("Error should be endpoint not found")
-                    }
+                    XCTAssertEqual(apiError.code, .endPointNotFound)
                 default:
                     XCTFail("Error should be an API error")
                 }

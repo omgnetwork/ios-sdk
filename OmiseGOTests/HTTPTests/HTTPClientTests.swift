@@ -31,10 +31,8 @@ class HTTPClientTests: XCTestCase {
                 XCTFail("Request should not be executed if base url is not correct")
             case .fail(let error):
                 switch error {
-                case .configuration(message: _):
-                    XCTAssertTrue(true)
-                default:
-                    XCTFail("Error should be a configuration error")
+                case .configuration(message: _): break
+                default: XCTFail("Error should be a configuration error")
                 }
             }
             }
