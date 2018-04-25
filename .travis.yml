@@ -2,5 +2,5 @@ language: swift
 osx_image: xcode9.3
 script:
   set -o pipefail &&
-  xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" test &&
+  xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" test | xcpretty &&
   pod lib lint;
