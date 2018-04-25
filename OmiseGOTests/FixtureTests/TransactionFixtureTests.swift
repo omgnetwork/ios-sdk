@@ -18,7 +18,6 @@ class TransactionFixtureTests: FixtureTestCase {
         let paginationParams = PaginationParams<Transaction>(page: 1,
                                                              perPage: 10,
                                                              searchTerm: nil,
-                                                             searchTerms: nil,
                                                              sortBy: .to,
                                                              sortDirection: .ascending)
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)

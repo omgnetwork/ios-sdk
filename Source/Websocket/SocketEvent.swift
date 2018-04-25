@@ -10,12 +10,12 @@ enum SocketEventSend: String, Encodable {
     case heartbeat = "heartbeat"
     case join = "phx_join"
     case leave = "phx_leave"
-    case error = "phx_error"
-    case close = "phx_close"
 }
 
 public enum SocketEvent: Decodable {
     case reply
+    case error
+    case close
     case transactionConsumptionRequest
     case transactionConsumptionFinalized
     case other(event: String)
@@ -37,6 +37,8 @@ extension SocketEvent: RawRepresentable {
 
     public init?(rawValue: String) {
         switch rawValue {
+        case "phx_error": self = .error
+        case "phx_close": self = .close
         case "phx_reply": self = .reply
         case "transaction_consumption_request": self = .transactionConsumptionRequest
         case "transaction_consumption_finalized": self = .transactionConsumptionFinalized
@@ -46,6 +48,8 @@ extension SocketEvent: RawRepresentable {
 
     public var rawValue: String {
         switch self {
+        case .error: return "phx_error"
+        case .close: return "phx_close"
         case .reply: return "phx_reply"
         case .transactionConsumptionRequest: return "transaction_consumption_request"
         case .transactionConsumptionFinalized: return "transaction_consumption_finalized"

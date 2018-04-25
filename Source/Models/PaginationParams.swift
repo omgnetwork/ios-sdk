@@ -42,27 +42,50 @@ public struct PaginationParams<T: Paginable> {
     /// The sort direction (ascending or descending)
     public let sortDirection: SortDirection
 
-    /// Initialize the params used to query a paginated collection
-    ///
-    /// - Parameters:
-    ///   - page: The page requested (0 and 1 are the same)
-    ///   - perPage: The number of result expected per page
-    ///   - searchTerm: The global search term used to search in any of the SearchableFields
-    ///   - searchTerms: A dictionary where each key is a Searchable field that and each value is a search term
-    ///   - sortBy: The field to sort by
-    ///   - sortDirection: The sort direction (ascending or descending)
-    public init(page: Int,
-                perPage: Int,
-                searchTerm: String?,
-                searchTerms: [T.SearchableFields: Any]?,
-                sortBy: T.SortableFields,
-                sortDirection: SortDirection) {
+    init(page: Int,
+         perPage: Int,
+         searchTerm: String?,
+         searchTerms: [T.SearchableFields: Any]?,
+         sortBy: T.SortableFields,
+         sortDirection: SortDirection) {
         self.page = page
         self.perPage = perPage
         self.searchTerm = searchTerm
         self.searchTerms = searchTerms
         self.sortBy = sortBy
         self.sortDirection = sortDirection
+    }
+
+    /// Initialize the params used to query a paginated collection
+    ///
+    /// - Parameters:
+    ///   - page: The page requested (0 and 1 are the same)
+    ///   - perPage: The number of result expected per page
+    ///   - searchTerm: The global search term used to search in any of the SearchableFields
+    ///   - sortBy: The field to sort by
+    ///   - sortDirection: The sort direction (ascending or descending)
+    public init(page: Int,
+                perPage: Int,
+                searchTerm: String?,
+                sortBy: T.SortableFields,
+                sortDirection: SortDirection) {
+        self.init(page: page, perPage: perPage, searchTerm: searchTerm, searchTerms: nil, sortBy: sortBy, sortDirection: sortDirection)
+    }
+
+    /// Initialize the params used to query a paginated collection
+    ///
+    /// - Parameters:
+    ///   - page: The page requested (0 and 1 are the same)
+    ///   - perPage: The number of result expected per page
+    ///   - searchTerms: A dictionary where each key is a Searchable field that and each value is a search term
+    ///   - sortBy: The field to sort by
+    ///   - sortDirection: The sort direction (ascending or descending)
+    public init(page: Int,
+                perPage: Int,
+                searchTerms: [T.SearchableFields: Any]?,
+                sortBy: T.SortableFields,
+                sortDirection: SortDirection) {
+        self.init(page: page, perPage: perPage, searchTerm: nil, searchTerms: searchTerms, sortBy: sortBy, sortDirection: sortDirection)
     }
 
 }
