@@ -52,27 +52,27 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OMG_BASE_URL"
-            value = "$(OMG_BASE_URL)"
+            value = "$OMG_BASE_URL"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OMG_WEBSOCKET_URL"
-            value = "${OMG_WEBSOCKET_URL}"
+            value = "$OMG_WEBSOCKET_URL"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OMG_MINTED_TOKEN_ID"
-            value = "$(OMG_MINTED_TOKEN_ID)"
+            value = "$OMG_MINTED_TOKEN_ID"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OMG_API_KEY"
-            value = "$(OMG_API_KEY)"
+            value = "$OMG_API_KEY"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OMG_AUTHENTICATION_TOKEN"
-            value = "$(OMG_AUTHENTICATION_TOKEN)"
+            value = "$OMG_AUTHENTICATION_TOKEN"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
