@@ -386,9 +386,11 @@ This method takes an optional `CGSize` param that can be used to define the expe
 
 #### Scan a QR code
 
+To enable QR code scanning, you first need to add the `NSCameraUsageDescription` permission in your `Info.plist`.
+
 You can then use the integrated `QRScannerViewController` to scan the generated QR code.
 
-You first need to initialize the view controller using:
+Initialize the view controller using:
 
 ```swift
 if let vc = QRScannerViewController(delegate: self, client: client, cancelButtonTitle: "Cancel") {
