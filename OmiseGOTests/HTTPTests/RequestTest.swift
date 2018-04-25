@@ -18,8 +18,8 @@ class RequestTest: XCTestCase {
     func testStartRequest() {
         let request: Request<DummyTestObject> =
             Request(client: client,
-                       endpoint: APIEndpoint.custom(path: "/test",
-                                                    task: Task.requestPlain)) { _ in}
+                    endpoint: APIEndpoint.custom(path: "/test",
+                                                 task: Task.requestPlain)) { _ in}
         do {
             XCTAssertNil(request.task)
             _ = try request.start()
@@ -30,16 +30,25 @@ class RequestTest: XCTestCase {
     }
 
     func testCancelRequest() {
+        let expectation = self.expectation(description: "Task is cancelled")
+        let dummyEndpoint = APIEndpoint.custom(path: "/test", task: Task.requestPlain)
         let request: Request<DummyTestObject> =
             Request(client: client,
-                       endpoint: APIEndpoint.custom(path: "/test",
-                                                    task: Task.requestPlain)) { _ in}
+                    endpoint: dummyEndpoint) { result in
+                        defer { expectation.fulfill() }
+                        switch result {
+                        case .success: XCTFail("Expected failure")
+                        case .fail(error: let error):
+                            XCTAssertEqual(error.description, "I/O error: cancelled")
+                        }
+        }
         do {
             XCTAssertNil(request.task)
             _ = try request.start()
             XCTAssertNotNil(request.task)
             request.cancel()
-            XCTAssertEqual(request.task!.state, .canceling)
+            self.wait(for: [expectation], timeout: 10)
+            XCTAssertEqual(request.task!.state, .completed)
         } catch let error {
             XCTFail(error.localizedDescription)
         }
