@@ -64,6 +64,9 @@ public class Request<ResultType: Decodable> {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
+            if self.client.config.debugLog {
+                omiseGOInfo("Did receive: \(String(data: data, encoding: .utf8) ?? "")")
+            }
             let response: JSONResponse<ResultType> = try deserializeData(data)
             return response.data
         } catch let error {

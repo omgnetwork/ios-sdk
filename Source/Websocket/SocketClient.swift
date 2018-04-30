@@ -214,7 +214,9 @@ extension SocketClient: WebSocketDelegate {
     }
 
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        omiseGOInfo("websockets did receive: \(text)")
+        if let config = self.config, config.debugLog {
+            omiseGOInfo("websockets did receive: \(text)")
+        }
         guard let data = text.data(using: .utf8), let payload: SocketPayloadReceive = try? deserializeData(data) else { return }
         var message: SocketMessage!
         if let ref = payload.ref, let waitingForResponse = self.awaitingResponse[ref] {

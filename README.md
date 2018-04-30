@@ -123,7 +123,8 @@ You should do this as soon as you obtain a valid authentication token correspond
 ```swift
 let configuration = ClientConfiguration(baseURL: "https://your.base.url/api",
                                         apiKey: "apiKey",
-                                        authenticationToken: "authenticationToken")
+                                        authenticationToken: "authenticationToken",
+                                        debugLog: false)
 let client = HTTPClient(config: configuration)
 ```
 
@@ -132,6 +133,8 @@ Where:
 - `apiKey` is the API key (typically generated on the admin panel)
 - `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
 > You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
+
+- `debugLog` is a boolean indicating if the SDK should print logs in the console.
 
 ### Retrieving resources
 
@@ -441,7 +444,8 @@ Similarly to the HTTP client, the `SocketClient` needs to be first initialized  
 ```swift
 let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/socket",
                                         apiKey: "apiKey",
-                                        authenticationToken: "authenticationToken")
+                                        authenticationToken: "authenticationToken",
+                                        debugLog: false)
 let client = SocketClient(config: configuration, delegate: self)
 ```
 
@@ -450,6 +454,8 @@ Where:
 - `apiKey` is the API key (typically generated on the admin panel)
 - `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
 > You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
+
+- `debugLog` is a boolean indicating if the SDK should print logs in the console.
 
 ### Listenable resources
 

@@ -20,6 +20,8 @@ public struct ClientConfiguration {
     public let apiKey: String
     /// The authentication token of the current user
     public var authenticationToken: String?
+    /// A boolean indicating if debug info should be printed in the console
+    let debugLog: Bool
 
     /// Creates the configuration required to initialize the OmiseGO SDK
     ///
@@ -29,10 +31,12 @@ public struct ClientConfiguration {
     ///              When initializing the SocketClient, this needs to be a ws(s) url
     ///   - apiKey: The API key (typically generated on the admin panel)
     ///   - authenticationToken: The authentication token of the current user
-    public init(baseURL: String, apiKey: String, authenticationToken: String) {
+    ///   - debugLog: Enable or not SDK console logs
+    public init(baseURL: String, apiKey: String, authenticationToken: String, debugLog: Bool = false) {
         self.baseURL = baseURL
         self.apiKey = apiKey
         self.authenticationToken = authenticationToken
+        self.debugLog = debugLog
     }
 
 }
