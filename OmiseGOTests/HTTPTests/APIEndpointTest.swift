@@ -65,24 +65,4 @@ class APIEndpointTest: XCTestCase {
         default: XCTFail("Wrong task")
         }
     }
-
-    func testAdditionalHeaders() {
-        XCTAssertNil(APIEndpoint.getCurrentUser.additionalHeaders)
-        XCTAssertNil(APIEndpoint.getAddresses.additionalHeaders)
-        XCTAssertNil(APIEndpoint.getSettings.additionalHeaders)
-        XCTAssertNil(APIEndpoint.logout.additionalHeaders)
-        XCTAssertNil(APIEndpoint.getTransactions(params: self.validTransactionListParams).additionalHeaders)
-        XCTAssertNil(APIEndpoint.transactionRequestCreate(params: self.validTransactionCreateParams).additionalHeaders)
-        XCTAssertNil(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).additionalHeaders)
-        XCTAssertEqual(
-            APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).additionalHeaders!,
-            ["Idempotency-Token": self.validTransactionConsumptionParams.idempotencyToken])
-    }
-
-    func testMakeURL() {
-        XCTAssertNil(APIEndpoint.custom(path: "/example", task: .requestPlain).makeURL(withBaseURL: "not a url"))
-        XCTAssertEqual(APIEndpoint.custom(path: "/example",
-                                          task: .requestPlain).makeURL(withBaseURL: "https://example.com"),
-                       URL(string: "https://example.com/example"))
-    }
 }

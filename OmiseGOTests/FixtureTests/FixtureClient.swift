@@ -89,7 +89,7 @@ class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
 
 extension OmiseGO.APIEndpoint {
     var fixtureFilePath: String {
-        let filePath = makeURL(withBaseURL: "fixture")!.absoluteString
+        let filePath = URL(string: "fixture")!.appendingPathComponent(path).absoluteString
         return (filePath as NSString).appendingPathExtension("json")! as String
     }
 }

@@ -88,7 +88,7 @@ public struct TransactionRequestCreateParams {
 
 }
 
-extension TransactionRequestCreateParams: Parametrable {
+extension TransactionRequestCreateParams: APIParameters {
 
     private enum CodingKeys: String, CodingKey {
         case type
@@ -125,7 +125,7 @@ extension TransactionRequestCreateParams: Parametrable {
 }
 
 /// Represents a structure used to retrieve a transaction request from its id
-struct TransactionRequestGetParams: Parametrable {
+struct TransactionRequestGetParams: APIParameters {
 
     let id: String
 

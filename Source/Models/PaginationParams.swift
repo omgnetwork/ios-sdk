@@ -90,7 +90,7 @@ public struct PaginationParams<T: Paginable> {
 
 }
 
-extension PaginationParams: Parametrable {
+extension PaginationParams: APIParameters {
 
     enum CodingKeys: String, CodingKey {
         case page

@@ -21,14 +21,13 @@ class RequestBuilderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let httpRequestParam = RequestParameters(config: self.httpConfig)
-        self.requestBuilder = RequestBuilder(requestParameters: httpRequestParam)
+        self.requestBuilder = RequestBuilder(configuration: self.httpConfig)
     }
 
     func buildHttpRequestWithParams() {
         let dummyObject = DummyTestObject(object: "object")
         let endpoint = APIEndpoint.custom(path: "/test",
-                                          task: Task.requestParameters(parameters: dummyObject))
+                                          task: HTTPTask.requestParameters(parameters: dummyObject))
         do {
             let urlRequest = try self.requestBuilder.buildHTTPURLRequest(withEndpoint: endpoint)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
@@ -62,7 +61,7 @@ class RequestBuilderTests: XCTestCase {
     }
 
     func testBuildRequestWithoutParams() {
-        let endpoint = APIEndpoint.custom(path: "/test", task: Task.requestPlain)
+        let endpoint = APIEndpoint.custom(path: "/test", task: HTTPTask.requestPlain)
         do {
             let urlRequest = try self.requestBuilder.buildHTTPURLRequest(withEndpoint: endpoint)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
@@ -79,8 +78,7 @@ class RequestBuilderTests: XCTestCase {
 
     func testBuildWebsocketRequest() {
         do {
-            let socketRequestParam = RequestParameters(config: self.socketConfig)
-            let requestBuilder = RequestBuilder(requestParameters: socketRequestParam)
+            let requestBuilder = RequestBuilder(configuration: self.socketConfig)
             let urlRequest = try requestBuilder.buildWebsocketRequest()
             XCTAssertEqual(urlRequest.httpMethod, "GET")
             XCTAssertEqual(urlRequest.timeoutInterval, 6.0)
@@ -90,6 +88,28 @@ class RequestBuilderTests: XCTestCase {
         } catch let error {
             XCTFail(error.localizedDescription)
         }
+    }
+
+    func testEncodeAuthorizationHeaderCorrectly() {
+        XCTAssertEqual(
+            try! self.requestBuilder.encodedAuthorizationHeader(),
+            "OMGClient \("123:123".data(using: .utf8)!.base64EncodedString())"
+        )
+    }
+
+    func testFailToEncodeAuthorizationHeaderIfAuthenticationTokenIsNotSpecified() {
+        var configuration = self.httpConfig
+        configuration.authenticationToken = nil
+        let requestBuilder = RequestBuilder(configuration: configuration)
+        XCTAssertThrowsError(try requestBuilder.encodedAuthorizationHeader())
+    }
+
+    func testReturnCorrectContentTypeHeader() {
+        XCTAssertEqual(self.requestBuilder.contentTypeHeader(), "application/vnd.omisego.v1+json; charset=utf-8")
+    }
+
+    func testReturnCorrectAcceptHeader() {
+        XCTAssertEqual(self.requestBuilder.acceptHeader(), "application/vnd.omisego.v\(self.httpConfig.apiVersion)+json")
     }
 
 }

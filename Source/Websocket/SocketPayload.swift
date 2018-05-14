@@ -22,7 +22,7 @@ struct SocketPayloadSend {
 
 }
 
-extension SocketPayloadSend: Parametrable {
+extension SocketPayloadSend: APIParameters {
 
     private enum CodingKeys: String, CodingKey {
         case topic

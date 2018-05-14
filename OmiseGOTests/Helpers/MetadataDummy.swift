@@ -9,7 +9,7 @@
 import UIKit
 @testable import OmiseGO
 
-struct MetadataDummy: Decodable, Parametrable {
+struct MetadataDummy: Decodable, APIParameters {
 
     let metadata: [String: Any]?
     let metadataArray: [Any]?

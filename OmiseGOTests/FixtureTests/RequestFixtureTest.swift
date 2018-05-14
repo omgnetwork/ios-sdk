@@ -13,12 +13,14 @@ class RequestFixtureTest: FixtureTestCase {
 
     func testBuildRequest() {
         do {
-            let requestParams = RequestParameters(config: self.testCustomClient.config)
-            let urlRequest = try RequestBuilder(requestParameters: requestParams).buildHTTPURLRequest(withEndpoint: .custom(path: "", task: .requestPlain))
+            let urlRequest = try RequestBuilder(configuration: testCustomClient.config)
+                .buildHTTPURLRequest(withEndpoint: .custom(path: "", task: .requestPlain))
+
             guard let httpHeaders = urlRequest.allHTTPHeaderFields else {
                 XCTFail("Missing HTTP headers")
                 return
             }
+
             XCTAssertEqual(httpHeaders["Authorization"], "OMGClient YXBpa2V5OmF1dGhlbnRpY2F0aW9udG9rZW4=")
             XCTAssertEqual(httpHeaders["Accept"],
                            "application/vnd.omisego.v\(self.testCustomClient.config.apiVersion)+json")

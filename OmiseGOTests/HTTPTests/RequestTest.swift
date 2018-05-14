@@ -19,7 +19,7 @@ class RequestTest: XCTestCase {
         let request: Request<DummyTestObject> =
             Request(client: client,
                     endpoint: APIEndpoint.custom(path: "/test",
-                                                 task: Task.requestPlain)) { _ in}
+                                                 task: HTTPTask.requestPlain)) { _ in}
         do {
             XCTAssertNil(request.task)
             _ = try request.start()
@@ -31,7 +31,7 @@ class RequestTest: XCTestCase {
 
     func testCancelRequest() {
         let expectation = self.expectation(description: "Task is cancelled")
-        let dummyEndpoint = APIEndpoint.custom(path: "/test", task: Task.requestPlain)
+        let dummyEndpoint = APIEndpoint.custom(path: "/test", task: HTTPTask.requestPlain)
         let request: Request<DummyTestObject> =
             Request(client: client,
                     endpoint: dummyEndpoint) { result in

@@ -6,22 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-protocol Parametrable: Encodable {}
-
-extension Parametrable {
-    func encodedPayload() throws -> Data {
-        return try serialize(self)
-    }
-}
-
-/// Represents an HTTP task.
-enum Task {
-    /// A request with no additional data.
-    case requestPlain
-    /// A requests body set with encoded parameters.
-    case requestParameters(parameters: Parametrable)
-}
-
+/// Represents an api endpoint.
 enum APIEndpoint {
 
     case getCurrentUser
@@ -34,7 +19,7 @@ enum APIEndpoint {
     case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
     case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
     case logout
-    case custom(path: String, task: Task)
+    case custom(path: String, task: HTTPTask)
 
     var path: String {
         switch self {
@@ -63,40 +48,25 @@ enum APIEndpoint {
         }
     }
 
-    var task: Task {
+    var task: HTTPTask {
         switch self {
         case .getCurrentUser, .getAddresses, .getSettings, .logout: // Send no parameters
             return .requestPlain
-        case .transactionRequestCreate(params: let params):
-            return .requestParameters(parameters: params)
-        case .transactionRequestGet(params: let params):
-            return .requestParameters(parameters: params)
-        case .transactionRequestConsume(params: let params):
-            return .requestParameters(parameters: params)
-        case .getTransactions(params: let params):
-            return .requestParameters(parameters: params)
-        case .transactionConsumptionApprove(params: let params):
-            return .requestParameters(parameters: params)
-        case .transactionConsumptionReject(params: let params):
-            return .requestParameters(parameters: params)
+        case .transactionRequestCreate(let parameters):
+            return .requestParameters(parameters: parameters)
+        case .transactionRequestGet(let parameters):
+            return .requestParameters(parameters: parameters)
+        case .transactionRequestConsume(let parameters):
+            return .requestParameters(parameters: parameters)
+        case .getTransactions(let parameters):
+            return .requestParameters(parameters: parameters)
+        case .transactionConsumptionApprove(let parameters):
+            return .requestParameters(parameters: parameters)
+        case .transactionConsumptionReject(let parameters):
+            return .requestParameters(parameters: parameters)
         case .custom(_, let task):
             return task
         }
     }
 
-    var additionalHeaders: [String: String]? {
-        switch self {
-        case .transactionRequestConsume(params: let params):
-            return ["Idempotency-Token": params.idempotencyToken]
-        default: return nil
-        }
-    }
-
-    func makeURL(withBaseURL baseURL: String) -> URL? {
-        guard let url = URL(string: baseURL) else {
-            omiseGOWarn("Base url is not a valid URL!")
-            return nil
-        }
-        return url.appendingPathComponent(self.path)
-    }
 }

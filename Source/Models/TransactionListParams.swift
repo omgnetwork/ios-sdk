@@ -27,7 +27,7 @@ public struct TransactionListParams {
 
 }
 
-extension TransactionListParams: Parametrable {
+extension TransactionListParams: APIParameters {
 
     private enum CodingKeys: String, CodingKey {
         case paginationParams

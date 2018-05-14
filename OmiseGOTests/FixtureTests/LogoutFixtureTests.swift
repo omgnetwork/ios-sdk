@@ -35,8 +35,7 @@ class LogoutFixtureTests: FixtureTestCase {
         let request = client.logout { _ in
             defer { expectation.fulfill() }
             do {
-
-                _ = try RequestParameters(config: client.config).encodedAuthorizationHeader()
+                _ = try RequestBuilder(configuration: client.config).encodedAuthorizationHeader()
                 XCTFail("Should not be able to encode header after logout")
             } catch let error as OMGError {
                 switch error {

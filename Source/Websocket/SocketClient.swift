@@ -68,7 +68,7 @@ public class SocketClient {
     }
 
     private func initWebSocket() {
-        let request = try? RequestBuilder(requestParameters: RequestParameters(config: self.config)).buildWebsocketRequest()
+        let request = try? RequestBuilder(configuration: self.config).buildWebsocketRequest()
         assert(request != nil, "Invalid websocket url")
         self.webSocket = WebSocket(request: request!)
         self.webSocket.delegate = self
