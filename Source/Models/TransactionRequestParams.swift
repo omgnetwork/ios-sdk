@@ -34,6 +34,8 @@ public struct TransactionRequestCreateParams {
     /// Allow or not the consumer to override the amount specified in the request
     /// This needs to be true if the amount is not specified
     public let allowAmountOverride: Bool
+    /// The maximum number of consumptions allowed per unique user
+    public let maxConsumptionsPerUser: Int?
     /// Additional metadata embedded with the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata embedded with the request
@@ -58,7 +60,9 @@ public struct TransactionRequestCreateParams {
     ///   - expirationDate: The date when the request will expire and not be consumable anymore
     ///   - allowAmountOverride: Allow or not the consumer to override the amount specified in the request
     ///                          This needs to be true if the amount is not specified
+    ///   - maxConsumptionsPerUser: The maximum number of consumptions allowed per unique user
     ///   - metadata: Additional metadata embeded with the request
+    ///   - encryptedMetadata: Additional encrypted metadata embedded with the request
     public init?(type: TransactionRequestType,
                  mintedTokenId: String,
                  amount: Double?,
@@ -69,6 +73,7 @@ public struct TransactionRequestCreateParams {
                  consumptionLifetime: Int?,
                  expirationDate: Date?,
                  allowAmountOverride: Bool,
+                 maxConsumptionsPerUser: Int?,
                  metadata: [String: Any] = [:],
                  encryptedMetadata: [String: Any] = [:]) {
         guard allowAmountOverride || amount != nil else { return nil }
@@ -82,6 +87,7 @@ public struct TransactionRequestCreateParams {
         self.consumptionLifetime = consumptionLifetime
         self.expirationDate = expirationDate
         self.allowAmountOverride = allowAmountOverride
+        self.maxConsumptionsPerUser = maxConsumptionsPerUser
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
     }
@@ -101,6 +107,7 @@ extension TransactionRequestCreateParams: APIParameters {
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
         case allowAmountOverride = "allow_amount_override"
+        case maxConsumptionsPerUser = "max_consumptions_per_user"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
     }
@@ -118,6 +125,7 @@ extension TransactionRequestCreateParams: APIParameters {
         try container.encode(consumptionLifetime, forKey: .consumptionLifetime)
         try container.encode(expirationDate, forKey: .expirationDate)
         try container.encode(allowAmountOverride, forKey: .allowAmountOverride)
+        try container.encode(maxConsumptionsPerUser, forKey: .maxConsumptionsPerUser)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }

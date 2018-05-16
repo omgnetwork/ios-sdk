@@ -151,6 +151,7 @@ class StubGenerator {
         createdAt: Date? = nil,
         expiredAt: Date? = nil,
         allowAmountOverride: Bool? = nil,
+        maxConsumptionsPerUser: Int? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionRequest {
@@ -174,6 +175,7 @@ class StubGenerator {
                 createdAt: createdAt ?? v.createdAt,
                 expiredAt: expiredAt ?? v.expiredAt,
                 allowAmountOverride: allowAmountOverride ?? v.allowAmountOverride,
+                maxConsumptionsPerUser: maxConsumptionsPerUser ?? v.maxConsumptionsPerUser,
                 metadata: metadata ?? v.metadata,
                 encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
             )
@@ -243,7 +245,9 @@ class StubGenerator {
         consumptionLifetime: Int? = 1000,
         expirationDate: Date? = Date(timeIntervalSince1970: 0),
         allowAmountOverride: Bool = true,
-        metadata: [String: Any] = [:])
+        maxConsumptionsPerUser: Int? = nil,
+        metadata: [String: Any] = [:],
+        encryptedMetadata: [String: Any] = [:])
         -> TransactionRequestCreateParams {
             return TransactionRequestCreateParams(
                 type: type,
@@ -256,7 +260,9 @@ class StubGenerator {
                 consumptionLifetime: consumptionLifetime,
                 expirationDate: expirationDate,
                 allowAmountOverride: allowAmountOverride,
-                metadata: metadata
+                maxConsumptionsPerUser: maxConsumptionsPerUser,
+                metadata: metadata,
+                encryptedMetadata: encryptedMetadata
                 )!
     }
 

@@ -23,6 +23,7 @@ class TransactionRequestParamsTest: XCTestCase {
                                            consumptionLifetime: 1000,
                                            expirationDate: Date(timeIntervalSince1970: 0),
                                            allowAmountOverride: false,
+                                           maxConsumptionsPerUser: nil,
                                            metadata: [:])
         XCTAssertNotNil(transactionRequestParams)
     }
@@ -39,6 +40,7 @@ class TransactionRequestParamsTest: XCTestCase {
                                            consumptionLifetime: 1000,
                                            expirationDate: Date(timeIntervalSince1970: 0),
                                            allowAmountOverride: true,
+                                           maxConsumptionsPerUser: nil,
                                            metadata: [:])
         XCTAssertNotNil(transactionRequestParams)
     }
@@ -55,6 +57,7 @@ class TransactionRequestParamsTest: XCTestCase {
                                            consumptionLifetime: 1000,
                                            expirationDate: Date(timeIntervalSince1970: 0),
                                            allowAmountOverride: false,
+                                           maxConsumptionsPerUser: nil,
                                            metadata: [:])
         XCTAssertNil(transactionRequestParams)
     }

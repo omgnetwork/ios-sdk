@@ -79,6 +79,7 @@ public enum APIErrorCode: Decodable {
     case websocketError
     case requestExpired
     case maxConsumptionsReached
+    case maxConsumptionsPerUserReached
     case notOwnerOfTransactionConsumption
     case invalidMintedTokenForTransactionConsumption
     case transactionConsumptionExpired
@@ -127,10 +128,12 @@ extension APIErrorCode: RawRepresentable {
             self = .transactionInsufficientFunds
         case "websocket:connect_error":
             self = .websocketError
-        case "request:expired":
+        case "transaction_request:expired":
             self = .requestExpired
-        case "request:max_consumptions_reached":
+        case "transaction_request:max_consumptions_reached":
             self = .maxConsumptionsReached
+        case "transaction_request:max_consumptions_per_user_reached":
+            self = .maxConsumptionsPerUserReached
         case "transaction_consumption:not_owner":
             self = .notOwnerOfTransactionConsumption
         case "transaction_consumption:invalid_minted_token":
@@ -177,9 +180,11 @@ extension APIErrorCode: RawRepresentable {
         case .websocketError:
             return "websocket:connect_error"
         case .requestExpired:
-            return "request:expired"
+            return "transaction_request:expired"
         case .maxConsumptionsReached:
-            return "request:max_consumptions_reached"
+            return "transaction_request:max_consumptions_reached"
+        case .maxConsumptionsPerUserReached:
+            return "transaction_request:max_consumptions_per_user_reached"
         case .notOwnerOfTransactionConsumption:
             return "transaction_consumption:not_owner"
         case .invalidMintedTokenForTransactionConsumption:

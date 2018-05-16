@@ -293,6 +293,7 @@ let params = TransactionRequestCreateParams(type: .receive,
                                             consumptionLifetime: 60000,
                                             expirationDate: nil,
                                             allowAmountOverride: true,
+                                            maxConsumptionsPerUser: 5,
                                             metadata: [:],
                                             encryptedMetadata: [:])!
 TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
@@ -320,6 +321,7 @@ Where:
   - `allowAmountOverride`: (optional) Allow or not the consumer to override the amount specified in the request. This needs to be true if the amount is not specified
   > Note that if `amount` is nil and `allowAmountOverride` is false the init will fail and return `nil`.
 
+  - `maxConsumptionsPerUser`: The maximum number of consumptions allowed per unique user
   - `metadata`: Additional metadata embedded with the request
   - `encryptedMetadata`: Additional encrypted metadata embedded with the request
 

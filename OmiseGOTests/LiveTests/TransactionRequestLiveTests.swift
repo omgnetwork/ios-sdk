@@ -137,6 +137,7 @@ extension TransactionRequestLiveTests {
             consumptionLifetime: nil,
             expirationDate: Date().addingTimeInterval(60),
             allowAmountOverride: true,
+            maxConsumptionsPerUser: 5,
             metadata: ["a_key": "a_value"])!
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.generateTransactionRequest(
@@ -149,6 +150,7 @@ extension TransactionRequestLiveTests {
                     XCTAssertEqual(transactionRequest.mintedToken.id, self.validMintedTokenId)
                     XCTAssertEqual(transactionRequest.amount, 1)
                     XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
+                    XCTAssertEqual(transactionRequest.maxConsumptionsPerUser, 5)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }

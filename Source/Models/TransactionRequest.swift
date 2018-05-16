@@ -66,6 +66,8 @@ public struct TransactionRequest {
     public let expiredAt: Date?
     /// Allow or not the consumer to override the amount specified in the request
     public let allowAmountOverride: Bool
+    /// The maximum number of consumptions allowed per unique user
+    public let maxConsumptionsPerUser: Int?
     /// Additional metadata for the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the request
@@ -96,6 +98,7 @@ extension TransactionRequest: Decodable {
         case createdAt = "created_at"
         case expiredAt = "expired_at"
         case allowAmountOverride = "allow_amount_override"
+        case maxConsumptionsPerUser = "max_consumptions_per_user"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
     }
@@ -120,6 +123,7 @@ extension TransactionRequest: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
+        maxConsumptionsPerUser = try container.decodeIfPresent(Int.self, forKey: .maxConsumptionsPerUser)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }

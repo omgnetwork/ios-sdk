@@ -100,6 +100,7 @@
     "expiration_reason": null,
     "expired_at": null,
     "allow_amount_override": true,
+    "max_consumptions_per_user": null,
     "metadata": {},
     "encrypted_metadata": {}
   },

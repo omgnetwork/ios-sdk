@@ -59,10 +59,12 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.transactionInsufficientFunds)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
                        APIErrorCode.websocketError)
-        XCTAssertEqual(APIErrorCode(rawValue: "request:expired"),
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_request:expired"),
                        APIErrorCode.requestExpired)
-        XCTAssertEqual(APIErrorCode(rawValue: "request:max_consumptions_reached"),
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_request:max_consumptions_reached"),
                        APIErrorCode.maxConsumptionsReached)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_request:max_consumptions_per_user_reached"),
+                       APIErrorCode.maxConsumptionsPerUserReached)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:not_owner"),
                        APIErrorCode.notOwnerOfTransactionConsumption)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),

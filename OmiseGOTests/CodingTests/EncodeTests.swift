@@ -161,6 +161,7 @@ class EncodeTests: XCTestCase {
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: true,
+                                               maxConsumptionsPerUser: 5,
                                                metadata: [:],
                                                encryptedMetadata: [:])!
             let encodedData = try self.encoder.encode(transactionRequestParams)
@@ -179,6 +180,7 @@ class EncodeTests: XCTestCase {
                     "max_consumptions":1,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "max_consumptions_per_user":5,
                     "expiration_date":"1970-01-01T00:00:00Z"
                 }
             """.uglifiedEncodedString())
@@ -200,6 +202,7 @@ class EncodeTests: XCTestCase {
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: false,
+                                               maxConsumptionsPerUser: 5,
                                                metadata: [:],
                                                encryptedMetadata: [:])!
             let encodedData = try self.encoder.encode(transactionRequestParams)
@@ -216,6 +219,7 @@ class EncodeTests: XCTestCase {
                     "max_consumptions":1,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "max_consumptions_per_user":5,
                     "expiration_date":"1970-01-01T00:00:00Z"
                 }
             """.uglifiedEncodedString())
@@ -260,6 +264,7 @@ class EncodeTests: XCTestCase {
                                                         createdAt: nil,
                                                         expiredAt: nil,
                                                         allowAmountOverride: true,
+                                                        maxConsumptionsPerUser: nil,
                                                         metadata: [:],
                                                         encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
