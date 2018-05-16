@@ -240,10 +240,10 @@ let paginationParams = PaginationParams<Transaction>(
 Where:
 - `page` is the page you wish to receive.
 - `perPage` is the number of results per page.
-- `sortBy` is the sorting field. Available values: `.id`, `.status`, `.from`, `.to`, `.createdAt`, `.updatedAt`
+- `sortBy` is the sorting field. Available values: `.id`, `.status`, `.from`, `.to`, `.createdAt`
 - `sortDir` is the sorting direction. Available values: `.ascending`, `.descending`
 - `searchTerm` is a term to search for in ALL of the searchable fields. Conflict with search_terms, only use one of them. See list of searchable fields below (same as search_terms).
-- `searchTerms` is a dictionary of fields to search in with the following available fields: `.id`, `.status`, `.from`, `.to`, `.createdAt`, `.updatedAt`. Ex: `[.from: "someAddress", .id: "someId"]`
+- `searchTerms` is a dictionary of fields to search in with the following available fields: `.id`, `.status`, `.from`, `.to`. Ex: `[.from: "someAddress", .id: "someId"]`
 
 Then you can call:
 

@@ -385,7 +385,6 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(exchange.rate, 1)
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
-            XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {

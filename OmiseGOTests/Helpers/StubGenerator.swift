@@ -187,8 +187,7 @@ class StubGenerator {
         exchange: TransactionExchange? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil,
-        createdAt: Date? = nil,
-        updatedAt: Date? = nil)
+        createdAt: Date? = nil)
         -> Transaction {
             let v: Transaction = self.stub(forResource: "transaction")
             return Transaction(
@@ -199,8 +198,7 @@ class StubGenerator {
                 exchange: exchange ?? v.exchange,
                 metadata: metadata ?? v.metadata,
                 encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
-                createdAt: createdAt ?? v.createdAt,
-                updatedAt: updatedAt ?? v.updatedAt)
+                createdAt: createdAt ?? v.createdAt)
     }
 
     class func transactionSource(
