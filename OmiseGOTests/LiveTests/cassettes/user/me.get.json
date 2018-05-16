@@ -1,0 +1,31 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/vnd.omisego.v1+json; charset=utf-8",
+          "x-request-id" : "2kng7asci0ks5li1o80012sh",
+          "Content-Length" : "409",
+          "Strict-Transport-Security" : "max-age=15724800; includeSubDomains;",
+          "Server" : "nginx\/1.13.5",
+          "Date" : "Wed, 16 May 2018 03:53:54 GMT",
+          "Cache-Control" : "max-age=0, private, must-revalidate"
+        },
+        "body" : "eyJ2ZXJzaW9uIjoiMSIsInN1Y2Nlc3MiOnRydWUsImRhdGEiOnsidXNlcm5hbWUiOiJ1c2VyMDQiLCJ1cGRhdGVkX2F0IjoiMjAxOC0wMS0yNlQyMDozNTo1OC4wMTIwMjBaIiwic29ja2V0X3RvcGljIjoidXNlcjp1c3JfMDFDNFQyWTZYV1dZQVA3Q0hENEJIODBNSEIiLCJwcm92aWRlcl91c2VyX2lkIjoicHJvdmlkZXJfdXNlcl9pZDA0Iiwib2JqZWN0IjoidXNlciIsIm1ldGFkYXRhIjp7fSwiaWQiOiJ1c3JfMDFDNFQyWTZYV1dZQVA3Q0hENEJIODBNSEIiLCJlbmNyeXB0ZWRfbWV0YWRhdGEiOnt9LCJlbWFpbCI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMjZUMjA6MzU6NTguMDEyMDA4WiIsImF2YXRhciI6eyJ0aHVtYiI6bnVsbCwic21hbGwiOm51bGwsIm9yaWdpbmFsIjpudWxsLCJsYXJnZSI6bnVsbH19fQ==",
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/me.get"
+      },
+      "recorded_at" : 1526442834.3872571,
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/vnd.omisego.v1+json; charset=utf-8",
+          "Accept" : "application\/vnd.omisego.v1+json",
+          "Authorization" : "OMGClient TEZCY0dNOWNoQ2YzOVhZMHNhWkZiWlBPakZfa0tOeHZ1bjYxeUdxYWZwbzpBYXA2Y01tLXpRRy12VjJEUU5hVDIyUjhEVXIydFBWblFTR25wZnVxNEk4"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/me.get"
+      }
+    }
+  ],
+  "name" : "me.get"
+}

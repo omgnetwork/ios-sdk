@@ -1,0 +1,31 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/vnd.omisego.v1+json; charset=utf-8",
+          "x-request-id" : "2kngbdv86jfh3ocfjk0006u1",
+          "Content-Length" : "2574",
+          "Strict-Transport-Security" : "max-age=15724800; includeSubDomains;",
+          "Server" : "nginx\/1.13.5",
+          "Date" : "Wed, 16 May 2018 04:31:26 GMT",
+          "Cache-Control" : "max-age=0, private, must-revalidate"
+        },
+        "body" : "eyJ2ZXJzaW9uIjoiMSIsInN1Y2Nlc3MiOnRydWUsImRhdGEiOnsib2JqZWN0IjoibGlzdCIsImRhdGEiOlt7InNvY2tldF90b3BpYyI6ImFkZHJlc3M6OTRhNzBlMGQtNWFiZS00OTliLWE5ZDMtMWMyMGMyYjRjYzAwIiwib2JqZWN0IjoiYWRkcmVzcyIsImJhbGFuY2VzIjpbeyJvYmplY3QiOiJiYWxhbmNlIiwibWludGVkX3Rva2VuIjp7InVwZGF0ZWRfYXQiOiIyMDE4LTAxLTI2VDIwOjM1OjU3LjQyMzg5NFoiLCJzeW1ib2wiOiJPTUciLCJzdWJ1bml0X3RvX3VuaXQiOjEwMDAwLCJvYmplY3QiOiJtaW50ZWRfdG9rZW4iLCJuYW1lIjoiT21pc2VHTyIsIm1ldGFkYXRhIjp7fSwiaWQiOiJ0b2tfT01HXzAxQzRUMlk2QkZFSkM4NFNGOTFHSkJUR01ZIiwiZW5jcnlwdGVkX21ldGFkYXRhIjp7fSwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMjZUMjA6MzU6NTcuNDIzODc5WiJ9LCJhbW91bnQiOjB9LHsib2JqZWN0IjoiYmFsYW5jZSIsIm1pbnRlZF90b2tlbiI6eyJ1cGRhdGVkX2F0IjoiMjAxOC0wMS0yNlQyMDozNTo1Ny40NTExNzhaIiwic3ltYm9sIjoiS05DIiwic3VidW5pdF90b191bml0IjoxMDAwLCJvYmplY3QiOiJtaW50ZWRfdG9rZW4iLCJuYW1lIjoiS3liZXIiLCJtZXRhZGF0YSI6e30sImlkIjoidG9rX0tOQ18wMUM0VDJZNkNCTlpNRUhYRURRVE5ZUU0yRyIsImVuY3J5cHRlZF9tZXRhZGF0YSI6e30sImNyZWF0ZWRfYXQiOiIyMDE4LTAxLTI2VDIwOjM1OjU3LjQ1MTE2NVoifSwiYW1vdW50IjowfSx7Im9iamVjdCI6ImJhbGFuY2UiLCJtaW50ZWRfdG9rZW4iOnsidXBkYXRlZF9hdCI6IjIwMTgtMDEtMjZUMjA6MzU6NTcuNDU3OTExWiIsInN5bWJvbCI6IkJUQyIsInN1YnVuaXRfdG9fdW5pdCI6MTAwMDAsIm9iamVjdCI6Im1pbnRlZF90b2tlbiIsIm5hbWUiOiJCaXRjb2luIiwibWV0YWRhdGEiOnt9LCJpZCI6InRva19CVENfMDFDNFQyWTZDSEVLVkhGV0NXRkdDRks5WVgiLCJlbmNyeXB0ZWRfbWV0YWRhdGEiOnt9LCJjcmVhdGVkX2F0IjoiMjAxOC0wMS0yNlQyMDozNTo1Ny40NTc4OTZaIn0sImFtb3VudCI6MH0seyJvYmplY3QiOiJiYWxhbmNlIiwibWludGVkX3Rva2VuIjp7InVwZGF0ZWRfYXQiOiIyMDE4LTAxLTI2VDIwOjM1OjU3LjQ2NDUwMloiLCJzeW1ib2wiOiJNTlQiLCJzdWJ1bml0X3RvX3VuaXQiOjEwMCwib2JqZWN0IjoibWludGVkX3Rva2VuIiwibmFtZSI6Ik1pbnQiLCJtZXRhZGF0YSI6e30sImlkIjoidG9rX01OVF8wMUM0VDJZNkNSSlI3MjRYQkZNUUQ1RUM5SyIsImVuY3J5cHRlZF9tZXRhZGF0YSI6e30sImNyZWF0ZWRfYXQiOiIyMDE4LTAxLTI2VDIwOjM1OjU3LjQ2NDQ5MFoifSwiYW1vdW50IjowfSx7Im9iamVjdCI6ImJhbGFuY2UiLCJtaW50ZWRfdG9rZW4iOnsidXBkYXRlZF9hdCI6IjIwMTgtMDEtMjZUMjA6MzU6NTcuNDY5ODk0WiIsInN5bWJvbCI6IkVUSCIsInN1YnVuaXRfdG9fdW5pdCI6MTAwMDAwMDAwMDAwMDAwMDAwMCwib2JqZWN0IjoibWludGVkX3Rva2VuIiwibmFtZSI6IkV0aGVyIiwibWV0YWRhdGEiOnt9LCJpZCI6InRva19FVEhfMDFDNFQyWTZDWDNSQUcyNkE4NlRBOVAyQUsiLCJlbmNyeXB0ZWRfbWV0YWRhdGEiOnt9LCJjcmVhdGVkX2F0IjoiMjAxOC0wMS0yNlQyMDozNTo1Ny40Njk4ODNaIn0sImFtb3VudCI6MH0seyJvYmplY3QiOiJiYWxhbmNlIiwibWludGVkX3Rva2VuIjp7InVwZGF0ZWRfYXQiOiIyMDE4LTAyLTIzVDA0OjI0OjU0LjQ5NzAwNVoiLCJzeW1ib2wiOiJPRU0iLCJzdWJ1bml0X3RvX3VuaXQiOjEwMCwib2JqZWN0IjoibWludGVkX3Rva2VuIiwibmFtZSI6Ik9uZSBFTSIsIm1ldGFkYXRhIjp7fSwiaWQiOiJ0b2tfT0VNXzAxQzcwRUc4WjA5WE5QNzhUWTZaWU02VFRNIiwiZW5jcnlwdGVkX21ldGFkYXRhIjp7fSwiY3JlYXRlZF9hdCI6IjIwMTgtMDItMjNUMDQ6MjQ6NTQuNDk2OTkyWiJ9LCJhbW91bnQiOjB9LHsib2JqZWN0IjoiYmFsYW5jZSIsIm1pbnRlZF90b2tlbiI6eyJ1cGRhdGVkX2F0IjoiMjAxOC0wMi0yN1QxMDo0MTo1MS4xOTM4MzBaIiwic3ltYm9sIjoiVEJPIiwic3VidW5pdF90b191bml0IjoxMDAsIm9iamVjdCI6Im1pbnRlZF90b2tlbiIsIm5hbWUiOiJUaWJvIENvaW4iLCJtZXRhZGF0YSI6e30sImlkIjoidG9rX1RCT18wMUM3QkROQkpTNUJXQzVIMEQwM04zQ1dYQyIsImVuY3J5cHRlZF9tZXRhZGF0YSI6e30sImNyZWF0ZWRfYXQiOiIyMDE4LTAyLTI3VDEwOjQxOjUxLjE5MzgyMFoifSwiYW1vdW50IjowfSx7Im9iamVjdCI6ImJhbGFuY2UiLCJtaW50ZWRfdG9rZW4iOnsidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTRUMDk6Mjg6NDAuNTE1MzEzWiIsInN5bWJvbCI6Ik9USzAiLCJzdWJ1bml0X3RvX3VuaXQiOjEwMDAwLCJvYmplY3QiOiJtaW50ZWRfdG9rZW4iLCJuYW1lIjoiTyBUb2tlbiAwIiwibWV0YWRhdGEiOnt9LCJpZCI6InRva19PVEswXzAxQ0RFWk5aUlNLR0E1TlFUSjIyQjcyVzJZIiwiZW5jcnlwdGVkX21ldGFkYXRhIjp7fSwiY3JlYXRlZF9hdCI6IjIwMTgtMDUtMTRUMDk6Mjg6NDAuNDk3ODc2WiJ9LCJhbW91bnQiOjB9XSwiYWRkcmVzcyI6Ijk0YTcwZTBkLTVhYmUtNDk5Yi1hOWQzLTFjMjBjMmI0Y2MwMCJ9XX19",
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/me.list_balances"
+      },
+      "recorded_at" : 1526445086.1798429,
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/vnd.omisego.v1+json; charset=utf-8",
+          "Accept" : "application\/vnd.omisego.v1+json",
+          "Authorization" : "OMGClient TEZCY0dNOWNoQ2YzOVhZMHNhWkZiWlBPakZfa0tOeHZ1bjYxeUdxYWZwbzpBYXA2Y01tLXpRRy12VjJEUU5hVDIyUjhEVXIydFBWblFTR25wZnVxNEk4"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/me.list_balances"
+      }
+    }
+  ],
+  "name" : "me.list_balances"
+}

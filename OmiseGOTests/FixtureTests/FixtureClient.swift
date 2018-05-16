@@ -12,7 +12,7 @@ import Foundation
 class FixtureClient: HTTPClient {
     let fixturesDirectoryURL: URL
 
-    public override init(config: ClientConfiguration) {
+    public init(config: ClientConfiguration) {
         let bundle = Bundle(for: FixtureClient.self)
         self.fixturesDirectoryURL = bundle.url(forResource: "Fixtures", withExtension: nil)!
 
@@ -28,9 +28,9 @@ class FixtureClient: HTTPClient {
                                                                      callback: callback)
             return try request.start()
         } catch let error as NSError {
-            operationQueue.addOperation { callback?(.fail(error: .other(error: error))) }
+            self.session.delegateQueue.addOperation { callback?(.fail(error: .other(error: error))) }
         } catch let error as OMGError {
-            operationQueue.addOperation { callback?(.fail(error: error)) }
+            self.session.delegateQueue.addOperation { callback?(.fail(error: error)) }
         }
 
         return nil
@@ -83,7 +83,7 @@ class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
 
     fileprivate func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
-        client.operationQueue.addOperation { cb(result) }
+        client.session.delegateQueue.addOperation { cb(result) }
     }
 }
 

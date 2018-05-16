@@ -1,19 +1,22 @@
 //
-//  RequestFixtureTest.swift
+//  RequestBuilderTest.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 13/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Created by Mederic Petit on 16/5/18.
+//  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import XCTest
 @testable import OmiseGO
 
-class RequestFixtureTest: FixtureTestCase {
+class RequestBuilderTest: XCTestCase {
 
     func testBuildRequest() {
         do {
-            let urlRequest = try RequestBuilder(configuration: testCustomClient.config)
+            let validConfig: ClientConfiguration = ClientConfiguration(baseURL: "https://example.com",
+                                                                       apiKey: "apikey",
+                                                                       authenticationToken: "authenticationtoken")
+            let urlRequest = try RequestBuilder(configuration: validConfig)
                 .buildHTTPURLRequest(withEndpoint: .custom(path: "", task: .requestPlain))
 
             guard let httpHeaders = urlRequest.allHTTPHeaderFields else {
@@ -23,9 +26,9 @@ class RequestFixtureTest: FixtureTestCase {
 
             XCTAssertEqual(httpHeaders["Authorization"], "OMGClient YXBpa2V5OmF1dGhlbnRpY2F0aW9udG9rZW4=")
             XCTAssertEqual(httpHeaders["Accept"],
-                           "application/vnd.omisego.v\(self.testCustomClient.config.apiVersion)+json")
+                           "application/vnd.omisego.v\(validConfig.apiVersion)+json")
             XCTAssertEqual(httpHeaders["Content-Type"],
-                           "application/vnd.omisego.v\(self.testCustomClient.config.apiVersion)+json; charset=utf-8")
+                           "application/vnd.omisego.v\(validConfig.apiVersion)+json; charset=utf-8")
             XCTAssertNil(urlRequest.httpBody)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
             XCTAssertEqual(urlRequest.timeoutInterval, 6)

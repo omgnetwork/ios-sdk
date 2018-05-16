@@ -1,16 +1,29 @@
 PODS:
+  - DVR (1.1.0)
   - Starscream (3.0.5)
 
 DEPENDENCIES:
+  - DVR (from `https://github.com/venmo/DVR.git`, branch `master`)
   - Starscream (~> 3.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Starscream
 
+EXTERNAL SOURCES:
+  DVR:
+    :branch: master
+    :git: https://github.com/venmo/DVR.git
+
+CHECKOUT OPTIONS:
+  DVR:
+    :commit: 242d694a1cd67aa1afd090ecd4260e36a5b6c8ab
+    :git: https://github.com/venmo/DVR.git
+
 SPEC CHECKSUMS:
+  DVR: 82d8cd9f32c26333c8f414998f33cd1f3ac549ac
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: b65b55b7361189d8c9b6d31f609db7eba1c61ae8
+PODFILE CHECKSUM: b310bc1d0f485717dab9069eb6280861cf70d12e
 
 COCOAPODS: 1.5.0

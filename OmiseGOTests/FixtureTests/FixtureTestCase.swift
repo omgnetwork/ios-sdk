@@ -16,8 +16,8 @@ class FixtureTestCase: XCTestCase {
     }
 
     let validConfig: ClientConfiguration = ClientConfiguration(baseURL: "https://example.com",
-                                                         apiKey: "apikey",
-                                                         authenticationToken: "authenticationtoken")
+                                                               apiKey: "apikey",
+                                                               authenticationToken: "authenticationtoken")
 
     func fixturesData(for filename: String) -> Data? {
         let bundle = Bundle(for: FixtureTestCase.self)

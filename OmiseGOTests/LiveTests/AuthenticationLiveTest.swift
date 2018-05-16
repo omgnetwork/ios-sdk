@@ -8,6 +8,7 @@
 
 import XCTest
 import OmiseGO
+import DVR
 
 class AuthenticationLiveTest: LiveTestCase {
 
@@ -16,7 +17,7 @@ class AuthenticationLiveTest: LiveTestCase {
         let config = ClientConfiguration(baseURL: self.validBaseURL,
                                         apiKey: self.validAPIKey,
                                         authenticationToken: self.invalidAuthenticationToken)
-        let client = HTTPClient(config: config)
+        let client = HTTPClient(config: config, session: Session(cassetteName: "invalid_token"))
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {
@@ -40,7 +41,7 @@ class AuthenticationLiveTest: LiveTestCase {
         let config = ClientConfiguration(baseURL: self.validBaseURL,
                                          apiKey: self.invalidAPIKey,
                                          authenticationToken: self.validAuthenticationToken)
-        let client = HTTPClient(config: config)
+        let client = HTTPClient(config: config, session: Session(cassetteName: "invalid_api_key"))
         let request = User.getCurrent(using: client) { (response) in
             defer { expectation.fulfill() }
             switch response {

@@ -9,6 +9,7 @@
 import Foundation
 import XCTest
 import OmiseGO
+import DVR
 
 class LiveTestCase: XCTestCase {
 
@@ -39,23 +40,25 @@ class LiveTestCase: XCTestCase {
                 Replace them in secret.plist or pass them as environment variables.
             """)
         }
-        self.testClient = HTTPClient(config: self.validHTTPConfig())
-        self.testSocketClient = SocketClient(config: self.validSocketConfig(), delegate: nil)
+        self.testSocketClient = SocketClient(config: self.validSocketConfig, delegate: nil)
     }
 
-    var testClient: HTTPClient!
     var testSocketClient: SocketClient!
 
-    private func validHTTPConfig() -> ClientConfiguration {
+    lazy var validHTTPConfig: ClientConfiguration = {
         return ClientConfiguration(baseURL: validBaseURL,
                                    apiKey: validAPIKey,
                                    authenticationToken: validAuthenticationToken)
-    }
+    }()
 
-    private func validSocketConfig() -> ClientConfiguration {
+    lazy var validSocketConfig: ClientConfiguration = {
         return ClientConfiguration(baseURL: validWebsocketURL,
                                    apiKey: validAPIKey,
                                    authenticationToken: validAuthenticationToken)
+    }()
+
+    func validHTTPClient(withCassetteName cassetteName: String) -> HTTPClient {
+        return HTTPClient(config: self.validHTTPConfig, session: Session(cassetteName: cassetteName))
     }
 
     func areKeysValid() -> Bool {

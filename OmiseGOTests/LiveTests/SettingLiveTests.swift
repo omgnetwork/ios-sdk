@@ -12,12 +12,13 @@ import OmiseGO
 class SettingLiveTests: LiveTestCase {
 
     func testGetSettings() {
+        let client = self.validHTTPClient(withCassetteName: "me.get_settings")
         let expectation = self.expectation(description: "Setting result")
-        let request = Setting.get(using: self.testClient) { (result) in
+        let request = Setting.get(using: client) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(let setting):
-                XCTAssert(!setting.mintedTokens.isEmpty)
+                XCTAssertNotNil(setting)
             case .fail(let error):
                 XCTFail("\(error)")
             }

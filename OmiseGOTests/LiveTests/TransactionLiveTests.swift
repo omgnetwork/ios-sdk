@@ -12,6 +12,7 @@ import OmiseGO
 class TransactionLiveTests: LiveTestCase {
 
     func testGetTransactionList() {
+        let client = self.validHTTPClient(withCassetteName: "me.list_transactions")
         let expectation = self.expectation(description: "Get paginated list of transactions")
         let paginationParams = PaginationParams<Transaction>(
             page: 1,
@@ -21,13 +22,14 @@ class TransactionLiveTests: LiveTestCase {
             sortDirection: .descending)
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
         let request = Transaction.list(
-            using: self.testClient,
+            using: client,
             params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(let paginatedList):
                     XCTAssertEqual(paginatedList.pagination.currentPage, 1)
                     XCTAssertTrue(paginatedList.pagination.isFirstPage)
+                    XCTAssertNotNil(paginatedList.data)
                 case .fail(let error):
                     XCTFail("\(error)")
                 }

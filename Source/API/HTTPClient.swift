@@ -9,19 +9,16 @@
 /// Represents an HTTPClient that should be initialized using an ClientConfiguration
 public class HTTPClient {
 
-    let operationQueue: OperationQueue = OperationQueue()
-
     var session: URLSession!
     var config: ClientConfiguration
 
     /// Initialize a client using a configuration object
     ///
     /// - Parameter config: The configuration object
-    public init(config: ClientConfiguration) {
+    public init(config: ClientConfiguration,
+                session: URLSession = URLSession(configuration: URLSessionConfiguration.ephemeral)) {
         self.config = config
-        self.session = URLSession(configuration: URLSessionConfiguration.ephemeral,
-                                  delegate: nil,
-                                  delegateQueue: self.operationQueue)
+        self.session = session
     }
 
     /// Update the configured authentication token for future requests
@@ -36,8 +33,8 @@ public class HTTPClient {
                              callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
         do {
             let request: Request<ResultType> = Request(client: self,
-                                                             endpoint: endpoint,
-                                                             callback: callback)
+                                                       endpoint: endpoint,
+                                                       callback: callback)
             return try request.start()
         } catch let error as OMGError {
             performCallback {

@@ -14,4 +14,5 @@ end
 
 target 'OmiseGOTests' do
   shared_pods
+  pod 'DVR', git:'https://github.com/venmo/DVR.git', branch: 'master'
 end

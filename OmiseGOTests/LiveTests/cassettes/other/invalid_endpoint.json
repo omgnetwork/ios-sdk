@@ -1,0 +1,40 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/json; charset=utf-8",
+          "x-request-id" : "2kngbkf8bofdeom4m800145h",
+          "Content-Length" : "143",
+          "Strict-Transport-Security" : "max-age=15724800; includeSubDomains;",
+          "Server" : "nginx\/1.13.5",
+          "Date" : "Wed, 16 May 2018 04:33:17 GMT",
+          "Cache-Control" : "max-age=0, private, must-revalidate"
+        },
+        "body" : {
+          "version" : "1",
+          "success" : false,
+          "data" : {
+            "messages" : null,
+            "object" : "error",
+            "code" : "client:endpoint_not_found",
+            "description" : "Endpoint not found"
+          }
+        },
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/not_exising"
+      },
+      "recorded_at" : 1526445197.893266,
+      "request" : {
+        "headers" : {
+          "Content-Type" : "application\/vnd.omisego.v1+json; charset=utf-8",
+          "Accept" : "application\/vnd.omisego.v1+json",
+          "Authorization" : "OMGClient TEZCY0dNOWNoQ2YzOVhZMHNhWkZiWlBPakZfa0tOeHZ1bjYxeUdxYWZwbzpBYXA2Y01tLXpRRy12VjJEUU5hVDIyUjhEVXIydFBWblFTR25wZnVxNEk4"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/ewallet.staging.omisego.io\/api\/not_exising"
+      }
+    }
+  ],
+  "name" : "invalid_endpoint"
+}

@@ -12,8 +12,9 @@ import OmiseGO
 class AddressLiveTests: LiveTestCase {
 
     func testGetAll() {
+        let client = self.validHTTPClient(withCassetteName: "me.list_balances")
         let expectation = self.expectation(description: "Addresses result")
-        let request = Address.getAll(using: self.testClient) { (result) in
+        let request = Address.getAll(using: client) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let addresses):
@@ -27,12 +28,13 @@ class AddressLiveTests: LiveTestCase {
     }
 
     func testGetMain() {
+        let client = self.validHTTPClient(withCassetteName: "me.list_balances")
         let expectation = self.expectation(description: "Get the main address")
-        let request = Address.getMain(using: self.testClient) { (result) in
+        let request = Address.getMain(using: client) { (result) in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: _):
-                XCTAssertTrue(true)
+            case .success(data: let address):
+                XCTAssertNotNil(address)
             case .fail(error: let error):
                 XCTFail("\(error)")
             }

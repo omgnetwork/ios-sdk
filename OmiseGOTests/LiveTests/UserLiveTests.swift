@@ -8,13 +8,14 @@
 
 import Foundation
 import XCTest
-import OmiseGO
+@testable import OmiseGO
 
 class UserLiveTests: LiveTestCase {
 
     func testCurrentUserRetrieve() {
+        let client = self.validHTTPClient(withCassetteName: "me.get")
         let expectation = self.expectation(description: "Get current user from authentication token")
-        let request = User.getCurrent(using: self.testClient) { (result) in
+        let request = User.getCurrent(using: client) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(let user):
