@@ -154,9 +154,9 @@ extension TransactionRequest: Retrievable {
     ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func generateTransactionRequest(using client: HTTPClient,
-                                                  params: TransactionRequestCreateParams,
-                                                  callback: @escaping TransactionRequest.RetrieveRequestCallback)
+    public static func create(using client: HTTPClient,
+                              params: TransactionRequestCreateParams,
+                              callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
             return self.retrieve(using: client,
                                  endpoint: .transactionRequestCreate(params: params),
@@ -172,9 +172,9 @@ extension TransactionRequest: Retrievable {
     ///   - id: The id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func retrieveTransactionRequest(using client: HTTPClient,
-                                                  id: String,
-                                                  callback: @escaping TransactionRequest.RetrieveRequestCallback)
+    public static func get(using client: HTTPClient,
+                           id: String,
+                           callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
             let params = TransactionRequestGetParams(id: id)
             return self.retrieve(using: client,

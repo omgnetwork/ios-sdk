@@ -52,7 +52,7 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         self.loadedIds.append(id)
         self.stopScanning()
         self.onLoadingStateChange?(true)
-        TransactionRequest.retrieveTransactionRequest(using: self.client, id: id) { (result) in
+        TransactionRequest.get(using: self.client, id: id) { (result) in
             self.onLoadingStateChange?(false)
             switch result {
             case .success(data: let transactionRequest):

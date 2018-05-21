@@ -140,7 +140,7 @@ extension TransactionRequestLiveTests {
             maxConsumptionsPerUser: 5,
             metadata: ["a_key": "a_value"])!
         var transactionRequestResult: TransactionRequest?
-        let generateRequest = TransactionRequest.generateTransactionRequest(
+        let generateRequest = TransactionRequest.create(
             using: self.testClient,
             params: transactionRequestParams) { (result) in
                 defer { generateExpectation.fulfill() }
@@ -163,7 +163,7 @@ extension TransactionRequestLiveTests {
     func getTransactionRequest(transactionRequestId: String, creationCorrelationId: String) {
         var transactionRequestResult: TransactionRequest?
         let getExpectation = self.expectation(description: "Get transaction request")
-        let getRequest = TransactionRequest.retrieveTransactionRequest(
+        let getRequest = TransactionRequest.get(
             using: self.testClient,
             id: transactionRequestId) { (result) in
                 defer { getExpectation.fulfill() }

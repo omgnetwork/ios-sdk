@@ -296,7 +296,7 @@ let params = TransactionRequestCreateParams(type: .receive,
                                             maxConsumptionsPerUser: 5,
                                             metadata: [:],
                                             encryptedMetadata: [:])!
-TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
+TransactionRequest.create(using: client, params: params) { (transactionRequestResult) in
     switch transactionRequestResult {
     case .success(data: let transactionRequest):
         //TODO: Do something with the transaction request (get the QR code representation for example)
