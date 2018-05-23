@@ -61,8 +61,8 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "OMG_MINTED_TOKEN_ID"
-            value = "$OMG_MINTED_TOKEN_ID"
+            key = "OMG_TOKEN_ID"
+            value = "$OMG_TOKEN_ID"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

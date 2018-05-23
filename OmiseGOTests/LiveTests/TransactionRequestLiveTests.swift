@@ -128,7 +128,7 @@ extension TransactionRequestLiveTests {
         let generateExpectation = self.expectation(description: "Generate transaction request")
         let transactionRequestParams = TransactionRequestCreateParams(
             type: .receive,
-            mintedTokenId: self.validMintedTokenId,
+            tokenId: self.validTokenId,
             amount: 1,
             address: nil,
             correlationId: creationCorrelationId,
@@ -147,7 +147,7 @@ extension TransactionRequestLiveTests {
                 switch result {
                 case .success(data: let transactionRequest):
                     transactionRequestResult = transactionRequest
-                    XCTAssertEqual(transactionRequest.mintedToken.id, self.validMintedTokenId)
+                    XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
                     XCTAssertEqual(transactionRequest.amount, 1)
                     XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
                     XCTAssertEqual(transactionRequest.maxConsumptionsPerUser, 5)
@@ -171,7 +171,7 @@ extension TransactionRequestLiveTests {
                 case .success(data: let transactionRequest):
                     transactionRequestResult = transactionRequest
                     XCTAssertEqual(transactionRequest.id, transactionRequestId)
-                    XCTAssertEqual(transactionRequest.mintedToken.id, self.validMintedTokenId)
+                    XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
                     XCTAssertEqual(transactionRequest.amount, 1)
                     XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
                 case .fail(error: let error):
@@ -189,7 +189,7 @@ extension TransactionRequestLiveTests {
         let transactionConsumptionParams = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
-            mintedTokenId: nil,
+            tokenId: nil,
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
@@ -203,8 +203,8 @@ extension TransactionRequestLiveTests {
                 case .success(data: let transactionConsumption):
                     if transactionRequest.requireConfirmation {
                         transactionConsumptionResult = transactionConsumption
-                        let mintedToken = transactionConsumption.mintedToken
-                        XCTAssertEqual(mintedToken.id, self.validMintedTokenId)
+                        let token = transactionConsumption.token
+                        XCTAssertEqual(token.id, self.validTokenId)
                         XCTAssertEqual(transactionConsumption.amount, 1)
                         XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
                         XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)

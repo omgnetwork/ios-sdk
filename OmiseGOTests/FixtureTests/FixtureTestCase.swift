@@ -11,7 +11,7 @@ import OmiseGO
 
 class FixtureTestCase: XCTestCase {
 
-    var testCustomClient: FixtureClient {
+    var testClient: FixtureClient {
         return FixtureClient(config: self.validConfig)
     }
 

@@ -17,7 +17,7 @@ class SettingLiveTests: LiveTestCase {
             defer { expectation.fulfill() }
             switch result {
             case .success(let setting):
-                XCTAssert(!setting.mintedTokens.isEmpty)
+                XCTAssert(!setting.tokens.isEmpty)
             case .fail(let error):
                 XCTFail("\(error)")
             }

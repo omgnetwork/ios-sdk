@@ -209,10 +209,10 @@ class DecodeTests: XCTestCase {
         }
     }
 
-    func testMintedTokenDecoding() {
+    func testTokenDecoding() {
         do {
-            let jsonData = try self.jsonData(withFileName: "minted_token")
-            let decodedData = try self.jsonDecoder.decode(MintedToken.self, from: jsonData)
+            let jsonData = try self.jsonData(withFileName: "token")
+            let decodedData = try self.jsonDecoder.decode(Token.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "OMG:123")
             XCTAssertEqual(decodedData.symbol, "OMG")
             XCTAssertEqual(decodedData.name, "OmiseGO")
@@ -230,15 +230,15 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "setting")
             let decodedData = try self.jsonDecoder.decode(Setting.self, from: jsonData)
-            XCTAssertTrue(decodedData.mintedTokens.count == 1)
-            XCTAssertEqual(decodedData.mintedTokens[0].id, "OMG:123")
-            XCTAssertEqual(decodedData.mintedTokens[0].symbol, "OMG")
-            XCTAssertEqual(decodedData.mintedTokens[0].name, "OmiseGO")
-            XCTAssertEqual(decodedData.mintedTokens[0].subUnitToUnit, 100000000)
-            XCTAssertTrue(decodedData.mintedTokens[0].metadata.isEmpty)
-            XCTAssertTrue(decodedData.mintedTokens[0].encryptedMetadata.isEmpty)
-            XCTAssertEqual(decodedData.mintedTokens[0].createdAt, try "2018-01-01T00:00:00Z".toDate())
-            XCTAssertEqual(decodedData.mintedTokens[0].updatedAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertTrue(decodedData.tokens.count == 1)
+            XCTAssertEqual(decodedData.tokens[0].id, "OMG:123")
+            XCTAssertEqual(decodedData.tokens[0].symbol, "OMG")
+            XCTAssertEqual(decodedData.tokens[0].name, "OmiseGO")
+            XCTAssertEqual(decodedData.tokens[0].subUnitToUnit, 100000000)
+            XCTAssertTrue(decodedData.tokens[0].metadata.isEmpty)
+            XCTAssertTrue(decodedData.tokens[0].encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.tokens[0].createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.tokens[0].updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -249,14 +249,14 @@ class DecodeTests: XCTestCase {
             let jsonData = try self.jsonData(withFileName: "balance")
             let decodedData = try self.jsonDecoder.decode(Balance.self, from: jsonData)
             XCTAssertEqual(decodedData.amount, 103100)
-            XCTAssertEqual(decodedData.mintedToken.id, "OMG:123")
-            XCTAssertEqual(decodedData.mintedToken.symbol, "OMG")
-            XCTAssertEqual(decodedData.mintedToken.name, "OmiseGO")
-            XCTAssertEqual(decodedData.mintedToken.subUnitToUnit, 10000)
-            XCTAssertTrue(decodedData.mintedToken.metadata.isEmpty)
-            XCTAssertTrue(decodedData.mintedToken.encryptedMetadata.isEmpty)
-            XCTAssertEqual(decodedData.mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
-            XCTAssertEqual(decodedData.mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.token.id, "OMG:123")
+            XCTAssertEqual(decodedData.token.symbol, "OMG")
+            XCTAssertEqual(decodedData.token.name, "OmiseGO")
+            XCTAssertEqual(decodedData.token.subUnitToUnit, 10000)
+            XCTAssertTrue(decodedData.token.metadata.isEmpty)
+            XCTAssertTrue(decodedData.token.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.token.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.token.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -269,14 +269,14 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
             XCTAssertTrue(decodedData.balances.count == 1)
             XCTAssertEqual(decodedData.balances[0].amount, 103100)
-            XCTAssertEqual(decodedData.balances[0].mintedToken.id, "OMG:123")
-            XCTAssertEqual(decodedData.balances[0].mintedToken.symbol, "OMG")
-            XCTAssertEqual(decodedData.balances[0].mintedToken.name, "OmiseGO")
-            XCTAssertEqual(decodedData.balances[0].mintedToken.subUnitToUnit, 10000)
-            XCTAssertTrue(decodedData.balances[0].mintedToken.metadata.isEmpty)
-            XCTAssertTrue(decodedData.balances[0].mintedToken.encryptedMetadata.isEmpty)
-            XCTAssertEqual(decodedData.balances[0].mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
-            XCTAssertEqual(decodedData.balances[0].mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.balances[0].token.id, "OMG:123")
+            XCTAssertEqual(decodedData.balances[0].token.symbol, "OMG")
+            XCTAssertEqual(decodedData.balances[0].token.name, "OmiseGO")
+            XCTAssertEqual(decodedData.balances[0].token.subUnitToUnit, 10000)
+            XCTAssertTrue(decodedData.balances[0].token.metadata.isEmpty)
+            XCTAssertTrue(decodedData.balances[0].token.encryptedMetadata.isEmpty)
+            XCTAssertEqual(decodedData.balances[0].token.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.balances[0].token.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -301,7 +301,7 @@ class DecodeTests: XCTestCase {
             let jsonData = try self.jsonData(withFileName: "transaction_request")
             let decodedData = try self.jsonDecoder.decode(TransactionRequest.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-            XCTAssertEqual(decodedData.mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+            XCTAssertEqual(decodedData.token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             let user = decodedData.user!
@@ -332,11 +332,11 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
-            let mintedToken = decodedData.mintedToken
-            XCTAssertEqual(mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
-            XCTAssertEqual(mintedToken.symbol, "BTC")
-            XCTAssertEqual(mintedToken.name, "Bitcoin")
-            XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+            let token = decodedData.token
+            XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+            XCTAssertEqual(token.symbol, "BTC")
+            XCTAssertEqual(token.name, "Bitcoin")
+            XCTAssertEqual(token.subUnitToUnit, 100000)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
             let transaction = decodedData.transaction!
@@ -369,18 +369,18 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
             let from = decodedData.from
             XCTAssertEqual(from.address, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            let fromMintedToken = from.mintedToken
-            XCTAssertEqual(fromMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(fromMintedToken.symbol, "BTC")
-            XCTAssertEqual(fromMintedToken.name, "Bitcoin")
-            XCTAssertEqual(fromMintedToken.subUnitToUnit, 100)
+            let fromToken = from.token
+            XCTAssertEqual(fromToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(fromToken.symbol, "BTC")
+            XCTAssertEqual(fromToken.name, "Bitcoin")
+            XCTAssertEqual(fromToken.subUnitToUnit, 100)
             let to = decodedData.to
             XCTAssertEqual(to.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            let toMintedToken = to.mintedToken
-            XCTAssertEqual(toMintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(toMintedToken.symbol, "BTC")
-            XCTAssertEqual(toMintedToken.name, "Bitcoin")
-            XCTAssertEqual(toMintedToken.subUnitToUnit, 100)
+            let toToken = to.token
+            XCTAssertEqual(toToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(toToken.symbol, "BTC")
+            XCTAssertEqual(toToken.name, "Bitcoin")
+            XCTAssertEqual(toToken.subUnitToUnit, 100)
             let exchange = decodedData.exchange
             XCTAssertEqual(exchange.rate, 1)
             XCTAssertEqual(decodedData.status, .confirmed)
@@ -411,11 +411,11 @@ class DecodeTests: XCTestCase {
             let decodedData = try self.jsonDecoder.decode(TransactionSource.self, from: jsonData)
             XCTAssertEqual(decodedData.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
             XCTAssertEqual(decodedData.amount, 1000)
-            let mintedToken: MintedToken = decodedData.mintedToken
-            XCTAssertEqual(mintedToken.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-            XCTAssertEqual(mintedToken.symbol, "BTC")
-            XCTAssertEqual(mintedToken.name, "Bitcoin")
-            XCTAssertEqual(mintedToken.subUnitToUnit, 100)
+            let token: Token = decodedData.token
+            XCTAssertEqual(token.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+            XCTAssertEqual(token.symbol, "BTC")
+            XCTAssertEqual(token.name, "Bitcoin")
+            XCTAssertEqual(token.subUnitToUnit, 100)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

@@ -13,7 +13,7 @@ class QRScannerViewModelTest: FixtureTestCase {
 
     func testCallsOnGetTransactionRequest() {
         let exp = expectation(description: "Calls onGetTransactionRequest when scanning a valid QRCode")
-        let stub = QRScannerViewModel(client: self.testCustomClient)
+        let stub = QRScannerViewModel(client: self.testClient)
         stub.onGetTransactionRequest = { (transactionRequest) in
             defer { exp.fulfill() }
             XCTAssertNotNil(transactionRequest)
@@ -38,7 +38,7 @@ class QRScannerViewModelTest: FixtureTestCase {
 
     func testCallsOnLoadingStateChangeWhenRequesting() {
         let exp = expectation(description: "Calls onGetTransactionRequest when scanning a valid QRCode")
-        let stub = QRScannerViewModel(client: self.testCustomClient)
+        let stub = QRScannerViewModel(client: self.testClient)
         var counter = 0
         stub.onLoadingStateChange = { (loading) in
             if counter == 0 {

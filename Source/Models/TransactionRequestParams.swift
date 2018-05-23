@@ -11,14 +11,14 @@ public struct TransactionRequestCreateParams {
 
     /// The type of transaction to be generated (send of receive)
     public let type: TransactionRequestType
-    /// The unique identifier of the minted token to use for the request
+    /// The unique identifier of the token to use for the request
     /// In the case of a type "send", this will be the token taken from the requester
     /// In the case of a type "receive" this will be the token received by the requester
-    public let mintedTokenId: String
-    /// The amount of minted token to use for the transaction (down to subunit to unit)
+    public let tokenId: String
+    /// The amount of token to use for the transaction (down to subunit to unit)
     /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
-    /// The address from which to send or receive the minted tokens
+    /// The address from which to send or receive the tokens
     /// If not specified, will use the primary wallet address by default
     public let address: String?
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
@@ -46,12 +46,12 @@ public struct TransactionRequestCreateParams {
     ///
     /// - Parameters:
     ///   - type: The type of transaction to be generated (send of receive)
-    ///   - mintedTokenId: The unique identifier of the minted token to use for the request
-    ///                    In the case of a type "send", this will be the token taken from the requester
-    ///                    In the case of a type "receive" this will be the token received by the requester
-    ///   - amount: The amount of minted token to use for the transaction (down to subunit to unit)
+    ///   - tokenId: The unique identifier of the token to use for the request
+    ///              In the case of a type "send", this will be the token taken from the requester
+    ///              In the case of a type "receive" this will be the token received by the requester
+    ///   - amount: The amount of token to use for the transaction (down to subunit to unit)
     ///             This amount needs to be either specified by the requester or the consumer
-    ///   - address: The address from which to send or receive the minted tokens
+    ///   - address: The address from which to send or receive the tokens
     ///              If not specified, will use the primary wallet address by default
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
     ///   - requireConfirmation: A boolean indicating if the request needs a confirmation from the requester before being proceeded
@@ -64,7 +64,7 @@ public struct TransactionRequestCreateParams {
     ///   - metadata: Additional metadata embeded with the request
     ///   - encryptedMetadata: Additional encrypted metadata embedded with the request
     public init?(type: TransactionRequestType,
-                 mintedTokenId: String,
+                 tokenId: String,
                  amount: Double?,
                  address: String?,
                  correlationId: String?,
@@ -78,7 +78,7 @@ public struct TransactionRequestCreateParams {
                  encryptedMetadata: [String: Any] = [:]) {
         guard allowAmountOverride || amount != nil else { return nil }
         self.type = type
-        self.mintedTokenId = mintedTokenId
+        self.tokenId = tokenId
         self.amount = amount
         self.address = address
         self.correlationId = correlationId
@@ -98,7 +98,7 @@ extension TransactionRequestCreateParams: APIParameters {
 
     private enum CodingKeys: String, CodingKey {
         case type
-        case mintedTokenId = "token_id"
+        case tokenId = "token_id"
         case amount
         case address
         case correlationId = "correlation_id"
@@ -116,7 +116,7 @@ extension TransactionRequestCreateParams: APIParameters {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
-        try container.encode(mintedTokenId, forKey: .mintedTokenId)
+        try container.encode(tokenId, forKey: .tokenId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
         try container.encode(correlationId, forKey: .correlationId)

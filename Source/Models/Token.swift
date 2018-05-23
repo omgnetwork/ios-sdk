@@ -1,35 +1,35 @@
 //
-//  MintedToken.swift
+//  Token.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents a minted token
-public struct MintedToken {
+/// Represents a token
+public struct Token {
 
-    /// The id of the minted token
+    /// The id of the token
     public let id: String
-    /// The symbol of the minted token
+    /// The symbol of the token
     public let symbol: String
-    /// The full name of the minted token
+    /// The full name of the token
     public let name: String
-    /// The multiplier representing the value of 1 minted token. i.e: if I want to give or receive
-    /// 13 minted tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
+    /// The multiplier representing the value of 1 token. i.e: if I want to give or receive
+    /// 13 tokens and the subunitToUnit is 1000 then the amount will be 13*1000 = 13000
     public let subUnitToUnit: Double
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
     /// Any additional encrypted metadata that need to be stored as a dictionary
     public let encryptedMetadata: [String: Any]
-    /// The creation date of the minted token
+    /// The creation date of the token
     public let createdAt: Date
-    /// The last update date of the minted token
+    /// The last update date of the token
     public let updatedAt: Date
 
 }
 
-extension MintedToken: Decodable {
+extension Token: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -56,13 +56,13 @@ extension MintedToken: Decodable {
 
 }
 
-extension MintedToken: Hashable {
+extension Token: Hashable {
 
     public var hashValue: Int {
         return self.id.hashValue
     }
 
-    public static func == (lhs: MintedToken, rhs: MintedToken) -> Bool {
+    public static func == (lhs: Token, rhs: Token) -> Bool {
         return lhs.id == rhs.id
     }
 

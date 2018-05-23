@@ -36,8 +36,8 @@ public class HTTPClient {
                              callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
         do {
             let request: Request<ResultType> = Request(client: self,
-                                                             endpoint: endpoint,
-                                                             callback: callback)
+                                                       endpoint: endpoint,
+                                                       callback: callback)
             return try request.start()
         } catch let error as OMGError {
             performCallback {

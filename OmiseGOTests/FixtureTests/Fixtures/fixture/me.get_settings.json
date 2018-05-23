@@ -3,9 +3,9 @@
   "success": true,
   "data": {
     "object": "setting",
-    "minted_tokens": [
+    "tokens": [
       {
-        "object": "minted_token",
+        "object": "token",
         "id": "BTC:123",
         "symbol": "BTC",
         "name": "Bitcoin",
@@ -16,7 +16,7 @@
         "updated_at": "2018-01-01T00:00:00Z"
       },
       {
-        "object": "minted_token",
+        "object": "token",
         "id": "OMG:123",
         "symbol": "OMG",
         "name": "OmiseGO",

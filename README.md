@@ -288,7 +288,7 @@ The most basic way to transfer tokens is to use the `Transaction.send()` method,
 let params = TransactionSendParams(from: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                    to: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                    amount: 1000,
-                                   mintedTokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                                   tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
 Transaction.send(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):
@@ -303,7 +303,7 @@ Where:
 - `from`: an optional address that belongs to the user, use primary wallet address if not specified
 - `to`: the destination address
 - `amount`: The amount of token to send
-- `mintedTokenId`: The id of the token to send
+- `tokenId`: The id of the token to send
 
 #### Generate a transaction request
 
@@ -314,7 +314,7 @@ To generate a transaction request you can call:
 
 ```swift
 let params = TransactionRequestCreateParams(type: .receive,
-                                            mintedTokenId: "a token id",
+                                            tokenId: "a token id",
                                             amount: 1337,
                                             address: "an address",
                                             correlationId: "a correlation id",
@@ -339,7 +339,7 @@ Where:
 - `params` is a `TransactionRequestCreateParams` struct constructed using:
 
   - `type`: The QR code type, `.receive` or `.send`.
-  - `mintedTokenId`: The id of the desired token.
+  - `tokenId`: The id of the desired token.
   In the case of a type "send", this will be the token taken from the requester. In the case of a type "receive" this will be the token received by the requester
   - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
   - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary wallet address will be used.
@@ -362,7 +362,7 @@ The previously created `transactionRequest` can then be consumed:
 ```swift
 guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                 address: "an address",
-                                                mintedTokenId: "a minted token",
+                                                tokenId: "a token",
                                                 amount: 1337,
                                                 idempotencyToken: "an idempotency token",
                                                 correlationId: "a correlation id",
@@ -382,7 +382,7 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
 - `address`: (optional) The address from which to take the funds. If not specified, the current user's primary wallet address will be used.
-- `mintedTokenId`: (optional) The minted token id to use for the consumption.
+- `tokenId`: (optional) The token id to use for the consumption.
 - `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
 
@@ -584,11 +584,11 @@ The variables are:
 - `OMG_WEBSOCKET_URL`
 - `OMG_API_KEY`
 - `OMG_AUTHENTICATION_TOKEN`
-- `OMG_MINTED_TOKEN_ID`
+- `OMG_TOKEN_ID`
 
 You can then for example run the tests with the following command:
 
-`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/socket" test`
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/socket" test`
 
 
 ---

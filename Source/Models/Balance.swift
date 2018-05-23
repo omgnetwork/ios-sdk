@@ -6,18 +6,14 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents a balance of a minted token
+/// Represents a balance of a token
 public struct Balance: Decodable {
 
-    /// The minted token corresponding to the balance
-    public let mintedToken: MintedToken
-    /// The total amount of minted token available
+    /// The token corresponding to the balance
+    public let token: Token
+    /// The total amount of token available
     public let amount: Double
 
-    private enum CodingKeys: String, CodingKey {
-        case mintedToken = "minted_token"
-        case amount
-    }
 }
 
 extension Balance {
@@ -31,7 +27,7 @@ extension Balance {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = precision
-        let displayableAmount: Double = self.amount / self.mintedToken.subUnitToUnit
+        let displayableAmount: Double = self.amount / self.token.subUnitToUnit
         let formattedDisplayAmount = formatter.string(from: NSNumber(value: displayableAmount))
         return formattedDisplayAmount ?? ""
     }
@@ -41,11 +37,11 @@ extension Balance {
 extension Balance: Hashable {
 
     public var hashValue: Int {
-        return self.mintedToken.hashValue ^ self.amount.hashValue
+        return self.token.hashValue ^ self.amount.hashValue
     }
 
     public static func == (lhs: Balance, rhs: Balance) -> Bool {
-        return lhs.mintedToken == rhs.mintedToken && lhs.amount == rhs.amount
+        return lhs.token == rhs.token && lhs.amount == rhs.amount
     }
 
 }

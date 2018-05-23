@@ -35,12 +35,12 @@ class StubGenerator {
             )
     }
 
-    class func balance(mintedToken: MintedToken? = nil,
+    class func balance(token: Token? = nil,
                        amount: Double? = nil)
         -> Balance {
             let v: Balance = self.stub(forResource: "balance")
             return Balance(
-                mintedToken: mintedToken ?? v.mintedToken,
+                token: token ?? v.token,
                 amount: amount ?? v.amount)
     }
 
@@ -57,17 +57,17 @@ class StubGenerator {
                                  unavailableMetadataArray: nil)
     }
 
-    class func mintedToken(id: String? = nil,
-                           symbol: String? = nil,
-                           name: String? = nil,
-                           subUnitToUnit: Double? = nil,
-                           metadata: [String: Any]? = nil,
-                           encryptedMetadata: [String: Any]? = nil,
-                           createdAt: Date? = nil,
-                           updatedAt: Date? = nil)
-        -> MintedToken {
-            let v: MintedToken = self.stub(forResource: "minted_token")
-            return MintedToken(id: id ?? v.id,
+    class func token(id: String? = nil,
+                     symbol: String? = nil,
+                     name: String? = nil,
+                     subUnitToUnit: Double? = nil,
+                     metadata: [String: Any]? = nil,
+                     encryptedMetadata: [String: Any]? = nil,
+                     createdAt: Date? = nil,
+                     updatedAt: Date? = nil)
+        -> Token {
+            let v: Token = self.stub(forResource: "token")
+            return Token(id: id ?? v.id,
                                symbol: symbol ?? v.symbol,
                                name: name ?? v.name,
                                subUnitToUnit: subUnitToUnit ?? v.subUnitToUnit,
@@ -77,17 +77,17 @@ class StubGenerator {
                                updatedAt: updatedAt ?? v.updatedAt)
     }
 
-    class func settings(mintedTokens: [MintedToken]? = nil)
+    class func settings(tokens: [Token]? = nil)
         -> Setting {
             let v: Setting = self.stub(forResource: "setting")
-            return Setting(mintedTokens: mintedTokens ?? v.mintedTokens)
+            return Setting(tokens: tokens ?? v.tokens)
     }
 
     class func transactionConsumption(
         id: String? = nil,
         status: TransactionConsumptionStatus? = nil,
         amount: Double? = nil,
-        mintedToken: MintedToken? = nil,
+        token: Token? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
         transaction: Transaction? = nil,
@@ -111,7 +111,7 @@ class StubGenerator {
                 id: id ?? v.id,
                 status: status ?? v.status,
                 amount: amount ?? v.amount,
-                mintedToken: mintedToken ?? v.mintedToken,
+                token: token ?? v.token,
                 correlationId: correlationId ?? v.correlationId,
                 idempotencyToken: idempotencyToken ?? v.idempotencyToken,
                 transaction: transaction ?? v.transaction,
@@ -135,7 +135,7 @@ class StubGenerator {
     class func transactionRequest(
         id: String? = nil,
         type: TransactionRequestType? = nil,
-        mintedToken: MintedToken? = nil,
+        token: Token? = nil,
         amount: Double? = nil,
         address: String? = nil,
         user: User? = nil,
@@ -159,7 +159,7 @@ class StubGenerator {
             return TransactionRequest(
                 id: id ?? v.id,
                 type: type ?? v.type,
-                mintedToken: mintedToken ?? v.mintedToken,
+                token: token ?? v.token,
                 amount: amount ?? v.amount,
                 address: address ?? v.address,
                 user: user ?? v.user,
@@ -206,12 +206,12 @@ class StubGenerator {
     class func transactionSource(
         address: String? = nil,
         amount: Double? = nil,
-        mintedToken: MintedToken? = nil)
+        token: Token? = nil)
         -> TransactionSource {
             let v: TransactionSource = self.stub(forResource: "transaction_source")
             return TransactionSource(address: address ?? v.address,
                                      amount: amount ?? v.amount,
-                                     mintedToken: mintedToken ?? v.mintedToken)
+                                     token: token ?? v.token)
     }
 
     class func transactionExchange(
@@ -236,7 +236,7 @@ class StubGenerator {
 
     class func transactionRequestCreateParams(
         type: TransactionRequestType = .receive,
-        mintedTokenId: String = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+        tokenId: String = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         correlationId: String? = "31009545-db10-4287-82f4-afb46d9741d8",
@@ -251,7 +251,7 @@ class StubGenerator {
         -> TransactionRequestCreateParams {
             return TransactionRequestCreateParams(
                 type: type,
-                mintedTokenId: mintedTokenId,
+                tokenId: tokenId,
                 amount: amount,
                 address: address,
                 correlationId: correlationId,
@@ -275,7 +275,7 @@ class StubGenerator {
     class func transactionConsumptionParams(
         transactionRequest: TransactionRequest = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-        mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+        tokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
         idempotencyToken: String = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
@@ -284,7 +284,7 @@ class StubGenerator {
         return TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: address,
-            mintedTokenId: mintedTokenId,
+            tokenId: tokenId,
             amount: amount,
             idempotencyToken: idempotencyToken,
             correlationId: correlationId,

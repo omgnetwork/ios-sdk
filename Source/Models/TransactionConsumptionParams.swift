@@ -11,14 +11,14 @@ public struct TransactionConsumptionParams {
 
     /// The id of the transaction request to be consumed
     public let transactionRequestId: String
-    /// The amount of minted token to transfer (down to subunit to unit)
+    /// The amount of token to transfer (down to subunit to unit)
     public let amount: Double?
     /// The address to use for the consumption
     public let address: String?
-    /// The id of the minted token to use for the request
+    /// The id of the token to use for the request
     /// In the case of a type "send", this will be the token that the consumer will receive
     /// In the case of a type "receive" this will be the token that the consumer will send
-    public let mintedTokenId: String?
+    public let tokenId: String?
     /// The idempotency token to use for the consumption
     public let idempotencyToken: String
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
@@ -34,16 +34,16 @@ public struct TransactionConsumptionParams {
     /// - Parameters:
     ///   - transactionRequest: The transaction request to consume
     ///   - address: The address to use for the consumption
-    ///   - mintedTokenId: The id of the minted token to use for the request
-    ///                    In the case of a type "send", this will be the token that the consumer will receive
-    ///                    In the case of a type "receive" this will be the token that the consumer will send
-    ///   - amount: The amount of minted token to transfer (down to subunit to unit)
+    ///   - tokenId: The id of the token to use for the request
+    ///              In the case of a type "send", this will be the token that the consumer will receive
+    ///              In the case of a type "receive" this will be the token that the consumer will send
+    ///   - amount: The amount of token to transfer (down to subunit to unit)
     ///   - idempotencyToken: The idempotency token to use for the consumption
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
     ///   - metadata: Additional metadata for the consumption
     public init?(transactionRequest: TransactionRequest,
                  address: String?,
-                 mintedTokenId: String?,
+                 tokenId: String?,
                  amount: Double?,
                  idempotencyToken: String,
                  correlationId: String?,
@@ -53,7 +53,7 @@ public struct TransactionConsumptionParams {
         self.transactionRequestId = transactionRequest.id
         self.amount = amount == transactionRequest.amount ? nil : amount
         self.address = address
-        self.mintedTokenId = mintedTokenId
+        self.tokenId = tokenId
         self.idempotencyToken = idempotencyToken
         self.correlationId = correlationId
         self.metadata = metadata
@@ -74,7 +74,7 @@ extension TransactionConsumptionParams {
         case transactionRequestId = "transaction_request_id"
         case amount
         case address
-        case mintedTokenId = "token_id"
+        case tokenId = "token_id"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
         case correlationId = "correlation_id"
@@ -85,7 +85,7 @@ extension TransactionConsumptionParams {
         try container.encode(transactionRequestId, forKey: .transactionRequestId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
-        try container.encode(mintedTokenId, forKey: .mintedTokenId)
+        try container.encode(tokenId, forKey: .tokenId)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
         try container.encode(correlationId, forKey: .correlationId)

@@ -16,7 +16,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         XCTAssertNotNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                      address: nil,
-                                                     mintedTokenId: nil,
+                                                     tokenId: nil,
                                                      amount: nil,
                                                      idempotencyToken: "123",
                                                      correlationId: nil,
@@ -26,7 +26,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
     func testFailInitWhenNotGivenAnAmount() {
         let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                     type: .receive,
-                                                    mintedToken: StubGenerator.mintedToken(),
+                                                    token: StubGenerator.token(),
                                                     amount: nil,
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     user: StubGenerator.user(),
@@ -47,7 +47,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     encryptedMetadata: [:])
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
-                                                  mintedTokenId: nil,
+                                                  tokenId: nil,
                                                   amount: nil,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
@@ -57,7 +57,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
     func testInitCorrectlyWhenGivenAnAmount() {
         let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                     type: .receive,
-                                                    mintedToken: StubGenerator.mintedToken(),
+                                                    token: StubGenerator.token(),
                                                     amount: nil,
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     user: StubGenerator.user(),
@@ -78,7 +78,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
-                                              mintedTokenId: nil,
+                                              tokenId: nil,
                                               amount: 3000,
                                               idempotencyToken: "123",
                                               correlationId: nil,
@@ -90,7 +90,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
-                                                  mintedTokenId: nil,
+                                                  tokenId: nil,
                                                   amount: 3000,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
@@ -102,7 +102,7 @@ class TransactionConsumptionParamsTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
-                                                  mintedTokenId: nil,
+                                                  tokenId: nil,
                                                   amount: 3000,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,

@@ -14,7 +14,7 @@ class TransactionRequestParamsTest: XCTestCase {
     func testInitCorrectlyWithAmountAndWithoutAllowingAmountOverride() {
         let transactionRequestParams =
             TransactionRequestCreateParams(type: .receive,
-                                           mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                           tokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                            amount: 1337,
                                            address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                            correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
@@ -31,7 +31,7 @@ class TransactionRequestParamsTest: XCTestCase {
     func testInitCorrectlyWithoutAmountAndWithAllowingAmountOverride() {
         let transactionRequestParams =
             TransactionRequestCreateParams(type: .receive,
-                                           mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                           tokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                            amount: nil,
                                            address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                            correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
@@ -48,7 +48,7 @@ class TransactionRequestParamsTest: XCTestCase {
     func testFailsToInitWithoutAmountAndWithoutAllowingAmountOverride() {
         let transactionRequestParams =
             TransactionRequestCreateParams(type: .receive,
-                                           mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                           tokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                            amount: nil,
                                            address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                            correlationId: "31009545-db10-4287-82f4-afb46d9741d8",

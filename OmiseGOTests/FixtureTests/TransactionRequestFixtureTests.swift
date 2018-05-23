@@ -16,17 +16,17 @@ class TransactionRequestFixtureTests: FixtureTestCase {
             self.expectation(description: "Generate a transaction request corresponding to the params provided")
         let params = StubGenerator.transactionRequestCreateParams(
                 type: .receive,
-                mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                tokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                 amount: 1337,
                 address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                 correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
         let request =
-            TransactionRequest.create(using: self.testCustomClient, params: params) { (result) in
+            TransactionRequest.create(using: self.testClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let transactionRequest):
                     XCTAssertEqual(transactionRequest.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-                    XCTAssertEqual(transactionRequest.mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                    XCTAssertEqual(transactionRequest.token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                     XCTAssertEqual(transactionRequest.amount, 1337)
                     XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                     XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
@@ -55,13 +55,13 @@ class TransactionRequestFixtureTests: FixtureTestCase {
             self.expectation(description: "Retrieve a transaction request corresponding to the params provided")
         let request =
             TransactionRequest.get(
-                using: self.testCustomClient,
+                using: self.testClient,
                 id: "8eb0160e-1c96-481a-88e1-899399cc84dc") { (result) in
                     defer { expectation.fulfill() }
                     switch result {
                     case .success(data: let transactionRequest):
                         XCTAssertEqual(transactionRequest.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-                        XCTAssertEqual(transactionRequest.mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                        XCTAssertEqual(transactionRequest.token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                         XCTAssertEqual(transactionRequest.amount, 1337)
                         XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                         XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")

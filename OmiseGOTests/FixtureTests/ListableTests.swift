@@ -13,7 +13,7 @@ class ListableTests: FixtureTestCase {
 
     func testListableFailure() {
         let expectation = self.expectation(description: "Fails to load the response for this dummy object")
-        ListableDummy.list(using: self.testCustomClient) { (response) in
+        ListableDummy.list(using: self.testClient) { (response) in
             defer { expectation.fulfill() }
             switch response {
             case .success(data: _): XCTFail("Shouldn't succeed")
@@ -26,7 +26,7 @@ class ListableTests: FixtureTestCase {
 
     func testPaginatedListableFailure() {
         let expectation = self.expectation(description: "Fails to load the response for this paginated dummy object")
-        PaginatedListableDummy.list(using: self.testCustomClient) { (response) in
+        PaginatedListableDummy.list(using: self.testClient) { (response) in
             defer { expectation.fulfill() }
             switch response {
             case .success(data: _): XCTFail("Shouldn't succeed")

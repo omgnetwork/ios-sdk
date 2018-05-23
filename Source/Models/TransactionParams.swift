@@ -14,10 +14,10 @@ public struct TransactionSendParams {
     public let from: String?
     /// The address where to send the tokens
     public let to: String
-    /// The amount of minted token to transfer (down to subunit to unit)
+    /// The amount of token to transfer (down to subunit to unit)
     public let amount: Double
-    /// The id of the minted token to send
-    public let mintedTokenId: String
+    /// The id of the token to send
+    public let tokenId: String
     /// Additional metadata for the transaction
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the transaction
@@ -26,13 +26,13 @@ public struct TransactionSendParams {
     public init(from: String? = nil,
                 to: String,
                 amount: Double,
-                mintedTokenId: String,
+                tokenId: String,
                 metadata: [String: Any] = [:],
                 encryptedMetadata: [String: Any] = [:]) {
         self.from = from
         self.to = to
         self.amount = amount
-        self.mintedTokenId = mintedTokenId
+        self.tokenId = tokenId
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
     }
@@ -45,7 +45,7 @@ extension TransactionSendParams: APIParameters {
         case from = "from_address"
         case to = "to_address"
         case amount
-        case mintedTokenId = "token_id"
+        case tokenId = "token_id"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
     }
@@ -55,7 +55,7 @@ extension TransactionSendParams: APIParameters {
         try container.encode(from, forKey: .from)
         try container.encode(to, forKey: .to)
         try container.encode(amount, forKey: .amount)
-        try container.encode(mintedTokenId, forKey: .mintedTokenId)
+        try container.encode(tokenId, forKey: .tokenId)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }

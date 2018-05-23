@@ -13,7 +13,7 @@ class UserFixtureTests: FixtureTestCase {
 
     func testGetCurrentUser() {
         let expectation = self.expectation(description: "Get current user")
-        let request = User.getCurrent(using: self.testCustomClient) { (result) in
+        let request = User.getCurrent(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(let user):

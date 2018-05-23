@@ -10,8 +10,8 @@
     "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
     "status": "confirmed",
     "amount": 1337,
-    "minted_token": {
-      "object": "minted_token",
+    "token": {
+      "object": "token",
       "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
       "symbol": "BTC",
       "name": "Bitcoin",
@@ -30,8 +30,8 @@
         "object": "transaction_source",
         "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         "amount": 1337,
-        "minted_token": {
-          "object": "minted_token",
+        "token": {
+          "object": "token",
           "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
           "symbol": "BTC",
           "name": "Bitcoin",
@@ -46,8 +46,8 @@
         "object": "transaction_source",
         "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         "amount": 1337,
-        "minted_token": {
-          "object": "minted_token",
+        "token": {
+          "object": "token",
           "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
           "symbol": "BTC",
           "name": "Bitcoin",
@@ -71,8 +71,8 @@
       "object": "transaction_request",
       "type": "receive",
       "id": "907056a4-fc2d-47cb-af19-5e73aade7ece",
-      "minted_token": {
-        "object": "minted_token",
+      "token": {
+        "object": "token",
         "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         "symbol": "BTC",
         "name": "Bitcoin",

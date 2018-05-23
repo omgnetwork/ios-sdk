@@ -9,12 +9,8 @@
 /// Represents the global settings of the provider
 public struct Setting: Decodable {
 
-    /// An array of minted tokens available for the provider
-    public let mintedTokens: [MintedToken]
-
-    private enum CodingKeys: String, CodingKey {
-        case mintedTokens = "minted_tokens"
-    }
+    /// An array of tokens available for the provider
+    public let tokens: [Token]
 
 }
 

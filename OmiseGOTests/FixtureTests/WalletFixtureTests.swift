@@ -13,7 +13,7 @@ class WalletFixtureTests: FixtureTestCase {
 
     func testGetAll() {
         let expectation = self.expectation(description: "Get all wallets for current user")
-        let request = Wallet.getAll(using: self.testCustomClient) { (result) in
+        let request = Wallet.getAll(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let wallets):
@@ -26,22 +26,22 @@ class WalletFixtureTests: FixtureTestCase {
                 let balance2 = wallet.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
-                XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
-                XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
-                XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
-                XCTAssertTrue(balance1.mintedToken.metadata.isEmpty)
-                XCTAssertTrue(balance1.mintedToken.encryptedMetadata.isEmpty)
-                XCTAssertEqual(balance1.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(balance1.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance1.token.id, "OMG:123")
+                XCTAssertEqual(balance1.token.symbol, "OMG")
+                XCTAssertEqual(balance1.token.subUnitToUnit, 10000)
+                XCTAssertTrue(balance1.token.metadata.isEmpty)
+                XCTAssertTrue(balance1.token.encryptedMetadata.isEmpty)
+                XCTAssertEqual(balance1.token.createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance1.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
 
                 XCTAssertEqual(balance2.amount, 133700)
-                XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
-                XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
-                XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
-                XCTAssertTrue(balance2.mintedToken.metadata.isEmpty)
-                XCTAssertTrue(balance2.mintedToken.encryptedMetadata.isEmpty)
-                XCTAssertEqual(balance2.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(balance2.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance2.token.id, "KNC:123")
+                XCTAssertEqual(balance2.token.symbol, "KNC")
+                XCTAssertEqual(balance2.token.subUnitToUnit, 10000)
+                XCTAssertTrue(balance2.token.metadata.isEmpty)
+                XCTAssertTrue(balance2.token.encryptedMetadata.isEmpty)
+                XCTAssertEqual(balance2.token.createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance2.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(error: let error):
                 XCTFail("\(error)")
             }
@@ -52,7 +52,7 @@ class WalletFixtureTests: FixtureTestCase {
 
     func testGetMain() {
         let expectation = self.expectation(description: "Get the main address of the current user")
-        let request = Wallet.getMain(using: self.testCustomClient) { (result) in
+        let request = Wallet.getMain(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let wallet):
@@ -63,22 +63,22 @@ class WalletFixtureTests: FixtureTestCase {
                 let balance2 = wallet.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
-                XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
-                XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
-                XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
-                XCTAssertTrue(balance1.mintedToken.metadata.isEmpty)
-                XCTAssertTrue(balance1.mintedToken.encryptedMetadata.isEmpty)
-                XCTAssertEqual(balance1.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(balance1.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance1.token.id, "OMG:123")
+                XCTAssertEqual(balance1.token.symbol, "OMG")
+                XCTAssertEqual(balance1.token.subUnitToUnit, 10000)
+                XCTAssertTrue(balance1.token.metadata.isEmpty)
+                XCTAssertTrue(balance1.token.encryptedMetadata.isEmpty)
+                XCTAssertEqual(balance1.token.createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance1.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
 
                 XCTAssertEqual(balance2.amount, 133700)
-                XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
-                XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
-                XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
-                XCTAssertTrue(balance2.mintedToken.metadata.isEmpty)
-                XCTAssertTrue(balance2.mintedToken.encryptedMetadata.isEmpty)
-                XCTAssertEqual(balance2.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(balance2.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance2.token.id, "KNC:123")
+                XCTAssertEqual(balance2.token.symbol, "KNC")
+                XCTAssertEqual(balance2.token.subUnitToUnit, 10000)
+                XCTAssertTrue(balance2.token.metadata.isEmpty)
+                XCTAssertTrue(balance2.token.encryptedMetadata.isEmpty)
+                XCTAssertEqual(balance2.token.createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(balance2.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(error: let error):
                 XCTFail("\(error)")
             }

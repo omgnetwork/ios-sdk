@@ -1,6 +1,6 @@
 {
   "amount": 103100,
-  "minted_token": {
+  "token": {
     "id": "OMG:123",
     "symbol": "OMG",
     "subunit_to_unit": 10000,

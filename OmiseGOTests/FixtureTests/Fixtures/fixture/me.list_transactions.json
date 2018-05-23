@@ -11,8 +11,8 @@
           "object": "transaction_source",
           "address": "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
           "amount": 1000,
-          "minted_token": {
-            "object": "minted_token",
+          "token": {
+            "object": "token",
             "id": "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
             "symbol": "BTC",
             "name": "Bitcoin",
@@ -27,8 +27,8 @@
           "object": "transaction_source",
           "address": "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
           "amount": 1000,
-          "minted_token": {
-            "object": "minted_token",
+          "token": {
+            "object": "token",
             "id": "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
             "symbol": "BTC",
             "name": "Bitcoin",

@@ -74,8 +74,8 @@ class APIErrorCodeTests: XCTestCase {
 
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:not_owner"),
                        APIErrorCode.notOwnerOfTransactionConsumption)
-        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),
-                       APIErrorCode.invalidMintedTokenForTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_token"),
+                       APIErrorCode.invalidTokenForTransactionConsumption)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:expired"),
                        APIErrorCode.transactionConsumptionExpired)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:unfinalized"),

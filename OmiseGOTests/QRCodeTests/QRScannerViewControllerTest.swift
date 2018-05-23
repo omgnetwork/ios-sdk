@@ -19,7 +19,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
         self.mockDelegate = MockQRVCDelegate()
         self.mockViewModel = MockQRViewModel()
         self.sut = QRScannerViewController(delegate: self.mockDelegate,
-                                            client: self.testCustomClient,
+                                            client: self.testClient,
                                             cancelButtonTitle: "",
                                             viewModel: self.mockViewModel)!
     }
@@ -30,7 +30,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
 
     func testFailsToInitIfQRCodeNotAvailable() {
         let vc = QRScannerViewController(delegate: self.mockDelegate,
-                                         client: self.testCustomClient,
+                                         client: self.testClient,
                                          cancelButtonTitle: "")
         XCTAssertNil(vc)
     }

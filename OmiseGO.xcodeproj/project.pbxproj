@@ -60,7 +60,7 @@
 		037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032941FBBE6B100DBCDDD /* Balance.swift */; };
 		037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032951FBBE6B100DBCDDD /* Reponse.swift */; };
 		037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032961FBBE6B100DBCDDD /* Object.swift */; };
-		037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032971FBBE6B100DBCDDD /* MintedToken.swift */; };
+		037032AE1FBBE6B100DBCDDD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032971FBBE6B100DBCDDD /* Token.swift */; };
 		037032AF1FBBE6B100DBCDDD /* Retrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032991FBBE6B100DBCDDD /* Retrievable.swift */; };
 		037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329A1FBBE6B100DBCDDD /* Listable.swift */; };
 		037032B11FBBE6B100DBCDDD /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370329C1FBBE6B100DBCDDD /* ClientConfiguration.swift */; };
@@ -113,7 +113,7 @@
 		03F84C661FC2883100F21C7B /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C651FC2883100F21C7B /* WalletTests.swift */; };
 		03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C671FC2886600F21C7B /* BalanceTests.swift */; };
 		03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C691FC28D5E00F21C7B /* UserTests.swift */; };
-		03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */; };
+		03F84C6C1FC292AD00F21C7B /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6B1FC292AD00F21C7B /* TokenTests.swift */; };
 		03FE64492032960200345281 /* MetadataDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64482032960200345281 /* MetadataDummy.swift */; };
 		03FE644C2032A8FE00345281 /* TransactionConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644A2032A39100345281 /* TransactionConsumption.swift */; };
 		03FE644E2032AA7400345281 /* TransactionConsumptionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */; };
@@ -189,7 +189,7 @@
 		037032941FBBE6B100DBCDDD /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		037032951FBBE6B100DBCDDD /* Reponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		037032961FBBE6B100DBCDDD /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		037032971FBBE6B100DBCDDD /* MintedToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MintedToken.swift; sourceTree = "<group>"; };
+		037032971FBBE6B100DBCDDD /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		037032991FBBE6B100DBCDDD /* Retrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retrievable.swift; sourceTree = "<group>"; };
 		0370329A1FBBE6B100DBCDDD /* Listable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
 		0370329C1FBBE6B100DBCDDD /* ClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 		03F84C651FC2883100F21C7B /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		03F84C671FC2886600F21C7B /* BalanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTests.swift; sourceTree = "<group>"; };
 		03F84C691FC28D5E00F21C7B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
-		03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenTests.swift; sourceTree = "<group>"; };
+		03F84C6B1FC292AD00F21C7B /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		03FE64482032960200345281 /* MetadataDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataDummy.swift; sourceTree = "<group>"; };
 		03FE644A2032A39100345281 /* TransactionConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumption.swift; sourceTree = "<group>"; };
 		03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionFixtureTests.swift; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 				037032941FBBE6B100DBCDDD /* Balance.swift */,
 				037032951FBBE6B100DBCDDD /* Reponse.swift */,
 				037032961FBBE6B100DBCDDD /* Object.swift */,
-				037032971FBBE6B100DBCDDD /* MintedToken.swift */,
+				037032971FBBE6B100DBCDDD /* Token.swift */,
 				0365DE822028508900F7B42E /* TransactionRequestParams.swift */,
 				0365DE8420285FE700F7B42E /* TransactionRequest.swift */,
 				038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */,
@@ -536,7 +536,7 @@
 				03F84C671FC2886600F21C7B /* BalanceTests.swift */,
 				03F84C651FC2883100F21C7B /* WalletTests.swift */,
 				03F84C691FC28D5E00F21C7B /* UserTests.swift */,
-				03F84C6B1FC292AD00F21C7B /* MintedTokenTests.swift */,
+				03F84C6B1FC292AD00F21C7B /* TokenTests.swift */,
 				0390B2472028652400B1F65E /* TransactionRequestTest.swift */,
 				038CB3E8202B02B300E40715 /* TransactionConsumptionParamsTest.swift */,
 				0371E0BD2062377600A75BCC /* TransactionRequestParamsTest.swift */,
@@ -793,7 +793,7 @@
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
-				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
+				037032AE1FBBE6B100DBCDDD /* Token.swift in Sources */,
 				0365F4F120565011000DA61A /* Listenable.swift in Sources */,
 				0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */,
 				039DA977203FAB0600CCC56A /* TransactionListParams.swift in Sources */,
@@ -842,7 +842,7 @@
 				031EA6A72071DEC800A34D16 /* SocketClientTests.swift in Sources */,
 				031EA6932071DE8000A34D16 /* EncodeTests.swift in Sources */,
 				03DE596F2089CC9E00E5AE6D /* OMGErrorTests.swift in Sources */,
-				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
+				03F84C6C1FC292AD00F21C7B /* TokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* WalletLiveTests.swift in Sources */,
 				031EA6AE2071DEC800A34D16 /* QRScannerViewControllerTest.swift in Sources */,
 				0396628420400CE8004E5640 /* TransactionTest.swift in Sources */,

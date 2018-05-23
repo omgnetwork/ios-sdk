@@ -13,7 +13,7 @@ class RequestFixtureTest: FixtureTestCase {
 
     func testBuildRequest() {
         do {
-            let urlRequest = try RequestBuilder(configuration: testCustomClient.config)
+            let urlRequest = try RequestBuilder(configuration: testClient.config)
                 .buildHTTPURLRequest(withEndpoint: .custom(path: "", task: .requestPlain))
 
             guard let httpHeaders = urlRequest.allHTTPHeaderFields else {
@@ -23,9 +23,9 @@ class RequestFixtureTest: FixtureTestCase {
 
             XCTAssertEqual(httpHeaders["Authorization"], "OMGClient YXBpa2V5OmF1dGhlbnRpY2F0aW9udG9rZW4=")
             XCTAssertEqual(httpHeaders["Accept"],
-                           "application/vnd.omisego.v\(self.testCustomClient.config.apiVersion)+json")
+                           "application/vnd.omisego.v\(self.testClient.config.apiVersion)+json")
             XCTAssertEqual(httpHeaders["Content-Type"],
-                           "application/vnd.omisego.v\(self.testCustomClient.config.apiVersion)+json; charset=utf-8")
+                           "application/vnd.omisego.v\(self.testClient.config.apiVersion)+json; charset=utf-8")
             XCTAssertNil(urlRequest.httpBody)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
             XCTAssertEqual(urlRequest.timeoutInterval, 6)

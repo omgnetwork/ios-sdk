@@ -17,7 +17,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let transactionRequest = StubGenerator.transactionRequest(
                 id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                 type: .receive,
-                mintedToken: StubGenerator.mintedToken(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
+                token: StubGenerator.token(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
                 amount: 1337,
                 address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                 correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
@@ -25,24 +25,24 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let params = TransactionConsumptionParams(
                 transactionRequest: transactionRequest,
                 address: nil,
-                mintedTokenId: nil,
+                tokenId: nil,
                 amount: nil,
                 idempotencyToken: "123",
                 correlationId: nil,
                 metadata: [:])!
         let request =
-            TransactionConsumption.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in
+            TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let transactionConsumption):
                     XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                     XCTAssertEqual(transactionConsumption.status, .confirmed)
                     XCTAssertEqual(transactionConsumption.amount, 1337)
-                    let mintedToken = transactionConsumption.mintedToken
-                    XCTAssertEqual(mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
-                    XCTAssertEqual(mintedToken.symbol, "BTC")
-                    XCTAssertEqual(mintedToken.name, "Bitcoin")
-                    XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+                    let token = transactionConsumption.token
+                    XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                    XCTAssertEqual(token.symbol, "BTC")
+                    XCTAssertEqual(token.name, "Bitcoin")
+                    XCTAssertEqual(token.subUnitToUnit, 100000)
                     XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                     XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                     let transaction = transactionConsumption.transaction!
@@ -74,18 +74,18 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.approve(using: self.testCustomClient) { (result) in
+        let request = transactionConsumption.approve(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let transactionConsumption):
                 XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                 XCTAssertEqual(transactionConsumption.status, .confirmed)
                 XCTAssertEqual(transactionConsumption.amount, 1337)
-                let mintedToken = transactionConsumption.mintedToken
-                XCTAssertEqual(mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
-                XCTAssertEqual(mintedToken.symbol, "BTC")
-                XCTAssertEqual(mintedToken.name, "Bitcoin")
-                XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+                let token = transactionConsumption.token
+                XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                XCTAssertEqual(token.symbol, "BTC")
+                XCTAssertEqual(token.name, "Bitcoin")
+                XCTAssertEqual(token.subUnitToUnit, 100000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                 let transaction = transactionConsumption.transaction!
@@ -117,18 +117,18 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.reject(using: self.testCustomClient) { (result) in
+        let request = transactionConsumption.reject(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let transactionConsumption):
                 XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                 XCTAssertEqual(transactionConsumption.status, .rejected)
                 XCTAssertEqual(transactionConsumption.amount, 1337)
-                let mintedToken = transactionConsumption.mintedToken
-                XCTAssertEqual(mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
-                XCTAssertEqual(mintedToken.symbol, "BTC")
-                XCTAssertEqual(mintedToken.name, "Bitcoin")
-                XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+                let token = transactionConsumption.token
+                XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                XCTAssertEqual(token.symbol, "BTC")
+                XCTAssertEqual(token.name, "Bitcoin")
+                XCTAssertEqual(token.subUnitToUnit, 100000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                 let transaction = transactionConsumption.transaction!

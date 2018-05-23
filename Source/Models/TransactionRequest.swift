@@ -31,14 +31,14 @@ public struct TransactionRequest {
     public let id: String
     /// The type of the request (send of receive)
     public let type: TransactionRequestType
-    /// The minted token for the request
+    /// The token to use for the request
     /// In the case of a type "send", this will be the token taken from the requester
     /// In the case of a type "receive" this will be the token received by the requester
-    public let mintedToken: MintedToken
-    /// The amount of minted token to use for the transaction (down to subunit to unit)
+    public let token: Token
+    /// The amount of token to use for the transaction (down to subunit to unit)
     /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
-    /// The address from which to send or receive the minted tokens
+    /// The address from which to send or receive the tokens
     public let address: String
     /// The user that initiated the request
     public let user: User?
@@ -82,7 +82,7 @@ extension TransactionRequest: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
-        case mintedToken = "minted_token"
+        case token
         case amount
         case address
         case user
@@ -107,7 +107,7 @@ extension TransactionRequest: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(TransactionRequestType.self, forKey: .type)
-        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
+        token = try container.decode(Token.self, forKey: .token)
         amount = try container.decodeIfPresent(Double.self, forKey: .amount)
         address = try container.decode(String.self, forKey: .address)
         user = try container.decodeIfPresent(User.self, forKey: .user)

@@ -16,13 +16,13 @@ class LiveTestCase: XCTestCase {
     private static let OMG_WEBSOCKET_URL = "OMG_WEBSOCKET_URL"
     private static let OMG_API_KEY = "OMG_API_KEY"
     private static let OMG_AUTHENTICATION_TOKEN = "OMG_AUTHENTICATION_TOKEN"
-    private static let OMG_MINTED_TOKEN_ID = "OMG_MINTED_TOKEN_ID"
+    private static let OMG_TOKEN_ID = "OMG_TOKEN_ID"
 
     var validWebsocketURL: String = ""
     var validBaseURL: String = ""
     var validAPIKey: String = ""
     var validAuthenticationToken: String = ""
-    var validMintedTokenId: String = ""
+    var validTokenId: String = ""
 
     let invalidWebsocketURL = "an invalid websocket url"
     let invalidBaseURL = "an invalid base url"
@@ -64,7 +64,7 @@ class LiveTestCase: XCTestCase {
             && self.validWebsocketURL != ""
             && self.validAPIKey != ""
             && self.validAuthenticationToken != ""
-            && self.validMintedTokenId != ""
+            && self.validTokenId != ""
     }
 
     /// This function loads the keys from the environment variables,
@@ -76,7 +76,7 @@ class LiveTestCase: XCTestCase {
     /// OMG_BASE_URL="https://some.base.url" \
     /// OMG_API_KEY="someKey" \
     /// OMG_AUTHENTICATION_TOKEN="someToken" \
-    /// OMG_MINTED_TOKEN_ID="someMintedTokenId" \
+    /// OMG_TOKEN_ID="someTokenId" \
     /// test
     private func loadEnvKeys() {
         let plistSecrets = self.loadSecretPlistFile()
@@ -100,11 +100,11 @@ class LiveTestCase: XCTestCase {
             plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN] != "" ?
             plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN]! :
             ProcessInfo.processInfo.environment[LiveTestCase.OMG_AUTHENTICATION_TOKEN]!
-        self.validMintedTokenId =
-            plistSecrets?[LiveTestCase.OMG_MINTED_TOKEN_ID] != nil &&
-            plistSecrets![LiveTestCase.OMG_MINTED_TOKEN_ID] != "" ?
-            plistSecrets![LiveTestCase.OMG_MINTED_TOKEN_ID]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_MINTED_TOKEN_ID]!
+        self.validTokenId =
+            plistSecrets?[LiveTestCase.OMG_TOKEN_ID] != nil &&
+            plistSecrets![LiveTestCase.OMG_TOKEN_ID] != "" ?
+            plistSecrets![LiveTestCase.OMG_TOKEN_ID]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_TOKEN_ID]!
     }
 
     private func loadSecretPlistFile() -> [String: String]? {

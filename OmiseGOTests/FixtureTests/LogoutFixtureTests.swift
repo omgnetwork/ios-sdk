@@ -13,8 +13,8 @@ class LogoutFixtureTests: FixtureTestCase {
 
     func testLogout() {
         let expectation = self.expectation(description: "Check if authentication token is invalidated")
-        XCTAssertNotNil(self.testCustomClient.config.authenticationToken)
-        let client = self.testCustomClient
+        XCTAssertNotNil(self.testClient.config.authenticationToken)
+        let client = self.testClient
         let request = client.logout { (result) in
             defer { expectation.fulfill() }
             switch result {
@@ -30,8 +30,8 @@ class LogoutFixtureTests: FixtureTestCase {
 
     func testPerformQueryAfterLogout() {
         let expectation = self.expectation(description: "Check if other queries fail after logout")
-        XCTAssertNotNil(self.testCustomClient.config.authenticationToken)
-        let client = self.testCustomClient
+        XCTAssertNotNil(self.testClient.config.authenticationToken)
+        let client = self.testClient
         let request = client.logout { _ in
             defer { expectation.fulfill() }
             do {

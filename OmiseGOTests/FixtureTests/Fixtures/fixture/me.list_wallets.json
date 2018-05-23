@@ -11,11 +11,11 @@
           {
             "object": "balance",
             "amount": 103100,
-            "minted_token": {
+            "token": {
               "id": "OMG:123",
               "symbol": "OMG",
               "subunit_to_unit": 10000,
-              "object": "minted_token",
+              "object": "token",
               "name": "OmiseGO",
               "metadata": {},
               "encrypted_metadata": {},
@@ -26,11 +26,11 @@
           {
             "object": "balance",
             "amount": 133700,
-            "minted_token": {
+            "token": {
               "id": "KNC:123",
               "symbol": "KNC",
               "subunit_to_unit": 10000,
-              "object": "minted_token",
+              "object": "token",
               "name": "Kyber",
               "metadata": {},
               "encrypted_metadata": {},

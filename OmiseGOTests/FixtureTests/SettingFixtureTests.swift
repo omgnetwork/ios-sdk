@@ -13,27 +13,27 @@ class SettingFixtureTests: FixtureTestCase {
 
     func testGetSettings() {
         let expectation = self.expectation(description: "Get settings for current user")
-        let request = Setting.get(using: self.testCustomClient) { (result) in
+        let request = Setting.get(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(let setting):
-                XCTAssertTrue(setting.mintedTokens.count == 2)
-                XCTAssertEqual(setting.mintedTokens[0].id, "BTC:123")
-                XCTAssertEqual(setting.mintedTokens[0].symbol, "BTC")
-                XCTAssertEqual(setting.mintedTokens[0].name, "Bitcoin")
-                XCTAssertEqual(setting.mintedTokens[0].subUnitToUnit, 100000)
-                XCTAssertTrue(setting.mintedTokens[0].metadata.isEmpty)
-                XCTAssertTrue(setting.mintedTokens[0].encryptedMetadata.isEmpty)
-                XCTAssertEqual(setting.mintedTokens[0].createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(setting.mintedTokens[0].updatedAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(setting.mintedTokens[1].id, "OMG:123")
-                XCTAssertEqual(setting.mintedTokens[1].symbol, "OMG")
-                XCTAssertEqual(setting.mintedTokens[1].name, "OmiseGO")
-                XCTAssertEqual(setting.mintedTokens[1].subUnitToUnit, 100000000)
-                XCTAssertTrue(setting.mintedTokens[1].metadata.isEmpty)
-                XCTAssertTrue(setting.mintedTokens[1].encryptedMetadata.isEmpty)
-                XCTAssertEqual(setting.mintedTokens[1].createdAt, "2018-01-01T00:00:00Z".toDate())
-                XCTAssertEqual(setting.mintedTokens[1].updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertTrue(setting.tokens.count == 2)
+                XCTAssertEqual(setting.tokens[0].id, "BTC:123")
+                XCTAssertEqual(setting.tokens[0].symbol, "BTC")
+                XCTAssertEqual(setting.tokens[0].name, "Bitcoin")
+                XCTAssertEqual(setting.tokens[0].subUnitToUnit, 100000)
+                XCTAssertTrue(setting.tokens[0].metadata.isEmpty)
+                XCTAssertTrue(setting.tokens[0].encryptedMetadata.isEmpty)
+                XCTAssertEqual(setting.tokens[0].createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(setting.tokens[0].updatedAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(setting.tokens[1].id, "OMG:123")
+                XCTAssertEqual(setting.tokens[1].symbol, "OMG")
+                XCTAssertEqual(setting.tokens[1].name, "OmiseGO")
+                XCTAssertEqual(setting.tokens[1].subUnitToUnit, 100000000)
+                XCTAssertTrue(setting.tokens[1].metadata.isEmpty)
+                XCTAssertTrue(setting.tokens[1].encryptedMetadata.isEmpty)
+                XCTAssertEqual(setting.tokens[1].createdAt, "2018-01-01T00:00:00Z".toDate())
+                XCTAssertEqual(setting.tokens[1].updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(let error):
                 XCTFail("\(error)")
             }

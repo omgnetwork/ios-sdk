@@ -27,12 +27,12 @@ public struct TransactionConsumption {
     public let id: String
     /// The status of the consumption (pending, confirmed or failed)
     public let status: TransactionConsumptionStatus
-    /// The amount of minted token to transfer (down to subunit to unit)
+    /// The amount of token to transfer (down to subunit to unit)
     public let amount: Double
-    /// The minted token for the request
+    /// The token for the request
     /// In the case of a type "send", this will be the token that the consumer will receive
     /// In the case of a type "receive" this will be the token that the consumer will send
-    public let mintedToken: MintedToken
+    public let token: Token
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
     /// The idempotency token of the consumption
@@ -78,7 +78,7 @@ extension TransactionConsumption: Decodable {
         case id
         case status
         case amount
-        case mintedToken = "minted_token"
+        case token
         case correlationId = "correlation_id"
         case idempotencyToken = "idempotency_token"
         case user
@@ -103,7 +103,7 @@ extension TransactionConsumption: Decodable {
         id = try container.decode(String.self, forKey: .id)
         status = try container.decode(TransactionConsumptionStatus.self, forKey: .status)
         amount = try container.decode(Double.self, forKey: .amount)
-        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
+        token = try container.decode(Token.self, forKey: .token)
         correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         idempotencyToken = try container.decode(String.self, forKey: .idempotencyToken)
         transaction = try container.decodeIfPresent(Transaction.self, forKey: .transaction)
