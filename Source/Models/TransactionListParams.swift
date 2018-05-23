@@ -20,7 +20,8 @@ public struct TransactionListParams {
     /// - Parameters:
     ///   - paginationParams: The params to use for the pagination
     ///   - address: An optional wallet address belonging to the current user
-    public init(paginationParams: PaginationParams<Transaction>, address: String?) {
+    public init(paginationParams: PaginationParams<Transaction>,
+                address: String? = nil) {
         self.paginationParams = paginationParams
         self.address = address
     }

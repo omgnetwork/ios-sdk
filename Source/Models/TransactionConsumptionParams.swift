@@ -42,11 +42,11 @@ public struct TransactionConsumptionParams {
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
     ///   - metadata: Additional metadata for the consumption
     public init?(transactionRequest: TransactionRequest,
-                 address: String?,
-                 tokenId: String?,
+                 address: String? = nil,
+                 tokenId: String? = nil,
                  amount: Double?,
                  idempotencyToken: String,
-                 correlationId: String?,
+                 correlationId: String? = nil,
                  metadata: [String: Any] = [:],
                  encryptedMetadata: [String: Any] = [:]) {
         guard transactionRequest.amount != nil || amount != nil else { return nil }

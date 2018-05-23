@@ -66,7 +66,7 @@ public struct PaginationParams<T: Paginable> {
     ///   - sortDirection: The sort direction (ascending or descending)
     public init(page: Int,
                 perPage: Int,
-                searchTerm: String?,
+                searchTerm: String? = nil,
                 sortBy: T.SortableFields,
                 sortDirection: SortDirection) {
         self.init(page: page, perPage: perPage, searchTerm: searchTerm, searchTerms: nil, sortBy: sortBy, sortDirection: sortDirection)
@@ -82,7 +82,7 @@ public struct PaginationParams<T: Paginable> {
     ///   - sortDirection: The sort direction (ascending or descending)
     public init(page: Int,
                 perPage: Int,
-                searchTerms: [T.SearchableFields: Any]?,
+                searchTerms: [T.SearchableFields: Any]? = nil,
                 sortBy: T.SortableFields,
                 sortDirection: SortDirection) {
         self.init(page: page, perPage: perPage, searchTerm: nil, searchTerms: searchTerms, sortBy: sortBy, sortDirection: sortDirection)
