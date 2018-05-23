@@ -277,6 +277,14 @@ class DecodeTests: XCTestCase {
             XCTAssertTrue(decodedData.balances[0].token.encryptedMetadata.isEmpty)
             XCTAssertEqual(decodedData.balances[0].token.createdAt, try "2018-01-01T00:00:00Z".toDate())
             XCTAssertEqual(decodedData.balances[0].token.updatedAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.name, "primary")
+            XCTAssertEqual(decodedData.identifier, "primary")
+            XCTAssertEqual(decodedData.userId!, "cec34607-0761-4a59-8357-18963e42a1aa")
+            XCTAssertEqual(decodedData.user!.id, "cec34607-0761-4a59-8357-18963e42a1aa")
+            XCTAssertEqual(decodedData.accountId, nil)
+            XCTAssertEqual(decodedData.account, nil)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

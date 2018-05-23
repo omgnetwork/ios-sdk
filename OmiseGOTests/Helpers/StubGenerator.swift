@@ -26,12 +26,28 @@ class StubGenerator {
     }
 
     class func wallet(address: String? = nil,
-                      balances: [Balance]? = nil)
+                      balances: [Balance]? = nil,
+                      name: String? = nil,
+                      identifier: String? = nil,
+                      userId: String? = nil,
+                      user: User? = nil,
+                      accountId: String? = nil,
+                      account: Account? = nil,
+                      metadata: [String: Any] = [:],
+                      encryptedMetadata: [String: Any] = [:])
         -> Wallet {
             let v: Wallet = self.stub(forResource: "wallet")
             return Wallet(
                 address: address ?? v.address,
-                balances: [self.balance()]
+                balances: [self.balance()],
+                name: name ?? v.name,
+                identifier: identifier ?? v.identifier,
+                userId: userId ?? v.userId,
+                user: user ?? v.user,
+                accountId: accountId ?? v.accountId,
+                account: account ?? v.account,
+                metadata: metadata,
+                encryptedMetadata: encryptedMetadata
             )
     }
 

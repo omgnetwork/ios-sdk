@@ -33,7 +33,6 @@ class WalletFixtureTests: FixtureTestCase {
                 XCTAssertTrue(balance1.token.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance1.token.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance1.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
-
                 XCTAssertEqual(balance2.amount, 133700)
                 XCTAssertEqual(balance2.token.id, "KNC:123")
                 XCTAssertEqual(balance2.token.symbol, "KNC")
@@ -42,6 +41,15 @@ class WalletFixtureTests: FixtureTestCase {
                 XCTAssertTrue(balance2.token.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance2.token.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance2.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
+
+                XCTAssertEqual(wallet.name, "primary")
+                XCTAssertEqual(wallet.identifier, "primary")
+                XCTAssertEqual(wallet.userId!, "cec34607-0761-4a59-8357-18963e42a1aa")
+                XCTAssertEqual(wallet.user!.id, "cec34607-0761-4a59-8357-18963e42a1aa")
+                XCTAssertEqual(wallet.accountId, nil)
+                XCTAssertEqual(wallet.account, nil)
+                XCTAssertTrue(wallet.metadata.isEmpty)
+                XCTAssertTrue(wallet.encryptedMetadata.isEmpty)
             case .fail(error: let error):
                 XCTFail("\(error)")
             }
