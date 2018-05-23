@@ -79,6 +79,7 @@
 		0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBB120564ECF0036A9D6 /* SocketPayload.swift */; };
 		037BAA99205F64CC004A3952 /* SocketDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA98205F64CC004A3952 /* SocketDispatcher.swift */; };
 		037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA9A205F701E004A3952 /* RequestBuilder.swift */; };
+		037D6A9F20B2541700F02CC8 /* TransactionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037D6A9E20B2541700F02CC8 /* TransactionParams.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
 		038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E4202AE93900E40715 /* QRTestHelper.swift */; };
 		038CB3E7202AF81900E40715 /* TransactionConsumptionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */; };
@@ -208,6 +209,7 @@
 		0377EBB120564ECF0036A9D6 /* SocketPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
 		037BAA98205F64CC004A3952 /* SocketDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDispatcher.swift; sourceTree = "<group>"; };
 		037BAA9A205F701E004A3952 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		037D6A9E20B2541700F02CC8 /* TransactionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionParams.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
 		038CB3E4202AE93900E40715 /* QRTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTestHelper.swift; sourceTree = "<group>"; };
 		038CB3E6202AF81900E40715 /* TransactionConsumptionParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionParams.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				0355969A2045315F000E38DA /* TransactionExchange.swift */,
 				039DA974203FA94100CCC56A /* PaginationParams.swift */,
 				039DA976203FAB0600CCC56A /* TransactionListParams.swift */,
+				037D6A9E20B2541700F02CC8 /* TransactionParams.swift */,
 				039DA972203FA72800CCC56A /* Transaction.swift */,
 				039DA978203FB53F00CCC56A /* Pagination.swift */,
 				0361289F20872E7D00E13514 /* Account.swift */,
@@ -782,6 +785,7 @@
 				039DA979203FB53F00CCC56A /* Pagination.swift in Sources */,
 				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
 				037032B81FBBE6B100DBCDDD /* Request.swift in Sources */,
+				037D6A9F20B2541700F02CC8 /* TransactionParams.swift in Sources */,
 				037032A91FBBE6B100DBCDDD /* Wallet.swift in Sources */,
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
 				0355969920453069000E38DA /* TransactionSource.swift in Sources */,

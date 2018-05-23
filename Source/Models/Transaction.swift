@@ -66,6 +66,25 @@ extension Transaction: Decodable {
 
 }
 
+extension Transaction: Retrievable {
+
+    @discardableResult
+    /// Send tokens to an address
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
+    ///   - params: The TransactionSendParams object to customize the transaction
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public static func send(using client: HTTPClient,
+                            params: TransactionSendParams,
+                            callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
+        return self.retrieve(using: client, endpoint: .createTransaction(params: params), callback: callback)
+    }
+
+}
+
 extension Transaction: PaginatedListable {
 
     @discardableResult

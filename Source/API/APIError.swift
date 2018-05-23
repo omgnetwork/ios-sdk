@@ -64,28 +64,37 @@ extension APIError: Equatable {
 // Represents the different API error codes
 public enum APIErrorCode: Decodable {
 
+    // Client
     case invalidParameters
     case invalidVersion
     case permissionError
     case endPointNotFound
     case invalidAPIKey
+    case missingIdempotencyToken
+    // Server
     case internalServerError
     case unknownServerError
+    // User
     case accessTokenNotFound
     case accessTokenExpired
-    case missingIdempotencyToken
+    case fromAddressNotFound
+    case fromAddressMismatch
+    // Transaction
     case transactionSameAddress
     case transactionInsufficientFunds
-    case websocketError
+    // Transaction request
     case requestExpired
     case maxConsumptionsReached
     case maxConsumptionsPerUserReached
+    // Transaction consumption
     case notOwnerOfTransactionConsumption
     case invalidMintedTokenForTransactionConsumption
     case transactionConsumptionExpired
     case transactionConsumptionUnfinalized
+    // Websocket
     case forbiddenChannel
     case channelNotFound
+    case websocketError
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -112,6 +121,8 @@ extension APIErrorCode: RawRepresentable {
             self = .endPointNotFound
         case "client:invalid_api_key":
             self = .invalidAPIKey
+        case "client:no_idempotency_token_provided":
+            self = .missingIdempotencyToken
         case "server:internal_server_error":
             self = .internalServerError
         case "server:unknown_error":
@@ -120,14 +131,14 @@ extension APIErrorCode: RawRepresentable {
             self = .accessTokenNotFound
         case "user:access_token_expired":
             self = .accessTokenExpired
-        case "client:no_idempotency_token_provided":
-            self = .missingIdempotencyToken
+        case "user:from_address_not_found":
+            self = .fromAddressNotFound
+        case "user:from_address_mismatch":
+            self = .fromAddressMismatch
         case "transaction:same_address":
             self = .transactionSameAddress
         case "transaction:insufficient_funds":
             self = .transactionInsufficientFunds
-        case "websocket:connect_error":
-            self = .websocketError
         case "transaction_request:expired":
             self = .requestExpired
         case "transaction_request:max_consumptions_reached":
@@ -146,6 +157,8 @@ extension APIErrorCode: RawRepresentable {
             self = .forbiddenChannel
         case "websocket:channel_not_found":
             self = .channelNotFound
+        case "websocket:connect_error":
+            self = .websocketError
         case let code:
             self = .other(code)
         }
@@ -163,6 +176,8 @@ extension APIErrorCode: RawRepresentable {
             return "client:endpoint_not_found"
         case .invalidAPIKey:
             return "client:invalid_api_key"
+        case .missingIdempotencyToken:
+            return "client:no_idempotency_token_provided"
         case .internalServerError:
             return "server:internal_server_error"
         case .unknownServerError:
@@ -171,14 +186,14 @@ extension APIErrorCode: RawRepresentable {
             return "user:access_token_not_found"
         case .accessTokenExpired:
             return "user:access_token_expired"
-        case .missingIdempotencyToken:
-            return "client:no_idempotency_token_provided"
+        case .fromAddressNotFound:
+            return "user:from_address_not_found"
+        case .fromAddressMismatch:
+            return "user:from_address_mismatch"
         case .transactionSameAddress:
             return "transaction:same_address"
         case .transactionInsufficientFunds:
             return "transaction:insufficient_funds"
-        case .websocketError:
-            return "websocket:connect_error"
         case .requestExpired:
             return "transaction_request:expired"
         case .maxConsumptionsReached:
@@ -197,6 +212,8 @@ extension APIErrorCode: RawRepresentable {
             return "websocket:forbidden_channel"
         case .channelNotFound:
             return "websocket:channel_not_found"
+        case .websocketError:
+            return "websocket:connect_error"
         case .other(let code):
             return code
         }

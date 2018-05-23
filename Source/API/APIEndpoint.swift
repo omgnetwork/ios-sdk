@@ -13,6 +13,7 @@ enum APIEndpoint {
     case getWallets
     case getSettings
     case getTransactions(params: TransactionListParams)
+    case createTransaction(params: TransactionSendParams)
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumptionParams)
@@ -31,6 +32,8 @@ enum APIEndpoint {
             return "/me.get_settings"
         case .getTransactions:
             return "/me.list_transactions"
+        case .createTransaction:
+            return "/me.transfer"
         case .transactionRequestCreate:
             return "/me.create_transaction_request"
         case .transactionRequestGet:
@@ -52,6 +55,8 @@ enum APIEndpoint {
         switch self {
         case .getCurrentUser, .getWallets, .getSettings, .logout: // Send no parameters
             return .requestPlain
+        case .createTransaction(let parameters):
+            return .requestParameters(parameters: parameters)
         case .transactionRequestCreate(let parameters):
             return .requestParameters(parameters: parameters)
         case .transactionRequestGet(let parameters):

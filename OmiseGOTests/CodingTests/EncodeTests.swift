@@ -427,4 +427,29 @@ class EncodeTests: XCTestCase {
         }
     }
 
+    func testTransactionParamsEncoding() {
+        do {
+            let transactionParams = TransactionSendParams(from: "86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                                                          to: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                                                          amount: 1337,
+                                                          mintedTokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                          metadata: ["a_key": "a_value"],
+                                                          encryptedMetadata: ["a_key": "a_value"])
+            let encodedData = try self.encoder.encode(transactionParams)
+            let encodedPayload = try! transactionParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "amount":1337,
+                    "metadata":{"a_key":"a_value"},
+                    "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                    "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                    "encrypted_metadata":{"a_key":"a_value"}}
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
 }
