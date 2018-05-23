@@ -25,11 +25,11 @@ class StubGenerator {
         return try! decoder.decode(T.self, from: data)
     }
 
-    class func address(address: String? = nil,
-                       balances: [Balance]? = nil)
-        -> Address {
-            let v: Address = self.stub(forResource: "address")
-            return Address(
+    class func wallet(address: String? = nil,
+                      balances: [Balance]? = nil)
+        -> Wallet {
+            let v: Wallet = self.stub(forResource: "wallet")
+            return Wallet(
                 address: address ?? v.address,
                 balances: [self.balance()]
             )

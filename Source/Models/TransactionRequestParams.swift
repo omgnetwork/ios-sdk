@@ -19,7 +19,7 @@ public struct TransactionRequestCreateParams {
     /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
     /// The address from which to send or receive the minted tokens
-    /// If not specified, will use the primary address by default
+    /// If not specified, will use the primary wallet address by default
     public let address: String?
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
@@ -52,7 +52,7 @@ public struct TransactionRequestCreateParams {
     ///   - amount: The amount of minted token to use for the transaction (down to subunit to unit)
     ///             This amount needs to be either specified by the requester or the consumer
     ///   - address: The address from which to send or receive the minted tokens
-    ///              If not specified, will use the primary address by default
+    ///              If not specified, will use the primary wallet address by default
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
     ///   - requireConfirmation: A boolean indicating if the request needs a confirmation from the requester before being proceeded
     ///   - maxConsumptions: The maximum number of time that this request can be consumed

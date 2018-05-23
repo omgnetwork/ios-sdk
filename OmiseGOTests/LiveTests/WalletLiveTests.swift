@@ -1,5 +1,5 @@
 //
-//  AddressLiveTests.swift
+//  WalletLiveTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 10/11/2017.
@@ -9,11 +9,11 @@
 import XCTest
 import OmiseGO
 
-class AddressLiveTests: LiveTestCase {
+class WalletLiveTests: LiveTestCase {
 
     func testGetAll() {
-        let expectation = self.expectation(description: "Addresses result")
-        let request = Address.getAll(using: self.testClient) { (result) in
+        let expectation = self.expectation(description: "Get the list of wallets")
+        let request = Wallet.getAll(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let addresses):
@@ -27,8 +27,8 @@ class AddressLiveTests: LiveTestCase {
     }
 
     func testGetMain() {
-        let expectation = self.expectation(description: "Get the main address")
-        let request = Address.getMain(using: self.testClient) { (result) in
+        let expectation = self.expectation(description: "Get the main wallet")
+        let request = Wallet.getMain(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):

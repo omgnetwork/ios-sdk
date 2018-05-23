@@ -262,10 +262,10 @@ class DecodeTests: XCTestCase {
         }
     }
 
-    func testAddressDecoding() {
+    func testWalletDecoding() {
         do {
-            let jsonData = try self.jsonData(withFileName: "address")
-            let decodedData = try self.jsonDecoder.decode(Address.self, from: jsonData)
+            let jsonData = try self.jsonData(withFileName: "wallet")
+            let decodedData = try self.jsonDecoder.decode(Wallet.self, from: jsonData)
             XCTAssertEqual(decodedData.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
             XCTAssertTrue(decodedData.balances.count == 1)
             XCTAssertEqual(decodedData.balances[0].amount, 103100)

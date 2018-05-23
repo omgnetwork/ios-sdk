@@ -1,5 +1,5 @@
 //
-//  AddressFixtureTests.swift
+//  WalletFixtureTests.swift
 //  OmiseGOTests
 //
 //  Created by Thibault Denizet on 11/10/2017.
@@ -9,21 +9,21 @@
 import XCTest
 import OmiseGO
 
-class AddressFixtureTests: FixtureTestCase {
+class WalletFixtureTests: FixtureTestCase {
 
     func testGetAll() {
-        let expectation = self.expectation(description: "Get all addresses for current user")
-        let request = Address.getAll(using: self.testCustomClient) { (result) in
+        let expectation = self.expectation(description: "Get all wallets for current user")
+        let request = Wallet.getAll(using: self.testCustomClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let addresses):
-                XCTAssertEqual(addresses.count, 1)
-                let address = addresses.first!
-                XCTAssertEqual(address.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
+            case .success(data: let wallets):
+                XCTAssertEqual(wallets.count, 1)
+                let wallet = wallets.first!
+                XCTAssertEqual(wallet.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
 
-                XCTAssertEqual(address.balances.count, 2)
-                let balance1 = address.balances[0]
-                let balance2 = address.balances[1]
+                XCTAssertEqual(wallet.balances.count, 2)
+                let balance1 = wallet.balances[0]
+                let balance2 = wallet.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
                 XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
@@ -52,15 +52,15 @@ class AddressFixtureTests: FixtureTestCase {
 
     func testGetMain() {
         let expectation = self.expectation(description: "Get the main address of the current user")
-        let request = Address.getMain(using: self.testCustomClient) { (result) in
+        let request = Wallet.getMain(using: self.testCustomClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let address):
-                XCTAssertEqual(address.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
+            case .success(data: let wallet):
+                XCTAssertEqual(wallet.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
 
-                XCTAssertEqual(address.balances.count, 2)
-                let balance1 = address.balances[0]
-                let balance2 = address.balances[1]
+                XCTAssertEqual(wallet.balances.count, 2)
+                let balance1 = wallet.balances[0]
+                let balance2 = wallet.balances[1]
 
                 XCTAssertEqual(balance1.amount, 103100)
                 XCTAssertEqual(balance1.mintedToken.id, "OMG:123")

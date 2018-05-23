@@ -12,14 +12,14 @@ import UIKit
 public struct TransactionListParams {
 
     public let paginationParams: PaginationParams<Transaction>
-    /// An optional address owned by the current user
+    /// An optional wallet address owned by the current user
     public let address: String?
 
     /// Initialize the params used to query a paginated list of transactions
     ///
     /// - Parameters:
     ///   - paginationParams: The params to use for the pagination
-    ///   - address: An optional address belonging to the current user
+    ///   - address: An optional wallet address belonging to the current user
     public init(paginationParams: PaginationParams<Transaction>, address: String?) {
         self.paginationParams = paginationParams
         self.address = address

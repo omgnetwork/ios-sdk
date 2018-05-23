@@ -23,7 +23,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
     - [Initialization](#initialization-of-the-http-client)
     - [Retrieving resources](#retrieving-resources)
       - [Get the current user](#get-the-current-user)
-      - [Get the addresses of the current user](#get-the-addresses-of-the-current-user)
+      - [Get the wallets of the current user](#get-the-wallets-of-the-current-user)
       - [Get the provider settings](#get-the-provider-settings)
       - [Get the current user's transactions](#get-the-current-users-transactions)
     - [Transferring tokens](#transferring-tokens)
@@ -173,26 +173,26 @@ User.getCurrent(using: client) { (userResult) in
 }
 ```
 
-#### Get the addresses of the current user:
+#### Get the wallets of the current user:
 
 ```swift
-Address.getAll(using: client) { (addressesResult) in
-    switch addressesResult {
-    case .success(data: let addresses):
-        //TODO: Do something with the addresses
+Wallet.getAll(using: client) { (walletsResult) in
+    switch walletsResult {
+    case .success(data: let wallets):
+        //TODO: Do something with the wallets
     case .fail(error: let error):
         //TODO: Handle the error
     }
 }
 ```
 
-> Note: For now a user will have only one address so for the sake of simplicity you can get this address using:
+> Note: For now a user will have only one wallet so for the sake of simplicity you can get this wallet using:
 
 ```swift
-Address.getMain(using: client) { (addressResult) in
-    switch addressResult {
-    case .success(data: let address):
-        //TODO: Do something with the address
+Wallet.getMain(using: client) { (walletResult) in
+    switch walletResult {
+    case .success(data: let wallet):
+        //TODO: Do something with the wallet
     case .fail(error: let error):
         //TODO: Handle the error
     }
@@ -223,7 +223,7 @@ let params = TransactionListParams(paginationParams: paginationParams, address: 
 ```
 
 Where
-- `address` is an optional address that belongs to the current user (primary address by default)
+- `address` is an optional address that belongs to the current user (primary wallet address by default)
 - `paginationParams` is a `PaginationParams<Transaction>` object:
 
 ```swift
@@ -312,7 +312,7 @@ Where:
   - `mintedTokenId`: The id of the desired token.
   In the case of a type "send", this will be the token taken from the requester. In the case of a type "receive" this will be the token received by the requester
   - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
-  - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
+  - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary wallet address will be used.
   - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
   - `requireConfirmation`: (optional) A boolean indicating if the request [needs a confirmation](#transaction-request-events) from the requester before being proceeded
   - `maxConsumptions`: (optional) The maximum number of time that this request can be consumed
@@ -351,7 +351,7 @@ TransactionConsumption.consumeTransactionRequest(using: client, params: params) 
 Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
-- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
+- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary wallet address will be used.
 - `mintedTokenId`: (optional) The minted token id to use for the consumption.
 - `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.

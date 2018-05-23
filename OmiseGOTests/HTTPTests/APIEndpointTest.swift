@@ -18,7 +18,7 @@ class APIEndpointTest: XCTestCase {
 
     func testPath() {
         XCTAssertEqual(APIEndpoint.getCurrentUser.path, "/me.get")
-        XCTAssertEqual(APIEndpoint.getAddresses.path, "/me.list_balances")
+        XCTAssertEqual(APIEndpoint.getWallets.path, "/me.list_wallets")
         XCTAssertEqual(APIEndpoint.getSettings.path, "/me.get_settings")
         XCTAssertEqual(APIEndpoint.getTransactions(params: self.validTransactionListParams).path,
                        "/me.list_transactions")
@@ -36,7 +36,7 @@ class APIEndpointTest: XCTestCase {
         case .requestPlain: break
         default: XCTFail("Wrong task")
         }
-        switch APIEndpoint.getAddresses.task {
+        switch APIEndpoint.getWallets.task {
         case .requestPlain: break
         default: XCTFail("Wrong task")
         }
