@@ -307,7 +307,7 @@ Where:
 
 #### Generate a transaction request
 
-A more configurable way to transfer tokens between 2 addresses is to use the transaction request flow.
+A more configurable way to transfer tokens between 2 wallets is to use the transaction request flow.
 To make a transaction happen, a `TransactionRequest` needs to be created and consumed by a `TransactionConsumption`.
 
 To generate a transaction request you can call:
@@ -525,7 +525,7 @@ This allows the requester to [confirm](#confirm-a-transaction-consumption) or no
 
 - `onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption)`.
 
-This method will be called if a `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 addresses.
+This method will be called if a `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 wallets.
 
 - `onFailedTransactionConsumptionFinalized(_ error: APIError)`.
 

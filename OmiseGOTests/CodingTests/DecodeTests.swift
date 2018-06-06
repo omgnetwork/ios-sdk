@@ -505,7 +505,7 @@ class DecodeTests: XCTestCase {
             let avatar = decodedData.avatar
             XCTAssertEqual(avatar.original, "original_url")
             XCTAssertTrue(decodedData.metadata.isEmpty)
-            XCTAssertTrue(decodedData.encryptedMetada.isEmpty)
+            XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
         } catch let thrownError {

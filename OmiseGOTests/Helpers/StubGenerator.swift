@@ -381,7 +381,7 @@ class StubGenerator {
         isMaster: Bool? = nil,
         avatar: Avatar? = nil,
         metadata: [String: Any]? = nil,
-        encryptedMetada: [String: Any]? = nil,
+        encryptedMetadata: [String: Any]? = nil,
         createdAt: Date? = nil,
         updatedAt: Date? = nil) -> Account {
         let v: Account = self.stub(forResource: "account")
@@ -393,7 +393,7 @@ class StubGenerator {
             isMaster: isMaster ?? v.isMaster,
             avatar: avatar ?? v.avatar,
             metadata: metadata ?? v.metadata,
-            encryptedMetada: encryptedMetada ?? v.encryptedMetada,
+            encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
             createdAt: createdAt ?? v.createdAt,
             updatedAt: updatedAt ?? v.updatedAt)
     }
