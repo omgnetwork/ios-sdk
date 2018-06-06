@@ -42,6 +42,7 @@
     "expired_at": "2019-01-01T00:00:00Z",
     "allow_amount_override": true,
     "max_consumptions_per_user": null,
+    "formatted_id": "|907056a4-fc2d-47cb-af19-5e73aade7ece",
     "metadata": {},
     "encrypted_metadata": {}
   }

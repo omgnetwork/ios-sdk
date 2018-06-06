@@ -15,7 +15,7 @@ class TransactionRequestTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest()
         if let qrImage = transactionRequest.qrImage() {
             let decodedText = QRTestHelper.readQRCode(fromImage: qrImage)
-            XCTAssertEqual(decodedText, transactionRequest.id)
+            XCTAssertEqual(decodedText, transactionRequest.formattedId)
         } else {
             XCTFail("QR image should not be nil")
         }

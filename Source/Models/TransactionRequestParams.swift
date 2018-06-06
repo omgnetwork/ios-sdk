@@ -135,6 +135,10 @@ extension TransactionRequestCreateParams: APIParameters {
 /// Represents a structure used to retrieve a transaction request from its id
 struct TransactionRequestGetParams: APIParameters {
 
-    let id: String
+    let formattedId: String
+
+    private enum CodingKeys: String, CodingKey {
+        case formattedId = "formatted_id"
+    }
 
 }

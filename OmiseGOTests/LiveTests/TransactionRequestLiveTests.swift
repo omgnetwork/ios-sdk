@@ -55,7 +55,7 @@ class TransactionRequestLiveTests: LiveTestCase {
     func testGetATransactionRequest() {
         let creationCorrelationId = UUID().uuidString
         guard let transactionRequest = self.generateTransactionRequest(creationCorrelationId: creationCorrelationId, requiresConfirmation: true) else { return }
-        self.getTransactionRequest(transactionRequestId: transactionRequest.id, creationCorrelationId: creationCorrelationId)
+        self.getTransactionRequest(formattedId: transactionRequest.formattedId, creationCorrelationId: creationCorrelationId)
     }
 
     /// This test asserts that an approved consumption event is immediately sent without the need to approve the consumption
@@ -160,17 +160,17 @@ extension TransactionRequestLiveTests {
         return transactionRequestResult
     }
 
-    func getTransactionRequest(transactionRequestId: String, creationCorrelationId: String) {
+    func getTransactionRequest(formattedId: String, creationCorrelationId: String) {
         var transactionRequestResult: TransactionRequest?
         let getExpectation = self.expectation(description: "Get transaction request")
         let getRequest = TransactionRequest.get(
             using: self.testClient,
-            id: transactionRequestId) { (result) in
+            formattedId: formattedId) { (result) in
                 defer { getExpectation.fulfill() }
                 switch result {
                 case .success(data: let transactionRequest):
                     transactionRequestResult = transactionRequest
-                    XCTAssertEqual(transactionRequest.id, transactionRequestId)
+                    XCTAssertEqual(transactionRequest.formattedId, formattedId)
                     XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
                     XCTAssertEqual(transactionRequest.amount, 1)
                     XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)

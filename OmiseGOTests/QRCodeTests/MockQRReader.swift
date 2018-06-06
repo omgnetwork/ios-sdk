@@ -53,7 +53,7 @@ class MockQRViewModel: QRScannerViewModelProtocol {
     var didStartScanning: Bool = false
     var didStopScanning: Bool = false
     var didUpdateQRReaderPreviewLayer: Bool = false
-    var didCallLoadTransactionRequestWithId: Bool = false
+    var didCallLoadTransactionRequestWithFormattedId: Bool = false
 
     var onLoadingStateChange: LoadingClosure?
 
@@ -81,7 +81,7 @@ class MockQRViewModel: QRScannerViewModelProtocol {
         return true // for testing purpose we ignore the availabilty of the video device
     }
 
-    func loadTransactionRequest(withId id: String) {
-        self.didCallLoadTransactionRequestWithId = true
+    func loadTransactionRequest(withFormattedId formattedId: String) {
+        self.didCallLoadTransactionRequestWithFormattedId = true
     }
 }

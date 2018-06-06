@@ -21,7 +21,7 @@ protocol QRScannerViewModelProtocol {
     func readerPreviewLayer() -> AVCaptureVideoPreviewLayer
     func updateQRReaderPreviewLayer(withFrame frame: CGRect)
     func isQRCodeAvailable() -> Bool
-    func loadTransactionRequest(withId id: String)
+    func loadTransactionRequest(withFormattedId formattedId: String)
 }
 
 class QRScannerViewModel: QRScannerViewModelProtocol {
@@ -34,7 +34,7 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
     private lazy var reader: QRReader = {
         QRReader(onFindClosure: { [weak self] (value) in
             DispatchQueue.main.async {
-                self?.loadTransactionRequest(withId: value)
+                self?.loadTransactionRequest(withFormattedId: value)
             }
         })
     }()
@@ -44,15 +44,15 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         self.client = client
     }
 
-    func loadTransactionRequest(withId id: String) {
+    func loadTransactionRequest(withFormattedId formattedId: String) {
         // prevent from loading multiple time the same id
-        guard !self.loadedIds.contains(id) else { return }
+        guard !self.loadedIds.contains(formattedId) else { return }
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
-        self.loadedIds.append(id)
+        self.loadedIds.append(formattedId)
         self.stopScanning()
         self.onLoadingStateChange?(true)
-        TransactionRequest.get(using: self.client, id: id) { (result) in
+        TransactionRequest.get(using: self.client, formattedId: formattedId) { (result) in
             self.onLoadingStateChange?(false)
             switch result {
             case .success(data: let transactionRequest):

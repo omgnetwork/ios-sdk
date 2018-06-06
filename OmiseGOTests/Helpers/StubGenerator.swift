@@ -168,6 +168,7 @@ class StubGenerator {
         expiredAt: Date? = nil,
         allowAmountOverride: Bool? = nil,
         maxConsumptionsPerUser: Int? = nil,
+        formattedId: String? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionRequest {
@@ -192,6 +193,7 @@ class StubGenerator {
                 expiredAt: expiredAt ?? v.expiredAt,
                 allowAmountOverride: allowAmountOverride ?? v.allowAmountOverride,
                 maxConsumptionsPerUser: maxConsumptionsPerUser ?? v.maxConsumptionsPerUser,
+                formattedId: formattedId ?? v.formattedId,
                 metadata: metadata ?? v.metadata,
                 encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
             )
@@ -283,9 +285,9 @@ class StubGenerator {
     }
 
     class func transactionRequestGetParams(
-        id: String? = "0a8a4a98-794b-419e-b92d-514e83657e75")
+        formattedId: String? = "|0a8a4a98-794b-419e-b92d-514e83657e75")
         -> TransactionRequestGetParams {
-            return TransactionRequestGetParams(id: id!)
+            return TransactionRequestGetParams(formattedId: formattedId!)
     }
 
     class func transactionConsumptionParams(

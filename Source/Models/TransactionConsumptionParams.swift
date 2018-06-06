@@ -9,8 +9,8 @@
 /// Represents a structure used to consume a transaction request
 public struct TransactionConsumptionParams {
 
-    /// The id of the transaction request to be consumed
-    public let transactionRequestId: String
+    /// The formatted id of the transaction request to be consumed
+    public let formattedTransactionRequestId: String
     /// The amount of token to transfer (down to subunit to unit)
     public let amount: Double?
     /// The address to use for the consumption
@@ -50,7 +50,7 @@ public struct TransactionConsumptionParams {
                  metadata: [String: Any] = [:],
                  encryptedMetadata: [String: Any] = [:]) {
         guard transactionRequest.amount != nil || amount != nil else { return nil }
-        self.transactionRequestId = transactionRequest.id
+        self.formattedTransactionRequestId = transactionRequest.formattedId
         self.amount = amount == transactionRequest.amount ? nil : amount
         self.address = address
         self.tokenId = tokenId
@@ -71,7 +71,7 @@ extension TransactionConsumptionParams: APIParameters {
 extension TransactionConsumptionParams {
 
     private enum CodingKeys: String, CodingKey {
-        case transactionRequestId = "transaction_request_id"
+        case formattedTransactionRequestId = "formatted_transaction_request_id"
         case amount
         case address
         case tokenId = "token_id"
@@ -82,7 +82,7 @@ extension TransactionConsumptionParams {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(transactionRequestId, forKey: .transactionRequestId)
+        try container.encode(formattedTransactionRequestId, forKey: .formattedTransactionRequestId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
         try container.encode(tokenId, forKey: .tokenId)

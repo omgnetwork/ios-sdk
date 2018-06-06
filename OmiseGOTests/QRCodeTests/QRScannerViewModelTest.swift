@@ -18,7 +18,7 @@ class QRScannerViewModelTest: FixtureTestCase {
             defer { exp.fulfill() }
             XCTAssertNotNil(transactionRequest)
         }
-        stub.loadTransactionRequest(withId: "123")
+        stub.loadTransactionRequest(withFormattedId: "|123")
         waitForExpectations(timeout: 1, handler: nil)
     }
 
@@ -28,11 +28,11 @@ class QRScannerViewModelTest: FixtureTestCase {
             HTTPClient(config: ClientConfiguration(baseURL: "", apiKey: "", authenticationToken: "")))
         stub.onError = { (error) in
             defer { exp.fulfill() }
-            XCTAssert(stub.loadedIds.contains("123"))
+            XCTAssert(stub.loadedIds.contains("|123"))
             XCTAssertNotNil(error)
-            stub.loadTransactionRequest(withId: "123")
+            stub.loadTransactionRequest(withFormattedId: "|123")
         }
-        stub.loadTransactionRequest(withId: "123")
+        stub.loadTransactionRequest(withFormattedId: "|123")
         waitForExpectations(timeout: 1, handler: nil)
     }
 
@@ -49,7 +49,7 @@ class QRScannerViewModelTest: FixtureTestCase {
                 exp.fulfill()
             }
         }
-        stub.loadTransactionRequest(withId: "123")
+        stub.loadTransactionRequest(withFormattedId: "|123")
         waitForExpectations(timeout: 1, handler: nil)
     }
 

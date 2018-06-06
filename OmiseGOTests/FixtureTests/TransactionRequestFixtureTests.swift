@@ -56,7 +56,7 @@ class TransactionRequestFixtureTests: FixtureTestCase {
         let request =
             TransactionRequest.get(
                 using: self.testClient,
-                id: "8eb0160e-1c96-481a-88e1-899399cc84dc") { (result) in
+                formattedId: "|8eb0160e-1c96-481a-88e1-899399cc84dc") { (result) in
                     defer { expectation.fulfill() }
                     switch result {
                     case .success(data: let transactionRequest):

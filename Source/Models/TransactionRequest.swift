@@ -68,6 +68,8 @@ public struct TransactionRequest {
     public let allowAmountOverride: Bool
     /// The maximum number of consumptions allowed per unique user
     public let maxConsumptionsPerUser: Int?
+    /// An id that can be encoded in a QR code and be used to retrieve the request later
+    public let formattedId: String
     /// Additional metadata for the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the request
@@ -76,6 +78,8 @@ public struct TransactionRequest {
 }
 
 extension TransactionRequest: Listenable {}
+
+extension TransactionRequest: QREncodable {}
 
 extension TransactionRequest: Decodable {
 
@@ -99,6 +103,7 @@ extension TransactionRequest: Decodable {
         case expiredAt = "expired_at"
         case allowAmountOverride = "allow_amount_override"
         case maxConsumptionsPerUser = "max_consumptions_per_user"
+        case formattedId = "formatted_id"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
     }
@@ -124,21 +129,9 @@ extension TransactionRequest: Decodable {
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
         maxConsumptionsPerUser = try container.decodeIfPresent(Int.self, forKey: .maxConsumptionsPerUser)
+        formattedId = try container.decode(String.self, forKey: .formattedId)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
-    }
-
-}
-
-extension TransactionRequest {
-
-    /// Generates an QR image containing the encded transaction request id
-    ///
-    /// - Parameter size: the desired image size
-    /// - Returns: A QR image if the transaction request was successfuly encoded, nil otherwise.
-    public func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
-        guard let data = self.id.data(using: .isoLatin1) else { return nil }
-        return QRGenerator.generateQRCode(fromData: data, outputSize: size)
     }
 
 }
@@ -164,19 +157,19 @@ extension TransactionRequest: Retrievable {
     }
 
     @discardableResult
-    /// Retreive a transaction request from its id
+    /// Retreive a transaction request from its formatted id
     ///
     /// - Parameters:
     ///   - client: An API client.
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
-    ///   - id: The id of the TransactionRequest to be retrived.
+    ///   - formattedId: The formatted id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     public static func get(using client: HTTPClient,
-                           id: String,
+                           formattedId: String,
                            callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
-            let params = TransactionRequestGetParams(id: id)
+            let params = TransactionRequestGetParams(formattedId: formattedId)
             return self.retrieve(using: client,
                                  endpoint: .transactionRequestGet(params: params),
                                  callback: callback)

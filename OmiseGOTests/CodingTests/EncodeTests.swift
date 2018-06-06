@@ -231,13 +231,13 @@ class EncodeTests: XCTestCase {
     func testTransactionRequestGetParamsEncoding() {
         do {
             let transactionRequestParams =
-                TransactionRequestGetParams(id: "0a8a4a98-794b-419e-b92d-514e83657e75")
+                TransactionRequestGetParams(formattedId: "|0a8a4a98-794b-419e-b92d-514e83657e75")
             let encodedData = try self.encoder.encode(transactionRequestParams)
             let encodedPayload = try! transactionRequestParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -265,6 +265,7 @@ class EncodeTests: XCTestCase {
                                                         expiredAt: nil,
                                                         allowAmountOverride: true,
                                                         maxConsumptionsPerUser: nil,
+                                                        formattedId: "|0a8a4a98-794b-419e-b92d-514e83657e75",
                                                         metadata: [:],
                                                         encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
@@ -282,9 +283,9 @@ class EncodeTests: XCTestCase {
                 {
                     "amount":null,
                     "correlation_id":"321",
+                    "formatted_transaction_request_id":"|0a8a4a98-794b-419e-b92d-514e83657e75",
                     "address":"456",
                     "encrypted_metadata":{},
-                    "transaction_request_id":"0a8a4a98-794b-419e-b92d-514e83657e75",
                     "metadata":{},
                     "token_id":"BTC:123"
                 }
