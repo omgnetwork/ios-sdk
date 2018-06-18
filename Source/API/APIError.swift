@@ -21,7 +21,7 @@ public struct APIError {
     /// Indicate if the error is an authorization error in which case you may want to refresh the authentication token
     public func isAuthorizationError() -> Bool {
         switch self.code {
-        case .accessTokenExpired, .accessTokenNotFound, .invalidAPIKey: return true
+        case .accessTokenExpired, .authenticationTokenNotFound, .invalidAPIKey: return true
         default: return false
         }
     }
@@ -70,12 +70,11 @@ public enum APIErrorCode: Decodable {
     case permissionError
     case endPointNotFound
     case invalidAPIKey
-    case missingIdempotencyToken
     // Server
     case internalServerError
     case unknownServerError
     // User
-    case accessTokenNotFound
+    case authenticationTokenNotFound
     case accessTokenExpired
     case fromAddressNotFound
     case fromAddressMismatch
@@ -95,6 +94,8 @@ public enum APIErrorCode: Decodable {
     case forbiddenChannel
     case channelNotFound
     case websocketError
+    // DB
+    case transactionCouldNotBeLoaded
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -121,14 +122,12 @@ extension APIErrorCode: RawRepresentable {
             self = .endPointNotFound
         case "client:invalid_api_key":
             self = .invalidAPIKey
-        case "client:no_idempotency_token_provided":
-            self = .missingIdempotencyToken
         case "server:internal_server_error":
             self = .internalServerError
         case "server:unknown_error":
             self = .unknownServerError
-        case "user:access_token_not_found":
-            self = .accessTokenNotFound
+        case "user:auth_token_not_found":
+            self = .authenticationTokenNotFound
         case "user:access_token_expired":
             self = .accessTokenExpired
         case "user:from_address_not_found":
@@ -159,6 +158,8 @@ extension APIErrorCode: RawRepresentable {
             self = .channelNotFound
         case "websocket:connect_error":
             self = .websocketError
+        case "db:inserted_transaction_could_not_be_loaded":
+            self = .transactionCouldNotBeLoaded
         case let code:
             self = .other(code)
         }
@@ -176,14 +177,12 @@ extension APIErrorCode: RawRepresentable {
             return "client:endpoint_not_found"
         case .invalidAPIKey:
             return "client:invalid_api_key"
-        case .missingIdempotencyToken:
-            return "client:no_idempotency_token_provided"
         case .internalServerError:
             return "server:internal_server_error"
         case .unknownServerError:
             return "server:unknown_error"
-        case .accessTokenNotFound:
-            return "user:access_token_not_found"
+        case .authenticationTokenNotFound:
+            return "user:auth_token_not_found"
         case .accessTokenExpired:
             return "user:access_token_expired"
         case .fromAddressNotFound:
@@ -214,6 +213,8 @@ extension APIErrorCode: RawRepresentable {
             return "websocket:channel_not_found"
         case .websocketError:
             return "websocket:connect_error"
+        case .transactionCouldNotBeLoaded:
+            return "db:inserted_transaction_could_not_be_loaded"
         case .other(let code):
             return code
         }

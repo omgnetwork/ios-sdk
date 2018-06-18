@@ -18,17 +18,17 @@ class APIEndpointTest: XCTestCase {
 
     func testPath() {
         XCTAssertEqual(APIEndpoint.getCurrentUser.path, "/me.get")
-        XCTAssertEqual(APIEndpoint.getWallets.path, "/me.list_wallets")
+        XCTAssertEqual(APIEndpoint.getWallets.path, "/me.get_wallets")
         XCTAssertEqual(APIEndpoint.getSettings.path, "/me.get_settings")
         XCTAssertEqual(APIEndpoint.getTransactions(params: self.validTransactionListParams).path,
-                       "/me.list_transactions")
+                       "/me.get_transactions")
         XCTAssertEqual(APIEndpoint.transactionRequestCreate(params: self.validTransactionCreateParams).path,
                        "/me.create_transaction_request")
         XCTAssertEqual(APIEndpoint.transactionRequestGet(params: self.validTransactionGetParams).path,
                        "/me.get_transaction_request")
         XCTAssertEqual(APIEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).path,
                        "/me.consume_transaction_request")
-        XCTAssertEqual(APIEndpoint.logout.path, "/logout")
+        XCTAssertEqual(APIEndpoint.logout.path, "/me.logout")
     }
 
     func testTask() {

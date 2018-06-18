@@ -99,17 +99,4 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                   metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
-
-    func testIdempotencyTokenExists() {
-        let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
-        let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
-                                                  address: nil,
-                                                  tokenId: nil,
-                                                  amount: 3000,
-                                                  idempotencyToken: "123",
-                                                  correlationId: nil,
-                                                  metadata: [:])!
-        XCTAssertNotNil(params.getIdempotencyToken())
-        XCTAssertEqual(params.getIdempotencyToken()!, "123")
-    }
 }

@@ -42,24 +42,6 @@ class RequestBuilderTests: XCTestCase {
         }
     }
 
-    func testBuildRequestWithAdditionalHeaderFromParams() {
-        let transactionConsumptionParams = StubGenerator.transactionConsumptionParams()
-        let endpoint = APIEndpoint.transactionRequestConsume(params: transactionConsumptionParams)
-        do {
-            let urlRequest = try self.requestBuilder.buildHTTPURLRequest(withEndpoint: endpoint)
-            XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Idempotency-Token"],
-                           transactionConsumptionParams.idempotencyToken)
-            XCTAssertEqual(urlRequest.httpMethod, "POST")
-            XCTAssertEqual(urlRequest.cachePolicy, .useProtocolCachePolicy)
-            XCTAssertEqual(urlRequest.timeoutInterval, 6.0)
-            XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
-            XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
-            XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
-    }
-
     func testBuildRequestWithoutParams() {
         let endpoint = APIEndpoint.custom(path: "/test", task: HTTPTask.requestPlain)
         do {

@@ -7,19 +7,9 @@
 //
 
 /// Protocol for api parameters
-public protocol APIParameters: Encodable {
-
-    /// Returns idempotency token if parameters have one
-    ///
-    /// - Returns: idempotency token
-    func getIdempotencyToken() -> String?
-}
+public protocol APIParameters: Encodable {}
 
 extension APIParameters {
-    public func getIdempotencyToken() -> String? {
-        return nil
-    }
-
     public func encodedPayload() throws -> Data {
         return try serialize(self)
     }
@@ -42,11 +32,4 @@ enum HTTPTask {
             return nil
         }
     }
-
-    /// An idempotency token required for task's request
-    /// nil if tasks do not require a token
-    public var idempotencyToken: String? {
-        return self.parameters?.getIdempotencyToken()
-    }
-
 }

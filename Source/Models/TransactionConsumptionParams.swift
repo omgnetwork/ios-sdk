@@ -63,12 +63,6 @@ public struct TransactionConsumptionParams {
 }
 
 extension TransactionConsumptionParams: APIParameters {
-    public func getIdempotencyToken() -> String? {
-        return self.idempotencyToken
-    }
-}
-
-extension TransactionConsumptionParams {
 
     private enum CodingKeys: String, CodingKey {
         case formattedTransactionRequestId = "formatted_transaction_request_id"
@@ -78,6 +72,7 @@ extension TransactionConsumptionParams {
         case metadata
         case encryptedMetadata = "encrypted_metadata"
         case correlationId = "correlation_id"
+        case idempotencyToken = "idempotency_token"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -89,6 +84,7 @@ extension TransactionConsumptionParams {
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
         try container.encode(correlationId, forKey: .correlationId)
+        try container.encode(idempotencyToken, forKey: .idempotencyToken)
     }
 
 }

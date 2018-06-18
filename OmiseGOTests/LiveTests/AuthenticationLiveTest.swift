@@ -25,7 +25,7 @@ class AuthenticationLiveTest: LiveTestCase {
             case .fail(error: let error):
                 switch error {
                 case .api(apiError: let apiError) where apiError.isAuthorizationError():
-                    XCTAssertEqual(apiError.code, .accessTokenNotFound)
+                    XCTAssertEqual(apiError.code, .authenticationTokenNotFound)
                 default:
                     XCTFail("Error should be an authorization error")
                 }

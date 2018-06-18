@@ -27,11 +27,11 @@ enum APIEndpoint {
         case .getCurrentUser:
             return "/me.get"
         case .getWallets:
-            return "/me.list_wallets"
+            return "/me.get_wallets"
         case .getSettings:
             return "/me.get_settings"
         case .getTransactions:
-            return "/me.list_transactions"
+            return "/me.get_transactions"
         case .createTransaction:
             return "/me.transfer"
         case .transactionRequestCreate:
@@ -45,7 +45,7 @@ enum APIEndpoint {
         case .transactionConsumptionReject:
             return "/me.reject_transaction_consumption"
         case .logout:
-            return "/logout"
+            return "/me.logout"
         case .custom(let path, _):
             return path
         }

@@ -285,6 +285,7 @@ class EncodeTests: XCTestCase {
                     "correlation_id":"321",
                     "formatted_transaction_request_id":"|0a8a4a98-794b-419e-b92d-514e83657e75",
                     "address":"456",
+                    "idempotency_token":"123",
                     "encrypted_metadata":{},
                     "metadata":{},
                     "token_id":"BTC:123"

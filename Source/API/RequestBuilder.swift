@@ -28,11 +28,6 @@ final class RequestBuilder {
 
         try addRequiredHeaders(toRequest: &request)
 
-        // Add idempotencyToken if endpoint's task requires
-        if let token = endpoint.task.idempotencyToken {
-            request.addValue(token, forHTTPHeaderField: "Idempotency-Token")
-        }
-
         // Add endpoint's task parameters if necessary
         if let parameters = endpoint.task.parameters {
             let payload = try parameters.encodedPayload()
