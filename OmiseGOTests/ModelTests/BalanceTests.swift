@@ -8,6 +8,7 @@
 
 import XCTest
 import OmiseGO
+import BigInt
 
 class BalanceTests: XCTestCase {
 
@@ -37,12 +38,12 @@ class BalanceTests: XCTestCase {
         let token = StubGenerator.token(subUnitToUnit: 1000)
         let balance = StubGenerator.balance(token: token, amount: 999999999999999)
         XCTAssertEqual(balance.displayAmount(withPrecision: 1),
-                       "1\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000\(groupingSeparator)000")
+                       "999\(groupingSeparator)999\(groupingSeparator)999\(groupingSeparator)999\(decimalSeparator)9")
     }
 
     func testBigDisplayAmountWithBigSubUnitToUnity() {
         let token = StubGenerator.token(subUnitToUnit: 1000000000000000000)
-        let balance = StubGenerator.balance(token: token, amount: 130000000000000000000)
+        let balance = StubGenerator.balance(token: token, amount: BigInt("130000000000000000000"))
         XCTAssertEqual(balance.displayAmount(), "130")
     }
 
@@ -79,7 +80,7 @@ class BalanceTests: XCTestCase {
         let balance3 = StubGenerator.balance(token: token1, amount: 10)
         let balance4 = StubGenerator.balance(token: token2, amount: 10)
         let set: Set<Balance> = [balance1, balance2, balance3, balance4]
-        XCTAssertEqual(balance1.hashValue, token1.hashValue ^ 1.0.hashValue)
+        XCTAssertEqual(balance1.hashValue, token1.hashValue ^ BigInt("1")!.hashValue)
         XCTAssertEqual(set.count, 3)
     }
 

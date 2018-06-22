@@ -7,6 +7,7 @@
 //
 
 @testable import OmiseGO
+import BigInt
 
 class StubGenerator {
 
@@ -52,7 +53,7 @@ class StubGenerator {
     }
 
     class func balance(token: Token? = nil,
-                       amount: Double? = nil)
+                       amount: BigInt? = nil)
         -> Balance {
             let v: Balance = self.stub(forResource: "balance")
             return Balance(
@@ -76,7 +77,7 @@ class StubGenerator {
     class func token(id: String? = nil,
                      symbol: String? = nil,
                      name: String? = nil,
-                     subUnitToUnit: Double? = nil,
+                     subUnitToUnit: BigInt? = nil,
                      metadata: [String: Any]? = nil,
                      encryptedMetadata: [String: Any]? = nil,
                      createdAt: Date? = nil,
@@ -102,7 +103,7 @@ class StubGenerator {
     class func transactionConsumption(
         id: String? = nil,
         status: TransactionConsumptionStatus? = nil,
-        amount: Double? = nil,
+        amount: BigInt? = nil,
         token: Token? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
@@ -152,7 +153,7 @@ class StubGenerator {
         id: String? = nil,
         type: TransactionRequestType? = nil,
         token: Token? = nil,
-        amount: Double? = nil,
+        amount: BigInt? = nil,
         address: String? = nil,
         user: User? = nil,
         account: Account? = nil,
@@ -223,7 +224,7 @@ class StubGenerator {
 
     class func transactionSource(
         address: String? = nil,
-        amount: Double? = nil,
+        amount: BigInt? = nil,
         token: Token? = nil)
         -> TransactionSource {
             let v: TransactionSource = self.stub(forResource: "transaction_source")
@@ -255,7 +256,7 @@ class StubGenerator {
     class func transactionRequestCreateParams(
         type: TransactionRequestType = .receive,
         tokenId: String = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-        amount: Double? = 1337,
+        amount: BigInt? = 1337,
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         correlationId: String? = "31009545-db10-4287-82f4-afb46d9741d8",
         requireConfirmation: Bool = true,
@@ -294,7 +295,7 @@ class StubGenerator {
         transactionRequest: TransactionRequest = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         tokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-        amount: Double? = 1337,
+        amount: BigInt? = 1337,
         idempotencyToken: String = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
         expirationDate: Date? = Date(timeIntervalSince1970: 0),

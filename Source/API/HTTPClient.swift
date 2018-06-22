@@ -43,7 +43,18 @@ public class HTTPClient {
             performCallback {
                 callback?(.fail(error: error))
             }
-        } catch {}
+        } catch let error as EncodingError {
+            switch error {
+            case .invalidValue(_, let context):
+                performCallback {
+                    callback?(.fail(error: OMGError.unexpected(message: context.debugDescription)))
+                }
+            }
+        } catch _ {
+            performCallback {
+                callback?(.fail(error: OMGError.unexpected(message: "Could not build the request")))
+            }
+        }
 
         return nil
     }

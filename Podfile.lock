@@ -1,16 +1,24 @@
 PODS:
+  - BigInt (3.1.0):
+    - SipHash (~> 1.2)
+  - SipHash (1.2.2)
   - Starscream (3.0.5)
 
 DEPENDENCIES:
+  - BigInt (~> 3.1)
   - Starscream (~> 3.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BigInt
+    - SipHash
     - Starscream
 
 SPEC CHECKSUMS:
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: b65b55b7361189d8c9b6d31f609db7eba1c61ae8
+PODFILE CHECKSUM: d95ccee39caa6de14328e9cd0671ecb7eba0e387
 
 COCOAPODS: 1.5.3

@@ -6,6 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 /// Represents a structure used to generate a transaction request
 public struct TransactionRequestCreateParams {
 
@@ -17,7 +19,7 @@ public struct TransactionRequestCreateParams {
     public let tokenId: String
     /// The amount of token to use for the transaction (down to subunit to unit)
     /// This amount needs to be either specified by the requester or the consumer
-    public let amount: Double?
+    public let amount: BigInt?
     /// The address from which to send or receive the tokens
     /// If not specified, will use the primary wallet address by default
     public let address: String?
@@ -65,7 +67,7 @@ public struct TransactionRequestCreateParams {
     ///   - encryptedMetadata: Additional encrypted metadata embedded with the request
     public init?(type: TransactionRequestType,
                  tokenId: String,
-                 amount: Double?,
+                 amount: BigInt?,
                  address: String? = nil,
                  correlationId: String? = nil,
                  requireConfirmation: Bool,

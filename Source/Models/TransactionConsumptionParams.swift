@@ -6,13 +6,15 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 /// Represents a structure used to consume a transaction request
 public struct TransactionConsumptionParams {
 
     /// The formatted id of the transaction request to be consumed
     public let formattedTransactionRequestId: String
     /// The amount of token to transfer (down to subunit to unit)
-    public let amount: Double?
+    public let amount: BigInt?
     /// The address to use for the consumption
     public let address: String?
     /// The id of the token to use for the request
@@ -44,7 +46,7 @@ public struct TransactionConsumptionParams {
     public init?(transactionRequest: TransactionRequest,
                  address: String? = nil,
                  tokenId: String? = nil,
-                 amount: Double?,
+                 amount: BigInt?,
                  idempotencyToken: String,
                  correlationId: String? = nil,
                  metadata: [String: Any] = [:],

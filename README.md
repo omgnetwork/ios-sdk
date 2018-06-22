@@ -43,6 +43,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
       - [User events](#user-events)
       - [Stop listening](#stop-listening-for-events)
 - [Tests](#tests)
+- [Dependencies](#dependencies)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -590,6 +591,14 @@ You can then for example run the tests with the following command:
 
 `xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/socket" test`
 
+
+---
+
+# Dependencies
+
+There are two dependencies required to run the SDK.
+- [Starscream](https://github.com/daltoniam/Starscream) to manage websockets
+- [BigInt](https://github.com/attaswift/BigInt) to manage big numbers
 
 ---
 

@@ -6,6 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 /// Represents a structure used to create a transaction
 public struct TransactionSendParams {
 
@@ -15,7 +17,7 @@ public struct TransactionSendParams {
     /// The address where to send the tokens
     public let to: String
     /// The amount of token to transfer (down to subunit to unit)
-    public let amount: Double
+    public let amount: BigInt
     /// The id of the token to send
     public let tokenId: String
     /// Additional metadata for the transaction
@@ -25,7 +27,7 @@ public struct TransactionSendParams {
 
     public init(from: String? = nil,
                 to: String,
-                amount: Double,
+                amount: BigInt,
                 tokenId: String,
                 metadata: [String: Any] = [:],
                 encryptedMetadata: [String: Any] = [:]) {

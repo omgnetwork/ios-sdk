@@ -6,13 +6,15 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 /// Represents a balance of a token
 public struct Balance: Decodable {
 
     /// The token corresponding to the balance
     public let token: Token
     /// The total amount of token available
-    public let amount: Double
+    public let amount: BigInt
 
 }
 
@@ -24,12 +26,7 @@ extension Balance {
     /// for example a number 0.123 with a precision of 1 will be 0.1
     /// - Returns: the formatted balance amount
     public func displayAmount(withPrecision precision: Int = 1000) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = precision
-        let displayableAmount: Double = self.amount / self.token.subUnitToUnit
-        let formattedDisplayAmount = formatter.string(from: NSNumber(value: displayableAmount))
-        return formattedDisplayAmount ?? ""
+        return OMGNumberFormatter(precision: precision).string(from: self.amount, subunitToUnit: self.token.subUnitToUnit)
     }
 
 }

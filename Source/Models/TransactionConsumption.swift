@@ -6,6 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 /// The status of a transaction consumption
 ///
 /// - pending: The transaction consumption is pending validation
@@ -28,7 +30,7 @@ public struct TransactionConsumption {
     /// The status of the consumption (pending, confirmed or failed)
     public let status: TransactionConsumptionStatus
     /// The amount of token to transfer (down to subunit to unit)
-    public let amount: Double
+    public let amount: BigInt
     /// The token for the request
     /// In the case of a type "send", this will be the token that the consumer will receive
     /// In the case of a type "receive" this will be the token that the consumer will send
@@ -102,7 +104,7 @@ extension TransactionConsumption: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         status = try container.decode(TransactionConsumptionStatus.self, forKey: .status)
-        amount = try container.decode(Double.self, forKey: .amount)
+        amount = try container.decode(BigInt.self, forKey: .amount)
         token = try container.decode(Token.self, forKey: .token)
         correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         idempotencyToken = try container.decode(String.self, forKey: .idempotencyToken)

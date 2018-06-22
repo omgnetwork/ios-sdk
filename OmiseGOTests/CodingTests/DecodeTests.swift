@@ -25,6 +25,52 @@ class DecodeTests: XCTestCase {
         return try Data(contentsOf: fixtureFileURL)
     }
 
+    func testSuccessfullyDecodesANumberWithInt32Size() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "bigint_int32")
+            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            XCTAssertEqual(decodedData.value.description, "2147483647")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testSuccessfullyDecodesANumberWithInt64Size() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "bigint_int64")
+            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            XCTAssertEqual(decodedData.value.description, "922337203685400")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testSuccessfullyDecodesANumberWith38Digits() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "bigint_over_int64")
+            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            XCTAssertEqual(decodedData.value.description, "99999999999999999999999999999999999998")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testFailsToDecodeANumberWith39Digits() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "bigint_invalid")
+            XCTAssertThrowsError(try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData), "Failed to decode value", { error -> Void in
+                switch error {
+                case DecodingError.dataCorrupted(let context):
+                    XCTAssertEqual(context.debugDescription, "Invalid number")
+                default:
+                    XCTFail("Should raise a data corrupted error")
+                }
+            })
+        } catch _ {
+            XCTFail("Should raise a decoding error")
+        }
+    }
+
     func testCustomDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
