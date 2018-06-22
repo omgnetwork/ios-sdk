@@ -3,7 +3,50 @@ All notable changes to this project will be documented in this file.
 `OmiseGO` adheres to [Semantic Versioning](http://semver.org/).
 
 #### 0.x Betas
-- `0.9.x` Betas - [0.9.11](#0911)
+- `0.10.x` Betas
+  - [0.10.0](#0100)
+
+
+- `0.9.x` Betas
+  - [0.9.11](#0911)
+
+---
+## [0.10.0](https://github.com/omisego/ios-sdk/releases/tag/0.10.0)
+Released on 2018-6-22. All issues associated with this milestone can be found using this [filter](https://github.com/omisego/ios-sdk/issues?utf8=%E2%9C%93&q=milestone%3A0.10.0).
+
+#### Updated
+- Refactored network logic.
+  - Updated by [Yuzushioh](https://github.com/yuzushioh) in Pull Request [#46](https://github.com/omisego/ios-sdk/pull/46).
+- Removed unneeded timestamps.
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#47](https://github.com/omisego/ios-sdk/pull/47)
+- Renamed Address to Wallet.
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#49](https://github.com/omisego/ios-sdk/pull/49)
+- Renamed transaction request related methods
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#50](https://github.com/omisego/ios-sdk/pull/50)
+- Renamed MintedToken to Token
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#52](https://github.com/omisego/ios-sdk/pull/52)
+- Improved initializers by providing default values to optional parameters
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#53](https://github.com/omisego/ios-sdk/pull/53)
+- Moved idempotency token from header to body
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#58](https://github.com/omisego/ios-sdk/pull/58)
+- Endpoints paths
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#60](https://github.com/omisego/ios-sdk/pull/60)
+- Changed Double to BigInt for amounts and subunitToUnit
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#61](https://github.com/omisego/ios-sdk/pull/61)
+
+#### Added
+- Ability to enable debug logs.
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#43](https://github.com/omisego/ios-sdk/pull/43).
+- Ability to set the maximum consumptions per user in transaction requests.
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#48](https://github.com/omisego/ios-sdk/pull/48).
+- Ability to make a transaction to a user.
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#51](https://github.com/omisego/ios-sdk/pull/51).
+- Additional attributes to Wallet.
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#54](https://github.com/omisego/ios-sdk/pull/54).
+- FormattedId param to transactionRequest and use it for QR representation
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#56](https://github.com/omisego/ios-sdk/pull/56).
+- Additional errors
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#57](https://github.com/omisego/ios-sdk/pull/57).
 
 ---
 ## [0.9.11](https://github.com/omisego/ios-sdk/releases/tag/0.9.11)

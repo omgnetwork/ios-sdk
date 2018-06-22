@@ -76,7 +76,7 @@ pod 'OmiseGO'
 Alternatively you can also specify a version ([read more about the Podfile] (https://guides.cocoapods.org/using/the-podfile.html)):
 
 ```ruby
-pod 'OmiseGO', '~> 0.9'
+pod 'OmiseGO', '~> 0.10'
 ```
 
 Then, run the following command:
