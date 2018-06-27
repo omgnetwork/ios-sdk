@@ -27,6 +27,7 @@ public final class OMGNumberFormatter {
     }
 
     public func number(from string: String, decimals: Int) -> BigInt? {
+        guard string != "" else { return nil }
         guard let index = string.index(where: { String($0) == decimalSeparator }) else {
             return BigInt(string).flatMap({ $0 * BigInt(10).power(decimals) })
         }

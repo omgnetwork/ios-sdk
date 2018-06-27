@@ -18,6 +18,7 @@ public enum OMGError: Error {
     case configuration(message: String)
     case api(apiError: APIError)
     case socketError(message: String)
+    case decoding(underlyingError: DecodingError)
     case other(error: Error)
 
     public var message: String {
@@ -30,6 +31,18 @@ public enum OMGError: Error {
             return "I/O error: \(error.localizedDescription)"
         case .socketError(let message):
             return "socket error: \(message)"
+        case .decoding(underlyingError: let error):
+            switch error {
+            case .dataCorrupted(let context):
+                return "decoding error: \(context.debugDescription)"
+            case .keyNotFound(_, let context):
+                return "decoding error: \(context.debugDescription)"
+            case .typeMismatch(_, let context):
+                return "decoding error: \(context.debugDescription)"
+            case .valueNotFound(_, let context):
+                return "decoding error: \(context.debugDescription)"
+            }
+
         case .api(let error):
             return error.description
         }

@@ -58,7 +58,7 @@ public class Request<ResultType: Decodable> {
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
     }
 
-    private func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
+    func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
         guard [200, 500].contains(statusCode) else {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
@@ -68,14 +68,16 @@ public class Request<ResultType: Decodable> {
             }
             let response: JSONResponse<ResultType> = try deserializeData(data)
             return response.data
+        } catch let error as DecodingError {
+            return .fail(error: .decoding(underlyingError: error))
         } catch let error {
             return .fail(error: .other(error: error))
         }
     }
 
-    private func performCallback(_ result: Response<ResultType>) {
+    func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
-        OperationQueue.main.addOperation({ cb(result) })
+        OperationQueue.main.addOperation { cb(result) }
     }
 
 }

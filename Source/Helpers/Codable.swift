@@ -30,22 +30,15 @@ private struct JSONCodingKeys: CodingKey {
 }
 
 extension KeyedDecodingContainerProtocol {
-
     func decode(_ type: BigInt.Type, forKey key: Key) throws -> BigInt {
-        let parsedBigInt: BigInt?
-        // There is an issue currently in swift when initializing a Decimal number with an Int64 type.
-        // https://bugs.swift.org/browse/SR-7054
-        // This is a workaround where we first try to decode the number as a UInt and fallback to Decimal if it fails.
-        do {
-            parsedBigInt = BigInt(String((try self.decode(UInt.self, forKey: key))))
-        } catch _ {
-            parsedBigInt = BigInt((try self.decode(Decimal.self, forKey: key)).description)
+        guard let bigInt = try self.decodeOptional(type, forKey: key) else {
+            throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: "Invalid number")
         }
-        guard let amount = parsedBigInt, amount.description.count <= maxDecimalDigits else {
-                let description = "Invalid number"
-                throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: description)
-        }
-        return amount
+        return bigInt
+    }
+
+    func decode(_ type: BigInt.Type, forKey key: Key) throws -> BigInt? {
+        return try self.decodeOptional(type, forKey: key)
     }
 
     func decodeIfPresent(_ type: BigInt.Type, forKey key: Key) throws -> BigInt? {
@@ -53,6 +46,26 @@ extension KeyedDecodingContainerProtocol {
             return nil
         }
         return try decode(type, forKey: key)
+    }
+
+    private func decodeOptional(_ type: BigInt.Type, forKey key: Key) throws -> BigInt? {
+        let parsedBigInt: BigInt?
+        // There is an issue currently in swift when initializing a Decimal number with an Int64 type.
+        // https://bugs.swift.org/browse/SR-7054
+        // This is a workaround where we first try to decode the number as a UInt and fallback to Decimal if it fails.
+        do {
+            parsedBigInt = BigInt(String((try self.decode(UInt.self, forKey: key))))
+        } catch _ {
+            do {
+                parsedBigInt = BigInt((try self.decode(Decimal.self, forKey: key)).description)
+            } catch _ {
+                return nil
+            }
+        }
+        guard let amount = parsedBigInt, amount.description.count <= maxDecimalDigits else {
+            throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: "Invalid number")
+        }
+        return amount
     }
 
     func decode(_ type: [String: Any].Type, forKey key: Key) throws -> [String: Any] {

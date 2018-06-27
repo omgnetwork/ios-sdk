@@ -115,7 +115,7 @@ extension TransactionRequest: Decodable {
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(TransactionRequestType.self, forKey: .type)
         token = try container.decode(Token.self, forKey: .token)
-        amount = try container.decodeIfPresent(BigInt.self, forKey: .amount)
+        amount = try container.decode(BigInt.self, forKey: .amount)
         address = try container.decode(String.self, forKey: .address)
         user = try container.decodeIfPresent(User.self, forKey: .user)
         account = try container.decodeIfPresent(Account.self, forKey: .account)

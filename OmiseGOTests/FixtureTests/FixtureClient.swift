@@ -73,17 +73,7 @@ class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
         guard let data = data else {
             return performCallback(.fail(error: .unexpected(message: "empty response.")))
         }
-        do {
-            let response: JSONResponse<ResultType> = try deserializeData(data)
-            return performCallback(response.data)
-        } catch let error {
-            return performCallback(.fail(error: .other(error: error)))
-        }
-    }
-
-    fileprivate func performCallback(_ result: Response<ResultType>) {
-        guard let cb = callback else { return }
-        client.operationQueue.addOperation { cb(result) }
+        performCallback(self.result(withData: data, statusCode: 200))
     }
 }
 

@@ -43,6 +43,7 @@
 		0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334869D2036C7EC0013B37A /* StubGenerator.swift */; };
 		033522301FB5A5BF00BCBD11 /* WalletLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335222F1FB5A5BF00BCBD11 /* WalletLiveTests.swift */; };
 		033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */; };
+		0339810120E0C52300CA3A0D /* DecodingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0339810020E0C52300CA3A0D /* DecodingFixtureTests.swift */; };
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
 		034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BAC102057DDB7005E0CD3 /* SocketObject.swift */; };
@@ -177,6 +178,7 @@
 		0334869D2036C7EC0013B37A /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		0335222F1FB5A5BF00BCBD11 /* WalletLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLiveTests.swift; sourceTree = "<group>"; };
 		033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLiveTests.swift; sourceTree = "<group>"; };
+		0339810020E0C52300CA3A0D /* DecodingFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingFixtureTests.swift; sourceTree = "<group>"; };
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
 		034BAC102057DDB7005E0CD3 /* SocketObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketObject.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				03FE644D2032AA7400345281 /* TransactionConsumptionFixtureTests.swift */,
 				03D793B5204FE1080055D7BC /* ListableTests.swift */,
 				0396627F203FFF3E004E5640 /* TransactionFixtureTests.swift */,
+				0339810020E0C52300CA3A0D /* DecodingFixtureTests.swift */,
 				03F5C0101F8CB19D0079E073 /* Fixtures */,
 			);
 			path = FixtureTests;
@@ -875,6 +878,7 @@
 				037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */,
 				031EA6AD2071DEC800A34D16 /* QRScannerViewModelTest.swift in Sources */,
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
+				0339810120E0C52300CA3A0D /* DecodingFixtureTests.swift in Sources */,
 				031EA6AF2071DEC800A34D16 /* QRReaderTest.swift in Sources */,
 				031EA6AA2071DEC800A34D16 /* QRGeneratorTest.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
