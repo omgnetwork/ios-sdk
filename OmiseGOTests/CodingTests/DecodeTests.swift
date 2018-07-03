@@ -386,6 +386,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
+            XCTAssertEqual(decodedData.estimatedRequestAmount, 1337)
+            XCTAssertEqual(decodedData.estimatedConsumptionAmount, 1337)
+            XCTAssertEqual(decodedData.finalizedRequestAmount, 1337)
+            XCTAssertEqual(decodedData.finalizedConsumptionAmount, 1337)
             let token = decodedData.token
             XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(token.symbol, "BTC")
@@ -479,7 +483,14 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "transaction_exchange")
             let decodedData = try self.jsonDecoder.decode(TransactionExchange.self, from: jsonData)
-            XCTAssertEqual(decodedData.rate, 1)
+            XCTAssertEqual(decodedData.rate, 0.017)
+            XCTAssertEqual(decodedData.calculatedAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.exchangePairId!, "exg_01cgvppyrz2pprj6s0zmc26p2p")
+            XCTAssertEqual(decodedData.exchangePair!.id, "exg_01cgvppyrz2pprj6s0zmc26p2p")
+            XCTAssertEqual(decodedData.exchangeAccountId!, "acc_01CA2P8JQANS5ATY5GJ5ETMJCF")
+            XCTAssertEqual(decodedData.exchangeAccount!.id, "acc_01CA2P8JQANS5ATY5GJ5ETMJCF")
+            XCTAssertEqual(decodedData.exchangeWalletAddress!, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
+            XCTAssertEqual(decodedData.exchangeWallet!.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -567,6 +578,24 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.large, "large_url")
             XCTAssertEqual(decodedData.small, "small_url")
             XCTAssertEqual(decodedData.thumb, "thumb_url")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testExchangePairDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "exchange_pair")
+            let decodedData = try self.jsonDecoder.decode(ExchangePair.self, from: jsonData)
+            XCTAssertEqual(decodedData.id, "exg_01cgvppyrz2pprj6s0zmc26p2p")
+            XCTAssertEqual(decodedData.name, "ETH/OMG")
+            XCTAssertEqual(decodedData.fromTokenId, "tok_ETH_01cbfge9qhmsdbjyb7a8e8pxt3")
+            XCTAssertEqual(decodedData.fromToken.id, "tok_ETH_01cbfge9qhmsdbjyb7a8e8pxt3")
+            XCTAssertEqual(decodedData.toTokenId, "tok_OMG_01cgvrqbfpa23ehkmrtqpbsyyp")
+            XCTAssertEqual(decodedData.toToken.id, "tok_OMG_01cgvrqbfpa23ehkmrtqpbsyyp")
+            XCTAssertEqual(decodedData.rate, 0.017)
+            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

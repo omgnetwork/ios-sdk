@@ -13,7 +13,7 @@ enum APIEndpoint {
     case getWallets
     case getSettings
     case getTransactions(params: TransactionListParams)
-    case createTransaction(params: TransactionSendParams)
+    case createTransaction(params: TransactionCreateParams)
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumptionParams)
@@ -33,7 +33,7 @@ enum APIEndpoint {
         case .getTransactions:
             return "/me.get_transactions"
         case .createTransaction:
-            return "/me.transfer"
+            return "/me.create_transaction"
         case .transactionRequestCreate:
             return "/me.create_transaction_request"
         case .transactionRequestGet:

@@ -319,7 +319,6 @@ class EncodeTests: XCTestCase {
                                                         encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                                             address: "456",
-                                                                            tokenId: "BTC:123",
                                                                             amount: nil,
                                                                             idempotencyToken: "123",
                                                                             correlationId: "321",
@@ -336,8 +335,7 @@ class EncodeTests: XCTestCase {
                     "address":"456",
                     "idempotency_token":"123",
                     "encrypted_metadata":{},
-                    "metadata":{},
-                    "token_id":"BTC:123"
+                    "metadata":{}
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -478,29 +476,90 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testTransactionParamsEncoding() {
+    func testTransactionParamsEncodingToAddress() {
         do {
-            let transactionParams = TransactionSendParams(from: "86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
-                                                          to: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                                                          amount: 1337,
-                                                          tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
-                                                          metadata: ["a_key": "a_value"],
-                                                          encryptedMetadata: ["a_key": "a_value"])
+            let transactionParams = TransactionCreateParams(fromAddress: "86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                                                            toAddress: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                                                            amount: 1337,
+                                                            tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
+                                                            metadata: ["a_key": "a_value"],
+                                                            encryptedMetadata: ["a_key": "a_value"])
+
             let encodedData = try self.encoder.encode(transactionParams)
             let encodedPayload = try! transactionParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
+                    "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                    "idempotency_token":"123",
+                    "encrypted_metadata":{"a_key":"a_value"},
                     "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
-                    "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
-                    "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "encrypted_metadata":{"a_key":"a_value"}}
+                    "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
+                }
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
     }
 
+    func testTransactionParamsEncodingToAccountId() {
+        do {
+            let transactionParams = TransactionCreateParams(fromAddress: "86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                                                            toAccountId: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                                                            amount: 1337,
+                                                            tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
+                                                            metadata: ["a_key": "a_value"],
+                                                            encryptedMetadata: ["a_key": "a_value"])
+
+            let encodedData = try self.encoder.encode(transactionParams)
+            let encodedPayload = try! transactionParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "amount":1337,
+                    "to_account_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                    "idempotency_token":"123",
+                    "encrypted_metadata":{"a_key":"a_value"},
+                    "metadata":{"a_key":"a_value"},
+                    "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionParamsEncodingToUserId() {
+        do {
+            let transactionParams = TransactionCreateParams(fromAddress: "86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                                                            toProviderUserId: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                                                            amount: 1337,
+                                                            tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
+                                                            metadata: ["a_key": "a_value"],
+                                                            encryptedMetadata: ["a_key": "a_value"])
+
+            let encodedData = try self.encoder.encode(transactionParams)
+            let encodedPayload = try! transactionParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "amount":1337,
+                    "to_provider_user_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                    "idempotency_token":"123",
+                    "encrypted_metadata":{"a_key":"a_value"},
+                    "metadata":{"a_key":"a_value"},
+                    "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
 }

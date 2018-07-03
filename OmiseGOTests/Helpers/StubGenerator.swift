@@ -105,6 +105,10 @@ class StubGenerator {
         status: TransactionConsumptionStatus? = nil,
         amount: BigInt? = nil,
         token: Token? = nil,
+        estimatedRequestAmount: BigInt? = nil,
+        estimatedConsumptionAmount: BigInt? = nil,
+        finalizedRequestAmount: BigInt? = nil,
+        finalizedConsumptionAmount: BigInt? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
         transaction: Transaction? = nil,
@@ -128,6 +132,10 @@ class StubGenerator {
                 id: id ?? v.id,
                 status: status ?? v.status,
                 amount: amount ?? v.amount,
+                estimatedRequestAmount: estimatedRequestAmount ?? v.estimatedRequestAmount,
+                estimatedConsumptionAmount: estimatedConsumptionAmount ?? v.estimatedConsumptionAmount,
+                finalizedRequestAmount: finalizedRequestAmount ?? v.finalizedRequestAmount,
+                finalizedConsumptionAmount: finalizedConsumptionAmount ?? v.finalizedConsumptionAmount,
                 token: token ?? v.token,
                 correlationId: correlationId ?? v.correlationId,
                 idempotencyToken: idempotencyToken ?? v.idempotencyToken,
@@ -234,10 +242,26 @@ class StubGenerator {
     }
 
     class func transactionExchange(
-        rate: Double? = nil)
+        rate: Double? = nil,
+        calculatedAt: Date? = nil,
+        exchangePairId: String? = nil,
+        exchangePair: ExchangePair? = nil,
+        exchangeAccountId: String? = nil,
+        exchangeAccount: Account? = nil,
+        exchangeWalletAddress: String? = nil,
+        exchangeWallet: Wallet? = nil)
         -> TransactionExchange {
             let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
-            return TransactionExchange(rate: rate ?? v.rate)
+            return TransactionExchange(
+                rate: rate ?? v.rate,
+                calculatedAt: calculatedAt ?? v.calculatedAt,
+                exchangePairId: exchangePairId ?? v.exchangePairId,
+                exchangePair: exchangePair ?? v.exchangePair,
+                exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
+                exchangeAccount: exchangeAccount ?? v.exchangeAccount,
+                exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
+                exchangeWallet: exchangeWallet ?? v.exchangeWallet
+            )
     }
 
     class func pagination(
@@ -303,7 +327,6 @@ class StubGenerator {
         return TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: address,
-            tokenId: tokenId,
             amount: amount,
             idempotencyToken: idempotencyToken,
             correlationId: correlationId,
@@ -397,6 +420,29 @@ class StubGenerator {
             avatar: avatar ?? v.avatar,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
+            createdAt: createdAt ?? v.createdAt,
+            updatedAt: updatedAt ?? v.updatedAt)
+    }
+
+    class func exchangePair(
+        id: String? = nil,
+        name: String? = nil,
+        fromTokenId: String? = nil,
+        fromToken: Token? = nil,
+        toTokenId: String? = nil,
+        toToken: Token? = nil,
+        rate: Double? = nil,
+        createdAt: Date? = nil,
+        updatedAt: Date? = nil) -> ExchangePair {
+        let v: ExchangePair = self.stub(forResource: "exchange_pair")
+        return ExchangePair(
+            id: id ?? v.id,
+            name: name ?? v.name,
+            fromTokenId: fromTokenId ?? v.fromTokenId,
+            fromToken: fromToken ?? v.fromToken,
+            toTokenId: toTokenId ?? v.toTokenId,
+            toToken: toToken ?? v.toToken,
+            rate: rate ?? v.rate,
             createdAt: createdAt ?? v.createdAt,
             updatedAt: updatedAt ?? v.updatedAt)
     }

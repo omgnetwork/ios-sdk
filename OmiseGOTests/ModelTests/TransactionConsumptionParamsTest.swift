@@ -16,7 +16,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         XCTAssertNotNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                      address: nil,
-                                                     tokenId: nil,
                                                      amount: nil,
                                                      idempotencyToken: "123",
                                                      correlationId: nil,
@@ -48,7 +47,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     encryptedMetadata: [:])
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
-                                                  tokenId: nil,
                                                   amount: nil,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,
@@ -80,7 +78,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
-                                              tokenId: nil,
                                               amount: 3000,
                                               idempotencyToken: "123",
                                               correlationId: nil,
@@ -92,7 +89,6 @@ class TransactionConsumptionParamsTest: XCTestCase {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                   address: nil,
-                                                  tokenId: nil,
                                                   amount: 3000,
                                                   idempotencyToken: "123",
                                                   correlationId: nil,

@@ -25,7 +25,6 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let params = TransactionConsumptionParams(
                 transactionRequest: transactionRequest,
                 address: nil,
-                tokenId: nil,
                 amount: nil,
                 idempotencyToken: "123",
                 correlationId: nil,
@@ -131,8 +130,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(token.subUnitToUnit, 100000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                let transaction = transactionConsumption.transaction!
-                XCTAssertEqual(transaction.id, "6ca40f34-6eaa-43e1-b2e1-a94ff366098")
+                XCTAssertNil(transactionConsumption.transaction)
                 let user = transactionConsumption.user!
                 XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
                 XCTAssertNil(transactionConsumption.account)

@@ -13,9 +13,7 @@ public struct TransactionRequestCreateParams {
 
     /// The type of transaction to be generated (send of receive)
     public let type: TransactionRequestType
-    /// The unique identifier of the token to use for the request
-    /// In the case of a type "send", this will be the token taken from the requester
-    /// In the case of a type "receive" this will be the token received by the requester
+    /// The unique identifier of the token that will be used in the transaction
     public let tokenId: String
     /// The amount of token to use for the transaction (down to subunit to unit)
     /// This amount needs to be either specified by the requester or the consumer
@@ -48,9 +46,7 @@ public struct TransactionRequestCreateParams {
     ///
     /// - Parameters:
     ///   - type: The type of transaction to be generated (send of receive)
-    ///   - tokenId: The unique identifier of the token to use for the request
-    ///              In the case of a type "send", this will be the token taken from the requester
-    ///              In the case of a type "receive" this will be the token received by the requester
+    ///   - tokenId: The unique identifier of the token that will be used in the transaction
     ///   - amount: The amount of token to use for the transaction (down to subunit to unit)
     ///             This amount needs to be either specified by the requester or the consumer
     ///   - address: The address from which to send or receive the tokens

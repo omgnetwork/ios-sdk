@@ -69,7 +69,7 @@ extension Transaction: Decodable {
 extension Transaction: Retrievable {
 
     @discardableResult
-    /// Send tokens to an address
+    /// Create a new transaction
     ///
     /// - Parameters:
     ///   - client: An API client.
@@ -77,9 +77,9 @@ extension Transaction: Retrievable {
     ///   - params: The TransactionSendParams object to customize the transaction
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func send(using client: HTTPClient,
-                            params: TransactionSendParams,
-                            callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
+    public static func create(using client: HTTPClient,
+                              params: TransactionCreateParams,
+                              callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .createTransaction(params: params), callback: callback)
     }
 

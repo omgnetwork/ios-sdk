@@ -83,8 +83,8 @@ public final class OMGNumberFormatter {
         var number = number
         let digits = number.description.count
 
-        if number == 0 || decimals - digits > maxFractionDigits {
-            return String(repeating: "0", count: minFractionDigits)
+        if number == 0 || decimals - digits >= self.maxFractionDigits {
+            return String(repeating: "0", count: self.minFractionDigits)
         }
         if decimals < minFractionDigits {
             number *= BigInt(10).power(minFractionDigits - decimals)

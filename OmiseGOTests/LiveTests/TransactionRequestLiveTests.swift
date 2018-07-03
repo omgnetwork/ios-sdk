@@ -189,7 +189,6 @@ extension TransactionRequestLiveTests {
         let transactionConsumptionParams = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
-            tokenId: nil,
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
@@ -205,7 +204,11 @@ extension TransactionRequestLiveTests {
                         transactionConsumptionResult = transactionConsumption
                         let token = transactionConsumption.token
                         XCTAssertEqual(token.id, self.validTokenId)
-                        XCTAssertEqual(transactionConsumption.amount, 1)
+                        XCTAssertNil(transactionConsumption.amount)
+                        XCTAssertNil(transactionConsumption.finalizedRequestAmount)
+                        XCTAssertNil(transactionConsumption.finalizedConsumptionAmount)
+                        XCTAssertEqual(transactionConsumption.estimatedRequestAmount, 1)
+                        XCTAssertEqual(transactionConsumption.estimatedConsumptionAmount, 1)
                         XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
                         XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)
                         XCTAssertEqual(transactionConsumption.transactionRequest.id, transactionRequest.id)

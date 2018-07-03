@@ -49,6 +49,7 @@ class QRScannerView: UIView {
         self.readerPreviewLayer.frame = self.bounds
     }
 
+    //swiftlint:disable:next function_body_length
     func setup() {
         self.addSubview(self.cameraView)
         self.addSubview(self.overlayView)
@@ -62,7 +63,14 @@ class QRScannerView: UIView {
                                               attribute: .notAnAttribute,
                                               multiplier: 1,
                                               constant: 50))
-        [.leading, .trailing, .bottom].forEach({ (attribute) in
+        self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
+                                              attribute: .bottom,
+                                              relatedBy: .equal,
+                                              toItem: self,
+                                              attribute: .bottom,
+                                              multiplier: 1,
+                                              constant: -16))
+        [.leading, .trailing].forEach({ (attribute) in
             self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
                                                   attribute: attribute,
                                                   relatedBy: .equal,

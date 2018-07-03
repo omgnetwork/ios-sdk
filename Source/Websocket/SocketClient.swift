@@ -145,6 +145,7 @@ public class SocketClient {
         self.reconnectTimer = Timer.scheduledTimer(withTimeInterval: self.reconnectDelay, repeats: false, block: { [weak self] _ in
             guard let weakself = self, weakself.shouldBeConnected else { return }
             weakself.connect()
+            weakself.rejoinOpenedChannels()
         })
     }
 
@@ -176,6 +177,13 @@ public class SocketClient {
         }
         sendBuffer = []
         resetBufferTimer()
+    }
+
+    private func rejoinOpenedChannels() {
+        self.channels.forEach { (topic, channel) in
+            guard self.sendBuffer.filter({$0.dataSent?.topic == topic && $0.dataSent?.event == .join}).first == nil else { return }
+            channel.join()
+        }
     }
 
 }

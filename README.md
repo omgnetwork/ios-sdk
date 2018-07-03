@@ -27,7 +27,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
       - [Get the provider settings](#get-the-provider-settings)
       - [Get the current user's transactions](#get-the-current-users-transactions)
     - [Transferring tokens](#transferring-tokens)
-      - [Send tokens to an address](#send-tokens-to-an-address)
+      - [Create a transaction](#create-a-transaction)
       - [Generate a transaction request](#generate-a-transaction-request)
       - [Consume a transaction request](#consume-a-transaction-request)
       - [Approve a transaction consumption](#approve-a-transaction-consumption)
@@ -157,6 +157,7 @@ case unexpected(message: String)
 case configuration(message: String)
 case api(apiError: APIError)
 case socketError(message: String)
+case decoding(underlyingError: DecodingError)
 case other(error: Error)
 ```
 An error returned by the OmiseGO Wallet server will be mapped to an `APIError` which contains informations about the failure.
@@ -281,16 +282,17 @@ The SDK offers 2 ways for transferring tokens between addresses:
 - A simple one way transfer from one of the current user's wallets to an address.
 - A highly configurable send/receive mechanism in 2 steps using transaction requests.
 
-#### Send tokens to an address
+#### Create a transaction
 
-The most basic way to transfer tokens is to use the `Transaction.send()` method, which allows the current user to send tokens from one of its wallet to a specific address.
+The most basic way to transfer tokens is to use the `Transaction.create()` method, which allows the current user to send tokens from one of its wallet to a specific address.
 
 ```swift
-let params = TransactionSendParams(from: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                   to: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                   amount: 1000,
-                                   tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-Transaction.send(using: client, params: params) { (result) in
+let params = TransactionCreateParams(fromAddress: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     toAddress: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     amount: 1000,
+                                     tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     idempotencyToken: "some token")
+Transaction.create(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):
        // TODO: Do something with the transaction
@@ -300,11 +302,7 @@ Transaction.send(using: client, params: params) { (result) in
 }
 ```
 
-Where:
-- `from`: an optional address that belongs to the user, use primary wallet address if not specified
-- `to`: the destination address
-- `amount`: The amount of token to send
-- `tokenId`: The id of the token to send
+There are different ways to initialize a `TransactionCreateParams` by specifying either `address`, `userId` or `accountId`.
 
 #### Generate a transaction request
 
@@ -363,7 +361,6 @@ The previously created `transactionRequest` can then be consumed:
 ```swift
 guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                 address: "an address",
-                                                tokenId: "a token",
                                                 amount: 1337,
                                                 idempotencyToken: "an idempotency token",
                                                 correlationId: "a correlation id",
@@ -383,7 +380,6 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
 - `address`: (optional) The address from which to take the funds. If not specified, the current user's primary wallet address will be used.
-- `tokenId`: (optional) The token id to use for the consumption.
 - `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
 

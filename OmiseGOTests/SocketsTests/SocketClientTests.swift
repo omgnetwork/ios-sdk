@@ -71,7 +71,7 @@ class SocketClientTests: XCTestCase {
         XCTAssertNotNil(self.websocket.didWriteData)
     }
 
-    func testDisconnectIfNotChannelActive() {
+    func testDisconnectIfNoChannelIsActive() {
         self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
         XCTAssertTrue(self.websocket.isConnected)
         self.socketClient.leaveChannel(withTopic: "a_topic")
