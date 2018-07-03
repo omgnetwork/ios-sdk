@@ -9,7 +9,6 @@
 import UIKit
 
 class QRScannerView: UIView {
-
     lazy var overlayView: UIView = {
         let overlayView = QRScannerOverlayView()
         overlayView.backgroundColor = .clear
@@ -39,7 +38,7 @@ class QRScannerView: UIView {
         self.setup()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         omiseGOWarn("init(coder:) shouldn't be called direcly, please use the designed init(frame:readerPreviewLayer:) instead")
         return nil
     }
@@ -49,7 +48,7 @@ class QRScannerView: UIView {
         self.readerPreviewLayer.frame = self.bounds
     }
 
-    //swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length
     func setup() {
         self.addSubview(self.cameraView)
         self.addSubview(self.overlayView)
@@ -70,7 +69,7 @@ class QRScannerView: UIView {
                                               attribute: .bottom,
                                               multiplier: 1,
                                               constant: -16))
-        [.leading, .trailing].forEach({ (attribute) in
+        [.leading, .trailing].forEach({ attribute in
             self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -79,7 +78,7 @@ class QRScannerView: UIView {
                                                   multiplier: 1,
                                                   constant: 0))
         })
-        [.left, .top, .right, .bottom].forEach({ (attribute) in
+        [.left, .top, .right, .bottom].forEach({ attribute in
             self.addConstraint(NSLayoutConstraint(item: self.cameraView,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -88,7 +87,7 @@ class QRScannerView: UIView {
                                                   multiplier: 1,
                                                   constant: 0))
         })
-        [.left, .top, .right, .bottom].forEach({ (attribute) in
+        [.left, .top, .right, .bottom].forEach({ attribute in
             self.addConstraint(NSLayoutConstraint(item: self.overlayView,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -98,5 +97,4 @@ class QRScannerView: UIView {
                                                   constant: 0))
         })
     }
-
 }

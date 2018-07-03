@@ -18,6 +18,8 @@ Released on 2018-6-27. All issues associated with this milestone can be found us
 #### Updated
 - decoding strategy for BigInt.
   - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#63](https://github.com/omisego/ios-sdk/pull/63)
+- format the code using SwiftFormat.
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#65](https://github.com/omisego/ios-sdk/pull/65)
 
 #### Added
 - Support for server exchange.

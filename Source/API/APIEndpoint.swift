@@ -8,7 +8,6 @@
 
 /// Represents an api endpoint.
 enum APIEndpoint {
-
     case getCurrentUser
     case getWallets
     case getSettings
@@ -55,23 +54,22 @@ enum APIEndpoint {
         switch self {
         case .getCurrentUser, .getWallets, .getSettings, .logout: // Send no parameters
             return .requestPlain
-        case .createTransaction(let parameters):
+        case let .createTransaction(parameters):
             return .requestParameters(parameters: parameters)
-        case .transactionRequestCreate(let parameters):
+        case let .transactionRequestCreate(parameters):
             return .requestParameters(parameters: parameters)
-        case .transactionRequestGet(let parameters):
+        case let .transactionRequestGet(parameters):
             return .requestParameters(parameters: parameters)
-        case .transactionRequestConsume(let parameters):
+        case let .transactionRequestConsume(parameters):
             return .requestParameters(parameters: parameters)
-        case .getTransactions(let parameters):
+        case let .getTransactions(parameters):
             return .requestParameters(parameters: parameters)
-        case .transactionConsumptionApprove(let parameters):
+        case let .transactionConsumptionApprove(parameters):
             return .requestParameters(parameters: parameters)
-        case .transactionConsumptionReject(let parameters):
+        case let .transactionConsumptionReject(parameters):
             return .requestParameters(parameters: parameters)
-        case .custom(_, let task):
+        case let .custom(_, task):
             return task
         }
     }
-
 }

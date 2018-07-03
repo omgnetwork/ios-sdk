@@ -6,18 +6,17 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class FixtureTestCase: XCTestCase {
-
     var testClient: FixtureClient {
         return FixtureClient(config: self.validConfig)
     }
 
     let validConfig: ClientConfiguration = ClientConfiguration(baseURL: "https://example.com",
-                                                         apiKey: "apikey",
-                                                         authenticationToken: "authenticationtoken")
+                                                               apiKey: "apikey",
+                                                               authenticationToken: "authenticationtoken")
 
     func fixturesData(for filename: String) -> Data? {
         let bundle = Bundle(for: FixtureTestCase.self)

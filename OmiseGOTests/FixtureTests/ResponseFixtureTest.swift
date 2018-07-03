@@ -6,20 +6,19 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class ResponseFixtureTest: FixtureTestCase {
-
     func testParseSuccessResponse() {
         let expectation = self.expectation(description: "Parse success response")
         let endpoint = APIEndpoint.custom(path: "dummy.success", task: .requestPlain)
-        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { result in
             defer { expectation.fulfill() }
             switch result {
             case let .success(object):
                 XCTAssertEqual(object.object, "success_test_object")
-            case .fail(let error):
+            case let .fail(error):
                 XCTFail("\(error)")
             }
         }
@@ -30,12 +29,12 @@ class ResponseFixtureTest: FixtureTestCase {
     func testParseErrorResponse() {
         let expectation = self.expectation(description: "Parse error response")
         let endpoint = APIEndpoint.custom(path: "dummy.failure", task: .requestPlain)
-        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { result in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):
                 XCTFail("Should not succeed")
-            case .fail(let error):
+            case let .fail(error):
                 XCTAssertEqual(error.description, "error_message")
             }
         }

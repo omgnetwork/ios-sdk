@@ -6,34 +6,33 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionConsumptionFixtureTests: FixtureTestCase {
-
     func testConsumeTransactionRequest() {
         let expectation =
             self.expectation(description: "Consume a transaction request corresponding to the params provided")
         let transactionRequest = StubGenerator.transactionRequest(
-                id: "0a8a4a98-794b-419e-b92d-514e83657e75",
-                type: .receive,
-                token: StubGenerator.token(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
-                amount: 1337,
-                address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
-                correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                status: .valid)
+            id: "0a8a4a98-794b-419e-b92d-514e83657e75",
+            type: .receive,
+            token: StubGenerator.token(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
+            amount: 1337,
+            address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
+            correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
+            status: .valid)
         let params = TransactionConsumptionParams(
-                transactionRequest: transactionRequest,
-                address: nil,
-                amount: nil,
-                idempotencyToken: "123",
-                correlationId: nil,
-                metadata: [:])!
+            transactionRequest: transactionRequest,
+            address: nil,
+            amount: nil,
+            idempotencyToken: "123",
+            correlationId: nil,
+            metadata: [:])!
         let request =
-            TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { (result) in
+            TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }
                 switch result {
-                case .success(data: let transactionConsumption):
+                case let .success(data: transactionConsumption):
                     XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                     XCTAssertEqual(transactionConsumption.status, .confirmed)
                     XCTAssertEqual(transactionConsumption.amount, 1337)
@@ -41,7 +40,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                     XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                     XCTAssertEqual(token.symbol, "BTC")
                     XCTAssertEqual(token.name, "Bitcoin")
-                    XCTAssertEqual(token.subUnitToUnit, 100000)
+                    XCTAssertEqual(token.subUnitToUnit, 100_000)
                     XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                     XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                     let transaction = transactionConsumption.transaction!
@@ -61,10 +60,10 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                     XCTAssertEqual(transactionConsumption.expiredAt, nil)
                     XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                     XCTAssertTrue(transactionConsumption.metadata.isEmpty)
-                case .fail(error: let error):
+                case let .fail(error: error):
                     XCTFail("\(error)")
                 }
-        }
+            }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
@@ -73,10 +72,10 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.approve(using: self.testClient) { (result) in
+        let request = transactionConsumption.approve(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let transactionConsumption):
+            case let .success(data: transactionConsumption):
                 XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                 XCTAssertEqual(transactionConsumption.status, .confirmed)
                 XCTAssertEqual(transactionConsumption.amount, 1337)
@@ -84,7 +83,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                 XCTAssertEqual(token.symbol, "BTC")
                 XCTAssertEqual(token.name, "Bitcoin")
-                XCTAssertEqual(token.subUnitToUnit, 100000)
+                XCTAssertEqual(token.subUnitToUnit, 100_000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                 let transaction = transactionConsumption.transaction!
@@ -104,7 +103,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(transactionConsumption.expiredAt, nil)
                 XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertTrue(transactionConsumption.metadata.isEmpty)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }
@@ -116,10 +115,10 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.reject(using: self.testClient) { (result) in
+        let request = transactionConsumption.reject(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let transactionConsumption):
+            case let .success(data: transactionConsumption):
                 XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
                 XCTAssertEqual(transactionConsumption.status, .rejected)
                 XCTAssertEqual(transactionConsumption.amount, 1337)
@@ -127,7 +126,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                 XCTAssertEqual(token.symbol, "BTC")
                 XCTAssertEqual(token.name, "Bitcoin")
-                XCTAssertEqual(token.subUnitToUnit, 100000)
+                XCTAssertEqual(token.subUnitToUnit, 100_000)
                 XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
                 XCTAssertNil(transactionConsumption.transaction)
@@ -147,12 +146,11 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertTrue(transactionConsumption.metadata.isEmpty)
                 XCTAssertTrue(transactionConsumption.encryptedMetadata.isEmpty)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

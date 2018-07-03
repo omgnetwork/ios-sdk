@@ -8,7 +8,6 @@
 
 /// Represents an API error
 public struct APIError {
-
     /// The error code describing the error
     public let code: APIErrorCode
     /// The error message
@@ -25,21 +24,17 @@ public struct APIError {
         default: return false
         }
     }
-
 }
 
 extension APIError: CustomDebugStringConvertible {
-
     public var debugDescription: String {
-        return "Error: \(code) \(description)"
+        return "Error: \(self.code) \(self.description)"
     }
-
 }
 
 extension APIError: Error {}
 
 extension APIError: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case code
         case description
@@ -50,20 +45,16 @@ extension APIError: Decodable {
         code = try container.decode(APIErrorCode.self, forKey: .code)
         description = try container.decode(String.self, forKey: .description)
     }
-
 }
 
 extension APIError: Equatable {
-
     public static func == (lhs: APIError, rhs: APIError) -> Bool {
         return lhs.code == rhs.code
     }
-
 }
 
 // Represents the different API error codes
 public enum APIErrorCode: Decodable {
-
     // Client
     case invalidParameters
     case invalidVersion
@@ -108,8 +99,7 @@ public enum APIErrorCode: Decodable {
 }
 
 extension APIErrorCode: RawRepresentable {
-
-    //swiftlint:disable:next cyclomatic_complexity function_body_length
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     public init?(rawValue: String) {
         switch rawValue {
         case "client:invalid_parameter":
@@ -215,17 +205,15 @@ extension APIErrorCode: RawRepresentable {
             return "websocket:connect_error"
         case .transactionCouldNotBeLoaded:
             return "db:inserted_transaction_could_not_be_loaded"
-        case .other(let code):
+        case let .other(code):
             return code
         }
     }
 
     public typealias RawValue = String
-
 }
 
 extension APIErrorCode: Hashable {
-
     public var hashValue: Int {
         return self.code.hashValue
     }
@@ -233,5 +221,4 @@ extension APIErrorCode: Hashable {
     public static func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
         return lhs.code == rhs.code
     }
-
 }

@@ -8,7 +8,6 @@
 
 /// Represents a wallet containing a list of balances
 public struct Wallet: Retrievable {
-
     /// The address of the wallet
     public let address: String
     /// The list of balances associated with that address
@@ -32,7 +31,6 @@ public struct Wallet: Retrievable {
 }
 
 extension Wallet: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case address
@@ -60,11 +58,9 @@ extension Wallet: Decodable {
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
-
 }
 
 extension Wallet: Listable {
-
     @discardableResult
     /// Get all wallets of the current user
     ///
@@ -88,25 +84,23 @@ extension Wallet: Listable {
     /// - Returns: An optional cancellable request.
     public static func getMain(using client: HTTPClient,
                                callback: @escaping Wallet.RetrieveRequestCallback) -> Wallet.ListRequest? {
-        return self.list(using: client, endpoint: .getWallets, callback: { (response) in
+        return self.list(using: client, endpoint: .getWallets, callback: { response in
             switch response {
-            case .success(data: let wallets):
+            case let .success(data: wallets):
                 if wallets.isEmpty {
                     callback(Response.fail(error: OMGError.unexpected(message: "No wallet received.")))
                 } else {
                     callback(.success(data: wallets.first!))
                 }
-            case .fail(error: let error):
+            case let .fail(error: error):
                 callback(.fail(error: error))
             }
 
         })
     }
-
 }
 
 extension Wallet: Hashable {
-
     public var hashValue: Int {
         return self.address.hashValue
     }
@@ -114,5 +108,4 @@ extension Wallet: Hashable {
     public static func == (lhs: Wallet, rhs: Wallet) -> Bool {
         return lhs.address == rhs.address
     }
-
 }

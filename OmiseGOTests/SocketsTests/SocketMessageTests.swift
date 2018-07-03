@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class SocketMessageTests: XCTestCase {
-
     var socketMessage: SocketMessage!
 
     override func setUp() {
@@ -24,7 +23,7 @@ class SocketMessageTests: XCTestCase {
         let payload = StubGenerator.socketPayloadReceive()
         let handler: ((GenericObjectEnum?) -> Void) = { response in
             switch response {
-            case .some(.transactionConsumption(object: let tc)): XCTAssertNotNil(tc)
+            case let .some(.transactionConsumption(object: tc)): XCTAssertNotNil(tc)
             default: XCTFail("Unexpected response")
             }
             expectation.fulfill()
@@ -36,7 +35,7 @@ class SocketMessageTests: XCTestCase {
 
     func testCallsErrorHandlerWhenFail() {
         let expectation = self.expectation(description: "Calls failure handler when fail")
-        let payload = StubGenerator.socketPayloadReceive(error: APIError.init(code: .websocketError, description: ""),
+        let payload = StubGenerator.socketPayloadReceive(error: APIError(code: .websocketError, description: ""),
                                                          success: false)
         let handler: ((APIError) -> Void) = { error in
             XCTAssertEqual(error.code, .websocketError)
@@ -55,5 +54,4 @@ class SocketMessageTests: XCTestCase {
         let socketMessageReceive = SocketMessage(socketPayload: payloadReceive)
         XCTAssertEqual(socketMessageReceive.topic(), "topic_b")
     }
-
 }

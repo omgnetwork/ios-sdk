@@ -9,7 +9,6 @@
 import Starscream
 
 public class SocketClient {
-
     private var awaitingResponse: [String: SocketMessage] = [:]
     private var channels: [String: SocketChannel] = [:]
     private var sendBuffer: [SocketMessage] = []
@@ -76,7 +75,7 @@ public class SocketClient {
 
     private func connect() {
         self.shouldBeConnected = true
-        resetBufferTimer()
+        self.resetBufferTimer()
         self.webSocket.connect()
     }
 
@@ -97,7 +96,7 @@ public class SocketClient {
         guard self.webSocket.isConnected else {
             if message.dataSent!.event != .heartbeat {
                 // Don't queue heartbeat
-                sendBuffer.append(message)
+                self.sendBuffer.append(message)
             }
             return message
         }
@@ -172,42 +171,38 @@ public class SocketClient {
 
     private func flushSendBuffer() {
         guard self.webSocket.isConnected && !self.sendBuffer.isEmpty else { return }
-        for data in sendBuffer {
-            send(message: data)
+        for data in self.sendBuffer {
+            self.send(message: data)
         }
-        sendBuffer = []
-        resetBufferTimer()
+        self.sendBuffer = []
+        self.resetBufferTimer()
     }
 
     private func rejoinOpenedChannels() {
-        self.channels.forEach { (topic, channel) in
-            guard self.sendBuffer.filter({$0.dataSent?.topic == topic && $0.dataSent?.event == .join}).first == nil else { return }
+        self.channels.forEach { topic, channel in
+            guard self.sendBuffer.filter({ $0.dataSent?.topic == topic && $0.dataSent?.event == .join }).first == nil else { return }
             channel.join()
         }
     }
-
 }
 
 extension SocketClient: SocketSendable {
-
     @discardableResult
     func send(topic: String, event: SocketEventSend) -> SocketMessage {
         let payload = SocketPayloadSend(topic: topic, event: event, ref: makeRef())
         let message = SocketMessage(socketPayload: payload)
         return self.send(message: message)
     }
-
 }
 
 extension SocketClient: WebSocketDelegate {
-
-    public func websocketDidConnect(socket: WebSocketClient) {
+    public func websocketDidConnect(socket _: WebSocketClient) {
         self.delegate?.didConnect()
         self.startHeartbeatTimer()
     }
 
-    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        if let wsError: WSError  = error as? WSError {
+    public func websocketDidDisconnect(socket _: WebSocketClient, error: Error?) {
+        if let wsError: WSError = error as? WSError {
             switch wsError.code {
             case 403: self.delegate?.didDisconnect(.socketError(message: "Authorization error"))
             case Int(CloseCode.normal.rawValue): self.delegate?.didDisconnect(nil)
@@ -221,7 +216,7 @@ extension SocketClient: WebSocketDelegate {
         self.handleReconnect()
     }
 
-    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+    public func websocketDidReceiveMessage(socket _: WebSocketClient, text: String) {
         if let config = self.config, config.debugLog {
             omiseGOInfo("websockets did receive: \(text)")
         }
@@ -237,6 +232,5 @@ extension SocketClient: WebSocketDelegate {
         self.dispatch(message: message)
     }
 
-    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) { /* no-op */ }
-
+    public func websocketDidReceiveData(socket _: WebSocketClient, data _: Data) { /* no-op */ }
 }

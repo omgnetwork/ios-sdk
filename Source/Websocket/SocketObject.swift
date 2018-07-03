@@ -7,13 +7,10 @@
 //
 
 struct GenericObject {
-
     let object: GenericObjectEnum
-
 }
 
 extension GenericObject: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case objectType = "object"
     }
@@ -26,7 +23,6 @@ extension GenericObject: Decodable {
         }
         self.object = decodedObject
     }
-
 }
 
 public enum WebsocketObject {
@@ -34,15 +30,12 @@ public enum WebsocketObject {
 }
 
 enum GenericObjectEnum {
-
     case transactionConsumption(object: TransactionConsumption)
     case error(error: OMGError)
     case other(object: [String: Any])
-
 }
 
 extension GenericObjectEnum {
-
     init?(objectType: String?, decoder: Decoder) throws {
         guard let objectType = objectType else {
             self = .other(object: [:])
@@ -54,5 +47,4 @@ extension GenericObjectEnum {
         default: self = .error(error: OMGError.socketError(message: "Invalid payload"))
         }
     }
-
 }

@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class SocketDispatcherTests: XCTestCase {
-
     var delegate: DummySocketEventDelegate!
 
     override func setUp() {
@@ -36,7 +35,7 @@ class SocketDispatcherTests: XCTestCase {
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
         userDispatcher.dispatchPayload(self.successPayload(withObject: payload))
         switch self.delegate.didReceiveObject! {
-        case .transactionConsumption(object: let transactionConsumptionReceived):
+        case let .transactionConsumption(object: transactionConsumptionReceived):
             XCTAssertEqual(transactionConsumptionReceived, consumption)
         }
         XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionFinalized)
@@ -52,7 +51,7 @@ class SocketDispatcherTests: XCTestCase {
             self.failPayload(withErrorCode: .transactionInsufficientFunds, object: payload)
         )
         switch self.delegate.didReceiveObject! {
-        case .transactionConsumption(object: let transactionConsumptionReceived):
+        case let .transactionConsumption(object: transactionConsumptionReceived):
             XCTAssertEqual(transactionConsumptionReceived, consumption)
         }
         XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionFinalized)
@@ -163,5 +162,4 @@ class SocketDispatcherTests: XCTestCase {
                                     version: "1", success: false,
                                     error: .init(code: code, description: "dummy_error"))
     }
-
 }

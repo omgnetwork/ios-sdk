@@ -7,7 +7,6 @@
 //
 
 struct SocketPayloadSend {
-
     let topic: String
     let event: SocketEventSend
     let ref: String
@@ -19,11 +18,9 @@ struct SocketPayloadSend {
         self.ref = ref
         self.data = data
     }
-
 }
 
 extension SocketPayloadSend: APIParameters {
-
     private enum CodingKeys: String, CodingKey {
         case topic
         case event
@@ -38,11 +35,9 @@ extension SocketPayloadSend: APIParameters {
         try container.encode(data, forKey: .data)
         try container.encode(ref, forKey: .ref)
     }
-
 }
 
 struct SocketPayloadReceive: Decodable {
-
     let topic: String
     let event: SocketEvent
     let ref: String?
@@ -50,5 +45,4 @@ struct SocketPayloadReceive: Decodable {
     let version: String
     let success: Bool
     let error: APIError?
-
 }

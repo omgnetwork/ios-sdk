@@ -7,15 +7,12 @@
 //
 
 struct JSONResponse<ObjectType: Decodable> {
-
     let version: String
     let success: Bool
     let data: Response<ObjectType>
-
 }
 
 extension JSONResponse: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case version
         case success
@@ -26,7 +23,7 @@ extension JSONResponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         version = try container.decode(String.self, forKey: .version)
         success = try container.decode(Bool.self, forKey: .success)
-        if success {
+        if self.success {
             let result = try container.decode(ObjectType.self, forKey: .data)
             data = .success(data: result)
         } else {

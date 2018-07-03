@@ -9,7 +9,6 @@
 import UIKit
 
 struct DateDummy: Decodable {
-
     let date1: Date
     let date2: Date
     let date3: Date
@@ -19,15 +18,12 @@ struct DateDummy: Decodable {
         case date2 = "date_2"
         case date3 = "date_3"
     }
-
 }
 
 struct DateInvalidDummy: Decodable {
-
     let invalidDate: Date
 
     enum CodingKeys: String, CodingKey {
         case invalidDate = "invalid_date"
     }
-
 }

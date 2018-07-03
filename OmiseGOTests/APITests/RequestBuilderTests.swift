@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class RequestBuilderTests: XCTestCase {
-
     var httpConfig = ClientConfiguration(baseURL: "https://example.com",
                                          apiKey: "123",
                                          authenticationToken: "123")
@@ -93,5 +92,4 @@ class RequestBuilderTests: XCTestCase {
     func testReturnCorrectAcceptHeader() {
         XCTAssertEqual(self.requestBuilder.acceptHeader(), "application/vnd.omisego.v\(self.httpConfig.apiVersion)+json")
     }
-
 }

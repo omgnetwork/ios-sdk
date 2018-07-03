@@ -19,7 +19,6 @@ public enum TransactionStatus: String, Decodable {
 
 /// Represents a transaction
 public struct Transaction {
-
     /// The unique identifier of the transaction
     public let id: String
     /// The status of the transaction (pending, confirmed or failed)
@@ -36,11 +35,9 @@ public struct Transaction {
     public let encryptedMetadata: [String: Any]
     /// The creation date of the transaction
     public let createdAt: Date
-
 }
 
 extension Transaction: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case status
@@ -63,11 +60,9 @@ extension Transaction: Decodable {
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
-
 }
 
 extension Transaction: Retrievable {
-
     @discardableResult
     /// Create a new transaction
     ///
@@ -82,11 +77,9 @@ extension Transaction: Retrievable {
                               callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .createTransaction(params: params), callback: callback)
     }
-
 }
 
 extension Transaction: PaginatedListable {
-
     @discardableResult
     /// Get a paginated list of transaction for the current user
     ///
@@ -101,11 +94,9 @@ extension Transaction: PaginatedListable {
                             callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
         return self.list(using: client, endpoint: .getTransactions(params: params), callback: callback)
     }
-
 }
 
 extension Transaction: Paginable {
-
     public enum SearchableFields: String, KeyEncodable {
         case id
         case status
@@ -120,11 +111,9 @@ extension Transaction: Paginable {
         case to
         case createdAt = "created_at"
     }
-
 }
 
 extension Transaction: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -132,5 +121,4 @@ extension Transaction: Hashable {
     public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

@@ -9,7 +9,6 @@
 import OmiseGO
 
 struct SortableDummy: Paginable {
-
     let aSortableAttribute: String
     let aNonSortableAttribute: String
 
@@ -23,5 +22,4 @@ struct SortableDummy: Paginable {
     enum SearchableFields: String, KeyEncodable {
         case aSearchableAttribute = "a_searchable_attribute"
     }
-
 }

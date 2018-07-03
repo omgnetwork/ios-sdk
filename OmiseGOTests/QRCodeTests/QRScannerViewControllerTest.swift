@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class QRScannerViewControllerTest: FixtureTestCase {
-
     var mockDelegate: MockQRVCDelegate!
     var mockViewModel: MockQRViewModel!
     var sut: QRScannerViewController!
@@ -19,9 +18,9 @@ class QRScannerViewControllerTest: FixtureTestCase {
         self.mockDelegate = MockQRVCDelegate()
         self.mockViewModel = MockQRViewModel()
         self.sut = QRScannerViewController(delegate: self.mockDelegate,
-                                            client: self.testClient,
-                                            cancelButtonTitle: "",
-                                            viewModel: self.mockViewModel)!
+                                           client: self.testClient,
+                                           cancelButtonTitle: "",
+                                           viewModel: self.mockViewModel)!
     }
 
     func testFailsWhenNotInitializedWithDesignedInit() {
@@ -84,5 +83,4 @@ class QRScannerViewControllerTest: FixtureTestCase {
         self.sut.viewWillLayoutSubviews()
         XCTAssertTrue(self.mockViewModel.didUpdateQRReaderPreviewLayer)
     }
-
 }

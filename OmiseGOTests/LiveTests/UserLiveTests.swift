@@ -7,24 +7,22 @@
 //
 
 import Foundation
-import XCTest
 import OmiseGO
+import XCTest
 
 class UserLiveTests: LiveTestCase {
-
     func testCurrentUserRetrieve() {
         let expectation = self.expectation(description: "Get current user from authentication token")
-        let request = User.getCurrent(using: self.testClient) { (result) in
+        let request = User.getCurrent(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(let user):
+            case let .success(user):
                 XCTAssertNotNil(user)
-            case .fail(let error):
+            case let .fail(error):
                 XCTFail("\(error)")
             }
         }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

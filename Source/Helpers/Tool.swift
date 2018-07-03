@@ -16,13 +16,13 @@ func omiseGOInfo(_ message: String) {
 
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
-    jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+    jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
     return try jsonDecoder.decode(ObjectType.self, from: data)
 }
 
 func serialize<ObjectType: Encodable>(_ object: ObjectType) throws -> Data {
     let jsonEncoder = JSONEncoder()
-    jsonEncoder.dateEncodingStrategy = .custom({return try dateEncodingStrategy(date: $0, encoder: $1)})
+    jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
     return try jsonEncoder.encode(object)
 }
 
@@ -30,7 +30,6 @@ func dateDecodingStrategy(decoder: Decoder) throws -> Date {
     let container = try decoder.singleValueContainer()
     let dateStr = try container.decode(String.self)
     return try dateStr.toDate()
-
 }
 
 func dateEncodingStrategy(date: Date, encoder: Encoder) throws {
@@ -39,7 +38,6 @@ func dateEncodingStrategy(date: Date, encoder: Encoder) throws {
 }
 
 extension String {
-
     func toDate() throws -> Date {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
@@ -55,11 +53,9 @@ extension String {
         }
         throw OMGError.unexpected(message: "Invalid date format")
     }
-
 }
 
 extension Date {
-
     func toString(withFormat format: String? = "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
                   timeZone: TimeZone? = TimeZone.current) -> String {
         let formatter = DateFormatter()
@@ -68,5 +64,4 @@ extension Date {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: self)
     }
-
 }

@@ -45,10 +45,10 @@ extension KeyedDecodingContainerProtocol {
         guard contains(key) else {
             return nil
         }
-        return try decode(type, forKey: key)
+        return try self.decode(type, forKey: key)
     }
 
-    private func decodeOptional(_ type: BigInt.Type, forKey key: Key) throws -> BigInt? {
+    private func decodeOptional(_: BigInt.Type, forKey key: Key) throws -> BigInt? {
         let parsedBigInt: BigInt?
         // There is an issue currently in swift when initializing a Decimal number with an Int64 type.
         // https://bugs.swift.org/browse/SR-7054
@@ -68,7 +68,7 @@ extension KeyedDecodingContainerProtocol {
         return amount
     }
 
-    func decode(_ type: [String: Any].Type, forKey key: Key) throws -> [String: Any] {
+    func decode(_: [String: Any].Type, forKey key: Key) throws -> [String: Any] {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decodeJSONDictionary()
     }
@@ -77,10 +77,10 @@ extension KeyedDecodingContainerProtocol {
         guard contains(key) else {
             return nil
         }
-        return try decode(type, forKey: key)
+        return try self.decode(type, forKey: key)
     }
 
-    func decode(_ type: [Any].Type, forKey key: Key) throws -> [Any] {
+    func decode(_: [Any].Type, forKey key: Key) throws -> [Any] {
         var container = try self.nestedUnkeyedContainer(forKey: key)
         return try container.decodeJSONArray()
     }
@@ -89,7 +89,7 @@ extension KeyedDecodingContainerProtocol {
         guard contains(key) else {
             return nil
         }
-        return try decode(type, forKey: key)
+        return try self.decode(type, forKey: key)
     }
 
     fileprivate func decodeJSONDictionary() throws -> [String: Any] {
@@ -137,12 +137,12 @@ extension UnkeyedDecodingContainer {
         return array
     }
 
-    mutating func decode(_ type: [Any].Type) throws -> [Any] {
+    mutating func decode(_: [Any].Type) throws -> [Any] {
         var nestedContainer = try self.nestedUnkeyedContainer()
         return try nestedContainer.decodeJSONArray()
     }
 
-    mutating func decode(_ type: [String: Any].Type) throws -> [String: Any] {
+    mutating func decode(_: [String: Any].Type) throws -> [String: Any] {
         let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
         return try nestedContainer.decodeJSONDictionary()
     }
@@ -150,7 +150,7 @@ extension UnkeyedDecodingContainer {
 
 extension KeyedEncodingContainerProtocol where Key == JSONCodingKeys {
     mutating func encode(_ value: [String: Any]) throws {
-        try value.forEach({ (key, value) in
+        try value.forEach({ key, value in
             let key = JSONCodingKeys(key: key)
             switch value {
             case let value as Bool:
@@ -165,7 +165,7 @@ extension KeyedEncodingContainerProtocol where Key == JSONCodingKeys {
                 try encode(value, forKey: key)
             case let value as [Any]:
                 try encode(value, forKey: key)
-            //swiftlint:disable:next syntactic_sugar
+            // swiftlint:disable:next syntactic_sugar
             case Optional<Any>.none:
                 try encodeNil(forKey: key)
             default:
@@ -185,7 +185,7 @@ extension KeyedEncodingContainerProtocol {
 
     mutating func encodeIfPresent(_ value: [String: Any]?, forKey key: Key) throws {
         if let value = value {
-            try encode(value, forKey: key)
+            try self.encode(value, forKey: key)
         }
     }
 
@@ -196,7 +196,7 @@ extension KeyedEncodingContainerProtocol {
 
     mutating func encodeIfPresent(_ value: [Any]?, forKey key: Key) throws {
         if let value = value {
-            try encode(value, forKey: key)
+            try self.encode(value, forKey: key)
         }
     }
 
@@ -211,18 +211,18 @@ extension KeyedEncodingContainerProtocol {
             throw EncodingError.invalidValue(value, .init(codingPath: self.codingPath,
                                                           debugDescription: errorDescription))
         }
-        try encode(decimalValue, forKey: key)
+        try self.encode(decimalValue, forKey: key)
     }
 
     mutating func encodeIfPresent(_ value: BigInt?, forKey key: Key) throws {
         if let value = value {
-            try encode(value, forKey: key)
+            try self.encode(value, forKey: key)
         }
     }
 
     mutating func encode(_ value: BigInt?, forKey key: Key) throws {
         if let value = value {
-            try encode(value, forKey: key)
+            try self.encode(value, forKey: key)
         } else {
             try self.encodeNil(forKey: key)
         }
@@ -231,7 +231,7 @@ extension KeyedEncodingContainerProtocol {
 
 extension UnkeyedEncodingContainer {
     mutating func encode(_ value: [Any]) throws {
-        try value.enumerated().forEach({ (index, value) in
+        try value.enumerated().forEach({ index, value in
             switch value {
             case let value as Bool:
                 try encode(value)
@@ -245,11 +245,11 @@ extension UnkeyedEncodingContainer {
                 try encodeJSONDictionary(value)
             case let value as [Any]:
                 try encodeJSONArray(value)
-            //swiftlint:disable:next syntactic_sugar
+            // swiftlint:disable:next syntactic_sugar
             case Optional<Any>.none:
                 try encodeNil()
             default:
-                let keys = JSONCodingKeys(intValue: index).map({[$0]}) ?? []
+                let keys = JSONCodingKeys(intValue: index).map({ [$0] }) ?? []
                 throw EncodingError.invalidValue(value,
                                                  EncodingError.Context(codingPath: codingPath + keys,
                                                                        debugDescription: "Invalid JSON value"))

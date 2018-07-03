@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
-import OmiseGO
 import BigInt
+import OmiseGO
+import XCTest
 
 class BalanceTests: XCTestCase {
-
     let decimalSeparator = NSLocale.current.decimalSeparator ?? "."
     let groupingSeparator = NSLocale.current.groupingSeparator ?? ","
 
@@ -29,32 +28,32 @@ class BalanceTests: XCTestCase {
 
     func testBigDisplayAmount() {
         let token = StubGenerator.token(subUnitToUnit: 1000)
-        let balance = StubGenerator.balance(token: token, amount: 999999999999999)
+        let balance = StubGenerator.balance(token: token, amount: 999_999_999_999_999)
         XCTAssertEqual(balance.displayAmount(),
                        "999\(groupingSeparator)999\(groupingSeparator)999\(groupingSeparator)999\(decimalSeparator)999")
     }
 
     func testBigDisplayAmountPrecision() {
         let token = StubGenerator.token(subUnitToUnit: 1000)
-        let balance = StubGenerator.balance(token: token, amount: 999999999999999)
+        let balance = StubGenerator.balance(token: token, amount: 999_999_999_999_999)
         XCTAssertEqual(balance.displayAmount(withPrecision: 1),
                        "999\(groupingSeparator)999\(groupingSeparator)999\(groupingSeparator)999\(decimalSeparator)9")
     }
 
     func testBigDisplayAmountWithBigSubUnitToUnity() {
-        let token = StubGenerator.token(subUnitToUnit: 1000000000000000000)
+        let token = StubGenerator.token(subUnitToUnit: 1_000_000_000_000_000_000)
         let balance = StubGenerator.balance(token: token, amount: BigInt("130000000000000000000"))
         XCTAssertEqual(balance.displayAmount(), "130")
     }
 
     func testSmallestDisplayAmount() {
-        let token = StubGenerator.token(subUnitToUnit: 1000000000000000000)
+        let token = StubGenerator.token(subUnitToUnit: 1_000_000_000_000_000_000)
         let balance = StubGenerator.balance(token: token, amount: 1)
         XCTAssertEqual(balance.displayAmount(), "0\(decimalSeparator)000000000000000001")
     }
 
     func testSmallNumberPrecision() {
-        let token = StubGenerator.token(subUnitToUnit: 1000000000000000000)
+        let token = StubGenerator.token(subUnitToUnit: 1_000_000_000_000_000_000)
         let balance = StubGenerator.balance(token: token, amount: 1)
         XCTAssertEqual(balance.displayAmount(withPrecision: 2), "0")
     }
@@ -83,5 +82,4 @@ class BalanceTests: XCTestCase {
         XCTAssertEqual(balance1.hashValue, token1.hashValue ^ BigInt("1")!.hashValue)
         XCTAssertEqual(set.count, 3)
     }
-
 }

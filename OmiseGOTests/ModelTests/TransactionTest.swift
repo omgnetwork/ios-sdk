@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionTest: XCTestCase {
-
     func testEquatable() {
         let transaction1 = StubGenerator.transaction(id: "1")
         let transaction2 = StubGenerator.transaction(id: "1")
@@ -26,5 +25,4 @@ class TransactionTest: XCTestCase {
         XCTAssertEqual(transaction1.hashValue, "1".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

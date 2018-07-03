@@ -8,7 +8,6 @@
 
 /// Represents a transaction exchange
 public struct TransactionExchange {
-
     /// The exchange rate used in the transaction
     public let rate: Double
     public let calculatedAt: Date?
@@ -18,11 +17,9 @@ public struct TransactionExchange {
     public let exchangeAccount: Account?
     public let exchangeWalletAddress: String?
     public let exchangeWallet: Wallet?
-
 }
 
 extension TransactionExchange: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case rate
         case calculatedAt = "calculated_at"
@@ -45,5 +42,4 @@ extension TransactionExchange: Decodable {
         exchangeWalletAddress = try container.decodeIfPresent(String.self, forKey: .exchangeWalletAddress)
         exchangeWallet = try container.decodeIfPresent(Wallet.self, forKey: .exchangeWallet)
     }
-
 }

@@ -10,7 +10,6 @@ import BigInt
 
 /// Represents a structure used to create a transaction
 public struct TransactionCreateParams {
-
     /// The address from which to take the tokens (which must belong to the user).
     /// If not specified, the user's primary balance will be used.
     public let fromAddress: String?
@@ -106,11 +105,9 @@ public struct TransactionCreateParams {
                   metadata: metadata,
                   encryptedMetadata: encryptedMetadata)
     }
-
 }
 
 extension TransactionCreateParams: APIParameters {
-
     private enum CodingKeys: String, CodingKey {
         case fromAddress = "from_address"
         case toAddress = "to_address"
@@ -135,5 +132,4 @@ extension TransactionCreateParams: APIParameters {
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }
-
 }

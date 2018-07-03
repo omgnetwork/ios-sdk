@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class QRGeneratorTest: XCTestCase {
-
     func testImageSize() {
         let data = "Test data".data(using: .isoLatin1)!
         if let qrCode = QRGenerator.generateQRCode(fromData: data, outputSize: CGSize(width: 150, height: 150)) {
@@ -31,5 +30,4 @@ class QRGeneratorTest: XCTestCase {
             XCTFail("Failed to generate the qrCode")
         }
     }
-
 }

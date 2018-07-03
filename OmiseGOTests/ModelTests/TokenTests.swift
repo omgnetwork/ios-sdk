@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TokenTests: XCTestCase {
-
     func testEquatable() {
         let token1 = StubGenerator.token(id: "OMG:123")
         let token2 = StubGenerator.token(id: "OMG:123")
@@ -26,5 +25,4 @@ class TokenTests: XCTestCase {
         XCTAssertEqual(token1.hashValue, "OMG:123".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

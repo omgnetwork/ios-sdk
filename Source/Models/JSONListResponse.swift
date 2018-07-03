@@ -8,15 +8,11 @@
 
 /// A struct representing a list response containing a data array of items.
 public struct JSONListResponse<Item: Decodable>: Decodable {
-
     let data: [Item]
-
 }
 
 /// A struct representing a list response containing a data array of items and a pagination object.
 public struct JSONPaginatedListResponse<Item: Decodable>: Decodable {
-
     public let data: [Item]
     public let pagination: Pagination
-
 }

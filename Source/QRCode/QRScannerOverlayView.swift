@@ -9,7 +9,6 @@
 import UIKit
 
 class QRScannerOverlayView: UIView {
-
     private lazy var outlineLayer: CAShapeLayer = {
         let outlineLayer = CAShapeLayer()
         outlineLayer.backgroundColor = UIColor.clear.cgColor
@@ -51,5 +50,4 @@ class QRScannerOverlayView: UIView {
         self.layer.addSublayer(self.outlineLayer)
         self.layer.addSublayer(self.maskLayer)
     }
-
 }

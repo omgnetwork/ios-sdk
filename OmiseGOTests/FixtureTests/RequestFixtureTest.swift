@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class RequestFixtureTest: FixtureTestCase {
-
     func testBuildRequest() {
         do {
             let urlRequest = try RequestBuilder(configuration: testClient.config)

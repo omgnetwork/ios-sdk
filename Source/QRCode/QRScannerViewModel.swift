@@ -25,19 +25,19 @@ protocol QRScannerViewModelProtocol {
 }
 
 class QRScannerViewModel: QRScannerViewModelProtocol {
-
     var onLoadingStateChange: LoadingClosure?
     var onGetTransactionRequest: OnGetTransactionRequestClosure?
     var onError: OnErrorClosure?
     var loadedIds: [String] = []
 
     private lazy var reader: QRReader = {
-        QRReader(onFindClosure: { [weak self] (value) in
+        QRReader(onFindClosure: { [weak self] value in
             DispatchQueue.main.async {
                 self?.loadTransactionRequest(withFormattedId: value)
             }
         })
     }()
+
     private let client: HTTPClient
 
     init(client: HTTPClient) {
@@ -52,12 +52,12 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         self.loadedIds.append(formattedId)
         self.stopScanning()
         self.onLoadingStateChange?(true)
-        TransactionRequest.get(using: self.client, formattedId: formattedId) { (result) in
+        TransactionRequest.get(using: self.client, formattedId: formattedId) { result in
             self.onLoadingStateChange?(false)
             switch result {
-            case .success(data: let transactionRequest):
+            case let .success(data: transactionRequest):
                 self.onGetTransactionRequest?(transactionRequest)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.startScanning()
                 self.onError?(error)
             }
@@ -83,5 +83,4 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
     func isQRCodeAvailable() -> Bool {
         return QRReader.isAvailable()
     }
-
 }

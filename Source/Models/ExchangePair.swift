@@ -9,7 +9,6 @@
 import UIKit
 
 public struct ExchangePair {
-
     /// The unique identifier of the exchange pair
     public let id: String
     /// The name of the pair (ex: ETH/BTC)
@@ -28,11 +27,9 @@ public struct ExchangePair {
     public let createdAt: Date
     /// The last update date of the pair
     public let updatedAt: Date
-
 }
 
 extension ExchangePair: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -57,11 +54,9 @@ extension ExchangePair: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
-
 }
 
 extension ExchangePair: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -69,5 +64,4 @@ extension ExchangePair: Hashable {
     public static func == (lhs: ExchangePair, rhs: ExchangePair) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

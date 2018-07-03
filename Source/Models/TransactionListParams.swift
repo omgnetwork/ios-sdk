@@ -10,7 +10,6 @@ import UIKit
 
 // Represent a structure used to query a list of transactions
 public struct TransactionListParams {
-
     public let paginationParams: PaginationParams<Transaction>
     /// An optional wallet address owned by the current user
     public let address: String?
@@ -25,11 +24,9 @@ public struct TransactionListParams {
         self.paginationParams = paginationParams
         self.address = address
     }
-
 }
 
 extension TransactionListParams: APIParameters {
-
     private enum CodingKeys: String, CodingKey {
         case paginationParams
         case address
@@ -40,5 +37,4 @@ extension TransactionListParams: APIParameters {
         try container.encode(address, forKey: .address)
         try paginationParams.encode(to: encoder)
     }
-
 }

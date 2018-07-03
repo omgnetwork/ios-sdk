@@ -8,7 +8,6 @@
 
 /// Represents an HTTPClient that should be initialized using an ClientConfiguration
 public class HTTPClient {
-
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
@@ -45,13 +44,13 @@ public class HTTPClient {
             }
         } catch let error as EncodingError {
             switch error {
-            case .invalidValue(_, let context):
+            case let .invalidValue(_, context):
                 performCallback {
                     callback?(.fail(error: OMGError.unexpected(message: context.debugDescription)))
                 }
             }
         } catch _ {
-            performCallback {
+            self.performCallback {
                 callback?(.fail(error: OMGError.unexpected(message: "Could not build the request")))
             }
         }
@@ -62,11 +61,9 @@ public class HTTPClient {
     private func performCallback(_ callback: @escaping () -> Void) {
         OperationQueue.main.addOperation(callback)
     }
-
 }
 
 extension HTTPClient {
-
     /// Logout the current user (invalidate the provided authenticationToken).
     ///
     /// - callback: The closure called when the request is completed
@@ -74,16 +71,15 @@ extension HTTPClient {
     @discardableResult
     public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
         -> Request<EmptyResponse>? {
-        let request: Request<EmptyResponse>? = self.request(toEndpoint: .logout) { (result) in
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: .logout) { result in
             switch result {
-            case .success(data: let data):
+            case let .success(data: data):
                 self.config.authenticationToken = nil
                 callback(.success(data: data))
-            case .fail(let error):
+            case let .fail(error):
                 callback(.fail(error: error))
             }
         }
         return request
     }
-
 }

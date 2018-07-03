@@ -8,7 +8,6 @@
 import UIKit
 
 final class RequestBuilder {
-
     private let configuration: ClientConfiguration
     private let authScheme = "OMGClient"
 

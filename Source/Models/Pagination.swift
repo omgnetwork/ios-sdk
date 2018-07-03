@@ -8,7 +8,6 @@
 
 /// Represents a pagination object contained in a paginated list response
 public struct Pagination: Decodable {
-
     /// The number of result per page
     public let perPage: Int
     /// The current page requested
@@ -24,5 +23,4 @@ public struct Pagination: Decodable {
         case isFirstPage = "is_first_page"
         case isLastPage = "is_last_page"
     }
-
 }

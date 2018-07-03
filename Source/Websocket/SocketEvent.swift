@@ -7,7 +7,7 @@
 //
 
 enum SocketEventSend: String, Encodable {
-    case heartbeat = "heartbeat"
+    case heartbeat
     case join = "phx_join"
     case leave = "phx_leave"
 }
@@ -32,7 +32,6 @@ public enum SocketEvent: Decodable {
 }
 
 extension SocketEvent: RawRepresentable {
-
     public typealias RawValue = String
 
     public init?(rawValue: String) {
@@ -53,7 +52,7 @@ extension SocketEvent: RawRepresentable {
         case .reply: return "phx_reply"
         case .transactionConsumptionRequest: return "transaction_consumption_request"
         case .transactionConsumptionFinalized: return "transaction_consumption_finalized"
-        case .other(event: let event): return event
+        case let .other(event: event): return event
         }
     }
 }

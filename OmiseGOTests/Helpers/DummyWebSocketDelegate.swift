@@ -10,7 +10,6 @@ import Starscream
 import XCTest
 
 class DummyWebSocketDelegate: WebSocketDelegate {
-
     var didConnect: Bool = false
     var didDisconnect: Bool = false
     var didReceiveText: String?
@@ -23,28 +22,26 @@ class DummyWebSocketDelegate: WebSocketDelegate {
         self.expectation = expectation
     }
 
-    func websocketDidConnect(socket: WebSocketClient) {
+    func websocketDidConnect(socket _: WebSocketClient) {
         self.didConnect = true
     }
 
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+    func websocketDidDisconnect(socket _: WebSocketClient, error _: Error?) {
         self.didDisconnect = true
     }
 
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+    func websocketDidReceiveMessage(socket _: WebSocketClient, text: String) {
         self.didReceiveText = text
         self.expectation?.fulfill()
-
     }
 
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+    func websocketDidReceiveData(socket _: WebSocketClient, data: Data) {
         self.didReceiveData = data
         self.expectation?.fulfill()
     }
 
-    func websocketDidSendData(socket: WebSocketClient, data: Data) {
+    func websocketDidSendData(socket _: WebSocketClient, data: Data) {
         self.didSendData = data
         self.expectation?.fulfill()
     }
-
 }

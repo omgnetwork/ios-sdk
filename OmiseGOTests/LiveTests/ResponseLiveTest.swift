@@ -6,22 +6,21 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class ResponseLiveTest: LiveTestCase {
-
     func testWrongEndpoint() {
         let expectation = self.expectation(description: "Error response")
         let endpoint = APIEndpoint.custom(path: "/not_exising", task: .requestPlain)
-        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
+        let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { result in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):
                 XCTFail("Should not succeed")
-            case .fail(let error):
+            case let .fail(error):
                 switch error {
-                case .api(apiError: let apiError):
+                case let .api(apiError: apiError):
                     XCTAssertEqual(apiError.code, .endPointNotFound)
                 default:
                     XCTFail("Error should be an API error")
@@ -31,5 +30,4 @@ class ResponseLiveTest: LiveTestCase {
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

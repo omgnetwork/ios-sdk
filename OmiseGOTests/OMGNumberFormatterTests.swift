@@ -6,17 +6,16 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
 @testable import OmiseGO
 import XCTest
-import BigInt
 
 class OMGNumberFormatterTests: XCTestCase {
-
     let locale = NSLocale.current
 
     func testStringToBigIntWithSubunitToUnit() {
         let sut = OMGNumberFormatter(locale: self.locale, precision: 1)
-        let result = sut.number(from: "10", subunitToUnit: 1000000000000000000)
+        let result = sut.number(from: "10", subunitToUnit: 1_000_000_000_000_000_000)
         XCTAssertEqual(result, BigInt("10000000000000000000"))
     }
 
@@ -34,7 +33,7 @@ class OMGNumberFormatterTests: XCTestCase {
 
     func testStringFromBigIntWithSubunitToUnit() {
         let sut = OMGNumberFormatter(locale: self.locale, precision: 1)
-        let result = sut.string(from: BigInt("10000000000000000000"), subunitToUnit: 1000000000000000000)
+        let result = sut.string(from: BigInt("10000000000000000000"), subunitToUnit: 1_000_000_000_000_000_000)
         XCTAssertEqual(result, "10")
     }
 
@@ -49,5 +48,4 @@ class OMGNumberFormatterTests: XCTestCase {
         let result = sut.string(from: BigInt("1"), decimals: 2)
         XCTAssertEqual(result, "0\(self.locale.decimalSeparator ?? ".")01")
     }
-
 }

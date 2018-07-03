@@ -10,7 +10,6 @@
 import XCTest
 
 class DummySocketEventDelegate {
-
     var eventExpectation: XCTestExpectation?
     let joinExpectation: XCTestExpectation?
 
@@ -27,11 +26,9 @@ class DummySocketEventDelegate {
     var didReceiveTransactionConsumptionError: APIError?
     var didReceiveEvent: SocketEvent?
     var didReceiveError: APIError?
-
 }
 
 extension DummySocketEventDelegate: UserEventDelegate {
-
     func on(_ object: WebsocketObject, error: APIError?, forEvent event: SocketEvent) {
         self.didReceiveObject = object
         self.didReceiveEvent = event
@@ -53,20 +50,16 @@ extension DummySocketEventDelegate: UserEventDelegate {
         self.didReceiveError = error
         self.joinExpectation?.fulfill()
     }
-
 }
 
 extension DummySocketEventDelegate: TransactionRequestEventDelegate {
-
     func onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption) {
         self.didReceiveTransactionConsumptionRequest = transactionConsumption
         self.eventExpectation?.fulfill()
     }
-
 }
 
 extension DummySocketEventDelegate: TransactionConsumptionEventDelegate {
-
     func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
         self.didReceiveTransactionConsumptionFinalized = transactionConsumption
         self.eventExpectation?.fulfill()
@@ -78,5 +71,4 @@ extension DummySocketEventDelegate: TransactionConsumptionEventDelegate {
         self.didReceiveTransactionConsumptionError = error
         self.eventExpectation?.fulfill()
     }
-
 }

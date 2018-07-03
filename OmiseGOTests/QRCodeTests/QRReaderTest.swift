@@ -6,14 +6,13 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
-@testable import OmiseGO
 import AVFoundation
+@testable import OmiseGO
+import XCTest
 
 class QRReaderTest: XCTestCase {
-
     func testCallbackIsCalled() {
-        let reader = MockQRReader { (value) in
+        let reader = MockQRReader { value in
             XCTAssertEqual(value, "123")
         }
         reader.mockValueFound(value: "123")
@@ -22,5 +21,4 @@ class QRReaderTest: XCTestCase {
     func testIsAvailable() {
         XCTAssertFalse(QRReader.isAvailable())
     }
-
 }

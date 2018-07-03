@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class ToolsTests: XCTestCase {
-
     func testDateToString() {
         let date = Date(timeIntervalSince1970: 0)
         let defaultFormat = date.toString(timeZone: TimeZone(secondsFromGMT: 0))
@@ -20,7 +19,5 @@ class ToolsTests: XCTestCase {
     }
 
     func testDecodingContainerProtocol() {
-
     }
-
 }

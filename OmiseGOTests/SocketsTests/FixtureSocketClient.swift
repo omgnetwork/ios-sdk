@@ -9,7 +9,6 @@
 import Starscream
 
 class FixtureWebsocketClient: WebSocketClient {
-
     var delegate: WebSocketDelegate?
     var disableSSLCertValidation: Bool = true
     var overrideTrustHostname: Bool = false
@@ -27,7 +26,7 @@ class FixtureWebsocketClient: WebSocketClient {
         self.isConnected = self.shouldAutoConnect
     }
 
-    func disconnect(forceTimeout: TimeInterval?, closeCode: UInt16) {
+    func disconnect(forceTimeout _: TimeInterval?, closeCode _: UInt16) {
         self.isConnected = false
     }
 
@@ -42,11 +41,11 @@ class FixtureWebsocketClient: WebSocketClient {
         (self.delegate as? DummyWebSocketDelegate)?.websocketDidSendData(socket: self, data: data)
     }
 
-    func write(ping: Data, completion: (() -> Void)?) {
+    func write(ping _: Data, completion: (() -> Void)?) {
         completion?()
     }
 
-    func write(pong: Data, completion: (() -> Void)?) {
+    func write(pong _: Data, completion: (() -> Void)?) {
         completion?()
     }
 
@@ -54,5 +53,4 @@ class FixtureWebsocketClient: WebSocketClient {
         let data = StubGenerator.fileContent(forResource: "socket_response_reply")
         self.delegate?.websocketDidReceiveMessage(socket: self, text: String(data: data, encoding: .utf8)!)
     }
-
 }

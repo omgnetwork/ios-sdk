@@ -8,7 +8,6 @@
 
 /// Represents a cancellable request
 public class Request<ResultType: Decodable> {
-
     public typealias Callback = (Response<ResultType>) -> Void
 
     let client: HTTPClient
@@ -25,7 +24,7 @@ public class Request<ResultType: Decodable> {
 
     /// Cancel the request
     public func cancel() {
-        task?.cancel()
+        self.task?.cancel()
     }
 
     func start() throws -> Self {
@@ -39,23 +38,23 @@ public class Request<ResultType: Decodable> {
 
     private func didComplete(_ data: Data?, response: URLResponse?, error: Error?) {
         // no one's in the forest to hear the leaf falls.
-        guard callback != nil else { return }
+        guard self.callback != nil else { return }
 
         if let error = error {
-            performCallback(.fail(error: .other(error: error)))
+            self.performCallback(.fail(error: .other(error: error)))
             return
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            performCallback(.fail(error: .unexpected(message: "no error and no response.")))
+            self.performCallback(.fail(error: .unexpected(message: "no error and no response.")))
             return
         }
 
         guard let data = data else {
-            performCallback(.fail(error: .unexpected(message: "empty response.")))
+            self.performCallback(.fail(error: .unexpected(message: "empty response.")))
             return
         }
-        performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
+        self.performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
     }
 
     func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
@@ -79,5 +78,4 @@ public class Request<ResultType: Decodable> {
         guard let cb = callback else { return }
         OperationQueue.main.addOperation { cb(result) }
     }
-
 }

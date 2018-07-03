@@ -20,7 +20,6 @@ public extension Listenable {
 }
 
 public extension Listenable where Self == User {
-
     /// Opens a websocket connection with the server and starts to listen for any event regarding the current user
     ///
     /// - Parameters:
@@ -29,11 +28,9 @@ public extension Listenable where Self == User {
     public func startListeningEvents(withClient client: SocketClient, eventDelegate: UserEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
     }
-
 }
 
 public extension Listenable where Self == TransactionRequest {
-
     /// Opens a websocket connection with the server and starts to listen for events happening on this transaction request
     /// Typically, this should be used to listen for consumption request made on the request
     ///
@@ -43,11 +40,9 @@ public extension Listenable where Self == TransactionRequest {
     public func startListeningEvents(withClient client: SocketClient, eventDelegate: TransactionRequestEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
     }
-
 }
 
 public extension Listenable where Self == TransactionConsumption {
-
     /// Opens a websocket connection with the server and starts to listen for events happening on this transaction consumption
     /// Typically, this should be used to listen for consumption confirmation
     ///
@@ -57,5 +52,4 @@ public extension Listenable where Self == TransactionConsumption {
     public func startListeningEvents(withClient client: SocketClient, eventDelegate: TransactionConsumptionEventDelegate?) {
         client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
     }
-
 }

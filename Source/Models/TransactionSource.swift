@@ -10,18 +10,15 @@ import BigInt
 
 /// Represents a transaction source contained in a transaction object
 public struct TransactionSource {
-
     /// The address of the source
     public let address: String
     /// The amount of token (down to subunit to unit)
     public let amount: BigInt
     /// The token of the source
     public let token: Token
-
 }
 
 extension TransactionSource: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case address
         case amount

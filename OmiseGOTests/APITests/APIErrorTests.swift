@@ -6,32 +6,29 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class APIErrorTests: XCTestCase {
-
     func testLocalizedDescription() {
-        let error = APIError.init(code: .invalidParameters, description: "error")
+        let error = APIError(code: .invalidParameters, description: "error")
         XCTAssertEqual(error.localizedDescription, "error")
     }
 
     func testIsAuthorizationError() {
-        XCTAssertTrue(APIError.init(code: .accessTokenExpired, description: "").isAuthorizationError())
-        XCTAssertTrue(APIError.init(code: .authenticationTokenNotFound, description: "").isAuthorizationError())
-        XCTAssertTrue(APIError.init(code: .invalidAPIKey, description: "").isAuthorizationError())
-        XCTAssertFalse(APIError.init(code: .unknownServerError, description: "").isAuthorizationError())
+        XCTAssertTrue(APIError(code: .accessTokenExpired, description: "").isAuthorizationError())
+        XCTAssertTrue(APIError(code: .authenticationTokenNotFound, description: "").isAuthorizationError())
+        XCTAssertTrue(APIError(code: .invalidAPIKey, description: "").isAuthorizationError())
+        XCTAssertFalse(APIError(code: .unknownServerError, description: "").isAuthorizationError())
     }
 
     func testDebugDescription() {
-        let error = APIError.init(code: .accessTokenExpired, description: "description")
+        let error = APIError(code: .accessTokenExpired, description: "description")
         XCTAssertEqual(error.debugDescription, "Error: accessTokenExpired description")
     }
-
 }
 
 class APIErrorCodeTests: XCTestCase {
-
     func testAPIErrorCodeInit() {
         XCTAssertEqual(APIErrorCode(rawValue: "client:invalid_parameter"),
                        APIErrorCode.invalidParameters)
@@ -106,5 +103,4 @@ class APIErrorCodeTests: XCTestCase {
         XCTAssertEqual(error1.hashValue, "client:invalid_parameter".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

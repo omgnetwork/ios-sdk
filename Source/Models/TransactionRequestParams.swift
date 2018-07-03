@@ -10,7 +10,6 @@ import BigInt
 
 /// Represents a structure used to generate a transaction request
 public struct TransactionRequestCreateParams {
-
     /// The type of transaction to be generated (send of receive)
     public let type: TransactionRequestType
     /// The unique identifier of the token that will be used in the transaction
@@ -89,11 +88,9 @@ public struct TransactionRequestCreateParams {
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
     }
-
 }
 
 extension TransactionRequestCreateParams: APIParameters {
-
     private enum CodingKeys: String, CodingKey {
         case type
         case tokenId = "token_id"
@@ -127,16 +124,13 @@ extension TransactionRequestCreateParams: APIParameters {
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }
-
 }
 
 /// Represents a structure used to retrieve a transaction request from its id
 struct TransactionRequestGetParams: APIParameters {
-
     let formattedId: String
 
     private enum CodingKeys: String, CodingKey {
         case formattedId = "formatted_id"
     }
-
 }

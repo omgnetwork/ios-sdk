@@ -24,7 +24,6 @@ public enum TransactionConsumptionStatus: String, Decodable {
 
 /// Represents a transaction consumption
 public struct TransactionConsumption {
-
     /// The unique identifier of the consumption
     public let id: String
     /// The status of the consumption (pending, confirmed or failed)
@@ -77,13 +76,11 @@ public struct TransactionConsumption {
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the consumption
     public let encryptedMetadata: [String: Any]
-
 }
 
 extension TransactionConsumption: Listenable {}
 
 extension TransactionConsumption: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case status
@@ -140,11 +137,9 @@ extension TransactionConsumption: Decodable {
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
-
 }
 
 extension TransactionConsumption: Retrievable {
-
     @discardableResult
     /// Consume a transaction request from the given TransactionConsumptionParams object
     ///
@@ -158,9 +153,9 @@ extension TransactionConsumption: Retrievable {
                                                  params: TransactionConsumptionParams,
                                                  callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
-            return self.retrieve(using: client,
-                                 endpoint: .transactionRequestConsume(params: params),
-                                 callback: callback)
+        return self.retrieve(using: client,
+                             endpoint: .transactionRequestConsume(params: params),
+                             callback: callback)
     }
 
     @discardableResult
@@ -174,8 +169,8 @@ extension TransactionConsumption: Retrievable {
     public func approve(using client: HTTPClient,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
-            let params = TransactionConsumptionConfirmationParams(id: id)
-            return self.retrieve(using: client, endpoint: .transactionConsumptionApprove(params: params), callback: callback)
+        let params = TransactionConsumptionConfirmationParams(id: id)
+        return self.retrieve(using: client, endpoint: .transactionConsumptionApprove(params: params), callback: callback)
     }
 
     @discardableResult
@@ -189,14 +184,12 @@ extension TransactionConsumption: Retrievable {
     public func reject(using client: HTTPClient,
                        callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
-            let params = TransactionConsumptionConfirmationParams(id: id)
-            return self.retrieve(using: client, endpoint: .transactionConsumptionReject(params: params), callback: callback)
+        let params = TransactionConsumptionConfirmationParams(id: id)
+        return self.retrieve(using: client, endpoint: .transactionConsumptionReject(params: params), callback: callback)
     }
-
 }
 
 extension TransactionConsumption: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -204,5 +197,4 @@ extension TransactionConsumption: Hashable {
     public static func == (lhs: TransactionConsumption, rhs: TransactionConsumption) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

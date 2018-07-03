@@ -10,7 +10,6 @@ import BigInt
 
 /// Represents a structure used to consume a transaction request
 public struct TransactionConsumptionParams {
-
     /// The formatted id of the transaction request to be consumed
     public let formattedTransactionRequestId: String
     /// The amount of token to transfer (down to subunit to unit)
@@ -52,11 +51,9 @@ public struct TransactionConsumptionParams {
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
     }
-
 }
 
 extension TransactionConsumptionParams: APIParameters {
-
     private enum CodingKeys: String, CodingKey {
         case formattedTransactionRequestId = "formatted_transaction_request_id"
         case amount
@@ -77,12 +74,9 @@ extension TransactionConsumptionParams: APIParameters {
         try container.encode(correlationId, forKey: .correlationId)
         try container.encode(idempotencyToken, forKey: .idempotencyToken)
     }
-
 }
 
 /// Represents a structure used to confirm a transaction consumption from its id
 struct TransactionConsumptionConfirmationParams: APIParameters {
-
     let id: String
-
 }

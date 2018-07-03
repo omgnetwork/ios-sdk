@@ -6,16 +6,16 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
+import UIKit
 
 class QRReader: NSObject {
-
     let session = AVCaptureSession()
     var didReadCode: ((String) -> Void)!
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
-        return AVCaptureVideoPreviewLayer(session: self.session)
+        AVCaptureVideoPreviewLayer(session: self.session)
     }()
+
     private let sessionQueue: DispatchQueue = DispatchQueue(label: "serial queue")
 
     init(onFindClosure: @escaping ((String) -> Void)) {
@@ -28,16 +28,16 @@ class QRReader: NSObject {
 
     private func configureReader() {
         let metadataOutput = AVCaptureMetadataOutput()
-        for output in session.outputs { session.removeOutput(output) }
-        for input in session.inputs { session.removeInput(input) }
+        for output in self.session.outputs { self.session.removeOutput(output) }
+        for input in self.session.inputs { self.session.removeInput(input) }
         if let videoCaptireDevice = AVCaptureDevice.default(for: .video) {
-            try? session.addInput(AVCaptureDeviceInput(device: videoCaptireDevice))
+            try? self.session.addInput(AVCaptureDeviceInput(device: videoCaptireDevice))
         }
-        session.addOutput(metadataOutput)
+        self.session.addOutput(metadataOutput)
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         if metadataOutput.availableMetadataObjectTypes.contains(.qr) { metadataOutput.metadataObjectTypes = [.qr] }
         self.previewLayer.videoGravity = .resizeAspectFill
-        session.commitConfiguration()
+        self.session.commitConfiguration()
     }
 
     func startScanning() {
@@ -58,21 +58,19 @@ class QRReader: NSObject {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return false }
         return (try? AVCaptureDeviceInput(device: captureDevice)) != nil
     }
-
 }
 
 extension QRReader: AVCaptureMetadataOutputObjectsDelegate {
-
-    func metadataOutput(_ output: AVCaptureMetadataOutput,
+    func metadataOutput(_: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
-                        from connection: AVCaptureConnection) {
+                        from _: AVCaptureConnection) {
         self.sessionQueue.async { [weak self] in
             guard let weakSelf = self else { return }
             guard !metadataObjects.isEmpty,
                 let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
                 metadataObject.type == AVMetadataObject.ObjectType.qr,
                 let decodedData = metadataObject.stringValue
-                else { return }
+            else { return }
             weakSelf.didReadCode(decodedData)
         }
     }

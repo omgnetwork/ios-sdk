@@ -9,7 +9,6 @@
 import BigInt
 
 public final class OMGNumberFormatter {
-
     var minFractionDigits = 0
     var maxFractionDigits = Int.max
     var decimalSeparator = "."
@@ -23,7 +22,7 @@ public final class OMGNumberFormatter {
 
     public func number(from string: String, subunitToUnit: BigInt) -> BigInt? {
         let decimals = Int(log10(Double(subunitToUnit)))
-        return number(from: string, decimals: decimals)
+        return self.number(from: string, decimals: decimals)
     }
 
     public func number(from string: String, decimals: Int) -> BigInt? {
@@ -52,12 +51,12 @@ public final class OMGNumberFormatter {
 
     public func string(from number: BigInt, subunitToUnit: BigInt) -> String {
         let decimals = Int(log10(Double(subunitToUnit)))
-        return string(from: number, decimals: decimals)
+        return self.string(from: number, decimals: decimals)
     }
 
     public func string(from number: BigInt, decimals: Int) -> String {
-        precondition(minFractionDigits >= 0)
-        precondition(maxFractionDigits >= 0)
+        precondition(self.minFractionDigits >= 0)
+        precondition(self.maxFractionDigits >= 0)
 
         let dividend = BigInt(10).power(decimals)
         let (integerPart, remainder) = number.quotientAndRemainder(dividingBy: dividend)
@@ -86,11 +85,11 @@ public final class OMGNumberFormatter {
         if number == 0 || decimals - digits >= self.maxFractionDigits {
             return String(repeating: "0", count: self.minFractionDigits)
         }
-        if decimals < minFractionDigits {
-            number *= BigInt(10).power(minFractionDigits - decimals)
+        if decimals < self.minFractionDigits {
+            number *= BigInt(10).power(self.minFractionDigits - decimals)
         }
-        if decimals > maxFractionDigits {
-            number /= BigInt(10).power(decimals - maxFractionDigits)
+        if decimals > self.maxFractionDigits {
+            number /= BigInt(10).power(decimals - self.maxFractionDigits)
         }
         var string = number.description
         if digits < decimals {
@@ -98,9 +97,9 @@ public final class OMGNumberFormatter {
         }
         if let lastNonZeroIndex = string.reversed().index(where: { $0 != "0" })?.base {
             let numberOfZeros = string.distance(from: string.startIndex, to: lastNonZeroIndex)
-            if numberOfZeros > minFractionDigits {
+            if numberOfZeros > self.minFractionDigits {
                 let newEndIndex = string.index(string.startIndex, offsetBy: numberOfZeros - minFractionDigits)
-                string = String(string[string.startIndex..<newEndIndex])
+                string = String(string[string.startIndex ..< newEndIndex])
             }
         }
 

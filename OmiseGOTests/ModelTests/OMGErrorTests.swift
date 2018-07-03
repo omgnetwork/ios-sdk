@@ -6,15 +6,14 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 enum DummyError: Error {
     case dummy
 }
 
 class OMGErrorTests: XCTestCase {
-
     func testMessage() {
         let unexpectedError = OMGError.unexpected(message: "unexpected error")
         XCTAssertEqual(unexpectedError.message, "unexpected error: unexpected error")
@@ -71,5 +70,4 @@ class OMGErrorTests: XCTestCase {
         XCTAssertEqual(socket1, socket2)
         XCTAssertNotEqual(socket1, socket3)
     }
-
 }

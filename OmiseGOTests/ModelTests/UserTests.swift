@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class UserTests: XCTestCase {
-
     func testEquatable() {
         let user1 = StubGenerator.user(id: "123")
         let user2 = StubGenerator.user(id: "123")
@@ -26,5 +25,4 @@ class UserTests: XCTestCase {
         XCTAssertEqual(user1.hashValue, "123".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

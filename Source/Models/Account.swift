@@ -8,7 +8,6 @@
 
 /// Represents an account
 public struct Account {
-
     /// The unique identifier of the account
     public let id: String
     /// The id of the parent account
@@ -29,11 +28,9 @@ public struct Account {
     public let createdAt: Date
     /// The date when the account was last updated
     public let updatedAt: Date
-
 }
 
 extension Account: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case parentId = "parent_id"
@@ -60,11 +57,9 @@ extension Account: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
-
 }
 
 extension Account: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -72,5 +67,4 @@ extension Account: Hashable {
     public static func == (lhs: Account, rhs: Account) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

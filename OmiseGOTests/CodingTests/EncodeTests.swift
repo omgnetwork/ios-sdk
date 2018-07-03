@@ -6,38 +6,39 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
-@testable import OmiseGO
 import BigInt
+@testable import OmiseGO
+import XCTest
 
 extension String {
-
     func uglifiedEncodedString() -> String {
         return replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
     }
-
 }
 
 class EncodeTests: XCTestCase {
-
     var encoder: JSONEncoder!
 
     override func setUp() {
         super.setUp()
         let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = .custom({return try dateEncodingStrategy(date: $0, encoder: $1)})
+        jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
         self.encoder = jsonEncoder
     }
 
     func testMetadaEncoding() {
-        let metadata: [String: Any] = ["a_string": "some_string",
-                                       "an_integer": 1,
-                                       "a_bool": true,
-                                       "a_double": 12.34,
-                                       "an_object": ["a_key": "a_value",
-                                                     "a_nested_object": ["a_nested_key": "a_nested_value"],
-                                                     "a_nil_value": nil],
-                                       "an_array": ["value_1", "value_2"]]
+        let metadata: [String: Any] = [
+            "a_string": "some_string",
+            "an_integer": 1,
+            "a_bool": true,
+            "a_double": 12.34,
+            "an_object": [
+                "a_key": "a_value",
+                "a_nested_object": ["a_nested_key": "a_nested_value"],
+                "a_nil_value": nil
+            ],
+            "an_array": ["value_1", "value_2"]
+        ]
         let metadataArray: [Any] = ["value_1", 123, true, 13.37, ["a_key": "a_value"], ["a_value", nil]]
         let optionalMetadata: [String: Any] = ["a_key": "a_value"]
         let optionalMetadataArray: [Any] = ["a_value"]
@@ -53,34 +54,34 @@ class EncodeTests: XCTestCase {
         }
         let jsonString = String(data: encodedData, encoding: .utf8)!
         XCTAssertEqual(jsonString, """
-            {
-                "metadata":{
-                    "a_bool":true,
-                    "an_integer":1,
-                    "an_array":["value_1","value_2"],
-                    "a_double":12.34,
-                    "an_object":{
-                        "a_nested_object":{
-                            "a_nested_key":"a_nested_value"
-                        },
-                        "a_key":"a_value",
-                        "a_nil_value": null},
-                    "a_string":"some_string"
-                },
-                "optional_metadata_array":["a_value"],
-                "metadata_array":[
-                    "value_1",
-                    123,
-                    true,
-                    13.369999999999999,
-                    {"a_key":"a_value"},
-                    ["a_value",null]
-                ],
-                "optional_metadata":{
-                    "a_key":"a_value"
-                }
+        {
+            "metadata":{
+                "a_bool":true,
+                "an_integer":1,
+                "an_array":["value_1","value_2"],
+                "a_double":12.34,
+                "an_object":{
+                    "a_nested_object":{
+                        "a_nested_key":"a_nested_value"
+                    },
+                    "a_key":"a_value",
+                    "a_nil_value": null},
+                "a_string":"some_string"
+            },
+            "optional_metadata_array":["a_value"],
+            "metadata_array":[
+                "value_1",
+                123,
+                true,
+                13.369999999999999,
+                {"a_key":"a_value"},
+                ["a_value",null]
+            ],
+            "optional_metadata":{
+                "a_key":"a_value"
             }
-            """.uglifiedEncodedString())
+        }
+        """.uglifiedEncodedString())
     }
 
     func testMetadaNullEncoding() {
@@ -109,7 +110,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                {"value": 2147483647}
+                               {"value": 2147483647}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -122,7 +123,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                {"value": 922337203685400}
+                               {"value": 922337203685400}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -134,8 +135,8 @@ class EncodeTests: XCTestCase {
         do {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
-            """
-                {"value": 99999999999999999999999999999999999998}
+                           """
+                               {"value": 99999999999999999999999999999999999998}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -146,7 +147,7 @@ class EncodeTests: XCTestCase {
         let encodable = BigIntDummy(value: BigInt("999999999999999999999999999999999999991"))
         XCTAssertThrowsError(try serialize(encodable), "Failed to encode value", { error -> Void in
             switch error {
-            case EncodingError.invalidValue(_, let context):
+            case let EncodingError.invalidValue(_, context):
                 XCTAssertEqual(context.debugDescription, "Value is exceeding the maximum encodable number")
             default:
                 XCTFail("Should raise a data corrupted error")
@@ -165,7 +166,7 @@ class EncodeTests: XCTestCase {
                                           unavailableMetadataArray: nil)
         XCTAssertThrowsError(try self.encoder.encode(metadataDummy), "Failed to encode dictionary", { error -> Void in
             switch error {
-            case EncodingError.invalidValue(let value, let context):
+            case let EncodingError.invalidValue(value, context):
                 XCTAssertEqual(value as? Data, data)
                 XCTAssertEqual(context.debugDescription, "Invalid JSON value")
             default:
@@ -187,7 +188,7 @@ class EncodeTests: XCTestCase {
             _ = try self.encoder.encode(metadataDummy)
         } catch let error as EncodingError {
             switch error {
-            case .invalidValue(let value, let context):
+            case let .invalidValue(value, context):
                 XCTAssertEqual(value as? Data, data)
                 XCTAssertEqual(context.debugDescription, "Invalid JSON value")
             }
@@ -286,7 +287,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                    {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -294,7 +295,7 @@ class EncodeTests: XCTestCase {
     }
 
     func testTransactionConsumptionParamsWithoutAmountEncoding() {
-        do {
+        do {
             let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                         type: .receive,
                                                         token: StubGenerator.token(id: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1"),
@@ -469,7 +470,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                    {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)

@@ -6,19 +6,18 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class WalletLiveTests: LiveTestCase {
-
     func testGetAll() {
         let expectation = self.expectation(description: "Get the list of wallets")
-        let request = Wallet.getAll(using: self.testClient) { (result) in
+        let request = Wallet.getAll(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let addresses):
+            case let .success(data: addresses):
                 XCTAssert(!addresses.isEmpty)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }
@@ -28,17 +27,16 @@ class WalletLiveTests: LiveTestCase {
 
     func testGetMain() {
         let expectation = self.expectation(description: "Get the main wallet")
-        let request = Wallet.getMain(using: self.testClient) { (result) in
+        let request = Wallet.getMain(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):
                 XCTAssertTrue(true)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

@@ -6,14 +6,13 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class DecodeTests: XCTestCase {
-
     let jsonDecoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
         return jsonDecoder
     }()
 
@@ -28,7 +27,7 @@ class DecodeTests: XCTestCase {
     func testSuccessfullyDecodesANumberWithInt32Size() {
         do {
             let jsonData = try self.jsonData(withFileName: "bigint_int32")
-            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
             XCTAssertEqual(decodedData.value.description, "2147483647")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -38,7 +37,7 @@ class DecodeTests: XCTestCase {
     func testSuccessfullyDecodesANumberWithInt64Size() {
         do {
             let jsonData = try self.jsonData(withFileName: "bigint_int64")
-            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
             XCTAssertEqual(decodedData.value.description, "922337203685400")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -48,7 +47,7 @@ class DecodeTests: XCTestCase {
     func testSuccessfullyDecodesANumberWith38Digits() {
         do {
             let jsonData = try self.jsonData(withFileName: "bigint_over_int64")
-            let decodedData =  try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData)
             XCTAssertEqual(decodedData.value.description, "99999999999999999999999999999999999998")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -60,7 +59,7 @@ class DecodeTests: XCTestCase {
             let jsonData = try self.jsonData(withFileName: "bigint_invalid")
             XCTAssertThrowsError(try self.jsonDecoder.decode(BigIntDummy.self, from: jsonData), "Failed to decode value", { error -> Void in
                 switch error {
-                case DecodingError.dataCorrupted(let context):
+                case let DecodingError.dataCorrupted(context):
                     XCTAssertEqual(context.debugDescription, "Invalid number")
                 default:
                     XCTFail("Should raise a data corrupted error")
@@ -73,7 +72,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
         do {
             let jsonData = try self.jsonData(withFileName: "dates")
             let decodedData = try self.jsonDecoder.decode(DateDummy.self, from: jsonData)
@@ -90,7 +89,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomInvalidDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
         do {
             let jsonData = try self.jsonData(withFileName: "dates_invalid")
             _ = try self.jsonDecoder.decode(DateInvalidDummy.self, from: jsonData)
@@ -104,7 +103,7 @@ class DecodeTests: XCTestCase {
     func testMetadaDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata")
-            let decodedData =  try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
             guard let metadata = decodedData.metadata else {
                 XCTFail("Failed to decode metadata")
                 return
@@ -167,7 +166,7 @@ class DecodeTests: XCTestCase {
     func testMetadaNullDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata_null")
-            let decodedData =  try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(MetadataDummy.self, from: jsonData)
             XCTAssertTrue(decodedData.metadata!.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -177,13 +176,13 @@ class DecodeTests: XCTestCase {
     func testJSONResponseDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "json_response")
-            let decodedData =  try self.jsonDecoder.decode(JSONResponse<[String: String]>.self, from: jsonData)
+            let decodedData = try self.jsonDecoder.decode(JSONResponse<[String: String]>.self, from: jsonData)
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
-            case .success(data: let content):
+            case let .success(data: content):
                 XCTAssertEqual(content["a_key"], "a_value")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -199,12 +198,12 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
-            case .success(data: let listResponse):
+            case let .success(data: listResponse):
                 let list = listResponse.data
                 XCTAssertTrue(list.count == 2)
                 XCTAssertEqual(list[0], "value_1")
                 XCTAssertEqual(list[1], "value_2")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -220,7 +219,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data {
-            case .success(data: let listResponse):
+            case let .success(data: listResponse):
                 let list = listResponse.data
                 XCTAssertTrue(list.count == 2)
                 XCTAssertEqual(list[0], "value_1")
@@ -230,7 +229,7 @@ class DecodeTests: XCTestCase {
                 XCTAssertEqual(pagination.perPage, 10)
                 XCTAssertEqual(pagination.isFirstPage, true)
                 XCTAssertEqual(pagination.isLastPage, true)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -262,7 +261,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "OMG:123")
             XCTAssertEqual(decodedData.symbol, "OMG")
             XCTAssertEqual(decodedData.name, "OmiseGO")
-            XCTAssertEqual(decodedData.subUnitToUnit, 100000000)
+            XCTAssertEqual(decodedData.subUnitToUnit, 100_000_000)
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
             XCTAssertEqual(decodedData.createdAt, try "2018-01-01T00:00:00Z".toDate())
@@ -280,7 +279,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.tokens[0].id, "OMG:123")
             XCTAssertEqual(decodedData.tokens[0].symbol, "OMG")
             XCTAssertEqual(decodedData.tokens[0].name, "OmiseGO")
-            XCTAssertEqual(decodedData.tokens[0].subUnitToUnit, 100000000)
+            XCTAssertEqual(decodedData.tokens[0].subUnitToUnit, 100_000_000)
             XCTAssertTrue(decodedData.tokens[0].metadata.isEmpty)
             XCTAssertTrue(decodedData.tokens[0].encryptedMetadata.isEmpty)
             XCTAssertEqual(decodedData.tokens[0].createdAt, try "2018-01-01T00:00:00Z".toDate())
@@ -294,7 +293,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "balance")
             let decodedData = try self.jsonDecoder.decode(Balance.self, from: jsonData)
-            XCTAssertEqual(decodedData.amount, 103100)
+            XCTAssertEqual(decodedData.amount, 103_100)
             XCTAssertEqual(decodedData.token.id, "OMG:123")
             XCTAssertEqual(decodedData.token.symbol, "OMG")
             XCTAssertEqual(decodedData.token.name, "OmiseGO")
@@ -314,7 +313,7 @@ class DecodeTests: XCTestCase {
             let decodedData = try self.jsonDecoder.decode(Wallet.self, from: jsonData)
             XCTAssertEqual(decodedData.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
             XCTAssertTrue(decodedData.balances.count == 1)
-            XCTAssertEqual(decodedData.balances[0].amount, 103100)
+            XCTAssertEqual(decodedData.balances[0].amount, 103_100)
             XCTAssertEqual(decodedData.balances[0].token.id, "OMG:123")
             XCTAssertEqual(decodedData.balances[0].token.symbol, "OMG")
             XCTAssertEqual(decodedData.balances[0].token.name, "OmiseGO")
@@ -394,7 +393,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(token.symbol, "BTC")
             XCTAssertEqual(token.name, "Bitcoin")
-            XCTAssertEqual(token.subUnitToUnit, 100000)
+            XCTAssertEqual(token.subUnitToUnit, 100_000)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
             let transaction = decodedData.transaction!
@@ -506,7 +505,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data?.object {
-            case .transactionConsumption(object: let transactionConsumption)?: XCTAssertNotNil(transactionConsumption)
+            case let .transactionConsumption(object: transactionConsumption)?: XCTAssertNotNil(transactionConsumption)
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {
@@ -524,7 +523,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, false)
             switch decodedData.error?.code {
-            case .some(let code) where code == .invalidParameters: break
+            case let .some(code) where code == .invalidParameters: break
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {
@@ -542,7 +541,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.version, "1")
             XCTAssertEqual(decodedData.success, true)
             switch decodedData.data?.object {
-            case .error(error: let error)?: XCTAssertEqual(error.message, "socket error: Invalid payload")
+            case let .error(error: error)?: XCTAssertEqual(error.message, "socket error: Invalid payload")
             default: XCTFail("Unexpected data")
             }
         } catch let thrownError {
@@ -600,5 +599,4 @@ class DecodeTests: XCTestCase {
             XCTFail(thrownError.localizedDescription)
         }
     }
-
 }

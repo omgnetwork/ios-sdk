@@ -10,7 +10,6 @@ import UIKit
 
 /// The delegate that will receive events from the QRScannerViewController
 public protocol QRScannerViewControllerDelegate: class {
-
     /// Called when the user tap on the cancel button.
     /// Note that the view controller is not automatically dismissed when the user tap on cancel.
     ///
@@ -33,7 +32,6 @@ public protocol QRScannerViewControllerDelegate: class {
 
 /// The view controller managing the scanner
 public class QRScannerViewController: UIViewController {
-
     weak var delegate: QRScannerViewControllerDelegate?
     var viewModel: QRScannerViewModelProtocol!
     lazy var loadingView: QRScannerLoadingView = {
@@ -44,7 +42,7 @@ public class QRScannerViewController: UIViewController {
     }()
 
     init?(delegate: QRScannerViewControllerDelegate,
-          client: HTTPClient,
+          client _: HTTPClient,
           cancelButtonTitle: String,
           viewModel: QRScannerViewModelProtocol) {
         guard viewModel.isQRCodeAvailable() else {
@@ -74,33 +72,33 @@ public class QRScannerViewController: UIViewController {
     }
 
     func configureViewModel() {
-        self.viewModel.onLoadingStateChange = { (isLoading) in
+        self.viewModel.onLoadingStateChange = { isLoading in
             self.toggleLoadingOverlay(show: isLoading)
         }
-        self.viewModel.onGetTransactionRequest = { (transactionRequest) in
+        self.viewModel.onGetTransactionRequest = { transactionRequest in
             self.delegate?.scannerDidDecode(scanner: self, transactionRequest: transactionRequest)
         }
-        self.viewModel.onError = { (error) in
+        self.viewModel.onError = { error in
             self.delegate?.scannerDidFailToDecode(scanner: self, withError: error)
         }
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    public required init?(coder _: NSCoder) {
         omiseGOWarn("init(coder:) shouldn't be called direcly, please use the designed init(delegate:client:) instead")
         return nil
     }
 
-    override public func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.startScanning()
     }
 
-    override public func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         self.viewModel.stopScanning()
         super.viewWillDisappear(animated)
     }
 
-    override public func viewWillLayoutSubviews() {
+    public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.viewModel.updateQRReaderPreviewLayer(withFrame: self.view.bounds)
     }
@@ -115,10 +113,10 @@ public class QRScannerViewController: UIViewController {
                                           readerPreviewLayer: self.viewModel.readerPreviewLayer())
         qrScannerView.translatesAutoresizingMaskIntoConstraints = false
         qrScannerView.cancelButton.setTitle(cancelButtonTitle, for: .normal)
-        qrScannerView.cancelButton.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
+        qrScannerView.cancelButton.addTarget(self, action: #selector(self.didTapCancel), for: .touchUpInside)
         self.view.addSubview(qrScannerView)
         self.view.addSubview(self.loadingView)
-        [NSLayoutAttribute.left, .top, .right, .bottom].forEach({ (attribute) in
+        [NSLayoutAttribute.left, .top, .right, .bottom].forEach({ attribute in
             self.view.addConstraint(NSLayoutConstraint(item: qrScannerView,
                                                        attribute: attribute,
                                                        relatedBy: .equal,
@@ -134,15 +132,13 @@ public class QRScannerViewController: UIViewController {
                                                        multiplier: 1,
                                                        constant: 0))
         })
-
     }
 
-    @objc func didTapCancel(_ button: UIButton) {
+    @objc func didTapCancel(_: UIButton) {
         self.delegate?.scannerDidCancel(scanner: self)
     }
 
-    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-
 }

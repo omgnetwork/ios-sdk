@@ -17,11 +17,11 @@ public extension Listable where Self: Decodable {
     internal static func list(using client: HTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
-        return client.request(toEndpoint: endpoint, callback: { (result) in
+        return client.request(toEndpoint: endpoint, callback: { result in
             switch result {
-            case .success(let list):
+            case let .success(list):
                 callback(.success(data: list.data))
-            case .fail(let error):
+            case let .fail(error):
                 callback(.fail(error: error))
             }
         })
@@ -39,11 +39,11 @@ public extension PaginatedListable where Self: Decodable {
     internal static func list(using client: HTTPClient,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
-        return client.request(toEndpoint: endpoint, callback: { (result) in
+        return client.request(toEndpoint: endpoint, callback: { result in
             switch result {
-            case .success(let list):
+            case let .success(list):
                 callback(.success(data: list))
-            case .fail(let error):
+            case let .fail(error):
                 callback(.fail(error: error))
             }
         })

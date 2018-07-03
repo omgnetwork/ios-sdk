@@ -9,7 +9,6 @@
 import UIKit
 
 struct QRGenerator {
-
     static func generateQRCode(fromData data: Data, outputSize: CGSize) -> UIImage? {
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
 

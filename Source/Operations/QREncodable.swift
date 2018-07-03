@@ -12,7 +12,6 @@ public protocol QREncodable {
 }
 
 public extension QREncodable where Self == TransactionRequest {
-
     /// Generates a QR image containing the encoded transaction request formattedId
     ///
     /// - Parameter size: the desired image size
@@ -21,5 +20,4 @@ public extension QREncodable where Self == TransactionRequest {
         guard let data = self.formattedId.data(using: .isoLatin1) else { return nil }
         return QRGenerator.generateQRCode(fromData: data, outputSize: size)
     }
-
 }

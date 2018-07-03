@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class ExchangePairTest: XCTestCase {
-
     func testEquatable() {
         let pair1 = StubGenerator.exchangePair(id: "123")
         let pair2 = StubGenerator.exchangePair(id: "123")
@@ -26,5 +25,4 @@ class ExchangePairTest: XCTestCase {
         XCTAssertEqual(pair1.hashValue, "123".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

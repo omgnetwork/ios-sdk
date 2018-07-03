@@ -6,19 +6,16 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class MockQRReader: QRReader {
-
     func mockValueFound(value: String) {
         self.didReadCode(value)
     }
-
 }
 
 class MockQRVCDelegate: QRScannerViewControllerDelegate {
-
     var asyncExpectation: XCTestExpectation?
 
     var didCancel: Bool = false
@@ -29,27 +26,25 @@ class MockQRVCDelegate: QRScannerViewControllerDelegate {
         self.asyncExpectation = asyncExpectation
     }
 
-    func scannerDidCancel(scanner: QRScannerViewController) {
+    func scannerDidCancel(scanner _: QRScannerViewController) {
         self.didCancel = true
         self.asyncExpectation?.fulfill()
     }
 
-    func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest) {
+    func scannerDidDecode(scanner _: QRScannerViewController, transactionRequest: TransactionRequest) {
         self.transactionRequest = transactionRequest
         self.asyncExpectation?.fulfill()
     }
 
-    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
+    func scannerDidFailToDecode(scanner _: QRScannerViewController, withError error: OMGError) {
         self.error = error
         self.asyncExpectation?.fulfill()
     }
-
 }
 
 import AVFoundation
 
 class MockQRViewModel: QRScannerViewModelProtocol {
-
     var didStartScanning: Bool = false
     var didStopScanning: Bool = false
     var didUpdateQRReaderPreviewLayer: Bool = false
@@ -73,7 +68,7 @@ class MockQRViewModel: QRScannerViewModelProtocol {
         return AVCaptureVideoPreviewLayer()
     }
 
-    func updateQRReaderPreviewLayer(withFrame frame: CGRect) {
+    func updateQRReaderPreviewLayer(withFrame _: CGRect) {
         self.didUpdateQRReaderPreviewLayer = true
     }
 
@@ -81,7 +76,7 @@ class MockQRViewModel: QRScannerViewModelProtocol {
         return true // for testing purpose we ignore the availabilty of the video device
     }
 
-    func loadTransactionRequest(withFormattedId formattedId: String) {
+    func loadTransactionRequest(withFormattedId _: String) {
         self.didCallLoadTransactionRequestWithFormattedId = true
     }
 }

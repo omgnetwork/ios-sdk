@@ -8,7 +8,6 @@
 
 /// Represents an avatar containing urls of different sizes
 public struct Avatar: Decodable {
-
     /// The url of the original image
     public let original: String
     /// The url of the large image
@@ -17,5 +16,4 @@ public struct Avatar: Decodable {
     public let small: String
     /// The url of the thumbnail image
     public let thumb: String
-
 }

@@ -13,7 +13,6 @@
 /// - api: An API error has occured
 /// - other: Other types of errors
 public enum OMGError: Error {
-
     case unexpected(message: String)
     case configuration(message: String)
     case api(apiError: APIError)
@@ -23,27 +22,27 @@ public enum OMGError: Error {
 
     public var message: String {
         switch self {
-        case .unexpected(let message):
+        case let .unexpected(message):
             return "unexpected error: \(message)"
-        case .configuration(let message):
+        case let .configuration(message):
             return "configuration error: \(message)"
-        case .other(let error):
+        case let .other(error):
             return "I/O error: \(error.localizedDescription)"
-        case .socketError(let message):
+        case let .socketError(message):
             return "socket error: \(message)"
-        case .decoding(underlyingError: let error):
+        case let .decoding(underlyingError: error):
             switch error {
-            case .dataCorrupted(let context):
+            case let .dataCorrupted(context):
                 return "decoding error: \(context.debugDescription)"
-            case .keyNotFound(_, let context):
+            case let .keyNotFound(_, context):
                 return "decoding error: \(context.debugDescription)"
-            case .typeMismatch(_, let context):
+            case let .typeMismatch(_, context):
                 return "decoding error: \(context.debugDescription)"
-            case .valueNotFound(_, let context):
+            case let .valueNotFound(_, context):
                 return "decoding error: \(context.debugDescription)"
             }
 
-        case .api(let error):
+        case let .api(error):
             return error.description
         }
     }
@@ -51,7 +50,6 @@ public enum OMGError: Error {
     public var localizedDescription: String {
         return self.message
     }
-
 }
 
 extension OMGError: CustomStringConvertible, CustomDebugStringConvertible {
@@ -60,21 +58,17 @@ extension OMGError: CustomStringConvertible, CustomDebugStringConvertible {
 }
 
 extension OMGError: LocalizedError {
-
     public var errorDescription: String? { return self.message }
-
 }
 
 extension OMGError: Equatable {
-
     public static func == (lhs: OMGError, rhs: OMGError) -> Bool {
         switch (lhs, rhs) {
-        case (.unexpected(message: let lhsMessage), .unexpected(message: let rhsMessage)): return lhsMessage == rhsMessage
-        case (.configuration(message: let lhsMessage), .configuration(message: let rhsMessage)): return lhsMessage == rhsMessage
-        case (.api(apiError: let lhsError), .api(apiError: let rhsError)): return lhsError == rhsError
-        case (.socketError(message: let lhsMessage), .socketError(message: let rhsMessage)): return lhsMessage == rhsMessage
+        case let (.unexpected(message: lhsMessage), .unexpected(message: rhsMessage)): return lhsMessage == rhsMessage
+        case let (.configuration(message: lhsMessage), .configuration(message: rhsMessage)): return lhsMessage == rhsMessage
+        case let (.api(apiError: lhsError), .api(apiError: rhsError)): return lhsError == rhsError
+        case let (.socketError(message: lhsMessage), .socketError(message: rhsMessage)): return lhsMessage == rhsMessage
         default: return false
         }
     }
-
 }

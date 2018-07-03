@@ -10,16 +10,13 @@ import BigInt
 
 /// Represents a balance of a token
 public struct Balance: Decodable {
-
     /// The token corresponding to the balance
     public let token: Token
     /// The total amount of token available
     public let amount: BigInt
-
 }
 
 extension Balance {
-
     /// Helper method that returns an easily readable value of the amount
     ///
     /// - Parameter precision: The decimal precision to give to the formatter
@@ -28,11 +25,9 @@ extension Balance {
     public func displayAmount(withPrecision precision: Int = 1000) -> String {
         return OMGNumberFormatter(precision: precision).string(from: self.amount, subunitToUnit: self.token.subUnitToUnit)
     }
-
 }
 
 extension Balance: Hashable {
-
     public var hashValue: Int {
         return self.token.hashValue ^ self.amount.hashValue
     }
@@ -40,5 +35,4 @@ extension Balance: Hashable {
     public static func == (lhs: Balance, rhs: Balance) -> Bool {
         return lhs.token == rhs.token && lhs.amount == rhs.amount
     }
-
 }

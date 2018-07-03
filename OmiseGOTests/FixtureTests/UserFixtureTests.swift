@@ -6,17 +6,16 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class UserFixtureTests: FixtureTestCase {
-
     func testGetCurrentUser() {
         let expectation = self.expectation(description: "Get current user")
-        let request = User.getCurrent(using: self.testClient) { (result) in
+        let request = User.getCurrent(using: self.testClient) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(let user):
+            case let .success(user):
                 XCTAssertEqual(user.id, "cec34607-0761-4a59-8357-18963e42a1aa")
                 XCTAssertEqual(user.providerUserId, "wijf-fbancomw-dqwjudb")
                 XCTAssertEqual(user.username, "john.doe@example.com")
@@ -42,12 +41,11 @@ class UserFixtureTests: FixtureTestCase {
                 XCTAssertTrue(user.encryptedMetadata.isEmpty)
                 XCTAssertEqual(user.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(user.updatedAt, "2018-01-01T00:00:00Z".toDate())
-            case .fail(let error):
+            case let .fail(error):
                 XCTFail("\(error)")
             }
         }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

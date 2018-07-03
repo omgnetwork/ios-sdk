@@ -6,18 +6,17 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class ListableTests: FixtureTestCase {
-
     func testListableFailure() {
         let expectation = self.expectation(description: "Fails to load the response for this dummy object")
-        ListableDummy.list(using: self.testClient) { (response) in
+        ListableDummy.list(using: self.testClient) { response in
             defer { expectation.fulfill() }
             switch response {
             case .success(data: _): XCTFail("Shouldn't succeed")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTAssertEqual(error.message, "error_message")
             }
         }
@@ -26,11 +25,11 @@ class ListableTests: FixtureTestCase {
 
     func testPaginatedListableFailure() {
         let expectation = self.expectation(description: "Fails to load the response for this paginated dummy object")
-        PaginatedListableDummy.list(using: self.testClient) { (response) in
+        PaginatedListableDummy.list(using: self.testClient) { response in
             defer { expectation.fulfill() }
             switch response {
             case .success(data: _): XCTFail("Shouldn't succeed")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTAssertEqual(error.message, "error_message")
             }
         }

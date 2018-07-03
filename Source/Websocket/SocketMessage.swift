@@ -7,7 +7,6 @@
 //
 
 class SocketMessage {
-
     let dataSent: SocketPayloadSend?
     var dataReceived: SocketPayloadReceive?
     private var errorHandler: ((APIError) -> Void)?
@@ -54,5 +53,4 @@ class SocketMessage {
             self.successHandler?(self.dataReceived?.data?.object)
         }
     }
-
 }

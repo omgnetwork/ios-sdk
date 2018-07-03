@@ -6,15 +6,13 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import UIKit
 @testable import OmiseGO
+import UIKit
 
 struct DummyTestObject: APIParameters, Decodable {
-
     func encodedPayload() -> Data? {
         return try? JSONEncoder().encode(self)
     }
 
     var object: String = ""
-
 }

@@ -28,7 +28,6 @@ public enum TransactionRequestStatus: String, Decodable {
 
 /// Represents a transaction request
 public struct TransactionRequest {
-
     /// The unique identifier of the request
     public let id: String
     /// The type of the request (send of receive)
@@ -76,7 +75,6 @@ public struct TransactionRequest {
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the request
     public let encryptedMetadata: [String: Any]
-
 }
 
 extension TransactionRequest: Listenable {}
@@ -84,7 +82,6 @@ extension TransactionRequest: Listenable {}
 extension TransactionRequest: QREncodable {}
 
 extension TransactionRequest: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -135,11 +132,9 @@ extension TransactionRequest: Decodable {
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
-
 }
 
 extension TransactionRequest: Retrievable {
-
     @discardableResult
     /// Generate a transaction request from the given TransactionRequestParams object
     ///
@@ -153,9 +148,9 @@ extension TransactionRequest: Retrievable {
                               params: TransactionRequestCreateParams,
                               callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
-            return self.retrieve(using: client,
-                                 endpoint: .transactionRequestCreate(params: params),
-                                 callback: callback)
+        return self.retrieve(using: client,
+                             endpoint: .transactionRequestCreate(params: params),
+                             callback: callback)
     }
 
     @discardableResult
@@ -171,16 +166,14 @@ extension TransactionRequest: Retrievable {
                            formattedId: String,
                            callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
-            let params = TransactionRequestGetParams(formattedId: formattedId)
-            return self.retrieve(using: client,
-                                 endpoint: .transactionRequestGet(params: params),
-                                 callback: callback)
+        let params = TransactionRequestGetParams(formattedId: formattedId)
+        return self.retrieve(using: client,
+                             endpoint: .transactionRequestGet(params: params),
+                             callback: callback)
     }
-
 }
 
 extension TransactionRequest: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -188,5 +181,4 @@ extension TransactionRequest: Hashable {
     public static func == (lhs: TransactionRequest, rhs: TransactionRequest) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

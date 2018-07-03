@@ -8,7 +8,6 @@
 
 /// Represents a configuration object used to setup an HTTPClient
 public struct ClientConfiguration {
-
     /// The current SDK version
     public let apiVersion: String = "1"
 
@@ -38,5 +37,4 @@ public struct ClientConfiguration {
         self.authenticationToken = authenticationToken
         self.debugLog = debugLog
     }
-
 }

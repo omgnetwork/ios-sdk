@@ -6,12 +6,11 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
-import Starscream
 @testable import OmiseGO
+import Starscream
+import XCTest
 
 class SocketClientTests: XCTestCase {
-
     var websocket: FixtureWebsocketClient!
     var socketClient: SocketClient!
 
@@ -79,5 +78,4 @@ class SocketClientTests: XCTestCase {
         self.websocket.simulateReply()
         XCTAssertFalse(self.websocket.isConnected)
     }
-
 }

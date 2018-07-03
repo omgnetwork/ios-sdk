@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class WalletTests: XCTestCase {
-
     func testEquatable() {
         let address1 = StubGenerator.wallet(address: "123")
         let address2 = StubGenerator.wallet(address: "123")
@@ -26,5 +25,4 @@ class WalletTests: XCTestCase {
         XCTAssertEqual(address1.hashValue, "123".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

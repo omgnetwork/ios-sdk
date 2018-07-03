@@ -6,21 +6,20 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class LogoutFixtureTests: FixtureTestCase {
-
     func testLogout() {
         let expectation = self.expectation(description: "Check if authentication token is invalidated")
         XCTAssertNotNil(self.testClient.config.authenticationToken)
         let client = self.testClient
-        let request = client.logout { (result) in
+        let request = client.logout { result in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: _):
                 XCTAssertNil(client.config.authenticationToken)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }
@@ -47,5 +46,4 @@ class LogoutFixtureTests: FixtureTestCase {
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
-
 }

@@ -7,16 +7,15 @@
 //
 
 enum SocketDispatcher {
-
     case user(handler: UserEventDelegate?)
     case transactionRequest(handler: TransactionRequestEventDelegate?)
     case transactionConsumption(handler: TransactionConsumptionEventDelegate?)
 
     var commonHandler: EventDelegate? {
         switch self {
-        case .user(let handler): return handler
-        case .transactionRequest(let handler): return handler
-        case .transactionConsumption(let handler): return handler
+        case let .user(handler): return handler
+        case let .transactionRequest(handler): return handler
+        case let .transactionConsumption(handler): return handler
         }
     }
 
@@ -34,20 +33,20 @@ enum SocketDispatcher {
 
     func dispatchPayload(_ payload: SocketPayloadReceive) {
         switch self {
-        case .user(let handler):
+        case let .user(handler):
             self.handleUserEvents(withHandler: handler, payload: payload)
-        case .transactionRequest(let handler):
+        case let .transactionRequest(handler):
             self.handleTransactionRequestEvents(withHandler: handler, payload: payload)
-        case .transactionConsumption(let handler):
+        case let .transactionConsumption(handler):
             self.handleTransactionConsumptionEvents(withHandler: handler, payload: payload)
         }
     }
 
     private func handleUserEvents(withHandler handler: UserEventDelegate?, payload: SocketPayloadReceive) {
         switch (payload.data?.object, payload.error) {
-        case (.transactionConsumption(object: let object)?, let error):
+        case let (.transactionConsumption(object: object)?, error):
             handler?.on(.transactionConsumption(object: object), error: error, forEvent: payload.event)
-        case (_, .some(let error)):
+        case let (_, .some(error)):
             self.dispatchError(error)
         default: break
         }
@@ -56,19 +55,19 @@ enum SocketDispatcher {
     private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventDelegate?,
                                                 payload: SocketPayloadReceive) {
         switch (payload.data?.object, payload.error, payload.event) {
-        case (.some(.transactionConsumption(object: let transactionConsumption)),
+        case (let .some(.transactionConsumption(object: transactionConsumption)),
               .none,
               .transactionConsumptionRequest):
             handler?.onTransactionConsumptionRequest(transactionConsumption)
-        case (.some(.transactionConsumption(object: let transactionConsumption)),
-              .some(let error),
+        case (let .some(.transactionConsumption(object: transactionConsumption)),
+              let .some(error),
               .transactionConsumptionFinalized):
             handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
-        case (.some(.transactionConsumption(object: let transactionConsumption)),
+        case (let .some(.transactionConsumption(object: transactionConsumption)),
               .none,
               .transactionConsumptionFinalized):
             handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
-        case (_, .some(let error), _):
+        case (_, let .some(error), _):
             self.dispatchError(error)
         default: break
         }
@@ -77,18 +76,17 @@ enum SocketDispatcher {
     private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventDelegate?,
                                                     payload: SocketPayloadReceive) {
         switch (payload.data?.object, payload.error, payload.event) {
-        case (.some(.transactionConsumption(object: let transactionConsumption)),
-              .some(let error),
+        case (let .some(.transactionConsumption(object: transactionConsumption)),
+              let .some(error),
               .transactionConsumptionFinalized):
             handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
-        case (.some(.transactionConsumption(object: let transactionConsumption)),
+        case (let .some(.transactionConsumption(object: transactionConsumption)),
               .none,
               .transactionConsumptionFinalized):
             handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
-        case (_, .some(let error), _):
+        case (_, let .some(error), _):
             self.dispatchError(error)
         default: break
         }
     }
-
 }

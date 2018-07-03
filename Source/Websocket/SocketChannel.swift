@@ -11,7 +11,6 @@ protocol SocketSendable: class {
 }
 
 struct SocketChannel {
-
     let topic: String
     private let dispatcher: SocketDispatcher?
     private weak var socket: SocketSendable?
@@ -23,7 +22,7 @@ struct SocketChannel {
     }
 
     func join() {
-        self.socket?.send(topic: topic, event: .join).onSuccess({ _ in
+        self.socket?.send(topic: self.topic, event: .join).onSuccess({ _ in
             self.dispatcher?.dispatchJoin()
         })
     }
@@ -39,5 +38,4 @@ struct SocketChannel {
         guard let payload = message.dataReceived else { return }
         self.dispatcher?.dispatchPayload(payload)
     }
-
 }

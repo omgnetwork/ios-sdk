@@ -8,7 +8,6 @@
 
 /// Represents the current user
 public struct User: Listenable {
-
     /// The unique identifier on the wallet server side
     public let id: String
     /// The user identifier on the provider server side
@@ -25,11 +24,9 @@ public struct User: Listenable {
     public let createdAt: Date
     /// The last update date of the user
     public let updatedAt: Date
-
 }
 
 extension User: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case providerUserId = "provider_user_id"
@@ -52,11 +49,9 @@ extension User: Decodable {
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
     }
-
 }
 
 extension User: Retrievable {
-
     @discardableResult
     /// Get the current user corresponding to the authentication token provided in the configuration
     ///
@@ -69,11 +64,9 @@ extension User: Retrievable {
                                   callback: @escaping User.RetrieveRequestCallback) -> User.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getCurrentUser, callback: callback)
     }
-
 }
 
 extension User: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -81,5 +74,4 @@ extension User: Hashable {
     public static func == (lhs: User, rhs: User) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

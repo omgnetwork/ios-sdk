@@ -6,15 +6,14 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class QRScannerViewModelTest: FixtureTestCase {
-
     func testCallsOnGetTransactionRequest() {
         let exp = expectation(description: "Calls onGetTransactionRequest when scanning a valid QRCode")
         let stub = QRScannerViewModel(client: self.testClient)
-        stub.onGetTransactionRequest = { (transactionRequest) in
+        stub.onGetTransactionRequest = { transactionRequest in
             defer { exp.fulfill() }
             XCTAssertNotNil(transactionRequest)
         }
@@ -26,7 +25,7 @@ class QRScannerViewModelTest: FixtureTestCase {
         let exp = expectation(description: "Doesn't call API with the same id twice if the previous call failed")
         let stub = QRScannerViewModel(client:
             HTTPClient(config: ClientConfiguration(baseURL: "", apiKey: "", authenticationToken: "")))
-        stub.onError = { (error) in
+        stub.onError = { error in
             defer { exp.fulfill() }
             XCTAssert(stub.loadedIds.contains("|123"))
             XCTAssertNotNil(error)
@@ -40,7 +39,7 @@ class QRScannerViewModelTest: FixtureTestCase {
         let exp = expectation(description: "Calls onGetTransactionRequest when scanning a valid QRCode")
         let stub = QRScannerViewModel(client: self.testClient)
         var counter = 0
-        stub.onLoadingStateChange = { (loading) in
+        stub.onLoadingStateChange = { loading in
             if counter == 0 {
                 XCTAssert(loading)
                 counter += 1
@@ -52,5 +51,4 @@ class QRScannerViewModelTest: FixtureTestCase {
         stub.loadTransactionRequest(withFormattedId: "|123")
         waitForExpectations(timeout: 1, handler: nil)
     }
-
 }

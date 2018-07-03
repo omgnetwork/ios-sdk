@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionRequestTest: XCTestCase {
-
     func testQRCodeImage() {
         let transactionRequest = StubGenerator.transactionRequest()
         if let qrImage = transactionRequest.qrImage() {
@@ -36,5 +35,4 @@ class TransactionRequestTest: XCTestCase {
         XCTAssertEqual(transactionRequest1.hashValue, "1".hashValue)
         XCTAssertEqual(set.count, 1)
     }
-
 }

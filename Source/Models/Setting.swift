@@ -8,14 +8,11 @@
 
 /// Represents the global settings of the provider
 public struct Setting: Decodable {
-
     /// An array of tokens available for the provider
     public let tokens: [Token]
-
 }
 
 extension Setting: Retrievable {
-
     @discardableResult
     /// Get the global settings of the provider
     ///
@@ -28,5 +25,4 @@ extension Setting: Retrievable {
                            callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: .getSettings, callback: callback)
     }
-
 }

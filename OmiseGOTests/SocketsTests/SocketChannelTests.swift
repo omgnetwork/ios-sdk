@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class DummySendable: SocketSendable {
-
     var topic: String?
     var event: SocketEventSend?
     var didSend: Bool = false
@@ -30,11 +29,9 @@ class DummySendable: SocketSendable {
     func triggerEvents(withPayload payload: SocketPayloadReceive) {
         self.message.handleResponse(withPayload: payload)
     }
-
 }
 
 class SocketChannelTests: XCTestCase {
-
     var socketChannel: SocketChannel!
     var sendable: DummySendable!
     var delegate: DummySocketEventDelegate!
@@ -109,7 +106,7 @@ class SocketChannelTests: XCTestCase {
         self.socketChannel.dispatchEvents(forMessage: message)
         XCTAssertNotNil(self.delegate.didReceiveObject)
         switch self.delegate.didReceiveObject! {
-        case .transactionConsumption(object: let transactionConsumption): XCTAssertNotNil(transactionConsumption)
+        case let .transactionConsumption(object: transactionConsumption): XCTAssertNotNil(transactionConsumption)
         }
     }
 
@@ -133,5 +130,4 @@ class SocketChannelTests: XCTestCase {
     private func successPayload() -> SocketPayloadReceive {
         return StubGenerator.socketPayloadReceive()
     }
-
 }

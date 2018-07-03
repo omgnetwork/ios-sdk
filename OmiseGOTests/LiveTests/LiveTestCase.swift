@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import XCTest
 import OmiseGO
+import XCTest
 
 class LiveTestCase: XCTestCase {
-
     private static let OMG_BASE_URL = "OMG_BASE_URL"
     private static let OMG_WEBSOCKET_URL = "OMG_WEBSOCKET_URL"
     private static let OMG_API_KEY = "OMG_API_KEY"
@@ -47,15 +46,15 @@ class LiveTestCase: XCTestCase {
     var testSocketClient: SocketClient!
 
     private func validHTTPConfig() -> ClientConfiguration {
-        return ClientConfiguration(baseURL: validBaseURL,
-                                   apiKey: validAPIKey,
-                                   authenticationToken: validAuthenticationToken)
+        return ClientConfiguration(baseURL: self.validBaseURL,
+                                   apiKey: self.validAPIKey,
+                                   authenticationToken: self.validAuthenticationToken)
     }
 
     private func validSocketConfig() -> ClientConfiguration {
-        return ClientConfiguration(baseURL: validWebsocketURL,
-                                   apiKey: validAPIKey,
-                                   authenticationToken: validAuthenticationToken)
+        return ClientConfiguration(baseURL: self.validWebsocketURL,
+                                   apiKey: self.validAPIKey,
+                                   authenticationToken: self.validAuthenticationToken)
     }
 
     func areKeysValid() -> Bool {
@@ -111,5 +110,4 @@ class LiveTestCase: XCTestCase {
         guard let path = Bundle(for: LiveTestCase.self).path(forResource: "secret", ofType: "plist") else { return nil }
         return NSDictionary(contentsOfFile: path) as? [String: String]
     }
-
 }

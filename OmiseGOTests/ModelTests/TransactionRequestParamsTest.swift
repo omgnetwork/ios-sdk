@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionRequestParamsTest: XCTestCase {
-
     func testInitCorrectlyWithAmountAndWithoutAllowingAmountOverride() {
         let transactionRequestParams =
             TransactionRequestCreateParams(type: .receive,
@@ -61,5 +60,4 @@ class TransactionRequestParamsTest: XCTestCase {
                                            metadata: [:])
         XCTAssertNil(transactionRequestParams)
     }
-
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 struct QRTestHelper {
-
     static func readQRCode(fromImage image: UIImage) -> String {
         let detector: CIDetector = CIDetector(ofType: CIDetectorTypeQRCode,
                                               context: nil,
@@ -21,5 +20,4 @@ struct QRTestHelper {
         }
         return result
     }
-
 }

@@ -9,13 +9,12 @@
 import UIKit
 
 class QRScannerLoadingView: UIView {
-
     lazy var loadingSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spinner)
-        [NSLayoutAttribute.centerX, NSLayoutAttribute.centerY].forEach({ (attribute) in
+        [NSLayoutAttribute.centerX, NSLayoutAttribute.centerY].forEach({ attribute in
             self.addConstraint(NSLayoutConstraint(item: spinner,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -44,5 +43,4 @@ class QRScannerLoadingView: UIView {
     func hideLoading() {
         self.loadingSpinner.stopAnimating()
     }
-
 }

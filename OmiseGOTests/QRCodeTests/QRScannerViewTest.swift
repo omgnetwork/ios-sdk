@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class QRScannerViewTest: XCTestCase {
-
     func testInitWithCoder() {
         XCTAssertNil(QRScannerView(coder: NSCoder()))
     }
@@ -41,5 +40,4 @@ class QRScannerViewTest: XCTestCase {
         XCTAssertTrue(view.subviews.contains(view.overlayView))
         XCTAssertTrue(view.subviews.contains(view.cancelButton))
     }
-
 }

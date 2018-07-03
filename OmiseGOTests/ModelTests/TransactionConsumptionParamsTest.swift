@@ -6,13 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OmiseGO
+import XCTest
 
 class TransactionConsumptionParamsTest: XCTestCase {
-
     func testInitCorrectlyWhenGivenAnAmountFromATransactionRequest() {
-
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
         XCTAssertNotNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                      address: nil,
@@ -77,11 +75,11 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     metadata: [:],
                                                     encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
-                                              address: nil,
-                                              amount: 3000,
-                                              idempotencyToken: "123",
-                                              correlationId: nil,
-                                              metadata: [:])!
+                                                  address: nil,
+                                                  amount: 3000,
+                                                  idempotencyToken: "123",
+                                                  correlationId: nil,
+                                                  metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
 

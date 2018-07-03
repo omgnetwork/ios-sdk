@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import UIKit
 @testable import OmiseGO
+import UIKit
 
 struct MetadataDummy: Decodable, APIParameters {
-
     let metadata: [String: Any]?
     let metadataArray: [Any]?
     let optionalMetadata: [String: Any]?
@@ -45,25 +44,25 @@ struct MetadataDummy: Decodable, APIParameters {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
+        do { self.metadata = try container.decode([String: Any].self, forKey: .metadata) } catch { self.metadata = [:] }
         do {
-            metadataArray = try container.decode([Any].self, forKey: .metadataArray)
-        } catch { metadataArray = nil }
+            self.metadataArray = try container.decode([Any].self, forKey: .metadataArray)
+        } catch { self.metadataArray = nil }
         do {
-            optionalMetadata = try container.decodeIfPresent([String: Any].self, forKey: .optionalMetadata)
+            self.optionalMetadata = try container.decodeIfPresent([String: Any].self, forKey: .optionalMetadata)
 
-        } catch { optionalMetadata = nil }
+        } catch { self.optionalMetadata = nil }
         do {
-            optionalMetadataArray = try container.decodeIfPresent([Any].self, forKey: .optionalMetadataArray)
+            self.optionalMetadataArray = try container.decodeIfPresent([Any].self, forKey: .optionalMetadataArray)
 
-        } catch { optionalMetadataArray = nil }
+        } catch { self.optionalMetadataArray = nil }
         do {
-            unavailableMetadata = try container.decodeIfPresent([String: Any].self, forKey: .unavailableMetadata)
+            self.unavailableMetadata = try container.decodeIfPresent([String: Any].self, forKey: .unavailableMetadata)
 
-        } catch { unavailableMetadata = nil }
+        } catch { self.unavailableMetadata = nil }
         do {
-            unavailableMetadataArray = try container.decodeIfPresent([Any].self, forKey: .unavailableMetadataArray)
-        } catch { unavailableMetadataArray = nil }
+            self.unavailableMetadataArray = try container.decodeIfPresent([Any].self, forKey: .unavailableMetadataArray)
+        } catch { self.unavailableMetadataArray = nil }
     }
 
     func encode(to encoder: Encoder) throws {
@@ -75,5 +74,4 @@ struct MetadataDummy: Decodable, APIParameters {
         try container.encodeIfPresent(unavailableMetadata, forKey: .unavailableMetadata)
         try container.encodeIfPresent(unavailableMetadataArray, forKey: .unavailableMetadataArray)
     }
-
 }

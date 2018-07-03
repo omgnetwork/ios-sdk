@@ -10,7 +10,6 @@ import BigInt
 
 /// Represents a token
 public struct Token {
-
     /// The id of the token
     public let id: String
     /// The symbol of the token
@@ -28,11 +27,9 @@ public struct Token {
     public let createdAt: Date
     /// The last update date of the token
     public let updatedAt: Date
-
 }
 
 extension Token: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case id
         case symbol
@@ -55,11 +52,9 @@ extension Token: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
-
 }
 
 extension Token: Hashable {
-
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -67,5 +62,4 @@ extension Token: Hashable {
     public static func == (lhs: Token, rhs: Token) -> Bool {
         return lhs.id == rhs.id
     }
-
 }

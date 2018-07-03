@@ -28,7 +28,6 @@ public protocol Searchable {
 
 /// Represents a structure used to query and filter a list
 public struct PaginationParams<T: Paginable> {
-
     /// The page requested (0 and 1 are the same)
     public let page: Int
     /// The number of result expected per page
@@ -87,11 +86,9 @@ public struct PaginationParams<T: Paginable> {
                 sortDirection: SortDirection) {
         self.init(page: page, perPage: perPage, searchTerm: nil, searchTerms: searchTerms, sortBy: sortBy, sortDirection: sortDirection)
     }
-
 }
 
 extension PaginationParams: APIParameters {
-
     enum CodingKeys: String, CodingKey {
         case page
         case perPage = "per_page"
@@ -110,17 +107,16 @@ extension PaginationParams: APIParameters {
             try container.encode(searchTerms, forKey: .searchTerms)
         } else {
             try container.encodeIfPresent(self.encodableSearchTerms(), forKey: .searchTerms)
-            try container.encodeIfPresent(searchTerm, forKey: .searchTerm)
+            try container.encodeIfPresent(self.searchTerm, forKey: .searchTerm)
         }
-        try container.encode(sortBy, forKey: .sortBy)
-        try container.encode(sortDirection, forKey: .sortDirection)
+        try container.encode(self.sortBy, forKey: .sortBy)
+        try container.encode(self.sortDirection, forKey: .sortDirection)
     }
 
     private func encodableSearchTerms() -> [String: Any]? {
         guard let searchTerms = self.searchTerms else { return nil }
         var formattedSearchParams: [String: Any] = [:]
-        searchTerms.forEach({formattedSearchParams[$0.key.rawValue] = $0.value})
+        searchTerms.forEach({ formattedSearchParams[$0.key.rawValue] = $0.value })
         return formattedSearchParams
     }
-
 }

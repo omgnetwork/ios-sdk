@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionRequestLiveTests: LiveTestCase {
-
     override func setUp() {
         super.setUp()
     }
@@ -119,11 +118,9 @@ class TransactionRequestLiveTests: LiveTestCase {
         }
         XCTAssertEqual(error.code, .channelNotFound)
     }
-
 }
 
 extension TransactionRequestLiveTests {
-
     func generateTransactionRequest(creationCorrelationId: String, requiresConfirmation: Bool) -> TransactionRequest? {
         let generateExpectation = self.expectation(description: "Generate transaction request")
         let transactionRequestParams = TransactionRequestCreateParams(
@@ -142,18 +139,18 @@ extension TransactionRequestLiveTests {
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.create(
             using: self.testClient,
-            params: transactionRequestParams) { (result) in
-                defer { generateExpectation.fulfill() }
-                switch result {
-                case .success(data: let transactionRequest):
-                    transactionRequestResult = transactionRequest
-                    XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
-                    XCTAssertEqual(transactionRequest.amount, 1)
-                    XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
-                    XCTAssertEqual(transactionRequest.maxConsumptionsPerUser, 5)
-                case .fail(error: let error):
-                    XCTFail("\(error)")
-                }
+            params: transactionRequestParams) { result in
+            defer { generateExpectation.fulfill() }
+            switch result {
+            case let .success(data: transactionRequest):
+                transactionRequestResult = transactionRequest
+                XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
+                XCTAssertEqual(transactionRequest.amount, 1)
+                XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
+                XCTAssertEqual(transactionRequest.maxConsumptionsPerUser, 5)
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            }
         }
         XCTAssertNotNil(generateRequest)
         wait(for: [generateExpectation], timeout: 15.0)
@@ -165,18 +162,18 @@ extension TransactionRequestLiveTests {
         let getExpectation = self.expectation(description: "Get transaction request")
         let getRequest = TransactionRequest.get(
             using: self.testClient,
-            formattedId: formattedId) { (result) in
-                defer { getExpectation.fulfill() }
-                switch result {
-                case .success(data: let transactionRequest):
-                    transactionRequestResult = transactionRequest
-                    XCTAssertEqual(transactionRequest.formattedId, formattedId)
-                    XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
-                    XCTAssertEqual(transactionRequest.amount, 1)
-                    XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
-                case .fail(error: let error):
-                    XCTFail("\(error)")
-                }
+            formattedId: formattedId) { result in
+            defer { getExpectation.fulfill() }
+            switch result {
+            case let .success(data: transactionRequest):
+                transactionRequestResult = transactionRequest
+                XCTAssertEqual(transactionRequest.formattedId, formattedId)
+                XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
+                XCTAssertEqual(transactionRequest.amount, 1)
+                XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            }
         }
         XCTAssertNotNil(getRequest)
         wait(for: [getExpectation], timeout: 15.0)
@@ -196,36 +193,36 @@ extension TransactionRequestLiveTests {
         var transactionConsumptionResult: TransactionConsumption?
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,
-            params: transactionConsumptionParams!) { (result) in
-                defer { consumeExpectation.fulfill() }
-                switch result {
-                case .success(data: let transactionConsumption):
-                    if transactionRequest.requireConfirmation {
-                        transactionConsumptionResult = transactionConsumption
-                        let token = transactionConsumption.token
-                        XCTAssertEqual(token.id, self.validTokenId)
-                        XCTAssertNil(transactionConsumption.amount)
-                        XCTAssertNil(transactionConsumption.finalizedRequestAmount)
-                        XCTAssertNil(transactionConsumption.finalizedConsumptionAmount)
-                        XCTAssertEqual(transactionConsumption.estimatedRequestAmount, 1)
-                        XCTAssertEqual(transactionConsumption.estimatedConsumptionAmount, 1)
-                        XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
-                        XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)
-                        XCTAssertEqual(transactionConsumption.transactionRequest.id, transactionRequest.id)
-                        XCTAssertEqual(transactionConsumption.status, .pending)
-                    } else {
-                        XCTFail("Should raise a same address error")
-                    }
-                case .fail(error: let error):
-                    if transactionRequest.requireConfirmation {
-                        XCTFail("\(error)")
-                    } else {
-                        switch error {
-                        case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
-                        default: XCTFail("Expected to receive same_address error")
-                        }
+            params: transactionConsumptionParams!) { result in
+            defer { consumeExpectation.fulfill() }
+            switch result {
+            case let .success(data: transactionConsumption):
+                if transactionRequest.requireConfirmation {
+                    transactionConsumptionResult = transactionConsumption
+                    let token = transactionConsumption.token
+                    XCTAssertEqual(token.id, self.validTokenId)
+                    XCTAssertNil(transactionConsumption.amount)
+                    XCTAssertNil(transactionConsumption.finalizedRequestAmount)
+                    XCTAssertNil(transactionConsumption.finalizedConsumptionAmount)
+                    XCTAssertEqual(transactionConsumption.estimatedRequestAmount, 1)
+                    XCTAssertEqual(transactionConsumption.estimatedConsumptionAmount, 1)
+                    XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
+                    XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)
+                    XCTAssertEqual(transactionConsumption.transactionRequest.id, transactionRequest.id)
+                    XCTAssertEqual(transactionConsumption.status, .pending)
+                } else {
+                    XCTFail("Should raise a same address error")
+                }
+            case let .fail(error: error):
+                if transactionRequest.requireConfirmation {
+                    XCTFail("\(error)")
+                } else {
+                    switch error {
+                    case let .api(apiError: apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
+                    default: XCTFail("Expected to receive same_address error")
                     }
                 }
+            }
         }
         XCTAssertNotNil(consumeRequest)
         wait(for: [consumeExpectation], timeout: 15.0)
@@ -273,14 +270,14 @@ extension TransactionRequestLiveTests {
 
     func confirmConsumption(withConsumption transactionConsumption: TransactionConsumption) {
         let confirmExpectation = self.expectation(description: "Confirm consumption request")
-        let confirmationRequest = transactionConsumption.approve(using: self.testClient) { (result) in
+        let confirmationRequest = transactionConsumption.approve(using: self.testClient) { result in
             defer { confirmExpectation.fulfill() }
             switch result {
             case .success:
                 XCTFail("Shouldn't succeed as we're trying to transfer between the same address")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 switch error {
-                case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
+                case let .api(apiError: apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
                 default: XCTFail("Expected to receive same_address error")
                 }
             }
@@ -291,19 +288,17 @@ extension TransactionRequestLiveTests {
 
     func rejectConsumption(withConsumption transactionConsumption: TransactionConsumption) {
         let rejectExpectation = self.expectation(description: "Confirm consumption request")
-        let rejectRequest = transactionConsumption.reject(using: self.testClient) { (result) in
+        let rejectRequest = transactionConsumption.reject(using: self.testClient) { result in
             defer { rejectExpectation.fulfill() }
             switch result {
-            case .success(data: let transactionConsumption):
+            case let .success(data: transactionConsumption):
                 XCTAssertEqual(transactionConsumption.status, .rejected)
                 XCTAssertNotNil(transactionConsumption.rejectedAt)
             case .fail:
                 XCTFail("Shouldn't receive error")
-
             }
         }
         XCTAssertNotNil(rejectRequest)
         wait(for: [rejectExpectation], timeout: 15.0)
     }
-
 }
