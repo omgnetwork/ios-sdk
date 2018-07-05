@@ -295,9 +295,9 @@ let params = TransactionCreateParams(fromAddress: "1e3982f5-4a27-498d-a91b-7bb2e
 Transaction.create(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):
-       // TODO: Do something with the transaction
+        // TODO: Do something with the transaction
    case .fail(error: let error):
-       XCTFail("\(error)")
+        //TODO: Handle the error
    }
 }
 ```
@@ -359,13 +359,13 @@ Where:
 The previously created `transactionRequest` can then be consumed:
 
 ```swift
-guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
-                                                address: "an address",
-                                                amount: 1337,
-                                                idempotencyToken: "an idempotency token",
-                                                correlationId: "a correlation id",
-                                                metadata: [:],
-                                                encryptedMetadata: [:])!
+let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
+                                          address: "an address",
+                                          amount: 1337,
+                                          idempotencyToken: "an idempotency token",
+                                          correlationId: "a correlation id",
+                                          metadata: [:],
+                                          encryptedMetadata: [:])!
 TransactionConsumption.consumeTransactionRequest(using: client, params: params) { (transactionConsumptionResult) in
     switch transactionConsumptionResult {
     case .success(data: let transactionConsumption):
@@ -475,7 +475,7 @@ let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/socket
                                         apiKey: "apiKey",
                                         authenticationToken: "authenticationToken",
                                         debugLog: false)
-let client = SocketClient(config: configuration, delegate: self)
+let socketClient = SocketClient(config: configuration, delegate: self)
 ```
 
 Where:
@@ -507,7 +507,7 @@ And for each of the listenable resource there is an other specific method to rec
 
 When creating a `TransactionRequest` that requires a confirmation it is possible to listen for all incoming confirmation using:
 
-`transactionRequest.startListeningEvents(withClient: client, eventDelegate: self)`
+`transactionRequest.startListeningEvents(withClient: socketClient, eventDelegate: self)`
 
 Where:
 - `client` is a `SocketClient`
@@ -533,7 +533,7 @@ This method will be called if a `TransactionConsumption` fails to consume the re
 
 Similarly to transaction request events, a `TransactionConsumption` can be listened for incoming confirmations using:
 
-`consumption.startListeningEvents(withClient: client, eventDelegate: self)`
+`consumption.startListeningEvents(withClient: socketClient, eventDelegate: self)`
 
 Where:
 - `client` is a `SocketClient`
@@ -553,7 +553,7 @@ This method will be called if the `TransactionConsumption` fails to consume the 
 
 A `User` can also be listened and will receive all events that are related to him:
 
-`user.startListeningEvents(withClient: self.socketClient, eventDelegate: self)`
+`user.startListeningEvents(withClient: socketClient, eventDelegate: self)`
 
 Where:
 - `client` is a `SocketClient`
@@ -566,7 +566,7 @@ This method will be called when any event regarding the user is received. `Webso
 
 #### Stop listening for events
 
-When you don't need to receive events anymore, you should call `stopListening(withClient client: SocketClient)` for the corresponding `Listenable` object. This will leave the corresponding socket channel and close the connection if no other channel is active.
+When you don't need to receive events anymore, you should call `stopListening(withClient client: socketClient)` for the corresponding `Listenable` object. This will leave the corresponding socket channel and close the connection if no other channel is active.
 
 ---
 

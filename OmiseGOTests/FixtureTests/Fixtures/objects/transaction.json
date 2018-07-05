@@ -47,5 +47,7 @@
   "status": "confirmed",
   "metadata": {},
   "encrypted_metadata": {},
-  "created_at": "2018-01-01T00:00:00Z"
+  "created_at": "2018-01-01T00:00:00Z",
+  "error_code": null,
+  "error_description": null
 }

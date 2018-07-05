@@ -11,7 +11,7 @@ public struct Account {
     /// The unique identifier of the account
     public let id: String
     /// The id of the parent account
-    public let parentId: String
+    public let parentId: String?
     /// The name of the account
     public let name: String
     /// The description of the account
@@ -47,7 +47,7 @@ extension Account: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        parentId = try container.decode(String.self, forKey: .parentId)
+        parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
         name = try container.decode(String.self, forKey: .name)
         description = try container.decode(String.self, forKey: .description)
         isMaster = try container.decode(Bool.self, forKey: .isMaster)
