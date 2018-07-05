@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import XCTest
 import OmiseGO
+import XCTest
 
 class TransactionFixtureTests: FixtureTestCase {
-
-    //swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length
     func testGetListOfTransactions() {
         let expectation =
             self.expectation(description: "Get the list of transactions for the current user")
@@ -23,10 +22,10 @@ class TransactionFixtureTests: FixtureTestCase {
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
 
         let request =
-            Transaction.list(using: self.testClient, params: params) { (result) in
+            Transaction.list(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }
                 switch result {
-                case .success(data: let paginatedList):
+                case let .success(data: paginatedList):
                     let transactions = paginatedList.data
                     let transaction = transactions.first!
                     XCTAssertEqual(transaction.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
@@ -50,10 +49,10 @@ class TransactionFixtureTests: FixtureTestCase {
                     XCTAssertTrue(transaction.metadata.isEmpty)
                     XCTAssertTrue(transaction.encryptedMetadata.isEmpty)
                     XCTAssertEqual(transaction.createdAt, "2018-01-01T00:00:00Z".toDate())
-                case .fail(error: let error):
+                case let .fail(error: error):
                     XCTFail("\(error)")
                 }
-        }
+            }
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
@@ -65,10 +64,10 @@ class TransactionFixtureTests: FixtureTestCase {
                                              amount: 1000,
                                              tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                              idempotencyToken: "123")
-        let request = Transaction.create(using: self.testClient, params: params) { (result) in
+        let request = Transaction.create(using: self.testClient, params: params) { result in
             defer { expectation.fulfill() }
             switch result {
-            case .success(data: let transaction):
+            case let .success(data: transaction):
                 XCTAssertEqual(transaction.id, "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
                 let from = transaction.from
                 XCTAssertEqual(from.address, "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
@@ -90,7 +89,7 @@ class TransactionFixtureTests: FixtureTestCase {
                 XCTAssertTrue(transaction.metadata.isEmpty)
                 XCTAssertTrue(transaction.encryptedMetadata.isEmpty)
                 XCTAssertEqual(transaction.createdAt, "2018-01-01T00:00:00Z".toDate())
-            case .fail(error: let error):
+            case let .fail(error: error):
                 XCTFail("\(error)")
             }
         }

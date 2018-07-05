@@ -48,6 +48,6 @@
   "metadata": {},
   "encrypted_metadata": {},
   "created_at": "2018-01-01T00:00:00Z",
-  "error_code": null,
-  "error_description": null
+  "error_code": "transaction:same_address",
+  "error_description": "Same address"
 }

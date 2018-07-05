@@ -35,10 +35,8 @@ public struct Transaction {
     public let encryptedMetadata: [String: Any]
     /// The creation date of the transaction
     public let createdAt: Date
-    /// An error code if the transaction encountered an error
-    public let errorCode: String?
-    /// The description of the encountered error
-    public let errorDescription: String?
+    /// An APIError object if the transaction encountered an error
+    public let error: APIError?
 }
 
 extension Transaction: Decodable {
@@ -65,8 +63,12 @@ extension Transaction: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
-        errorCode = try container.decodeIfPresent(String.self, forKey: .errorCode)
-        errorDescription = try container.decodeIfPresent(String.self, forKey: .errorDescription)
+        if let code = try container.decodeIfPresent(APIErrorCode.self, forKey: .errorCode),
+            let description = try container.decodeIfPresent(String.self, forKey: .errorDescription) {
+            self.error = APIError(code: code, description: description)
+        } else {
+            self.error = nil
+        }
     }
 }
 

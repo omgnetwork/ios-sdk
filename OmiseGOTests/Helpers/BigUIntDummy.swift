@@ -6,8 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-@testable import OmiseGO
 import BigInt
+@testable import OmiseGO
 
 struct BigIntDummy {
     let value: BigInt

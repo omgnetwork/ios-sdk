@@ -26,7 +26,7 @@ enum HTTPTask {
     /// nil if tasks do not require any parameters
     public var parameters: APIParameters? {
         switch self {
-        case .requestParameters(let parameters):
+        case let .requestParameters(parameters):
             return parameters
         case .requestPlain:
             return nil

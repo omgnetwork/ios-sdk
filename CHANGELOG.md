@@ -7,10 +7,19 @@ All notable changes to this project will be documented in this file.
   - [0.10.0](#0100)
   - [0.10.1](#0101)
   - [0.10.2](#0102)
+  - [0.10.3](#0103)
 
 
 - `0.9.x` Betas
   - [0.9.11](#0911)
+
+---
+## [0.10.3](https://github.com/omisego/ios-sdk/releases/tag/0.10.3)
+Released on 2018-7-5. All issues associated with this milestone can be found using this [filter](https://github.com/omisego/ios-sdk/issues?utf8=%E2%9C%93&q=milestone%3A0.10.3).
+
+#### Added
+- error parameter for transaction.
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#67](https://github.com/omisego/ios-sdk/pull/67)
 
 ---
 ## [0.10.2](https://github.com/omisego/ios-sdk/releases/tag/0.10.2)

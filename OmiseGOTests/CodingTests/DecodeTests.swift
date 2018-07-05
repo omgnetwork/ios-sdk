@@ -444,8 +444,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
-            XCTAssertNil(decodedData.errorCode)
-            XCTAssertNil(decodedData.errorDescription)
+            XCTAssertEqual(decodedData.error!.code, .transactionSameAddress)
+            XCTAssertEqual(decodedData.error!.description, "Same address")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
