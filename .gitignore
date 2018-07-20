@@ -87,4 +87,5 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-OmiseGO.framework
+## Jazzy generated doc
+docs/

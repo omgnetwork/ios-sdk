@@ -72,6 +72,14 @@ public struct TransactionConsumption {
     public let failedAt: Date?
     /// The date when the consumption expired
     public let expiredAt: Date?
+    /// The id of the exchange account to use for exchanging the funds (if any exchange)
+    public let exchangeAccountId: String?
+    /// The address of the wallet to use for exchanging the funds (if any exchange)
+    public let exchangeWalletAddress: String?
+    /// The account used for exchanging the funds
+    public let exchangeAccount: Account?
+    /// The wallet used for exchanging the funds
+    public let exchangeWallet: Wallet?
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the consumption
@@ -107,6 +115,10 @@ extension TransactionConsumption: Decodable {
         case expiredAt = "expired_at"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
+        case exchangeAccountId = "exchange_account_id"
+        case exchangeWalletAddress = "exchange_wallet_address"
+        case exchangeAccount = "exchange_account"
+        case exchangeWallet = "exchange_wallet"
     }
 
     public init(from decoder: Decoder) throws {
@@ -136,6 +148,10 @@ extension TransactionConsumption: Decodable {
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
+        exchangeAccountId = try container.decodeIfPresent(String.self, forKey: .exchangeAccountId)
+        exchangeWalletAddress = try container.decodeIfPresent(String.self, forKey: .exchangeWalletAddress)
+        exchangeAccount = try container.decodeIfPresent(Account.self, forKey: .exchangeAccount)
+        exchangeWallet = try container.decodeIfPresent(Wallet.self, forKey: .exchangeWallet)
     }
 }
 

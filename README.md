@@ -76,7 +76,7 @@ pod 'OmiseGO'
 Alternatively you can also specify a version ([read more about the Podfile] (https://guides.cocoapods.org/using/the-podfile.html)):
 
 ```ruby
-pod 'OmiseGO', '~> 0.10'
+pod 'OmiseGO', '~> 1.0'
 ```
 
 Then, run the following command:
@@ -123,7 +123,7 @@ Before using the SDK to retrieve a resource, you need to initialize an `HTTPClie
 You should do this as soon as you obtain a valid authentication token corresponding to the current user from the Wallet API.
 
 ```swift
-let configuration = ClientConfiguration(baseURL: "https://your.base.url/api",
+let configuration = ClientConfiguration(baseURL: "https://your.base.url/api/client",
                                         apiKey: "apiKey",
                                         authenticationToken: "authenticationToken",
                                         debugLog: false)
@@ -471,7 +471,7 @@ This section describes the use of the socket client in order to listen for event
 Similarly to the HTTP client, the `SocketClient` needs to be first initialized  with a `ClientConfiguration` before using it. The initializer takes an optional `SocketConnectionDelegate` delegate which can be used to listen for connection change events (connection and disconnection).
 
 ```swift
-let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/socket",
+let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/client/socket",
                                         apiKey: "apiKey",
                                         authenticationToken: "authenticationToken",
                                         debugLog: false)
@@ -585,7 +585,7 @@ The variables are:
 
 You can then for example run the tests with the following command:
 
-`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/socket" test`
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api/client" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/client/socket" test`
 
 
 ---

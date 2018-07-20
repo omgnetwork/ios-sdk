@@ -91,6 +91,10 @@
     "expired_at": null,
     "created_at": "2018-01-01T00:00:00Z",
     "metadata": {},
-    "encrypted_metadata": {}
+    "encrypted_metadata": {},
+    "exchange_account_id": null,
+    "exchange_account": null,
+    "exchange_wallet_address": null,
+    "exchange_wallet": null
   }
 }

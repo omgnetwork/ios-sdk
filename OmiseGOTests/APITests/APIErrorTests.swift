@@ -16,15 +16,15 @@ class APIErrorTests: XCTestCase {
     }
 
     func testIsAuthorizationError() {
-        XCTAssertTrue(APIError(code: .accessTokenExpired, description: "").isAuthorizationError())
+        XCTAssertTrue(APIError(code: .authenticationTokenExpired, description: "").isAuthorizationError())
         XCTAssertTrue(APIError(code: .authenticationTokenNotFound, description: "").isAuthorizationError())
         XCTAssertTrue(APIError(code: .invalidAPIKey, description: "").isAuthorizationError())
         XCTAssertFalse(APIError(code: .unknownServerError, description: "").isAuthorizationError())
     }
 
     func testDebugDescription() {
-        let error = APIError(code: .accessTokenExpired, description: "description")
-        XCTAssertEqual(error.debugDescription, "Error: accessTokenExpired description")
+        let error = APIError(code: .authenticationTokenExpired, description: "description")
+        XCTAssertEqual(error.debugDescription, "Error: authenticationTokenExpired description")
     }
 }
 
@@ -48,8 +48,8 @@ class APIErrorCodeTests: XCTestCase {
 
         XCTAssertEqual(APIErrorCode(rawValue: "user:auth_token_not_found"),
                        APIErrorCode.authenticationTokenNotFound)
-        XCTAssertEqual(APIErrorCode(rawValue: "user:access_token_expired"),
-                       APIErrorCode.accessTokenExpired)
+        XCTAssertEqual(APIErrorCode(rawValue: "user:auth_token_expired"),
+                       APIErrorCode.authenticationTokenExpired)
         XCTAssertEqual(APIErrorCode(rawValue: "user:from_address_not_found"),
                        APIErrorCode.fromAddressNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "user:from_address_mismatch"),

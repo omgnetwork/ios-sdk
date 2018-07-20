@@ -20,11 +20,25 @@ public final class OMGNumberFormatter {
         self.maxFractionDigits = precision
     }
 
+    /// Create a BigInt number given a string number and a subunitToUnit
+    ///
+    /// - Parameters:
+    ///   - string: The string number to process. If invalid, this function returns nil.
+    ///   - subunitToUnit: The subunit to unit to be used to generate the number.
+    /// - Returns: A formatted BigInt number.
+    /// - ie: Given string: 13.37 and subunitToUnit: 100 will return a number equivalent to 1337.
     public func number(from string: String, subunitToUnit: BigInt) -> BigInt? {
         let decimals = Int(log10(Double(subunitToUnit)))
         return self.number(from: string, decimals: decimals)
     }
 
+    /// Create a BigInt number given a string number and a decimal count
+    ///
+    /// - Parameters:
+    ///   - string: The string number to process. If invalid, this function returns nil.
+    ///   - decimals: The amount of decimal of the number
+    /// - Returns: A formatted BigInt number.
+    /// - ie: Given string: 13.37 and decimals: 2 will return a number equivalent to 1337.
     public func number(from string: String, decimals: Int) -> BigInt? {
         guard string != "" else { return nil }
         guard let index = string.index(where: { String($0) == decimalSeparator }) else {
@@ -49,11 +63,25 @@ public final class OMGNumberFormatter {
         }
     }
 
+    /// Generate a string representation of the given number and subunit to unit.
+    ///
+    /// - Parameters:
+    ///   - number: The BigInt number to format
+    ///   - subunitToUnit: The subunit to unit of the number
+    /// - Returns: A string representation of the number.
+    /// - ie: Given number: BigInt(1337) and subunitToUnit: 100 will return the string: "13.37"
     public func string(from number: BigInt, subunitToUnit: BigInt) -> String {
         let decimals = Int(log10(Double(subunitToUnit)))
         return self.string(from: number, decimals: decimals)
     }
 
+    /// Generate a string representation of the given number and decimal count
+    ///
+    /// - Parameters:
+    ///   - number: The BigInt number to format
+    ///   - decimals: The amount of decimals of the number
+    /// - Returns: A string representation of the number.
+    /// - ie: Given number: BigInt(1337) and subunitToUnit: 100 will return the string: "13.37"
     public func string(from number: BigInt, decimals: Int) -> String {
         precondition(self.minFractionDigits >= 0)
         precondition(self.maxFractionDigits >= 0)

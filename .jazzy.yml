@@ -1,0 +1,15 @@
+---
+author: OmiseGO
+author_url: https://omisego.network/
+copyright: Copyright (c) 2017-present, Omise Go Pte. Ltd. All rights reserved.
+clean: true
+github_url: https://github.com/omisego/ios-sdk
+hide_documentation_coverage: true
+module: OmiseGO
+output: docs
+podspec: OmiseGO.podspec
+readme: README.md
+skip_undocumented: true
+theme: fullwidth
+source_directory: Source
+use_safe_filenames: true

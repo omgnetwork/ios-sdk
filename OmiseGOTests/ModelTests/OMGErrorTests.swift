@@ -58,8 +58,8 @@ class OMGErrorTests: XCTestCase {
         XCTAssertEqual(configuration1, configuration2)
         XCTAssertNotEqual(configuration1, configuration3)
 
-        let api1 = OMGError.api(apiError: .init(code: .accessTokenExpired, description: ""))
-        let api2 = OMGError.api(apiError: .init(code: .accessTokenExpired, description: ""))
+        let api1 = OMGError.api(apiError: .init(code: .authenticationTokenExpired, description: ""))
+        let api2 = OMGError.api(apiError: .init(code: .authenticationTokenExpired, description: ""))
         let api3 = OMGError.api(apiError: .init(code: .channelNotFound, description: ""))
         XCTAssertEqual(api1, api2)
         XCTAssertNotEqual(api1, api3)

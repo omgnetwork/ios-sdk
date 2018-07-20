@@ -110,7 +110,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                                              {"value": 2147483647}
+                                                                            {"value": 2147483647}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -123,7 +123,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                                              {"value": 922337203685400}
+                                                                            {"value": 922337203685400}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -136,7 +136,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                                              {"value": 99999999999999999999999999999999999998}
+                                                                            {"value": 99999999999999999999999999999999999998}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -287,7 +287,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                        {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -316,6 +316,10 @@ class EncodeTests: XCTestCase {
                                                         allowAmountOverride: true,
                                                         maxConsumptionsPerUser: nil,
                                                         formattedId: "|0a8a4a98-794b-419e-b92d-514e83657e75",
+                                                        exchangeAccountId: nil,
+                                                        exchangeWalletAddress: nil,
+                                                        exchangeAccount: nil,
+                                                        exchangeWallet: nil,
                                                         metadata: [:],
                                                         encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
@@ -470,7 +474,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                        {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)

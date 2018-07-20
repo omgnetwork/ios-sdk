@@ -71,6 +71,14 @@ public struct TransactionRequest {
     public let maxConsumptionsPerUser: Int?
     /// An id that can be encoded in a QR code and be used to retrieve the request later
     public let formattedId: String
+    /// The id of the exchange account to use for exchanging the funds (if any exchange)
+    public let exchangeAccountId: String?
+    /// The address of the wallet to use for exchanging the funds (if any exchange)
+    public let exchangeWalletAddress: String?
+    /// The account used for exchanging the funds
+    public let exchangeAccount: Account?
+    /// The wallet used for exchanging the funds
+    public let exchangeWallet: Wallet?
     /// Additional metadata for the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the request
@@ -105,6 +113,10 @@ extension TransactionRequest: Decodable {
         case formattedId = "formatted_id"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
+        case exchangeAccountId = "exchange_account_id"
+        case exchangeWalletAddress = "exchange_wallet_address"
+        case exchangeAccount = "exchange_account"
+        case exchangeWallet = "exchange_wallet"
     }
 
     public init(from decoder: Decoder) throws {
@@ -131,6 +143,10 @@ extension TransactionRequest: Decodable {
         formattedId = try container.decode(String.self, forKey: .formattedId)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
+        exchangeAccountId = try container.decodeIfPresent(String.self, forKey: .exchangeAccountId)
+        exchangeWalletAddress = try container.decodeIfPresent(String.self, forKey: .exchangeWalletAddress)
+        exchangeAccount = try container.decodeIfPresent(Account.self, forKey: .exchangeAccount)
+        exchangeWallet = try container.decodeIfPresent(Wallet.self, forKey: .exchangeWallet)
     }
 }
 

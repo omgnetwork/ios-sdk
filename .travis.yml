@@ -1,8 +1,33 @@
 language: swift
-osx_image: xcode9.3
+osx_image: xcode9.4
+env:
+  matrix:
+    - TEST_TYPE=iOS
+    - TEST_TYPE=Lint
+    - TEST_TYPE=CocoaPods
 before_install:
-- pod update
+- |
+  if [ "$TEST_TYPE" = Lint ]; then
+    brew update
+  fi
+install:
+- |
+  bundle install
+  if [ "$TEST_TYPE" = Lint ]; then
+    brew install swiftlint || brew upgrade swiftlint
+  elif [ "$TEST_TYPE" = CocoaPods ] || [ "$TEST_TYPE" = iOS ]; then
+    pod repo update --silent
+  fi
+  if [ "$TEST_TYPE" = iOS ]; then
+    pod install
+  fi
 script:
-  set -o pipefail &&
-  xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" test | xcpretty &&
-  pod lib lint;
+- |
+  if [ "$TEST_TYPE" = iOS ]; then
+    set -o pipefail
+    xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" test | xcpretty -c
+  elif [ "$TEST_TYPE" = Lint ]; then
+    swiftlint lint --config .swiftlint.yml
+  elif [ "$TEST_TYPE" = CocoaPods ]; then
+    pod lib lint
+  fi

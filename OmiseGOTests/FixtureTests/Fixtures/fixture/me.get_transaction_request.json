@@ -44,7 +44,11 @@
     "max_consumptions_per_user": null,
     "formatted_id": "|907056a4-fc2d-47cb-af19-5e73aade7ece",
     "metadata": {},
-    "encrypted_metadata": {}
+    "encrypted_metadata": {},
+    "exchange_account_id": null,
+    "exchange_account": null,
+    "exchange_wallet_address": null,
+    "exchange_wallet": null
   }
 
 }

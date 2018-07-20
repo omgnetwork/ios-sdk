@@ -137,6 +137,48 @@
   "failed_at": null,
   "expired_at": null,
   "created_at": "2018-01-01T00:00:00Z",
+  "exchange_account_id": "acc_01ca2p8jqans5aty5gj5etmjcf",
+  "exchange_wallet_address": "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a",
+  "exchange_account": {
+    "object": "account",
+    "id": "acc_01ca2p8jqans5aty5gj5etmjcf",
+    "parent_id": null,
+    "name": "Account Name",
+    "description": "The account description",
+    "master": true,
+    "metadata": {},
+    "encrypted_metadata": {},
+    "avatar": {
+      "original": "original_url",
+      "large": "large_url",
+      "small": "small_url",
+      "thumb": "thumb_url"
+    },
+    "created_at": "2018-01-01T00:00:00Z",
+    "updated_at": "2018-01-01T10:00:00Z"
+  },
+  "exchange_wallet": {
+    "address": "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a",
+    "balances": [],
+    "name": "primary",
+    "identifier": "primary",
+    "user_id": "6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+    "user": {
+      "object": "user",
+      "id": "6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+      "provider_user_id": "a_provider_user_id",
+      "username": "john.doe@example.com",
+      "socket_topic": "user:6f56efa1-caf9-4348-8e0f-f5af283f17ee",
+      "metadata": {},
+      "encrypted_metadata": {},
+      "created_at": "2018-01-01T00:00:00Z",
+      "updated_at": "2018-01-01T00:00:00Z"
+    },
+    "account_id": null,
+    "account": null,
+    "metadata": {},
+    "encrypted_metadata": {}
+  },
   "metadata": {},
   "encrypted_metadata": {}
 }

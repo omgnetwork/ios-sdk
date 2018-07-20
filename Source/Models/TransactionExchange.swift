@@ -8,14 +8,21 @@
 
 /// Represents a transaction exchange
 public struct TransactionExchange {
-    /// The exchange rate used in the transaction
-    public let rate: Double
+    /// The exchange rate used in the transaction. This can be nil if there was no exchange involved.
+    public let rate: Double?
+    /// The date when the exchange was processed
     public let calculatedAt: Date?
+    /// The id of the exchange pair used
     public let exchangePairId: String?
+    /// The exchange pair used in the exchange (if any)
     public let exchangePair: ExchangePair?
+    /// The id of the account used for exchanging the funds
     public let exchangeAccountId: String?
+    /// The account used for exchanging the funds
     public let exchangeAccount: Account?
+    /// The address of the wallet used for exchanging the funds
     public let exchangeWalletAddress: String?
+    /// The wallet used for exchanging the funds
     public let exchangeWallet: Wallet?
 }
 
@@ -33,7 +40,7 @@ extension TransactionExchange: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        rate = try container.decode(Double.self, forKey: .rate)
+        rate = try container.decodeIfPresent(Double.self, forKey: .rate)
         calculatedAt = try container.decodeIfPresent(Date.self, forKey: .calculatedAt)
         exchangePairId = try container.decodeIfPresent(String.self, forKey: .exchangePairId)
         exchangePair = try container.decodeIfPresent(ExchangePair.self, forKey: .exchangePair)
