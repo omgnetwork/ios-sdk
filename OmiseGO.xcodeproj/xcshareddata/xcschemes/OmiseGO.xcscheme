@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "03BCCCB11F8B311600F604DB"
-               BuildableName = "OmiseGOTests.xctest"
-               BlueprintName = "OmiseGOTests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:OmiseGO.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -71,8 +71,8 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "OMG_AUTHENTICATION_TOKEN"
-            value = "$OMG_AUTHENTICATION_TOKEN"
+            key = "OMG_CLIENT_AUTHENTICATION_TOKEN"
+            value = "$OMG_CLIENT_AUTHENTICATION_TOKEN"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

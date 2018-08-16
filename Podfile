@@ -13,6 +13,6 @@ target 'OmiseGO' do
   shared_pods
 end
 
-target 'OmiseGOTests' do
+target 'Tests' do
   shared_pods
 end
