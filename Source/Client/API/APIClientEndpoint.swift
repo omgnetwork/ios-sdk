@@ -18,6 +18,7 @@ enum APIClientEndpoint: APIEndpoint {
     case transactionRequestConsume(params: TransactionConsumptionParams)
     case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
     case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
+    case signup(params: SignupParams)
     case login(params: LoginParams)
     case logout
 
@@ -43,6 +44,8 @@ enum APIClientEndpoint: APIEndpoint {
             return "/me.approve_transaction_consumption"
         case .transactionConsumptionReject:
             return "/me.reject_transaction_consumption"
+        case .signup:
+            return "user.signup"
         case .login:
             return "user.login"
         case .logout:
@@ -65,6 +68,8 @@ enum APIClientEndpoint: APIEndpoint {
         case let .transactionConsumptionApprove(parameters):
             return .requestParameters(parameters: parameters)
         case let .transactionConsumptionReject(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .signup(parameters):
             return .requestParameters(parameters: parameters)
         case let .login(parameters):
             return .requestParameters(parameters: parameters)

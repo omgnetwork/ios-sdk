@@ -65,7 +65,7 @@ let configuration = ClientConfiguration(baseURL: "https://your.base.url",
 let client = HTTPClientAPI(config: configuration)
 ```
 
-- If you are running a standalone version of the eWallet:
+- If you are running a standalone version of the eWallet, you can sign up and sign in your users directly from the SDK:
 
 You can retrieve an authentication token using the `HTTPClientAPI.login`.
 This call does not require an `authenticationToken` to be set to the `ClientCredential`, so you can do the following:
@@ -83,6 +83,21 @@ client.login(withParams: params) { (result) in
     case .success(data: let authenticationToken):
         // Now the client is authenticated automatically and you'll be able to perform authenticated calls with it.
         // You can also access to the `User` object: `authenticationToken.user`
+    }
+}
+```
+
+You can register a user using the `HTTPClientAPI.signup`.
+
+```swift
+let params = SignupParams(email: "some@email.com", password: "password", passwordConfirmation: "password")
+client.signup(withParams: params) { (result) in
+    switch result {
+        case .success:
+            // TODO: Handle success
+            // The user will receive an email asking him to confirm his email address, so you may want to show a page indicating this.
+        case let .fail(error: error):
+            // TODO: handle error
     }
 }
 ```

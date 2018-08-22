@@ -153,6 +153,8 @@
 		0379E81D21184BC900E65D4F /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7E421184BC800E65D4F /* Codable.swift */; };
 		0379E82021184CE000E65D4F /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E81F21184CE000E65D4F /* Credential.swift */; };
 		0379E82221184CE900E65D4F /* CredentialEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E82121184CE900E65D4F /* CredentialEncoder.swift */; };
+		0380AAE9212D2D78006B2193 /* SignupParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAE8212D2D78006B2193 /* SignupParams.swift */; };
+		0380AAEB212D311B006B2193 /* SignupFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03E565B3211AC87500BC9124 /* SocketClient+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B2211AC87500BC9124 /* SocketClient+Client.swift */; };
 		03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */; };
@@ -325,6 +327,8 @@
 		0379E82121184CE900E65D4F /* CredentialEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEncoder.swift; sourceTree = "<group>"; };
 		0379E82B2118527C00E65D4F /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
 		0379E82C2118527C00E65D4F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0380AAE8212D2D78006B2193 /* SignupParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupParams.swift; sourceTree = "<group>"; };
+		0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFixtureTests.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E565B2211AC87500BC9124 /* SocketClient+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketClient+Client.swift"; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 				0320EAB72119499B0006685C /* TransactionConsumption+Client.swift */,
 				0320EAB82119499B0006685C /* Wallet+Client.swift */,
 				0320EAB92119499B0006685C /* TransactionRequest+Client.swift */,
+				0380AAE8212D2D78006B2193 /* SignupParams.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				032CEDC1211D3D5300E44445 /* SettingFixtureTests.swift */,
 				032CEDC2211D3D5300E44445 /* RequestFixtureTest.swift */,
 				03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */,
+				0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -1017,6 +1023,7 @@
 				0379E81D21184BC900E65D4F /* Codable.swift in Sources */,
 				0379E80A21184BC900E65D4F /* Listenable.swift in Sources */,
 				0379E81621184BC900E65D4F /* HTTPTask.swift in Sources */,
+				0380AAE9212D2D78006B2193 /* SignupParams.swift in Sources */,
 				0379E7EB21184BC900E65D4F /* SocketDispatcher.swift in Sources */,
 				03E565B7211AFF9A00BC9124 /* HTTPAdminAPI.swift in Sources */,
 				0379E80921184BC900E65D4F /* Retrievable.swift in Sources */,
@@ -1147,6 +1154,7 @@
 				032CEDF6211D3D5300E44445 /* UserTests.swift in Sources */,
 				032CEDCF211D3D5300E44445 /* QRGeneratorTests.swift in Sources */,
 				03210BA321267AF400B56295 /* FixtureClientAPI.swift in Sources */,
+				0380AAEB212D311B006B2193 /* SignupFixtureTests.swift in Sources */,
 				032CEE27211D3D5300E44445 /* APIClientEndpointTest.swift in Sources */,
 				032CEDDF211D3D5300E44445 /* CredentialEncoderTests.swift in Sources */,
 				032CEDCD211D3D5300E44445 /* ToolsTests.swift in Sources */,

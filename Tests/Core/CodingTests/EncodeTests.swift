@@ -110,7 +110,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                             {"value": 2147483647}
+                                            {"value": 2147483647}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -123,7 +123,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                            {"value": 922337203685400}
+                                           {"value": 922337203685400}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -136,7 +136,7 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
                            """
-                             {"value": 99999999999999999999999999999999999998}
+                                            {"value": 99999999999999999999999999999999999998}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -287,7 +287,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                    {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                        {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -474,7 +474,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                    {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                        {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -561,6 +561,43 @@ class EncodeTests: XCTestCase {
                     "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
                     "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testLoginParamsEncoding() {
+        do {
+            let loginParams = LoginParams(email: "email@example.com", password: "password")
+            let encodedData = try self.encoder.encode(loginParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "email":"email@example.com",
+                    "password":"password"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testSignupParamsEncoding() {
+        do {
+            let signupParams = SignupParams(email: "email@example.com",
+                                            password: "password",
+                                            passwordConfirmation: "password",
+                                            redirectURL: "xxx",
+                                            successURL: "yyy")
+            let encodedData = try self.encoder.encode(signupParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "email":"email@example.com",
+                    "password":"password",
+                    "redirect_url":"xxx",
+                    "success_url":"yyy",
+                    "password_confirmation":"password"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

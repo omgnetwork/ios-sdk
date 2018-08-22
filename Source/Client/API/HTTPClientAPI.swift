@@ -40,16 +40,40 @@ extension HTTPClientAPI {
     /// upgraded with the authentication contained in the response.
     /// It can then be used to make other authenticated calls
     ///
-    /// - Parameter callback: The closure called when the request is completed
+    /// - Parameters:
+    ///   - params: The login params to use
+    ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     @discardableResult
-    public func login(withParams params: LoginParams, callback: @escaping Request<AuthenticationToken>.Callback)
+    public func login(withParams params: LoginParams,
+                      callback: @escaping Request<AuthenticationToken>.Callback)
         -> Request<AuthenticationToken>? {
         let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIClientEndpoint.login(params: params)) { result in
             switch result {
             case let .success(data: authenticationToken):
                 self.config.credentials.update(withAuthenticationToken: authenticationToken)
                 callback(.success(data: authenticationToken))
+            case let .fail(error):
+                callback(.fail(error: error))
+            }
+        }
+        return request
+    }
+
+    /// Signup a new user using the provided params.
+    ///
+    /// - Parameters:
+    ///   - params: The signup params to use
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    @discardableResult
+    public func signup(withParams params: SignupParams,
+                       callback: @escaping Request<EmptyResponse>.Callback)
+        -> Request<EmptyResponse>? {
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIClientEndpoint.signup(params: params)) { result in
+            switch result {
+            case let .success(data: data):
+                callback(.success(data: data))
             case let .fail(error):
                 callback(.fail(error: error))
             }
