@@ -22,6 +22,10 @@ public struct ClientCredential: Credential {
         self.authenticationToken = authenticationToken
     }
 
+    func isAuthenticated() -> Bool {
+        return self.authenticationToken != nil
+    }
+
     func authentication() throws -> String? {
         guard let authenticationToken = self.authenticationToken else { return nil }
         return try CredentialEncoder.encode(value1: self.apiKey, value2: authenticationToken, scheme: "OMGClient")

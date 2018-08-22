@@ -10,10 +10,22 @@
 import XCTest
 
 class HTTPClientTests: XCTestCase {
+    func testIsAuthenticatedIsTrueWhenAuthenticated() {
+        let config = TestConfiguration(baseURL: "http://localhost:4000", credentials: TestCredential(authenticated: true))
+        let client = HTTPAPI(config: config)
+        XCTAssertTrue(client.isAuthenticated)
+    }
+
+    func testIsAuthenticatedIsFalseWhenNotAuthenticated() {
+        let config = TestConfiguration(baseURL: "http://localhost:4000", credentials: TestCredential(authenticated: false))
+        let client = HTTPAPI(config: config)
+        XCTAssertFalse(client.isAuthenticated)
+    }
+
     func testInvalidURL() {
         let expectation = self.expectation(description: "Invalid url")
         let config = TestConfiguration(baseURL: "invalid url @")
-        let client = HTTPClient(config: config)
+        let client = HTTPAPI(config: config)
         let dummyEndpoint = TestAPIEndpoint()
         let request: Request<TestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {

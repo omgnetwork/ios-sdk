@@ -15,7 +15,7 @@ extension Setting: Retrievable {
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func get(using client: HTTPClient,
+    public static func get(using client: HTTPClientAPI,
                            callback: @escaping Setting.RetrieveRequestCallback) -> Setting.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: APIClientEndpoint.getSettings, callback: callback)
     }

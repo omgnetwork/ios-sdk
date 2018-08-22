@@ -10,8 +10,8 @@
 import XCTest
 
 class RequestBuilderTests: XCTestCase {
-    var httpConfig = TestConfiguration(credentials: TestCredential())
-    var socketConfig = TestConfiguration(credentials: TestCredential())
+    var httpConfig = TestConfiguration(credentials: TestCredential(authenticated: true))
+    var socketConfig = TestConfiguration(credentials: TestCredential(authenticated: true))
     var requestBuilder: RequestBuilder!
 
     override func setUp() {

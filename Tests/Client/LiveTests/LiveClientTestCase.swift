@@ -10,12 +10,12 @@ import OmiseGO
 import XCTest
 
 class LiveClientTestCase: LiveTestCase {
-    var testClient: HTTPClient!
+    var testClient: HTTPClientAPI!
     var testSocketClient: SocketClient!
 
     override func setUp() {
         super.setUp()
-        self.testClient = HTTPClient(config: self.validHTTPConfig())
+        self.testClient = HTTPClientAPI(config: self.validHTTPConfig())
         self.testSocketClient = SocketClient(config: self.validSocketConfig(), delegate: nil)
     }
 

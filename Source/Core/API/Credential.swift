@@ -8,6 +8,7 @@
 
 /// Contains the required functions that a configuration object would need to authenticate an API call if needed
 protocol Credential {
+    func isAuthenticated() -> Bool
     func authentication() throws -> String?
     mutating func update(withAuthenticationToken authenticationToken: AuthenticationToken)
     mutating func invalidate()

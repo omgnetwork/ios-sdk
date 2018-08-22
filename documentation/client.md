@@ -41,7 +41,7 @@ This section describes the use of the http client in order to retrieve or create
 
 ### Initialization of the HTTP client
 
-Before using the SDK to retrieve a resource, you need to initialize an `HTTPClient` with a `ClientConfiguration` object.
+Before using the SDK to retrieve a resource, you need to initialize an `HTTPClientAPI` with a `ClientConfiguration` object.
 
 This requires a `baseURL`, which is the http(s) URL of your OmiseGO eWallet API, and a `ClientCredential` object.
 
@@ -54,7 +54,7 @@ The `authenticationToken` can be retrieved in 2 ways:
 
 You may have your server returning this token when your user log in for example.
 You can see a sample of this integration [here for iOS](https://github.com/omisego/sample-ios) and [here for the server code](https://github.com/omisego/sample-server).
-You can then initialize your `HTTPClient` like so:
+You can then initialize your `HTTPClientAPI` like so:
 
 ```swift
 let credentials = ClientCredential(apiKey: "your-api-key",
@@ -62,12 +62,12 @@ let credentials = ClientCredential(apiKey: "your-api-key",
 let configuration = ClientConfiguration(baseURL: "https://your.base.url",
                                         credentials: credentials,
                                         debugLog: false)
-let client = HTTPClient(config: configuration)
+let client = HTTPClientAPI(config: configuration)
 ```
 
 - If you are running a standalone version of the eWallet:
 
-You can retrieve an authentication token using the `HTTPClient.loginClient`.
+You can retrieve an authentication token using the `HTTPClientAPI.login`.
 This call does not require an `authenticationToken` to be set to the `ClientCredential`, so you can do the following:
 
 ```swift
@@ -75,13 +75,13 @@ let credentials = ClientCredential(apiKey: "your-api-key") // Note here that we 
 let configuration = ClientConfiguration(baseURL: "https://your.base.url",
                                         credentials: credentials,
                                         debugLog: false)
-let client = HTTPClient(config: configuration)
+let client = HTTPClientAPI(config: configuration)
 let params = LoginParams(email: "some@email.com", password: "password")
-client.loginClient(withParams: params) { (result) in
+client.login(withParams: params) { (result) in
     switch result {
     case .fail(error: let error): // TODO: Handle error
     case .success(data: let authenticationToken):
-        // From the client is authenticated automatically and you'll be able to perform authenticated calls with it.
+        // Now the client is authenticated automatically and you'll be able to perform authenticated calls with it.
         // You can also access to the `User` object: `authenticationToken.user`
     }
 }

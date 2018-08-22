@@ -10,10 +10,10 @@ import OmiseGO
 import XCTest
 
 class FixtureTestCase: XCTestCase {
-    var testClient: FixtureClient {
+    var testClient: FixtureCoreAPI {
         let bundle = Bundle(for: FixtureTestCase.self)
         let url = bundle.url(forResource: "core_fixtures", withExtension: nil)!
         let config = TestConfiguration()
-        return FixtureClient(fixturesDirectoryURL: url, config: config)
+        return FixtureCoreAPI(fixturesDirectoryURL: url, config: config)
     }
 }

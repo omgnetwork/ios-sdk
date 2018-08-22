@@ -10,7 +10,9 @@ public struct AdminCredential: Credential {
     public let userId: String
     public var authenticationToken: String?
 
-    public func authentication() throws -> String? {
+    func isAuthenticated() -> Bool { return self.authenticationToken != nil }
+
+    func authentication() throws -> String? {
         guard let authenticationToken = self.authenticationToken else {
             throw OMGError.configuration(message: "Authentication token is required")
         }

@@ -16,7 +16,7 @@ extension TransactionRequest: Retrievable {
     ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func create(using client: HTTPClient,
+    public static func create(using client: HTTPClientAPI,
                               params: TransactionRequestCreateParams,
                               callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
@@ -34,7 +34,7 @@ extension TransactionRequest: Retrievable {
     ///   - formattedId: The formatted id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func get(using client: HTTPClient,
+    public static func get(using client: HTTPClientAPI,
                            formattedId: String,
                            callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {

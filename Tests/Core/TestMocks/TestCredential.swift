@@ -9,11 +9,25 @@
 @testable import OmiseGO
 
 struct TestCredential: Credential {
-    mutating func update(withAuthenticationToken _: AuthenticationToken) {}
+    var authenticated: Bool
 
-    func authentication() throws -> String? {
-        return "OMGClient \("123:123".data(using: .utf8)!.base64EncodedString())"
+    init(authenticated: Bool) {
+        self.authenticated = authenticated
     }
 
-    mutating func invalidate() {}
+    func isAuthenticated() -> Bool {
+        return self.authenticated
+    }
+
+    mutating func update(withAuthenticationToken _: AuthenticationToken) {
+        self.authenticated = true
+    }
+
+    func authentication() throws -> String? {
+        return self.authenticated ? "OMGClient \("123:123".data(using: .utf8)!.base64EncodedString())" : nil
+    }
+
+    mutating func invalidate() {
+        self.authenticated = false
+    }
 }

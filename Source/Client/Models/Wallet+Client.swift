@@ -15,7 +15,7 @@ extension Wallet: Listable {
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getAll(using client: HTTPClient,
+    public static func getAll(using client: HTTPClientAPI,
                               callback: @escaping Wallet.ListRequestCallback) -> Wallet.ListRequest? {
         return self.list(using: client, endpoint: APIClientEndpoint.getWallets, callback: callback)
     }
@@ -28,7 +28,7 @@ extension Wallet: Listable {
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getMain(using client: HTTPClient,
+    public static func getMain(using client: HTTPClientAPI,
                                callback: @escaping Wallet.RetrieveRequestCallback) -> Wallet.ListRequest? {
         return self.list(using: client, endpoint: APIClientEndpoint.getWallets, callback: { response in
             switch response {

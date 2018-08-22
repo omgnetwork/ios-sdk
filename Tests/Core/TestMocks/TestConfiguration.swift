@@ -17,7 +17,7 @@ struct TestConfiguration: Configuration {
 
     let debugLog: Bool = false
 
-    init(baseURL: String = "http://localhost:4000", credentials: TestCredential = TestCredential()) {
+    init(baseURL: String = "http://localhost:4000", credentials: TestCredential = TestCredential(authenticated: true)) {
         self.baseURL = baseURL
         self.credentials = credentials
     }

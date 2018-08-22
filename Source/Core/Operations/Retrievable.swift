@@ -14,14 +14,14 @@ public extension Retrievable where Self: Decodable {
     public typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
-    internal static func retrieve<T: APIEndpoint>(using client: HTTPClient,
+    internal static func retrieve<T: APIEndpoint>(using client: HTTPAPI,
                                                   endpoint: T,
                                                   callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)
     }
 
     @discardableResult
-    internal func retrieve<T: APIEndpoint>(using client: HTTPClient,
+    internal func retrieve<T: APIEndpoint>(using client: HTTPAPI,
                                            endpoint: T,
                                            callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)

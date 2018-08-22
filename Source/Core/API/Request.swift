@@ -10,13 +10,13 @@
 public class Request<ResultType: Decodable> {
     public typealias Callback = (Response<ResultType>) -> Void
 
-    let client: HTTPClient
+    let client: HTTPAPI
     let endpoint: APIEndpoint
     let callback: Request.Callback?
 
     var task: URLSessionTask?
 
-    init(client: HTTPClient, endpoint: APIEndpoint, callback: Callback?) {
+    init(client: HTTPAPI, endpoint: APIEndpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback

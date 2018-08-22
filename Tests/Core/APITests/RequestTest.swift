@@ -10,7 +10,7 @@
 import XCTest
 
 class RequestTest: XCTestCase {
-    let client: HTTPClient = HTTPClient(config: TestConfiguration())
+    let client: HTTPAPI = HTTPAPI(config: TestConfiguration())
 
     func testStartRequest() {
         let request: Request<TestObject> =

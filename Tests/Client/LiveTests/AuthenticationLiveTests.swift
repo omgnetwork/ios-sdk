@@ -15,7 +15,7 @@ class AuthenticationLiveTests: LiveClientTestCase {
         let credential = ClientCredential(apiKey: self.validAPIKey, authenticationToken: self.invalidAuthenticationToken)
         let config = ClientConfiguration(baseURL: self.validBaseURL,
                                          credentials: credential)
-        let client = HTTPClient(config: config)
+        let client = HTTPClientAPI(config: config)
         let request = User.getCurrent(using: client) { response in
             defer { expectation.fulfill() }
             switch response {
@@ -39,7 +39,7 @@ class AuthenticationLiveTests: LiveClientTestCase {
         let credential = ClientCredential(apiKey: self.invalidAPIKey, authenticationToken: self.validAuthenticationToken)
         let config = ClientConfiguration(baseURL: self.validBaseURL,
                                          credentials: credential)
-        let client = HTTPClient(config: config)
+        let client = HTTPClientAPI(config: config)
         let request = User.getCurrent(using: client) { response in
             defer { expectation.fulfill() }
             switch response {

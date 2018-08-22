@@ -10,12 +10,12 @@
 import XCTest
 
 class LoginFixtureTests: XCTestCase {
-    var testClient: FixtureClient {
+    var testClient: FixtureClientAPI {
         let bundle = Bundle(for: FixtureClientTestCase.self)
         let url = bundle.url(forResource: "client_fixtures", withExtension: nil)!
         let credentials = ClientCredential(apiKey: "some_api_key")
         let config = ClientConfiguration(baseURL: "http://localhst:4000", credentials: credentials)
-        return FixtureClient(fixturesDirectoryURL: url, config: config)
+        return FixtureClientAPI(fixturesDirectoryURL: url, config: config)
     }
 
     func testLoginSuccessfullyAndUpdateToken() {
@@ -23,7 +23,7 @@ class LoginFixtureTests: XCTestCase {
         XCTAssertNil(try! self.testClient.config.credentials.authentication())
         let client = self.testClient
         let params = LoginParams(email: "email", password: "password")
-        let request = client.loginClient(withParams: params, callback: { result in
+        let request = client.login(withParams: params, callback: { result in
             defer { expectation.fulfill() }
             switch result {
             case let .fail(error: error):

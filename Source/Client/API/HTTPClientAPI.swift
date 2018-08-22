@@ -1,26 +1,27 @@
 //
-//  HTTPClient+Client.swift
+//  HTTPClientAPI.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 7/8/18.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension HTTPClient {
+public class HTTPClientAPI: HTTPAPI {
     /// Initialize an http client using a configuration object that can be used to query client endpoints
     ///
     /// - Parameter config: The ClientConfiguration object
-    public convenience init(config: ClientConfiguration) {
-        self.init()
-        self.config = config
+    public init(config: ClientConfiguration) {
+        super.init(config: config)
     }
+}
 
+extension HTTPClientAPI {
     /// Logout the current user (invalidate the provided authenticationToken).
     ///
     /// - Parameter callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     @discardableResult
-    public func logoutClient(withCallback callback: @escaping Request<EmptyResponse>.Callback)
+    public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
         -> Request<EmptyResponse>? {
         let request: Request<EmptyResponse>? = self.request(toEndpoint: APIClientEndpoint.logout) { result in
             switch result {
@@ -42,7 +43,7 @@ extension HTTPClient {
     /// - Parameter callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     @discardableResult
-    public func loginClient(withParams params: LoginParams, callback: @escaping Request<AuthenticationToken>.Callback)
+    public func login(withParams params: LoginParams, callback: @escaping Request<AuthenticationToken>.Callback)
         -> Request<AuthenticationToken>? {
         let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIClientEndpoint.login(params: params)) { result in
             switch result {

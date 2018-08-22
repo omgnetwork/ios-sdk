@@ -1,22 +1,29 @@
 //
-//  HTTPClient.swift
+//  HTTPAPI.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents an HTTPClient that should be initialized using a Configuration
-public class HTTPClient {
+/// Represents an HTTPAPI that should be initialized using a Configuration
+public class HTTPAPI {
     let operationQueue: OperationQueue = OperationQueue()
 
-    lazy var session: URLSession! = {
+    lazy var session: URLSession = {
         URLSession(configuration: URLSessionConfiguration.ephemeral,
                    delegate: nil,
                    delegateQueue: self.operationQueue)
     }()
 
-    var config: Configuration!
+    var config: Configuration
+
+    init(config: Configuration) {
+        self.config = config
+    }
+
+    /// A boolean indicating if the client is authenticated and allowed to make authenticated requests
+    public var isAuthenticated: Bool { return self.config.credentials.isAuthenticated() }
 
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,

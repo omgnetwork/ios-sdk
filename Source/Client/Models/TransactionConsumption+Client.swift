@@ -16,7 +16,7 @@ extension TransactionConsumption: Retrievable {
     ///   - params: The TransactionConsumptionParams object describing the transaction request to be consumed.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func consumeTransactionRequest(using client: HTTPClient,
+    public static func consumeTransactionRequest(using client: HTTPClientAPI,
                                                  params: TransactionConsumptionParams,
                                                  callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
@@ -33,7 +33,7 @@ extension TransactionConsumption: Retrievable {
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func approve(using client: HTTPClient,
+    public func approve(using client: HTTPClientAPI,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
         let params = TransactionConsumptionConfirmationParams(id: id)
@@ -48,7 +48,7 @@ extension TransactionConsumption: Retrievable {
     ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func reject(using client: HTTPClient,
+    public func reject(using client: HTTPClientAPI,
                        callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
         let params = TransactionConsumptionConfirmationParams(id: id)

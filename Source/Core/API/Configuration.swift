@@ -11,7 +11,7 @@ protocol Configuration {
     /// The current SDK version
     var apiVersion: String { get }
     /// The base URL of the wallet server:
-    /// When initializing the HTTPClient, this needs to be an http(s) url
+    /// When initializing the HTTPAPI, this needs to be an http(s) url
     /// When initializing the SocketClient, this needs to be a ws(s) url
     var baseURL: String { get }
     /// The credential object containing the authentication info if needed

@@ -16,12 +16,14 @@
 		0320EABD2119499B0006685C /* TransactionConsumption+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAB72119499B0006685C /* TransactionConsumption+Client.swift */; };
 		0320EABE2119499B0006685C /* Wallet+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAB82119499B0006685C /* Wallet+Client.swift */; };
 		0320EABF2119499B0006685C /* TransactionRequest+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAB92119499B0006685C /* TransactionRequest+Client.swift */; };
-		0320EAC1211962060006685C /* HTTPClient+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC0211962060006685C /* HTTPClient+Client.swift */; };
+		0320EAC1211962060006685C /* HTTPClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC0211962060006685C /* HTTPClientAPI.swift */; };
 		0320EAC32119667B0006685C /* ClientCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC22119667B0006685C /* ClientCredential.swift */; };
 		0320EAC5211966BC0006685C /* AdminCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC4211966BC0006685C /* AdminCredential.swift */; };
 		0320EAC72119865A0006685C /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC62119865A0006685C /* ClientConfiguration.swift */; };
 		0320EAC92119AB4F0006685C /* QRVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC82119AB4F0006685C /* QRVerifier.swift */; };
 		0320EACC2119AF420006685C /* QRClientVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EACB2119AF420006685C /* QRClientVerifier.swift */; };
+		03210BA321267AF400B56295 /* FixtureClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03210BA221267AF400B56295 /* FixtureClientAPI.swift */; };
+		03210BA521267D7C00B56295 /* FixtureClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03210BA421267D7C00B56295 /* FixtureClientTestCase.swift */; };
 		032CEDCD211D3D5300E44445 /* ToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED43211D3D5300E44445 /* ToolsTests.swift */; };
 		032CEDCF211D3D5300E44445 /* QRGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED46211D3D5300E44445 /* QRGeneratorTests.swift */; };
 		032CEDD0211D3D5300E44445 /* QRScannerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED47211D3D5300E44445 /* QRScannerViewTests.swift */; };
@@ -40,7 +42,6 @@
 		032CEDDE211D3D5300E44445 /* RequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED58211D3D5300E44445 /* RequestBuilderTests.swift */; };
 		032CEDDF211D3D5300E44445 /* CredentialEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED59211D3D5300E44445 /* CredentialEncoderTests.swift */; };
 		032CEDE0211D3D5300E44445 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5A211D3D5300E44445 /* HTTPClientTests.swift */; };
-		032CEDE1211D3D5300E44445 /* HTTPClient+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5C211D3D5300E44445 /* HTTPClient+Test.swift */; };
 		032CEDE2211D3D5300E44445 /* TestAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */; };
 		032CEDE3211D3D5300E44445 /* TestWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */; };
 		032CEDE4211D3D5300E44445 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5F211D3D5300E44445 /* TestConfiguration.swift */; };
@@ -80,7 +81,6 @@
 		032CEE29211D3D5300E44445 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDAE211D3D5300E44445 /* UserFixtureTests.swift */; };
 		032CEE35211D3D5300E44445 /* WalletFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDBC211D3D5300E44445 /* WalletFixtureTests.swift */; };
 		032CEE36211D3D5300E44445 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDBD211D3D5300E44445 /* TransactionRequestFixtureTests.swift */; };
-		032CEE37211D3D5300E44445 /* FixtureClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDBE211D3D5300E44445 /* FixtureClientTestCase.swift */; };
 		032CEE38211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDBF211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift */; };
 		032CEE39211D3D5300E44445 /* TransactionFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDC0211D3D5300E44445 /* TransactionFixtureTests.swift */; };
 		032CEE3A211D3D5300E44445 /* SettingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDC1211D3D5300E44445 /* SettingFixtureTests.swift */; };
@@ -145,7 +145,7 @@
 		0379E81521184BC900E65D4F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DB21184BC800E65D4F /* Configuration.swift */; };
 		0379E81621184BC900E65D4F /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DC21184BC800E65D4F /* HTTPTask.swift */; };
 		0379E81721184BC900E65D4F /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DD21184BC800E65D4F /* RequestBuilder.swift */; };
-		0379E81821184BC900E65D4F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DE21184BC800E65D4F /* HTTPClient.swift */; };
+		0379E81821184BC900E65D4F /* HTTPAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DE21184BC800E65D4F /* HTTPAPI.swift */; };
 		0379E81921184BC900E65D4F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7DF21184BC800E65D4F /* Request.swift */; };
 		0379E81A21184BC900E65D4F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7E021184BC800E65D4F /* APIEndpoint.swift */; };
 		0379E81B21184BC900E65D4F /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7E221184BC800E65D4F /* Tool.swift */; };
@@ -156,7 +156,7 @@
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03E565B3211AC87500BC9124 /* SocketClient+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B2211AC87500BC9124 /* SocketClient+Client.swift */; };
 		03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */; };
-		03E565B7211AFF9A00BC9124 /* HTTPClient+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */; };
+		03E565B7211AFF9A00BC9124 /* HTTPAdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B6211AFF9A00BC9124 /* HTTPAdminAPI.swift */; };
 		03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */; };
 		03E72EDB2124177E0060E1D7 /* LoginParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDA2124177E0060E1D7 /* LoginParams.swift */; };
 		03E72EDD212424B00060E1D7 /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */; };
@@ -185,12 +185,14 @@
 		0320EAB72119499B0006685C /* TransactionConsumption+Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransactionConsumption+Client.swift"; sourceTree = "<group>"; };
 		0320EAB82119499B0006685C /* Wallet+Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wallet+Client.swift"; sourceTree = "<group>"; };
 		0320EAB92119499B0006685C /* TransactionRequest+Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransactionRequest+Client.swift"; sourceTree = "<group>"; };
-		0320EAC0211962060006685C /* HTTPClient+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Client.swift"; sourceTree = "<group>"; };
+		0320EAC0211962060006685C /* HTTPClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientAPI.swift; sourceTree = "<group>"; };
 		0320EAC22119667B0006685C /* ClientCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCredential.swift; sourceTree = "<group>"; };
 		0320EAC4211966BC0006685C /* AdminCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredential.swift; sourceTree = "<group>"; };
 		0320EAC62119865A0006685C /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		0320EAC82119AB4F0006685C /* QRVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVerifier.swift; sourceTree = "<group>"; };
 		0320EACB2119AF420006685C /* QRClientVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRClientVerifier.swift; sourceTree = "<group>"; };
+		03210BA221267AF400B56295 /* FixtureClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureClientAPI.swift; sourceTree = "<group>"; };
+		03210BA421267D7C00B56295 /* FixtureClientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureClientTestCase.swift; sourceTree = "<group>"; };
 		032CED43211D3D5300E44445 /* ToolsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsTests.swift; sourceTree = "<group>"; };
 		032CED46211D3D5300E44445 /* QRGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGeneratorTests.swift; sourceTree = "<group>"; };
 		032CED47211D3D5300E44445 /* QRScannerViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewTests.swift; sourceTree = "<group>"; };
@@ -209,7 +211,6 @@
 		032CED58211D3D5300E44445 /* RequestBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTests.swift; sourceTree = "<group>"; };
 		032CED59211D3D5300E44445 /* CredentialEncoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialEncoderTests.swift; sourceTree = "<group>"; };
 		032CED5A211D3D5300E44445 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
-		032CED5C211D3D5300E44445 /* HTTPClient+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Test.swift"; sourceTree = "<group>"; };
 		032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPIEndpoint.swift; sourceTree = "<group>"; };
 		032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestWebSocketDelegate.swift; sourceTree = "<group>"; };
 		032CED5F211D3D5300E44445 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -249,7 +250,6 @@
 		032CEDAE211D3D5300E44445 /* UserFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
 		032CEDBC211D3D5300E44445 /* WalletFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletFixtureTests.swift; sourceTree = "<group>"; };
 		032CEDBD211D3D5300E44445 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
-		032CEDBE211D3D5300E44445 /* FixtureClientTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureClientTestCase.swift; sourceTree = "<group>"; };
 		032CEDBF211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionFixtureTests.swift; sourceTree = "<group>"; };
 		032CEDC0211D3D5300E44445 /* TransactionFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFixtureTests.swift; sourceTree = "<group>"; };
 		032CEDC1211D3D5300E44445 /* SettingFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFixtureTests.swift; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 		0379E7DB21184BC800E65D4F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		0379E7DC21184BC800E65D4F /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		0379E7DD21184BC800E65D4F /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
-		0379E7DE21184BC800E65D4F /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		0379E7DE21184BC800E65D4F /* HTTPAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPAPI.swift; sourceTree = "<group>"; };
 		0379E7DF21184BC800E65D4F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		0379E7E021184BC800E65D4F /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		0379E7E221184BC800E65D4F /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		03BCCCB21F8B311600F604DB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E565B2211AC87500BC9124 /* SocketClient+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketClient+Client.swift"; sourceTree = "<group>"; };
 		03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRScannerViewController+Client.swift"; sourceTree = "<group>"; };
-		03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Admin.swift"; sourceTree = "<group>"; };
+		03E565B6211AFF9A00BC9124 /* HTTPAdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPAdminAPI.swift; sourceTree = "<group>"; };
 		03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConfiguration.swift; sourceTree = "<group>"; };
 		03E72EDA2124177E0060E1D7 /* LoginParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParams.swift; sourceTree = "<group>"; };
 		03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationToken.swift; sourceTree = "<group>"; };
@@ -465,7 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				032CEE49211D408800E44445 /* TestQRReader.swift */,
-				032CED5C211D3D5300E44445 /* HTTPClient+Test.swift */,
 				032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */,
 				032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */,
 				032CED5F211D3D5300E44445 /* TestConfiguration.swift */,
@@ -555,11 +554,12 @@
 			isa = PBXGroup;
 			children = (
 				032CEE47211D3F5100E44445 /* client_fixtures */,
+				03210BA421267D7C00B56295 /* FixtureClientTestCase.swift */,
+				03210BA221267AF400B56295 /* FixtureClientAPI.swift */,
 				032CEDAD211D3D5300E44445 /* LogoutFixtureTests.swift */,
 				032CEDAE211D3D5300E44445 /* UserFixtureTests.swift */,
 				032CEDBC211D3D5300E44445 /* WalletFixtureTests.swift */,
 				032CEDBD211D3D5300E44445 /* TransactionRequestFixtureTests.swift */,
-				032CEDBE211D3D5300E44445 /* FixtureClientTestCase.swift */,
 				032CEDBF211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift */,
 				032CEDC0211D3D5300E44445 /* TransactionFixtureTests.swift */,
 				032CEDC1211D3D5300E44445 /* SettingFixtureTests.swift */,
@@ -696,7 +696,7 @@
 			children = (
 				0379E7E021184BC800E65D4F /* APIEndpoint.swift */,
 				0379E7DA21184BC800E65D4F /* APIError.swift */,
-				0379E7DE21184BC800E65D4F /* HTTPClient.swift */,
+				0379E7DE21184BC800E65D4F /* HTTPAPI.swift */,
 				0379E7DC21184BC800E65D4F /* HTTPTask.swift */,
 				0379E7DB21184BC800E65D4F /* Configuration.swift */,
 				0379E81F21184CE000E65D4F /* Credential.swift */,
@@ -740,7 +740,7 @@
 			isa = PBXGroup;
 			children = (
 				0320EAB0211853010006685C /* APIClientEndpoint.swift */,
-				0320EAC0211962060006685C /* HTTPClient+Client.swift */,
+				0320EAC0211962060006685C /* HTTPClientAPI.swift */,
 				0320EAC22119667B0006685C /* ClientCredential.swift */,
 				0320EAC62119865A0006685C /* ClientConfiguration.swift */,
 			);
@@ -753,7 +753,7 @@
 				0320EAAE211852EB0006685C /* APIAdminEndpoint.swift */,
 				0320EAC4211966BC0006685C /* AdminCredential.swift */,
 				03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */,
-				03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */,
+				03E565B6211AFF9A00BC9124 /* HTTPAdminAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1018,7 +1018,7 @@
 				0379E80A21184BC900E65D4F /* Listenable.swift in Sources */,
 				0379E81621184BC900E65D4F /* HTTPTask.swift in Sources */,
 				0379E7EB21184BC900E65D4F /* SocketDispatcher.swift in Sources */,
-				03E565B7211AFF9A00BC9124 /* HTTPClient+Admin.swift in Sources */,
+				03E565B7211AFF9A00BC9124 /* HTTPAdminAPI.swift in Sources */,
 				0379E80921184BC900E65D4F /* Retrievable.swift in Sources */,
 				0379E7FF21184BC900E65D4F /* Reponse.swift in Sources */,
 				0379E7F621184BC900E65D4F /* TransactionExchange.swift in Sources */,
@@ -1029,7 +1029,7 @@
 				0320EABF2119499B0006685C /* TransactionRequest+Client.swift in Sources */,
 				0320EAC72119865A0006685C /* ClientConfiguration.swift in Sources */,
 				0379E7F921184BC900E65D4F /* User.swift in Sources */,
-				0320EAC1211962060006685C /* HTTPClient+Client.swift in Sources */,
+				0320EAC1211962060006685C /* HTTPClientAPI.swift in Sources */,
 				03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */,
 				0379E7EC21184BC900E65D4F /* SocketDelegate.swift in Sources */,
 				0379E80321184BC900E65D4F /* JSONListResponse.swift in Sources */,
@@ -1042,7 +1042,7 @@
 				0379E81C21184BC900E65D4F /* OMGNumberFormatter.swift in Sources */,
 				0320EABE2119499B0006685C /* Wallet+Client.swift in Sources */,
 				0379E80821184BC900E65D4F /* Wallet.swift in Sources */,
-				0379E81821184BC900E65D4F /* HTTPClient.swift in Sources */,
+				0379E81821184BC900E65D4F /* HTTPAPI.swift in Sources */,
 				0320EAC92119AB4F0006685C /* QRVerifier.swift in Sources */,
 				0379E81521184BC900E65D4F /* Configuration.swift in Sources */,
 				0379E80C21184BC900E65D4F /* QREncodable.swift in Sources */,
@@ -1124,6 +1124,7 @@
 				032CEE28211D3D5300E44445 /* LogoutFixtureTests.swift in Sources */,
 				032CEDEE211D3D5300E44445 /* QRScannerViewController+Test.swift in Sources */,
 				032CEE43211D3D5300E44445 /* TransactionRequestLiveTests.swift in Sources */,
+				03210BA521267D7C00B56295 /* FixtureClientTestCase.swift in Sources */,
 				032CEE4A211D408800E44445 /* TestQRReader.swift in Sources */,
 				032CEE42211D3D5300E44445 /* UserLiveTests.swift in Sources */,
 				032CEDE2211D3D5300E44445 /* TestAPIEndpoint.swift in Sources */,
@@ -1145,13 +1146,12 @@
 				03F2D500212436BB00BC65BB /* LoginFixtureTests.swift in Sources */,
 				032CEDF6211D3D5300E44445 /* UserTests.swift in Sources */,
 				032CEDCF211D3D5300E44445 /* QRGeneratorTests.swift in Sources */,
+				03210BA321267AF400B56295 /* FixtureClientAPI.swift in Sources */,
 				032CEE27211D3D5300E44445 /* APIClientEndpointTest.swift in Sources */,
 				032CEDDF211D3D5300E44445 /* CredentialEncoderTests.swift in Sources */,
 				032CEDCD211D3D5300E44445 /* ToolsTests.swift in Sources */,
-				032CEDE1211D3D5300E44445 /* HTTPClient+Test.swift in Sources */,
 				032CEDEA211D3D5300E44445 /* TestSortable.swift in Sources */,
 				032CEE38211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift in Sources */,
-				032CEE37211D3D5300E44445 /* FixtureClientTestCase.swift in Sources */,
 				032CEE25211D3D5300E44445 /* StubGenerator.swift in Sources */,
 				032CEDD8211D3D5300E44445 /* SocketChannelTests.swift in Sources */,
 				032CEDF2211D3D5300E44445 /* TransactionTest.swift in Sources */,

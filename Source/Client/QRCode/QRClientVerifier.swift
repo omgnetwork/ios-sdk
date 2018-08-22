@@ -7,9 +7,9 @@
 //
 
 public struct QRClientVerifier: QRVerifier {
-    let client: HTTPClient
+    let client: HTTPClientAPI
 
-    public init(client: HTTPClient) {
+    public init(client: HTTPClientAPI) {
         self.client = client
     }
 

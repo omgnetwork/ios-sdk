@@ -14,7 +14,7 @@ class LogoutFixtureTests: FixtureClientTestCase {
         let expectation = self.expectation(description: "Authentication should be nil after logout")
         XCTAssertNotNil(try! self.testClient.config.credentials.authentication())
         let client = self.testClient
-        let request = client.logoutClient { _ in
+        let request = client.logout { _ in
             defer { expectation.fulfill() }
             XCTAssertNil(try! client.config.credentials.authentication())
         }

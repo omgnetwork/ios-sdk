@@ -10,6 +10,16 @@
 import XCTest
 
 class ClientCredentialTests: XCTestCase {
+    func testIsAuthenticatedIsFalseWhenNoAuthenticationToken() {
+        let credentials = ClientCredential(apiKey: "api_key")
+        XCTAssertFalse(credentials.isAuthenticated())
+    }
+
+    func testIsAuthenticatedIsFalseWithAnAuthenticationToken() {
+        let credentials = ClientCredential(apiKey: "api_key", authenticationToken: "123")
+        XCTAssertTrue(credentials.isAuthenticated())
+    }
+
     func testUpdateCredentialSuccessfully() {
         var credentials = ClientCredential(apiKey: "api_key")
         XCTAssertNil(credentials.authenticationToken)

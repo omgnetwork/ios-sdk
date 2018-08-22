@@ -17,7 +17,7 @@ class DecodeTests: XCTestCase {
     }()
 
     func jsonData(withFileName name: String) throws -> Data {
-        let bundle = Bundle(for: FixtureClient.self)
+        let bundle = Bundle(for: FixtureCoreAPI.self)
         let directoryURL = bundle.url(forResource: "core_fixtures/objects", withExtension: nil)!
         let filePath = (name as NSString).appendingPathExtension("json")! as String
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)

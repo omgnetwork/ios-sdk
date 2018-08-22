@@ -9,7 +9,7 @@
 @testable import OmiseGO
 
 struct TestListable: Decodable, Listable {
-    static func list(using client: HTTPClient,
+    static func list(using client: HTTPAPI,
                      callback: @escaping ListRequestCallback) {
         let endpoint = TestAPIEndpoint(path: "dummy.listable.failure")
         self.list(using: client, endpoint: endpoint, callback: callback)
@@ -17,7 +17,7 @@ struct TestListable: Decodable, Listable {
 }
 
 struct PaginatedTestListable: Decodable, PaginatedListable {
-    static func list(using client: HTTPClient,
+    static func list(using client: HTTPAPI,
                      callback: @escaping PaginatedTestListable.ListRequestCallback) {
         let endpoint = TestAPIEndpoint(path: "dummy.listable.failure")
         self.list(using: client, endpoint: endpoint, callback: callback)

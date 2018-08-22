@@ -14,7 +14,7 @@ public extension Listable where Self: Decodable {
     public typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
-    internal static func list(using client: HTTPClient,
+    internal static func list(using client: HTTPAPI,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { result in
@@ -36,7 +36,7 @@ public extension PaginatedListable where Self: Decodable {
     public typealias ListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
 
     @discardableResult
-    internal static func list(using client: HTTPClient,
+    internal static func list(using client: HTTPAPI,
                               endpoint: APIEndpoint,
                               callback: @escaping ListRequestCallback) -> ListRequest? {
         return client.request(toEndpoint: endpoint, callback: { result in

@@ -16,7 +16,7 @@ extension Transaction: Retrievable {
     ///   - params: The TransactionSendParams object to customize the transaction
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func create(using client: HTTPClient,
+    public static func create(using client: HTTPClientAPI,
                               params: TransactionCreateParams,
                               callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: APIClientEndpoint.createTransaction(params: params), callback: callback)
@@ -33,7 +33,7 @@ extension Transaction: PaginatedListable {
     ///   - params: The TransactionListParams object to use to scope the results
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func list(using client: HTTPClient,
+    public static func list(using client: HTTPClientAPI,
                             params: TransactionListParams,
                             callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
         return self.list(using: client, endpoint: APIClientEndpoint.getTransactions(params: params), callback: callback)
