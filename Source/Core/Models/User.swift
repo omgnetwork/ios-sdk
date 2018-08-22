@@ -11,9 +11,9 @@ public struct User: Listenable {
     /// The unique identifier on the wallet server side
     public let id: String
     /// The user identifier on the provider server side
-    public let providerUserId: String
+    public let providerUserId: String?
     /// The user's username, it can be an email or any name describing this user
-    public let username: String
+    public let username: String?
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
     /// Any additional encrypted metadata that need to be stored as a dictionary
@@ -41,8 +41,8 @@ extension User: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        providerUserId = try container.decode(String.self, forKey: .providerUserId)
-        username = try container.decode(String.self, forKey: .username)
+        providerUserId = try container.decodeIfPresent(String.self, forKey: .providerUserId)
+        username = try container.decodeIfPresent(String.self, forKey: .username)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
         createdAt = try container.decode(Date.self, forKey: .createdAt)

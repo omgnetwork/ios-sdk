@@ -6,6 +6,7 @@ The client iOS SDK allows developers to easily interact with the OmiseGO client 
 
 - [HTTP Requests](#http-requests)
   - [Initialization](#initialization-of-the-http-client)
+  - [Log a user in](#login)
   - [Retrieving resources](#retrieving-resources)
     - [Get the current user](#get-the-current-user)
     - [Get the wallets of the current user](#get-the-wallets-of-the-current-user)
@@ -41,7 +42,19 @@ This section describes the use of the http client in order to retrieve or create
 ### Initialization of the HTTP client
 
 Before using the SDK to retrieve a resource, you need to initialize an `HTTPClient` with a `ClientConfiguration` object.
-You should do this as soon as you obtain a valid authentication token corresponding to the current user from the eWallet API.
+
+This requires a `baseURL`, which is the http(s) URL of your OmiseGO eWallet API, and a `ClientCredential` object.
+
+The `ClientCredential` contains the authentication credentials which consist in an `apiKey` that can be generated on the admin panel,
+and optionally an `authenticationToken`.
+
+The `authenticationToken` can be retrieved in 2 ways:
+
+- If your app talks to a server that integrates the eWallet server API:
+
+You may have your server returning this token when your user log in for example.
+You can see a sample of this integration [here for iOS](https://github.com/omisego/sample-ios) and [here for the server code](https://github.com/omisego/sample-server).
+You can then initialize your `HTTPClient` like so:
 
 ```swift
 let credentials = ClientCredential(apiKey: "your-api-key",
@@ -52,17 +65,31 @@ let configuration = ClientConfiguration(baseURL: "https://your.base.url",
 let client = HTTPClient(config: configuration)
 ```
 
-Where:
-- `baseURL` is the URL of the OmiseGO Wallet API, this needs to be an http(s) url.
-- `apiKey` is the API key (typically generated on the admin panel)
-- `authenticationToken` is the token corresponding to an OmiseGO Wallet user retrievable using one of our server-side SDKs.
-> You can find more info on how to retrieve this token in the [OmiseGO server SDK documentations](https://github.com/omisego/ruby-sdk#login).
+- If you are running a standalone version of the eWallet:
 
-- `debugLog` is a boolean indicating if the SDK should print logs in the console.
+You can retrieve an authentication token using the `HTTPClient.loginClient`.
+This call does not require an `authenticationToken` to be set to the `ClientCredential`, so you can do the following:
+
+```swift
+let credentials = ClientCredential(apiKey: "your-api-key") // Note here that we don't need to provide an authenticationToken
+let configuration = ClientConfiguration(baseURL: "https://your.base.url",
+                                        credentials: credentials,
+                                        debugLog: false)
+let client = HTTPClient(config: configuration)
+let params = LoginParams(email: "some@email.com", password: "password")
+client.loginClient(withParams: params) { (result) in
+    switch result {
+    case .fail(error: let error): // TODO: Handle error
+    case .success(data: let authenticationToken):
+        // From the client is authenticated automatically and you'll be able to perform authenticated calls with it.
+        // You can also access to the `User` object: `authenticationToken.user`
+    }
+}
+```
 
 ### Retrieving resources
 
-Once you have an initialized client, you can retrieve different resources.
+Once you have an initialized and authenticated client, you can retrieve different resources.
 Each call take a `Callback` closure that returns a `Response` enum:
 
 ```swift

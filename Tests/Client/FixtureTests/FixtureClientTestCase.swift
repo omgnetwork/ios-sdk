@@ -13,6 +13,8 @@ class FixtureClientTestCase: XCTestCase {
     var testClient: FixtureClient {
         let bundle = Bundle(for: FixtureClientTestCase.self)
         let url = bundle.url(forResource: "client_fixtures", withExtension: nil)!
-        return FixtureClient(fixturesDirectoryURL: url)
+        let credentials = ClientCredential(apiKey: "some_api_key", authenticationToken: "some_token")
+        let config = ClientConfiguration(baseURL: "http://localhost:4000", credentials: credentials)
+        return FixtureClient(fixturesDirectoryURL: url, config: config)
     }
 }

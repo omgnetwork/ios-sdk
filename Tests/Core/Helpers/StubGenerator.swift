@@ -93,6 +93,14 @@ class StubGenerator {
                      updatedAt: updatedAt ?? v.updatedAt)
     }
 
+    class func authenticationToken(token: String? = nil,
+                                   user: User? = nil)
+        -> AuthenticationToken {
+        let v: AuthenticationToken = self.stub(forResource: "authentication_token")
+        return AuthenticationToken(token: token ?? v.token,
+                                   user: user ?? v.user)
+    }
+
     class func settings(tokens: [Token]? = nil)
         -> Setting {
         let v: Setting = self.stub(forResource: "setting")

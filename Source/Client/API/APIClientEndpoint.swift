@@ -18,8 +18,8 @@ enum APIClientEndpoint: APIEndpoint {
     case transactionRequestConsume(params: TransactionConsumptionParams)
     case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
     case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
+    case login(params: LoginParams)
     case logout
-    case custom(path: String, task: HTTPTask)
 
     var path: String {
         switch self {
@@ -43,17 +43,15 @@ enum APIClientEndpoint: APIEndpoint {
             return "/me.approve_transaction_consumption"
         case .transactionConsumptionReject:
             return "/me.reject_transaction_consumption"
+        case .login:
+            return "user.login"
         case .logout:
             return "/me.logout"
-        case .custom(let path, _):
-            return path
         }
     }
 
     var task: HTTPTask {
         switch self {
-        case .getCurrentUser, .getWallets, .getSettings, .logout: // Send no parameters
-            return .requestPlain
         case let .createTransaction(parameters):
             return .requestParameters(parameters: parameters)
         case let .transactionRequestCreate(parameters):
@@ -68,8 +66,9 @@ enum APIClientEndpoint: APIEndpoint {
             return .requestParameters(parameters: parameters)
         case let .transactionConsumptionReject(parameters):
             return .requestParameters(parameters: parameters)
-        case let .custom(_, task):
-            return task
+        case let .login(parameters):
+            return .requestParameters(parameters: parameters)
+        default: return .requestPlain
         }
     }
 }

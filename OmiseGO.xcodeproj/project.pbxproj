@@ -158,6 +158,10 @@
 		03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */; };
 		03E565B7211AFF9A00BC9124 /* HTTPClient+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */; };
 		03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */; };
+		03E72EDB2124177E0060E1D7 /* LoginParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDA2124177E0060E1D7 /* LoginParams.swift */; };
+		03E72EDD212424B00060E1D7 /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */; };
+		03E72EDF2124312C0060E1D7 /* AuthenticationTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDE2124312C0060E1D7 /* AuthenticationTokenTests.swift */; };
+		03F2D500212436BB00BC65BB /* LoginFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */; };
 		0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */; };
 		9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -327,6 +331,10 @@
 		03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRScannerViewController+Client.swift"; sourceTree = "<group>"; };
 		03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPClient+Admin.swift"; sourceTree = "<group>"; };
 		03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConfiguration.swift; sourceTree = "<group>"; };
+		03E72EDA2124177E0060E1D7 /* LoginParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParams.swift; sourceTree = "<group>"; };
+		03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationToken.swift; sourceTree = "<group>"; };
+		03E72EDE2124312C0060E1D7 /* AuthenticationTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenTests.swift; sourceTree = "<group>"; };
+		03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFixtureTests.swift; sourceTree = "<group>"; };
 		16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.release.xcconfig"; sourceTree = "<group>"; };
 		47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -478,6 +486,7 @@
 		032CED6A211D3D5300E44445 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				03E72EDE2124312C0060E1D7 /* AuthenticationTokenTests.swift */,
 				032CED6B211D3D5300E44445 /* TokenTests.swift */,
 				032CED6C211D3D5300E44445 /* TransactionConsumptionParamsTest.swift */,
 				032CED6D211D3D5300E44445 /* TransactionConsumptionTest.swift */,
@@ -555,6 +564,7 @@
 				032CEDC0211D3D5300E44445 /* TransactionFixtureTests.swift */,
 				032CEDC1211D3D5300E44445 /* SettingFixtureTests.swift */,
 				032CEDC2211D3D5300E44445 /* RequestFixtureTest.swift */,
+				03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -626,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				0379E7C921184BC800E65D4F /* Account.swift */,
+				03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */,
 				0379E7C121184BC800E65D4F /* Avatar.swift */,
 				0379E7BE21184BC800E65D4F /* Balance.swift */,
 				0379E7C721184BC800E65D4F /* EmptyResponse.swift */,
@@ -647,6 +658,7 @@
 				0379E7BB21184BC800E65D4F /* TransactionRequestParams.swift */,
 				0379E7C521184BC800E65D4F /* TransactionConsumption.swift */,
 				0379E7BD21184BC800E65D4F /* TransactionConsumptionParams.swift */,
+				03E72EDA2124177E0060E1D7 /* LoginParams.swift */,
 				0379E7BC21184BC800E65D4F /* User.swift */,
 				0379E7CB21184BC800E65D4F /* Wallet.swift */,
 			);
@@ -1035,6 +1047,7 @@
 				0379E81521184BC900E65D4F /* Configuration.swift in Sources */,
 				0379E80C21184BC900E65D4F /* QREncodable.swift in Sources */,
 				0379E7FD21184BC900E65D4F /* OMGError.swift in Sources */,
+				03E72EDD212424B00060E1D7 /* AuthenticationToken.swift in Sources */,
 				0320EAC5211966BC0006685C /* AdminCredential.swift in Sources */,
 				0379E80121184BC900E65D4F /* Transaction.swift in Sources */,
 				0379E7F521184BC900E65D4F /* TransactionSource.swift in Sources */,
@@ -1045,6 +1058,7 @@
 				0379E7F021184BC900E65D4F /* SocketClient.swift in Sources */,
 				0379E7F821184BC900E65D4F /* TransactionRequestParams.swift in Sources */,
 				0379E81121184BC900E65D4F /* QRScannerOverlayView.swift in Sources */,
+				03E72EDB2124177E0060E1D7 /* LoginParams.swift in Sources */,
 				03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */,
 				0379E80521184BC900E65D4F /* TransactionListParams.swift in Sources */,
 				0379E81221184BC900E65D4F /* QRScannerLoadingView.swift in Sources */,
@@ -1075,6 +1089,7 @@
 				032CEDFB211D3D5300E44445 /* DecodingFixtureTests.swift in Sources */,
 				032CEDDA211D3D5300E44445 /* EncodeTests.swift in Sources */,
 				032CEDE6211D3D5300E44445 /* TestQRHelper.swift in Sources */,
+				03E72EDF2124312C0060E1D7 /* AuthenticationTokenTests.swift in Sources */,
 				032CEDD2211D3D5300E44445 /* QRScannerViewModelTests.swift in Sources */,
 				032CEE39211D3D5300E44445 /* TransactionFixtureTests.swift in Sources */,
 				032CEDE4211D3D5300E44445 /* TestConfiguration.swift in Sources */,
@@ -1127,6 +1142,7 @@
 				032CEDD9211D3D5300E44445 /* SocketMessageTests.swift in Sources */,
 				032CEDF1211D3D5300E44445 /* TransactionConsumptionTest.swift in Sources */,
 				032CEDE9211D3D5300E44445 /* TestBigUInt.swift in Sources */,
+				03F2D500212436BB00BC65BB /* LoginFixtureTests.swift in Sources */,
 				032CEDF6211D3D5300E44445 /* UserTests.swift in Sources */,
 				032CEDCF211D3D5300E44445 /* QRGeneratorTests.swift in Sources */,
 				032CEE27211D3D5300E44445 /* APIClientEndpointTest.swift in Sources */,

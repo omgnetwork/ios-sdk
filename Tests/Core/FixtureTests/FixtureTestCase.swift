@@ -13,6 +13,7 @@ class FixtureTestCase: XCTestCase {
     var testClient: FixtureClient {
         let bundle = Bundle(for: FixtureTestCase.self)
         let url = bundle.url(forResource: "core_fixtures", withExtension: nil)!
-        return FixtureClient(fixturesDirectoryURL: url)
+        let config = TestConfiguration()
+        return FixtureClient(fixturesDirectoryURL: url, config: config)
     }
 }

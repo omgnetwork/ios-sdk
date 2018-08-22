@@ -10,9 +10,17 @@
 import XCTest
 
 class ClientCredentialTests: XCTestCase {
-    func testFailToEncodeAuthorizationHeaderIfAuthenticationTokenIsNotSpecified() {
+    func testUpdateCredentialSuccessfully() {
+        var credentials = ClientCredential(apiKey: "api_key")
+        XCTAssertNil(credentials.authenticationToken)
+        let authenticationToken = StubGenerator.authenticationToken(token: "123")
+        credentials.update(withAuthenticationToken: authenticationToken)
+        XCTAssertEqual(credentials.authenticationToken, "123")
+    }
+
+    func testAuthenticationReturnsNilIfAuthenticationTokenIsNotSpecified() {
         var credentials = ClientCredential(apiKey: "api_key", authenticationToken: "auth_token")
         credentials.invalidate()
-        XCTAssertThrowsError(try credentials.authentication())
+        XCTAssertNil(try credentials.authentication())
     }
 }

@@ -12,12 +12,10 @@ import Foundation
 class FixtureClient: HTTPClient {
     let fixturesDirectoryURL: URL
 
-    init(fixturesDirectoryURL: URL) {
+    init(fixturesDirectoryURL: URL, config: Configuration) {
         self.fixturesDirectoryURL = fixturesDirectoryURL
         super.init()
-        let credentials = ClientCredential(apiKey: "some_api_key", authenticationToken: "some_token")
-        self.config = ClientConfiguration(baseURL: "http://localhost:4000",
-                                          credentials: credentials)
+        self.config = config
     }
 
     @discardableResult

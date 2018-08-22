@@ -17,6 +17,10 @@ public struct AdminCredential: Credential {
         return try CredentialEncoder.encode(value1: self.userId, value2: authenticationToken, scheme: "OMGAdmin")
     }
 
+    mutating func update(withAuthenticationToken authenticationToken: AuthenticationToken) {
+        self.authenticationToken = authenticationToken.token
+    }
+
     public mutating func invalidate() {
         self.authenticationToken = nil
     }

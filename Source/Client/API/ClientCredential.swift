@@ -16,17 +16,19 @@ public struct ClientCredential: Credential {
     ///
     /// - Parameters:
     ///   - apiKey: The API key to use for the authenticated calls
-    ///   - authenticationToken: The authentication token of the user
-    public init(apiKey: String, authenticationToken: String) {
+    ///   - authenticationToken: The authentication token of the user. Can be nil if doing request that don't need authentication.
+    public init(apiKey: String, authenticationToken: String? = nil) {
         self.apiKey = apiKey
         self.authenticationToken = authenticationToken
     }
 
     func authentication() throws -> String? {
-        guard let authenticationToken = self.authenticationToken else {
-            throw OMGError.configuration(message: "Authentication token is required")
-        }
+        guard let authenticationToken = self.authenticationToken else { return nil }
         return try CredentialEncoder.encode(value1: self.apiKey, value2: authenticationToken, scheme: "OMGClient")
+    }
+
+    mutating func update(withAuthenticationToken authenticationToken: AuthenticationToken) {
+        self.authenticationToken = authenticationToken.token
     }
 
     public mutating func invalidate() {

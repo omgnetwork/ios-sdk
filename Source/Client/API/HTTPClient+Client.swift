@@ -33,4 +33,26 @@ extension HTTPClient {
         }
         return request
     }
+
+    /// Login a user using an email and a password.
+    /// Once the request is completed successfully, the current client is automatically
+    /// upgraded with the authentication contained in the response.
+    /// It can then be used to make other authenticated calls
+    ///
+    /// - Parameter callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    @discardableResult
+    public func loginClient(withParams params: LoginParams, callback: @escaping Request<AuthenticationToken>.Callback)
+        -> Request<AuthenticationToken>? {
+        let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIClientEndpoint.login(params: params)) { result in
+            switch result {
+            case let .success(data: authenticationToken):
+                self.config.credentials.update(withAuthenticationToken: authenticationToken)
+                callback(.success(data: authenticationToken))
+            case let .fail(error):
+                callback(.fail(error: error))
+            }
+        }
+        return request
+    }
 }
