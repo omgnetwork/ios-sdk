@@ -12,7 +12,6 @@ before_install:
   fi
 install:
 - |
-  bundle install
   if [ "$TEST_TYPE" = Lint ]; then
     brew install swiftlint || brew upgrade swiftlint
   elif [ "$TEST_TYPE" = CocoaPods ] || [ "$TEST_TYPE" = iOS ]; then
