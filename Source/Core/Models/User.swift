@@ -12,8 +12,10 @@ public struct User: Listenable {
     public let id: String
     /// The user identifier on the provider server side
     public let providerUserId: String?
-    /// The user's username, it can be an email or any name describing this user
+    /// The user's username
     public let username: String?
+    /// The user's email
+    public let email: String?
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
     /// Any additional encrypted metadata that need to be stored as a dictionary
@@ -31,6 +33,7 @@ extension User: Decodable {
         case id
         case providerUserId = "provider_user_id"
         case username
+        case email
         case metadata
         case encryptedMetadata = "encrypted_metadata"
         case createdAt = "created_at"
@@ -43,6 +46,7 @@ extension User: Decodable {
         id = try container.decode(String.self, forKey: .id)
         providerUserId = try container.decodeIfPresent(String.self, forKey: .providerUserId)
         username = try container.decodeIfPresent(String.self, forKey: .username)
+        email = try container.decodeIfPresent(String.self, forKey: .email)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
         createdAt = try container.decode(Date.self, forKey: .createdAt)

@@ -244,6 +244,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertEqual(decodedData.providerUserId, "wijf-fbancomw-dqwjudb")
             XCTAssertEqual(decodedData.username, "john.doe@example.com")
+            XCTAssertEqual(decodedData.email, "john.doe@example.com")
             XCTAssertEqual(decodedData.socketTopic, "user:cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
@@ -478,6 +479,8 @@ class DecodeTests: XCTestCase {
             let decodedData = try self.jsonDecoder.decode(TransactionSource.self, from: jsonData)
             XCTAssertEqual(decodedData.address, "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
             XCTAssertEqual(decodedData.amount, 1000)
+            XCTAssertEqual(decodedData.user!.id, "cec34607-0761-4a59-8357-18963e42a1aa")
+            XCTAssertEqual(decodedData.account!.id, "acc_01CA2P8JQANS5ATY5GJ5ETMJCF")
             let token: Token = decodedData.token
             XCTAssertEqual(token.id, "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
             XCTAssertEqual(token.symbol, "BTC")

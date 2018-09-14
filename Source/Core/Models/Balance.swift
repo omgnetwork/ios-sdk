@@ -29,10 +29,10 @@ extension Balance {
 
 extension Balance: Hashable {
     public var hashValue: Int {
-        return self.token.hashValue ^ self.amount.hashValue
+        return self.token.hashValue
     }
 
     public static func == (lhs: Balance, rhs: Balance) -> Bool {
-        return lhs.token == rhs.token && lhs.amount == rhs.amount
+        return lhs.token == rhs.token
     }
 }

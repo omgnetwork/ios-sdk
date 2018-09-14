@@ -15,7 +15,7 @@ public struct Account {
     /// The name of the account
     public let name: String
     /// The description of the account
-    public let description: String
+    public let description: String?
     /// A boolean indicating if the account is a master account or not
     public let isMaster: Bool
     /// The avatar object containing urls
@@ -49,7 +49,7 @@ extension Account: Decodable {
         id = try container.decode(String.self, forKey: .id)
         parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
         name = try container.decode(String.self, forKey: .name)
-        description = try container.decode(String.self, forKey: .description)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
         isMaster = try container.decode(Bool.self, forKey: .isMaster)
         avatar = try container.decode(Avatar.self, forKey: .avatar)
         metadata = try container.decode([String: Any].self, forKey: .metadata)

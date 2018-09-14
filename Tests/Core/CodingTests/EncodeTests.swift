@@ -588,15 +588,15 @@ class EncodeTests: XCTestCase {
             let signupParams = SignupParams(email: "email@example.com",
                                             password: "password",
                                             passwordConfirmation: "password",
-                                            redirectURL: "xxx",
+                                            verificationURL: "xxx",
                                             successURL: "yyy")
             let encodedData = try self.encoder.encode(signupParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "email":"email@example.com",
                     "password":"password",
-                    "redirect_url":"xxx",
                     "success_url":"yyy",
+                    "verification_url":"xxx",
                     "password_confirmation":"password"
                 }
             """.uglifiedEncodedString())

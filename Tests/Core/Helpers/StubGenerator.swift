@@ -258,12 +258,16 @@ class StubGenerator {
     class func transactionSource(
         address: String? = nil,
         amount: BigInt? = nil,
-        token: Token? = nil)
+        token: Token? = nil,
+        user: User? = nil,
+        account: Account? = nil)
         -> TransactionSource {
         let v: TransactionSource = self.stub(forResource: "transaction_source")
         return TransactionSource(address: address ?? v.address,
                                  amount: amount ?? v.amount,
-                                 token: token ?? v.token)
+                                 token: token ?? v.token,
+                                 user: user ?? v.user,
+                                 account: account ?? v.account)
     }
 
     class func transactionExchange(
@@ -363,6 +367,7 @@ class StubGenerator {
         id: String? = nil,
         providerUserId: String? = nil,
         username: String? = nil,
+        email: String? = nil,
         metadata: [String: Any]? = nil,
         socketTopic: String? = nil,
         encryptedMetadata: [String: Any]? = nil,
@@ -374,6 +379,7 @@ class StubGenerator {
             id: id ?? v.id,
             providerUserId: providerUserId ?? v.providerUserId,
             username: username ?? v.username,
+            email: email ?? v.email,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
             socketTopic: socketTopic ?? v.socketTopic,

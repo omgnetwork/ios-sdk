@@ -61,25 +61,21 @@ class BalanceTests: XCTestCase {
     func testEquatable() {
         let token1 = StubGenerator.token(id: "OMG:123", subUnitToUnit: 1)
         let token2 = StubGenerator.token(id: "BTC:123", subUnitToUnit: 1)
-        let balance1 = StubGenerator.balance(token: token1, amount: 1)
-        let balance2 = StubGenerator.balance(token: token1, amount: 1)
-        let balance3 = StubGenerator.balance(token: token1, amount: 10)
-        let balance4 = StubGenerator.balance(token: token2, amount: 10)
+        let balance1 = StubGenerator.balance(token: token1)
+        let balance2 = StubGenerator.balance(token: token1)
+        let balance3 = StubGenerator.balance(token: token2)
         XCTAssertEqual(balance1, balance2)
         XCTAssertNotEqual(balance1, balance3)
-        XCTAssertNotEqual(balance1, balance4)
-        XCTAssertNotEqual(balance3, balance4)
     }
 
     func testHashable() {
         let token1 = StubGenerator.token(id: "OMG", subUnitToUnit: 1)
         let token2 = StubGenerator.token(id: "BTC", subUnitToUnit: 1)
-        let balance1 = StubGenerator.balance(token: token1, amount: 1)
-        let balance2 = StubGenerator.balance(token: token1, amount: 1)
-        let balance3 = StubGenerator.balance(token: token1, amount: 10)
-        let balance4 = StubGenerator.balance(token: token2, amount: 10)
-        let set: Set<Balance> = [balance1, balance2, balance3, balance4]
-        XCTAssertEqual(balance1.hashValue, token1.hashValue ^ BigInt("1")!.hashValue)
-        XCTAssertEqual(set.count, 3)
+        let balance1 = StubGenerator.balance(token: token1)
+        let balance2 = StubGenerator.balance(token: token1)
+        let balance3 = StubGenerator.balance(token: token2)
+        let set: Set<Balance> = [balance1, balance2, balance3]
+        XCTAssertEqual(balance1.hashValue, "OMG".hashValue)
+        XCTAssertEqual(set.count, 2)
     }
 }

@@ -9,6 +9,7 @@
       "id": "usr_01cc02x0v98qcctvycfx4vsk8x",
       "provider_user_id": null,
       "username": null,
+      "email": "user@example.com",
       "socket_topic": "user:usr_01cc02x0v98qcctvycfx4vsk8x",
       "metadata": {},
       "encrypted_metadata": {},
