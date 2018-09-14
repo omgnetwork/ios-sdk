@@ -40,11 +40,11 @@ class LiveTestCase: XCTestCase {
 
     func areKeysValid() -> Bool {
         return
-            self.validBaseURL != ""
-            && self.validWebsocketURL != ""
-            && self.validAPIKey != ""
-            && self.validAuthenticationToken != ""
-            && self.validTokenId != ""
+            self.validBaseURL != "" && self.validBaseURL != "$\(LiveTestCase.OMG_BASE_URL)"
+            && self.validWebsocketURL != "" && self.validWebsocketURL != "$\(LiveTestCase.OMG_WEBSOCKET_URL)"
+            && self.validAPIKey != "" && self.validAPIKey != "$\(LiveTestCase.OMG_API_KEY)"
+            && self.validAuthenticationToken != "" && self.validAuthenticationToken != "$\(LiveTestCase.OMG_CLIENT_AUTHENTICATION_TOKEN)"
+            && self.validTokenId != "" && self.validTokenId != "$\(LiveTestCase.OMG_TOKEN_ID)"
     }
 
     /// This function loads the keys from the environment variables,
