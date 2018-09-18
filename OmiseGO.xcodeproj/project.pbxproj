@@ -155,6 +155,12 @@
 		0379E82221184CE900E65D4F /* CredentialEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E82121184CE900E65D4F /* CredentialEncoder.swift */; };
 		0380AAE9212D2D78006B2193 /* SignupParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAE8212D2D78006B2193 /* SignupParams.swift */; };
 		0380AAEB212D311B006B2193 /* SignupFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */; };
+		03AB7ED3214BC04D00C80D8E /* AdminCredentialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */; };
+		03AB7ED4214BC04D00C80D8E /* APIAdminndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */; };
+		03AB7ED5214BC04D00C80D8E /* FixtureAdminTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */; };
+		03AB7ED7214BC04D00C80D8E /* FixtureAdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */; };
+		03AB7ED8214BC04D00C80D8E /* LoginAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */; };
+		03AB7EDA214BC3F000C80D8E /* admin_fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03AB7ED9214BC3F000C80D8E /* admin_fixtures */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03E565B3211AC87500BC9124 /* SocketClient+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B2211AC87500BC9124 /* SocketClient+Client.swift */; };
 		03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B4211AFBB100BC9124 /* QRScannerViewController+Client.swift */; };
@@ -329,6 +335,12 @@
 		0379E82C2118527C00E65D4F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0380AAE8212D2D78006B2193 /* SignupParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupParams.swift; sourceTree = "<group>"; };
 		0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFixtureTests.swift; sourceTree = "<group>"; };
+		03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminCredentialTests.swift; sourceTree = "<group>"; };
+		03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdminndpointTest.swift; sourceTree = "<group>"; };
+		03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureAdminTestCase.swift; sourceTree = "<group>"; };
+		03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureAdminAPI.swift; sourceTree = "<group>"; };
+		03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAdminFixtureTests.swift; sourceTree = "<group>"; };
+		03AB7ED9214BC3F000C80D8E /* admin_fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = admin_fixtures; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E565B2211AC87500BC9124 /* SocketClient+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketClient+Client.swift"; sourceTree = "<group>"; };
@@ -532,6 +544,10 @@
 		032CEDA7211D3D5300E44445 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				03AB7EC9214BC04C00C80D8E /* APITests */,
+				03AB7ECC214BC04C00C80D8E /* FixtureTests */,
+				03AB7EC8214BC04C00C80D8E /* LiveTests */,
+				03AB7EC7214BC04C00C80D8E /* TestMocks */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -764,6 +780,40 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		03AB7EC7214BC04C00C80D8E /* TestMocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TestMocks;
+			sourceTree = "<group>";
+		};
+		03AB7EC8214BC04C00C80D8E /* LiveTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LiveTests;
+			sourceTree = "<group>";
+		};
+		03AB7EC9214BC04C00C80D8E /* APITests */ = {
+			isa = PBXGroup;
+			children = (
+				03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */,
+				03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */,
+			);
+			path = APITests;
+			sourceTree = "<group>";
+		};
+		03AB7ECC214BC04C00C80D8E /* FixtureTests */ = {
+			isa = PBXGroup;
+			children = (
+				03AB7ED9214BC3F000C80D8E /* admin_fixtures */,
+				03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */,
+				03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */,
+				03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */,
+			);
+			path = FixtureTests;
+			sourceTree = "<group>";
+		};
 		03BCCC9F1F8B311600F604DB = {
 			isa = PBXGroup;
 			children = (
@@ -917,6 +967,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03AB7EDA214BC3F000C80D8E /* admin_fixtures in Resources */,
 				032CEE46211D3F2700E44445 /* core_fixtures in Resources */,
 				032CEF24211D685600E44445 /* secret.plist in Resources */,
 				032CEE48211D3F5100E44445 /* client_fixtures in Resources */,
@@ -1090,12 +1141,14 @@
 				032CEDEB211D3D5300E44445 /* TestObject.swift in Sources */,
 				032CEE1F211D3D5300E44445 /* ListableTests.swift in Sources */,
 				032CEE40211D3D5300E44445 /* TransactionLiveTests.swift in Sources */,
+				03AB7ED4214BC04D00C80D8E /* APIAdminndpointTest.swift in Sources */,
 				032CEDDC211D3D5300E44445 /* APIErrorTests.swift in Sources */,
 				032CEE3C211D3D5300E44445 /* AuthenticationLiveTests.swift in Sources */,
 				032CEE20211D3D5300E44445 /* FixtureClient.swift in Sources */,
 				032CEDFB211D3D5300E44445 /* DecodingFixtureTests.swift in Sources */,
 				032CEDDA211D3D5300E44445 /* EncodeTests.swift in Sources */,
 				032CEDE6211D3D5300E44445 /* TestQRHelper.swift in Sources */,
+				03AB7ED7214BC04D00C80D8E /* FixtureAdminAPI.swift in Sources */,
 				03E72EDF2124312C0060E1D7 /* AuthenticationTokenTests.swift in Sources */,
 				032CEDD2211D3D5300E44445 /* QRScannerViewModelTests.swift in Sources */,
 				032CEE39211D3D5300E44445 /* TransactionFixtureTests.swift in Sources */,
@@ -1108,6 +1161,7 @@
 				032CEDD6211D3D5300E44445 /* FixtureSocketClient.swift in Sources */,
 				032CEE3E211D3D5300E44445 /* SettingLiveTests.swift in Sources */,
 				032CEDE5211D3D5300E44445 /* TestSocketEventDelegate.swift in Sources */,
+				03AB7ED8214BC04D00C80D8E /* LoginAdminFixtureTests.swift in Sources */,
 				032CEE23211D3D5300E44445 /* OMGNumberFormatterTests.swift in Sources */,
 				032CEE3A211D3D5300E44445 /* SettingFixtureTests.swift in Sources */,
 				032CEDF0211D3D5300E44445 /* TransactionConsumptionParamsTest.swift in Sources */,
@@ -1117,6 +1171,8 @@
 				032CEE3D211D3D5300E44445 /* WalletLiveTests.swift in Sources */,
 				032CEE29211D3D5300E44445 /* UserFixtureTests.swift in Sources */,
 				032CEE26211D3D5300E44445 /* ClientCredentialTests.swift in Sources */,
+				03AB7ED3214BC04D00C80D8E /* AdminCredentialTests.swift in Sources */,
+				03AB7ED5214BC04D00C80D8E /* FixtureAdminTestCase.swift in Sources */,
 				032CEDD0211D3D5300E44445 /* QRScannerViewTests.swift in Sources */,
 				032CEDD4211D3D5300E44445 /* QRReaderTests.swift in Sources */,
 				032CEDD7211D3D5300E44445 /* SocketClientTests.swift in Sources */,

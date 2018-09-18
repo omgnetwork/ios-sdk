@@ -27,7 +27,7 @@ public struct AdminConfiguration: Configuration {
     ///   - apiKey: The API key (typically generated on the admin panel)
     ///   - authenticationToken: The authentication token of the current user
     ///   - debugLog: Enable or not SDK console logs
-    public init(baseURL: String, credentials: AdminCredential, debugLog: Bool = false) {
+    public init(baseURL: String, credentials: AdminCredential = AdminCredential(), debugLog: Bool = false) {
         self.baseURL = baseURL + "/api/admin"
         self.credentials = credentials
         self.debugLog = debugLog

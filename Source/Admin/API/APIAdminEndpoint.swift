@@ -8,11 +8,19 @@
 
 /// Represents an admin api endpoint.
 enum APIAdminEndpoint: APIEndpoint {
+    case login(params: LoginParams)
+
     var path: String {
-        return ""
+        switch self {
+        case .login:
+            return "/admin.login"
+        }
     }
 
     var task: HTTPTask {
-        return .requestPlain
+        switch self {
+        case let .login(parameters):
+            return .requestParameters(parameters: parameters)
+        }
     }
 }
