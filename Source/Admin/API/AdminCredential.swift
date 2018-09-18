@@ -37,6 +37,7 @@ public struct AdminCredential: Credential {
     }
 
     public mutating func invalidate() {
+        self.userId = nil
         self.authenticationToken = nil
     }
 }

@@ -98,6 +98,7 @@
 		032CEE4A211D408800E44445 /* TestQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEE49211D408800E44445 /* TestQRReader.swift */; };
 		032CEF24211D685600E44445 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CEF22211D685600E44445 /* secret.plist */; };
 		032CEF2A211D783D00E44445 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEF29211D783D00E44445 /* LiveTestCase.swift */; };
+		034F1513214F562D002BB513 /* LogoutAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */; };
 		0379E7E921184BC900E65D4F /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AB21184BC800E65D4F /* SocketEvent.swift */; };
 		0379E7EA21184BC900E65D4F /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AC21184BC800E65D4F /* SocketPayload.swift */; };
 		0379E7EB21184BC900E65D4F /* SocketDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AD21184BC800E65D4F /* SocketDispatcher.swift */; };
@@ -156,7 +157,7 @@
 		0380AAE9212D2D78006B2193 /* SignupParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAE8212D2D78006B2193 /* SignupParams.swift */; };
 		0380AAEB212D311B006B2193 /* SignupFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */; };
 		03AB7ED3214BC04D00C80D8E /* AdminCredentialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */; };
-		03AB7ED4214BC04D00C80D8E /* APIAdminndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */; };
+		03AB7ED4214BC04D00C80D8E /* APIAdminEndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECB214BC04C00C80D8E /* APIAdminEndpointTest.swift */; };
 		03AB7ED5214BC04D00C80D8E /* FixtureAdminTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */; };
 		03AB7ED7214BC04D00C80D8E /* FixtureAdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */; };
 		03AB7ED8214BC04D00C80D8E /* LoginAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */; };
@@ -276,6 +277,7 @@
 		032CEE49211D408800E44445 /* TestQRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestQRReader.swift; sourceTree = "<group>"; };
 		032CEF22211D685600E44445 /* secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		032CEF29211D783D00E44445 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTestCase.swift; sourceTree = "<group>"; };
+		034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAdminFixtureTests.swift; sourceTree = "<group>"; };
 		0379E7AB21184BC800E65D4F /* SocketEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
 		0379E7AC21184BC800E65D4F /* SocketPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
 		0379E7AD21184BC800E65D4F /* SocketDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketDispatcher.swift; sourceTree = "<group>"; };
@@ -336,7 +338,7 @@
 		0380AAE8212D2D78006B2193 /* SignupParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupParams.swift; sourceTree = "<group>"; };
 		0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFixtureTests.swift; sourceTree = "<group>"; };
 		03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminCredentialTests.swift; sourceTree = "<group>"; };
-		03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdminndpointTest.swift; sourceTree = "<group>"; };
+		03AB7ECB214BC04C00C80D8E /* APIAdminEndpointTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdminEndpointTest.swift; sourceTree = "<group>"; };
 		03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureAdminTestCase.swift; sourceTree = "<group>"; };
 		03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureAdminAPI.swift; sourceTree = "<group>"; };
 		03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAdminFixtureTests.swift; sourceTree = "<group>"; };
@@ -798,7 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				03AB7ECA214BC04C00C80D8E /* AdminCredentialTests.swift */,
-				03AB7ECB214BC04C00C80D8E /* APIAdminndpointTest.swift */,
+				03AB7ECB214BC04C00C80D8E /* APIAdminEndpointTest.swift */,
 			);
 			path = APITests;
 			sourceTree = "<group>";
@@ -810,6 +812,7 @@
 				03AB7ECD214BC04C00C80D8E /* FixtureAdminTestCase.swift */,
 				03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */,
 				03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */,
+				034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -1141,7 +1144,7 @@
 				032CEDEB211D3D5300E44445 /* TestObject.swift in Sources */,
 				032CEE1F211D3D5300E44445 /* ListableTests.swift in Sources */,
 				032CEE40211D3D5300E44445 /* TransactionLiveTests.swift in Sources */,
-				03AB7ED4214BC04D00C80D8E /* APIAdminndpointTest.swift in Sources */,
+				03AB7ED4214BC04D00C80D8E /* APIAdminEndpointTest.swift in Sources */,
 				032CEDDC211D3D5300E44445 /* APIErrorTests.swift in Sources */,
 				032CEE3C211D3D5300E44445 /* AuthenticationLiveTests.swift in Sources */,
 				032CEE20211D3D5300E44445 /* FixtureClient.swift in Sources */,
@@ -1175,6 +1178,7 @@
 				03AB7ED5214BC04D00C80D8E /* FixtureAdminTestCase.swift in Sources */,
 				032CEDD0211D3D5300E44445 /* QRScannerViewTests.swift in Sources */,
 				032CEDD4211D3D5300E44445 /* QRReaderTests.swift in Sources */,
+				034F1513214F562D002BB513 /* LogoutAdminFixtureTests.swift in Sources */,
 				032CEDD7211D3D5300E44445 /* SocketClientTests.swift in Sources */,
 				032CEDFC211D3D5300E44445 /* ResponseFixtureTest.swift in Sources */,
 				032CEE36211D3D5300E44445 /* TransactionRequestFixtureTests.swift in Sources */,

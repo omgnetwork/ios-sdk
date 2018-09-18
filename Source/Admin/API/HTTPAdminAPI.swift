@@ -40,4 +40,23 @@ extension HTTPAdminAPI {
         }
         return request
     }
+
+    /// Logout the current admin.
+    ///
+    /// - Parameter callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    @discardableResult
+    public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
+        -> Request<EmptyResponse>? {
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIAdminEndpoint.logout) { result in
+            switch result {
+            case let .success(data: data):
+                self.config.credentials.invalidate()
+                callback(.success(data: data))
+            case let .fail(error):
+                callback(.fail(error: error))
+            }
+        }
+        return request
+    }
 }

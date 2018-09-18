@@ -14,11 +14,16 @@ class APIAdminEndpointTest: XCTestCase {
 
     func testPath() {
         XCTAssertEqual(APIAdminEndpoint.login(params: self.validLoginParams).path, "/admin.login")
+        XCTAssertEqual(APIAdminEndpoint.logout.path, "/me.logout")
     }
 
     func testTask() {
         switch APIClientEndpoint.login(params: self.validLoginParams).task {
         case .requestParameters: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIAdminEndpoint.logout.task {
+        case .requestPlain: break
         default: XCTFail("Wrong task")
         }
     }
