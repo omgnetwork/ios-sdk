@@ -17,8 +17,18 @@ struct TestListable: Decodable, Listable {
 }
 
 struct PaginatedTestListable: Decodable, PaginatedListable {
+    let dummy: String = "123"
+
+    enum SearchableFields: String, KeyEncodable {
+        case dummy
+    }
+
+    enum SortableFields: String, KeyEncodable {
+        case dummy
+    }
+
     static func list(using client: HTTPAPI,
-                     callback: @escaping PaginatedTestListable.ListRequestCallback) {
+                     callback: @escaping PaginatedTestListable.PaginatedListRequestCallback) {
         let endpoint = TestAPIEndpoint(path: "dummy.listable.failure")
         self.list(using: client, endpoint: endpoint, callback: callback)
     }

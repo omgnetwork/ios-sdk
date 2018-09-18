@@ -8,7 +8,7 @@
 
 import OmiseGO
 
-struct TestSortable: Paginable {
+struct TestPaginatedListable: PaginatedListable {
     let aSortableAttribute: String
     let aNonSortableAttribute: String
 

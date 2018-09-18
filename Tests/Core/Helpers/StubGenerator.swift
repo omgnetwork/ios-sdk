@@ -388,27 +388,25 @@ class StubGenerator {
         )
     }
 
-    class func paginationParams<T: Paginable>(
+    class func paginatedListParams<T: PaginatedListable>(
         page: Int? = 1,
         perPage: Int? = 20,
         searchTerm: String? = nil,
-        searchTerms: [T.SearchableFields: String]? = nil,
         sortBy: T.SortableFields,
         sortDirection: SortDirection? = .ascending)
-        -> PaginationParams<T> {
-        return PaginationParams(page: page!,
-                                perPage: perPage!,
-                                searchTerm: searchTerm,
-                                searchTerms: searchTerms,
-                                sortBy: sortBy,
-                                sortDirection: sortDirection!)
+        -> PaginatedListParams<T> {
+        return PaginatedListParams<T>(page: page!,
+                                      perPage: perPage!,
+                                      searchTerm: searchTerm ?? "",
+                                      sortBy: sortBy,
+                                      sortDirection: sortDirection!)
     }
 
     class func transactionListParams(
-        paginationParams: PaginationParams<Transaction>? = StubGenerator.paginationParams(sortBy: .id),
+        paginationParams: PaginatedListParams<Transaction>? = StubGenerator.paginatedListParams(sortBy: .id),
         address: String? = nil)
         -> TransactionListParams {
-        return TransactionListParams(paginationParams: paginationParams!,
+        return TransactionListParams(paginatedListParams: paginationParams!,
                                      address: address)
     }
 

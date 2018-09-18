@@ -186,23 +186,35 @@ This returns a paginated filtered list of transactions.
 In order to get this list you will need to create a `TransactionListParams` object:
 
 ```swift
-let params = TransactionListParams(paginationParams: paginationParams, address: nil)
+let params = TransactionListParams(paginatedListParams: paginationParams, address: nil)
 ```
 
 Where
 - `address` is an optional address that belongs to the current user (primary wallet address by default)
-- `paginationParams` is a `PaginationParams<Transaction>` object:
+- `paginationParams` is a `PaginatedListParams<Transaction>` object:
 
 ```swift
-let paginationParams = PaginationParams<Transaction>(
+let paginationParams = PaginatedListParams<Transaction>(
     page: 1,
     perPage: 10,
     searchTerm: nil,
+    sortBy: .createdAt,
+    sortDirection: .descending
+)
+```
+
+or
+
+```swift
+let paginationParams = PaginatedListParams<Transaction>(
+    page: 1,
+    perPage: 10,
     searchTerms: nil,
     sortBy: .createdAt,
     sortDirection: .descending
 )
 ```
+
 
 Where:
 - `page` is the page you wish to receive.

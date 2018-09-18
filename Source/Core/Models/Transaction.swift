@@ -72,14 +72,16 @@ extension Transaction: Decodable {
     }
 }
 
-extension Transaction: Paginable {
+extension Transaction: Searchable {
     public enum SearchableFields: String, KeyEncodable {
         case id
         case status
         case from
         case to
     }
+}
 
+extension Transaction: Sortable {
     public enum SortableFields: String, KeyEncodable {
         case id
         case status
@@ -88,6 +90,8 @@ extension Transaction: Paginable {
         case createdAt = "created_at"
     }
 }
+
+extension Transaction: PaginatedListable {}
 
 extension Transaction: Hashable {
     public var hashValue: Int {

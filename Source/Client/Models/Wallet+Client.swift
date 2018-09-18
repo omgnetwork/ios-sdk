@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension Wallet: Listable {
+extension Wallet {
     @discardableResult
     /// Get all wallets of the current user
     ///

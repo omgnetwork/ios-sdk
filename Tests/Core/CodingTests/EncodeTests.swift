@@ -108,9 +108,8 @@ class EncodeTests: XCTestCase {
         let encodable = TestBigUInt(value: "2147483647")
         do {
             let encodedData = try self.encoder.encode(encodable)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
-                           """
-                                            {"value": 2147483647}
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {"value": 2147483647}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -121,9 +120,8 @@ class EncodeTests: XCTestCase {
         let encodable = TestBigUInt(value: "922337203685400")
         do {
             let encodedData = try self.encoder.encode(encodable)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
-                           """
-                                           {"value": 922337203685400}
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {"value": 922337203685400}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -134,9 +132,8 @@ class EncodeTests: XCTestCase {
         let encodable = TestBigUInt(value: "99999999999999999999999999999999999998")
         do {
             let encodedData = try self.encoder.encode(encodable)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
-                           """
-                                            {"value": 99999999999999999999999999999999999998}
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {"value": 99999999999999999999999999999999999998}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -287,7 +284,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                        {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                                                    {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -350,11 +347,10 @@ class EncodeTests: XCTestCase {
 
     func testPaginationParamsEncoding() {
         do {
-            let paginationParams = PaginationParams<TestSortable>(
+            let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
                 perPage: 20,
                 searchTerm: "test",
-                searchTerms: nil,
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
             let encodedData = try self.encoder.encode(paginationParams)
@@ -374,20 +370,19 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testPaginationParamsEncodingWithBothSearchTermAndSearchTerms() {
+    func testPaginationParamsEncodingWithSearchTerms() {
         do {
-            let paginationParams = PaginationParams<TestSortable>(
+            let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
                 perPage: 20,
-                searchTerm: "test",
                 searchTerms: [.aSearchableAttribute: "test"],
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
             let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "per_page":20,
                     "search_terms":{"a_searchable_attribute":"test"},
+                    "per_page":20,
                     "sort_dir":"asc",
                     "sort_by":"a_sortable_attribute",
                     "page":1
@@ -398,13 +393,11 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testPaginationParamsEncodingWithNilValues() {
+    func testPaginationParamsEncodingWithoutSearch() {
         do {
-            let paginationParams = PaginationParams<TestSortable>(
+            let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
                 perPage: 20,
-                searchTerm: nil,
-                searchTerms: nil,
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
             let encodedData = try self.encoder.encode(paginationParams)
@@ -424,7 +417,7 @@ class EncodeTests: XCTestCase {
     func testTransactionListParamsEncoding() {
         do {
             let transactionParams = TransactionListParams(
-                paginationParams: StubGenerator.paginationParams(
+                paginatedListParams: StubGenerator.paginatedListParams(
                     searchTerm: "test",
                     sortBy: .createdAt,
                     sortDirection: .descending),
@@ -474,7 +467,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                        {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                                                    {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -598,6 +591,32 @@ class EncodeTests: XCTestCase {
                     "success_url":"yyy",
                     "verification_url":"xxx",
                     "password_confirmation":"password"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testWalletListForUserParamsEncoding() {
+        do {
+            let walletParams = WalletListForUserParams(
+                paginatedListParams: StubGenerator.paginatedListParams(
+                    searchTerm: "test",
+                    sortBy: .address,
+                    sortDirection: .ascending),
+                userId: "123")
+            let encodedData = try self.encoder.encode(walletParams)
+            let encodedPayload = try! walletParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "search_term":"test",
+                    "per_page":20,
+                    "id":"123",
+                    "sort_dir":"asc",
+                    "sort_by":"address",
+                    "page":1
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

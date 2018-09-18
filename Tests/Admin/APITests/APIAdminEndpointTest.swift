@@ -12,11 +12,18 @@ import XCTest
 class APIAdminEndpointTest: XCTestCase {
     let validLoginParams = LoginParams(email: "email@example.com", password: "password")
     let validWalletGetParams = WalletGetParams(address: "123")
+    let validWalletListForUserParams =
+        WalletListForUserParams(paginatedListParams: PaginatedListParams<Wallet>(page: 1,
+                                                                                 perPage: 1,
+                                                                                 sortBy: .address,
+                                                                                 sortDirection: .ascending),
+                                userId: "123")
 
     func testPath() {
         XCTAssertEqual(APIAdminEndpoint.login(params: self.validLoginParams).path, "/admin.login")
         XCTAssertEqual(APIAdminEndpoint.logout.path, "/me.logout")
         XCTAssertEqual(APIAdminEndpoint.getWallet(params: self.validWalletGetParams).path, "/wallet.get")
+        XCTAssertEqual(APIAdminEndpoint.getWalletsForUser(params: self.validWalletListForUserParams).path, "/user.get_wallets")
     }
 
     func testTask() {
@@ -29,6 +36,10 @@ class APIAdminEndpointTest: XCTestCase {
         default: XCTFail("Wrong task")
         }
         switch APIAdminEndpoint.getWallet(params: self.validWalletGetParams).task {
+        case .requestParameters: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIAdminEndpoint.getWalletsForUser(params: self.validWalletListForUserParams).task {
         case .requestParameters: break
         default: XCTFail("Wrong task")
         }

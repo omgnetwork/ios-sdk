@@ -12,13 +12,12 @@ import XCTest
 class TransactionLiveTests: LiveClientTestCase {
     func testGetTransactionList() {
         let expectation = self.expectation(description: "Get paginated list of transactions")
-        let paginationParams = PaginationParams<Transaction>(
+        let paginationParams = PaginatedListParams<Transaction>(
             page: 1,
             perPage: 10,
-            searchTerm: nil,
             sortBy: .createdAt,
             sortDirection: .descending)
-        let params = TransactionListParams(paginationParams: paginationParams, address: nil)
+        let params = TransactionListParams(paginatedListParams: paginationParams, address: nil)
         let request = Transaction.list(
             using: self.testClient,
             params: params) { result in

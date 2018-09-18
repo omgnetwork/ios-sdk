@@ -9,7 +9,7 @@
 /// Represents a structure used to retrieve a wallet from its address
 public struct WalletGetParams: APIParameters {
     /// The address of the wallet to retrieve
-    var address: String
+    public let address: String
 
     /// Initialize the params used to retrive a wallet from its address
     ///

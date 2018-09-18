@@ -23,7 +23,7 @@ extension Transaction: Retrievable {
     }
 }
 
-extension Transaction: PaginatedListable {
+extension Transaction {
     @discardableResult
     /// Get a paginated list of transaction for the current user
     ///
@@ -35,7 +35,7 @@ extension Transaction: PaginatedListable {
     /// - Returns: An optional cancellable request.
     public static func list(using client: HTTPClientAPI,
                             params: TransactionListParams,
-                            callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
+                            callback: @escaping Transaction.PaginatedListRequestCallback) -> Transaction.PaginatedListRequest? {
         return self.list(using: client, endpoint: APIClientEndpoint.getTransactions(params: params), callback: callback)
     }
 }

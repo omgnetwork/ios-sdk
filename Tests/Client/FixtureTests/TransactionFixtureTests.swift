@@ -14,12 +14,11 @@ class TransactionFixtureTests: FixtureClientTestCase {
     func testGetListOfTransactions() {
         let expectation =
             self.expectation(description: "Get the list of transactions for the current user")
-        let paginationParams = PaginationParams<Transaction>(page: 1,
-                                                             perPage: 10,
-                                                             searchTerm: nil,
-                                                             sortBy: .to,
-                                                             sortDirection: .ascending)
-        let params = TransactionListParams(paginationParams: paginationParams, address: nil)
+        let paginationParams = PaginatedListParams<Transaction>(page: 1,
+                                                                perPage: 10,
+                                                                sortBy: .to,
+                                                                sortDirection: .ascending)
+        let params = TransactionListParams(paginatedListParams: paginationParams, address: nil)
 
         let request =
             Transaction.list(using: self.testClient, params: params) { result in

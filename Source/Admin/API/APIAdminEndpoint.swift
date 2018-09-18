@@ -11,6 +11,7 @@ enum APIAdminEndpoint: APIEndpoint {
     case login(params: LoginParams)
     case logout
     case getWallet(params: WalletGetParams)
+    case getWalletsForUser(params: WalletListForUserParams)
 
     var path: String {
         switch self {
@@ -20,6 +21,8 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/me.logout"
         case .getWallet:
             return "/wallet.get"
+        case .getWalletsForUser:
+            return "/user.get_wallets"
         }
     }
 
@@ -28,6 +31,8 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .login(parameters):
             return .requestParameters(parameters: parameters)
         case let .getWallet(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .getWalletsForUser(parameters):
             return .requestParameters(parameters: parameters)
         default:
             return .requestPlain
