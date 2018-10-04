@@ -1,5 +1,5 @@
 //
-//  WalletGetForUserParams.swift
+//  WalletListForUserParams.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 17/9/18.
@@ -8,8 +8,11 @@
 
 /// Represents a structure used to retrieve wallets for a specific user
 public struct WalletListForUserParams {
+    /// The pagination params
     public let paginatedListParams: PaginatedListParams<Wallet>
+    /// The id of the user
     public let userId: String?
+    /// The provider user id of the user
     public let providerUserId: String?
 
     /// Initialize the params used to query a paginated list of wallets belonging to a user from its userId

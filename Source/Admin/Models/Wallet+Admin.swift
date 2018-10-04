@@ -41,16 +41,32 @@ extension Wallet {
 
 extension Wallet: PaginatedListable {
     @discardableResult
-    /// Get all wallets for a user
+    /// Get a paginated list of wallets for a user
     ///
     /// - Parameters:
     ///   - client: An API client.
     ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - params: The WalletListForUserParams object containing the user id and the pagination informations
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func getForUser(using client: HTTPAdminAPI,
-                                  params: WalletListForUserParams,
-                                  callback: @escaping Wallet.PaginatedListRequestCallback) -> Wallet.PaginatedListRequest? {
+    public static func listForUser(using client: HTTPAdminAPI,
+                                   params: WalletListForUserParams,
+                                   callback: @escaping Wallet.PaginatedListRequestCallback) -> Wallet.PaginatedListRequest? {
         return self.list(using: client, endpoint: APIAdminEndpoint.getWalletsForUser(params: params), callback: callback)
+    }
+
+    @discardableResult
+    /// Get a paginated list of wallets for an account
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - params: The WalletListForAccountParams object containing the account id and the pagination informations
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public static func listForAccount(using client: HTTPAdminAPI,
+                                      params: WalletListForAccountParams,
+                                      callback: @escaping Wallet.PaginatedListRequestCallback) -> Wallet.PaginatedListRequest? {
+        return self.list(using: client, endpoint: APIAdminEndpoint.getWalletsForAccount(params: params), callback: callback)
     }
 }

@@ -284,7 +284,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                                                    {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                                                            {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -467,7 +467,7 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                                                    {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                                                                                            {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -617,6 +617,34 @@ class EncodeTests: XCTestCase {
                     "sort_dir":"asc",
                     "sort_by":"address",
                     "page":1
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testWalletListForAccountParamsEncoding() {
+        do {
+            let walletParams = WalletListForAccountParams(
+                paginatedListParams: StubGenerator.paginatedListParams(
+                    searchTerm: "test",
+                    sortBy: .address,
+                    sortDirection: .ascending),
+                accountId: "123",
+                owned: true)
+            let encodedData = try self.encoder.encode(walletParams)
+            let encodedPayload = try! walletParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "per_page":20,
+                    "page":1,
+                    "id":"123",
+                    "owned": true,
+                    "sort_dir":"asc",
+                    "search_term":"test",
+                    "sort_by":"address"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

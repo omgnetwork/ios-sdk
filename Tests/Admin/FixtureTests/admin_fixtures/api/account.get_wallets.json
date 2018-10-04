@@ -1,0 +1,161 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "pagination": {
+      "per_page": 10,
+      "is_last_page": true,
+      "is_first_page": true,
+      "current_page": 1
+    },
+    "object": "list",
+    "data": [
+      {
+        "user_id": null,
+        "user": null,
+        "updated_at": "2018-08-22T04:44:38.837395Z",
+        "socket_topic": "wallet:ixsz977823599563",
+        "object": "wallet",
+        "name": "primary",
+        "metadata": {},
+        "identifier": "primary",
+        "encrypted_metadata": {},
+        "enabled": true,
+        "created_at": "2018-08-22T04:44:38.837384Z",
+        "balances": [
+          {
+            "token": {
+              "updated_at": "2018-08-22T07:53:13.800904Z",
+              "symbol": "TK1",
+              "subunit_to_unit": 1,
+              "object": "token",
+              "name": "Token 1",
+              "metadata": {},
+              "id": "tok_TK1_01cng9z3a8yn58ts806vbpefxw",
+              "encrypted_metadata": {},
+              "enabled": true,
+              "created_at": "2018-08-22T07:53:13.800896Z"
+            },
+            "object": "balance",
+            "amount": 37585
+          },
+          {
+            "token": {
+              "updated_at": "2018-08-23T07:21:03.542632Z",
+              "symbol": "TK2",
+              "subunit_to_unit": 1,
+              "object": "token",
+              "name": "Token 2",
+              "metadata": {},
+              "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+              "encrypted_metadata": {},
+              "enabled": true,
+              "created_at": "2018-08-23T07:21:03.542625Z"
+            },
+            "object": "balance",
+            "amount": 9999999469
+          }
+        ],
+        "address": "ixsz977823599563",
+        "account_id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+        "account": {
+          "updated_at": "2018-08-24T09:47:29.116420Z",
+          "socket_topic": "account:acc_01cnfz5sh5zmhx4xwd6m1rethy",
+          "parent_id": null,
+          "object": "account",
+          "name": "Account 1",
+          "metadata": {},
+          "master": true,
+          "id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+          "encrypted_metadata": {},
+          "description": "Master Account",
+          "created_at": "2018-08-22T04:44:38.823385Z",
+          "category_ids": [],
+          "categories": {
+            "object": "list",
+            "data": []
+          },
+          "avatar": {
+            "thumb": null,
+            "small": null,
+            "original": null,
+            "large": null
+          }
+        }
+      },
+      {
+        "user_id": null,
+        "user": null,
+        "updated_at": "2018-08-22T04:44:38.839533Z",
+        "socket_topic": "wallet:gaxv776652797936",
+        "object": "wallet",
+        "name": "burn",
+        "metadata": {},
+        "identifier": "burn",
+        "encrypted_metadata": {},
+        "enabled": true,
+        "created_at": "2018-08-22T04:44:38.839524Z",
+        "balances": [
+          {
+            "token": {
+              "updated_at": "2018-08-22T07:53:13.800904Z",
+              "symbol": "TK1",
+              "subunit_to_unit": 1,
+              "object": "token",
+              "name": "Token 1",
+              "metadata": {},
+              "id": "tok_TK1_01cng9z3a8yn58ts806vbpefxw",
+              "encrypted_metadata": {},
+              "enabled": true,
+              "created_at": "2018-08-22T07:53:13.800896Z"
+            },
+            "object": "balance",
+            "amount": 0
+          },
+          {
+            "token": {
+              "updated_at": "2018-08-23T07:21:03.542632Z",
+              "symbol": "TK2",
+              "subunit_to_unit": 1,
+              "object": "token",
+              "name": "Token 2",
+              "metadata": {},
+              "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+              "encrypted_metadata": {},
+              "enabled": true,
+              "created_at": "2018-08-23T07:21:03.542625Z"
+            },
+            "object": "balance",
+            "amount": 0
+          }
+        ],
+        "address": "gaxv776652797936",
+        "account_id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+        "account": {
+          "updated_at": "2018-08-24T09:47:29.116420Z",
+          "socket_topic": "account:acc_01cnfz5sh5zmhx4xwd6m1rethy",
+          "parent_id": null,
+          "object": "account",
+          "name": "Account 1",
+          "metadata": {},
+          "master": true,
+          "id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+          "encrypted_metadata": {},
+          "description": "Master Account",
+          "created_at": "2018-08-22T04:44:38.823385Z",
+          "category_ids": [],
+          "categories": {
+            "object": "list",
+            "data": []
+          },
+          "avatar": {
+            "thumb": null,
+            "small": null,
+            "original": null,
+            "large": null
+          }
+        }
+      }
+    ]
+  }
+}
