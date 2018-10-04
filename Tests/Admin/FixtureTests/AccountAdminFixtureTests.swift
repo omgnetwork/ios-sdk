@@ -13,7 +13,7 @@ class AccountAdminFixtureTests: FixtureAdminTestCase {
     func testGetListOfAccounts() {
         let expectation = self.expectation(description: "List accounts")
         let params: PaginatedListParams<Account> = PaginatedListParams<Account>(page: 1, perPage: 10, sortBy: .name, sortDirection: .ascending)
-        let request = Account.list(using: self.testClient, params: params) { (result) in
+        let request = Account.list(using: self.testClient, params: params) { result in
             defer { expectation.fulfill() }
             switch result {
             case let .success(data: paginatedAccounts):

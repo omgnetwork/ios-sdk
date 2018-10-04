@@ -1,0 +1,217 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "pagination": {
+      "per_page": 10,
+      "is_last_page": false,
+      "is_first_page": true,
+      "current_page": 1
+    },
+    "object": "list",
+    "data": [
+      {
+        "updated_at": "2018-09-19T04:56:52.429167Z",
+        "to": {
+          "user_id": "usr_01cq97a3hgm49h8tw28evv5bg2",
+          "user": {
+            "username": null,
+            "updated_at": "2018-09-13T10:23:39.833617Z",
+            "socket_topic": "user:usr_01cq97a3hgm49h8tw28evv5bg2",
+            "provider_user_id": null,
+            "object": "user",
+            "metadata": {},
+            "id": "usr_01cq97a3hgm49h8tw28evv5bg2",
+            "encrypted_metadata": {},
+            "email": "user@example.com",
+            "created_at": "2018-09-13T10:23:31.376373Z",
+            "avatar": {
+              "thumb": null,
+              "small": null,
+              "original": null,
+              "large": null
+            }
+          },
+          "token_id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+          "token": {
+            "updated_at": "2018-08-23T07:21:03.542632Z",
+            "symbol": "TK2",
+            "subunit_to_unit": 1,
+            "object": "token",
+            "name": "Token 2",
+            "metadata": {},
+            "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+            "encrypted_metadata": {},
+            "enabled": true,
+            "created_at": "2018-08-23T07:21:03.542625Z"
+          },
+          "object": "transaction_source",
+          "amount": 5,
+          "address": "fzpi652664408105",
+          "account_id": null,
+          "account": null
+        },
+        "status": "confirmed",
+        "object": "transaction",
+        "metadata": {},
+        "idempotency_token": "wkd39y3bdn",
+        "id": "txn_01cqr309xnwa2qwdk4dqaqrbs6",
+        "from": {
+          "user_id": "usr_01cnggq88jyfpvhxxkehph6v5h",
+          "user": {
+            "username": null,
+            "updated_at": "2018-08-22T09:51:16.754145Z",
+            "socket_topic": "user:usr_01cnggq88jyfpvhxxkehph6v5h",
+            "provider_user_id": null,
+            "object": "user",
+            "metadata": {},
+            "id": "usr_01cnggq88jyfpvhxxkehph6v5h",
+            "encrypted_metadata": {},
+            "email": "user1@example.com",
+            "created_at": "2018-08-22T09:51:16.754122Z",
+            "avatar": {
+              "thumb": null,
+              "small": null,
+              "original": null,
+              "large": null
+            }
+          },
+          "token_id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+          "token": {
+            "updated_at": "2018-08-23T07:21:03.542632Z",
+            "symbol": "TK2",
+            "subunit_to_unit": 1,
+            "object": "token",
+            "name": "Token 2",
+            "metadata": {},
+            "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+            "encrypted_metadata": {},
+            "enabled": true,
+            "created_at": "2018-08-23T07:21:03.542625Z"
+          },
+          "object": "transaction_source",
+          "amount": 5,
+          "address": "eyvq483844336634",
+          "account_id": null,
+          "account": null
+        },
+        "exchange": {
+          "rate": null,
+          "object": "exchange",
+          "exchange_wallet_address": null,
+          "exchange_wallet": null,
+          "exchange_pair_id": null,
+          "exchange_pair": null,
+          "exchange_account_id": null,
+          "exchange_account": null,
+          "calculated_at": null
+        },
+        "error_description": null,
+        "error_code": null,
+        "encrypted_metadata": {},
+        "created_at": "2018-09-19T04:56:52.405884Z"
+      },
+      {
+        "updated_at": "2018-09-19T04:56:06.511808Z",
+        "to": {
+          "user_id": "usr_01cq97a3hgm49h8tw28evv5bg2",
+          "user": {
+            "username": null,
+            "updated_at": "2018-09-13T10:23:39.833617Z",
+            "socket_topic": "user:usr_01cq97a3hgm49h8tw28evv5bg2",
+            "provider_user_id": null,
+            "object": "user",
+            "metadata": {},
+            "id": "usr_01cq97a3hgm49h8tw28evv5bg2",
+            "encrypted_metadata": {},
+            "email": "user@example.com",
+            "created_at": "2018-09-13T10:23:31.376373Z",
+            "avatar": {
+              "thumb": null,
+              "small": null,
+              "original": null,
+              "large": null
+            }
+          },
+          "token_id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+          "token": {
+            "updated_at": "2018-08-23T07:21:03.542632Z",
+            "symbol": "TK2",
+            "subunit_to_unit": 1,
+            "object": "token",
+            "name": "Token 2",
+            "metadata": {},
+            "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+            "encrypted_metadata": {},
+            "enabled": true,
+            "created_at": "2018-08-23T07:21:03.542625Z"
+          },
+          "object": "transaction_source",
+          "amount": 5,
+          "address": "fzpi652664408105",
+          "account_id": null,
+          "account": null
+        },
+        "status": "confirmed",
+        "object": "transaction",
+        "metadata": {},
+        "idempotency_token": "5reo665wcko",
+        "id": "txn_01cqr2yx2ns2kdysat3h7075a0",
+        "from": {
+          "user_id": "usr_01cnggq88jyfpvhxxkehph6v5h",
+          "user": {
+            "username": null,
+            "updated_at": "2018-08-22T09:51:16.754145Z",
+            "socket_topic": "user:usr_01cnggq88jyfpvhxxkehph6v5h",
+            "provider_user_id": null,
+            "object": "user",
+            "metadata": {},
+            "id": "usr_01cnggq88jyfpvhxxkehph6v5h",
+            "encrypted_metadata": {},
+            "email": "user1@example.com",
+            "created_at": "2018-08-22T09:51:16.754122Z",
+            "avatar": {
+              "thumb": null,
+              "small": null,
+              "original": null,
+              "large": null
+            }
+          },
+          "token_id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+          "token": {
+            "updated_at": "2018-08-23T07:21:03.542632Z",
+            "symbol": "TK2",
+            "subunit_to_unit": 1,
+            "object": "token",
+            "name": "Token 2",
+            "metadata": {},
+            "id": "tok_TK2_01cnjtgx9p89p9g1pa2qjzk9mf",
+            "encrypted_metadata": {},
+            "enabled": true,
+            "created_at": "2018-08-23T07:21:03.542625Z"
+          },
+          "object": "transaction_source",
+          "amount": 5,
+          "address": "eyvq483844336634",
+          "account_id": null,
+          "account": null
+        },
+        "exchange": {
+          "rate": null,
+          "object": "exchange",
+          "exchange_wallet_address": null,
+          "exchange_wallet": null,
+          "exchange_pair_id": null,
+          "exchange_pair": null,
+          "exchange_account_id": null,
+          "exchange_account": null,
+          "calculated_at": null
+        },
+        "error_description": null,
+        "error_code": null,
+        "encrypted_metadata": {},
+        "created_at": "2018-09-19T04:56:06.485448Z"
+      }
+    ]
+  }
+}

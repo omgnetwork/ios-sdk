@@ -182,6 +182,8 @@
 		03F827462150CA7100BD05D6 /* WalletListForAccountParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F827452150CA7100BD05D6 /* WalletListForAccountParams.swift */; };
 		03F827482150F45E00BD05D6 /* Account+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F827472150F45E00BD05D6 /* Account+Admin.swift */; };
 		03F8274A2150FA6C00BD05D6 /* AccountAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F827492150FA6C00BD05D6 /* AccountAdminFixtureTests.swift */; };
+		03F8274C21523FCC00BD05D6 /* Transaction+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F8274B21523FCC00BD05D6 /* Transaction+Admin.swift */; };
+		03F8274E215245F800BD05D6 /* TransactionAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F8274D215245F800BD05D6 /* TransactionAdminFixtureTests.swift */; };
 		0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */; };
 		9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -375,6 +377,8 @@
 		03F827452150CA7100BD05D6 /* WalletListForAccountParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListForAccountParams.swift; sourceTree = "<group>"; };
 		03F827472150F45E00BD05D6 /* Account+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Admin.swift"; sourceTree = "<group>"; };
 		03F827492150FA6C00BD05D6 /* AccountAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdminFixtureTests.swift; sourceTree = "<group>"; };
+		03F8274B21523FCC00BD05D6 /* Transaction+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+Admin.swift"; sourceTree = "<group>"; };
+		03F8274D215245F800BD05D6 /* TransactionAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAdminFixtureTests.swift; sourceTree = "<group>"; };
 		16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.release.xcconfig"; sourceTree = "<group>"; };
 		47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -643,6 +647,7 @@
 			children = (
 				034F1515214F6617002BB513 /* Wallet+Admin.swift */,
 				03F827472150F45E00BD05D6 /* Account+Admin.swift */,
+				03F8274B21523FCC00BD05D6 /* Transaction+Admin.swift */,
 				034F1517214F6713002BB513 /* WalletGetParams.swift */,
 				034F151F214F8708002BB513 /* WalletListForUserParams.swift */,
 				03F827452150CA7100BD05D6 /* WalletListForAccountParams.swift */,
@@ -859,6 +864,7 @@
 				03AB7ED1214BC04C00C80D8E /* FixtureAdminAPI.swift */,
 				034F151B214F6E8E002BB513 /* RequestAdminFixtureTests.swift */,
 				03AB7ED2214BC04C00C80D8E /* LoginAdminFixtureTests.swift */,
+				03F8274D215245F800BD05D6 /* TransactionAdminFixtureTests.swift */,
 				034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */,
 				034F1519214F6AC0002BB513 /* WalletAdminFixtureTests.swift */,
 				03F827492150FA6C00BD05D6 /* AccountAdminFixtureTests.swift */,
@@ -1155,6 +1161,7 @@
 				0320EAAF211852EB0006685C /* APIAdminEndpoint.swift in Sources */,
 				034F1520214F8708002BB513 /* WalletListForUserParams.swift in Sources */,
 				0379E81921184BC900E65D4F /* Request.swift in Sources */,
+				03F8274C21523FCC00BD05D6 /* Transaction+Admin.swift in Sources */,
 				0379E81C21184BC900E65D4F /* OMGNumberFormatter.swift in Sources */,
 				0320EABE2119499B0006685C /* Wallet+Client.swift in Sources */,
 				0379E80821184BC900E65D4F /* Wallet.swift in Sources */,
@@ -1204,6 +1211,7 @@
 				03AB7ED4214BC04D00C80D8E /* APIAdminEndpointTest.swift in Sources */,
 				032CEDDC211D3D5300E44445 /* APIErrorTests.swift in Sources */,
 				032CEE3C211D3D5300E44445 /* AuthenticationLiveTests.swift in Sources */,
+				03F8274E215245F800BD05D6 /* TransactionAdminFixtureTests.swift in Sources */,
 				032CEE20211D3D5300E44445 /* FixtureClient.swift in Sources */,
 				032CEDFB211D3D5300E44445 /* DecodingFixtureTests.swift in Sources */,
 				032CEDDA211D3D5300E44445 /* EncodeTests.swift in Sources */,

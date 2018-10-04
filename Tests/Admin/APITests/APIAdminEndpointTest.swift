@@ -26,6 +26,7 @@ class APIAdminEndpointTest: XCTestCase {
                                    accountId: "123",
                                    owned: false)
     let validGetAccountsParams = PaginatedListParams<Account>(page: 1, perPage: 1, sortBy: .name, sortDirection: .ascending)
+    let validGetTransactionsParams = PaginatedListParams<Transaction>(page: 1, perPage: 1, sortBy: .status, sortDirection: .ascending)
 
     func testPath() {
         XCTAssertEqual(APIAdminEndpoint.login(params: self.validLoginParams).path, "/admin.login")
@@ -34,6 +35,7 @@ class APIAdminEndpointTest: XCTestCase {
         XCTAssertEqual(APIAdminEndpoint.getWalletsForUser(params: self.validWalletListForUserParams).path, "/user.get_wallets")
         XCTAssertEqual(APIAdminEndpoint.getWalletsForAccount(params: self.validWalletListForAccountParams).path, "/account.get_wallets")
         XCTAssertEqual(APIAdminEndpoint.getAccounts(params: self.validGetAccountsParams).path, "/account.all")
+        XCTAssertEqual(APIAdminEndpoint.getTransactions(params: self.validGetTransactionsParams).path, "/transaction.all")
     }
 
     func testTask() {
@@ -58,6 +60,10 @@ class APIAdminEndpointTest: XCTestCase {
         default: XCTFail("Wrong task")
         }
         switch APIAdminEndpoint.getAccounts(params: self.validGetAccountsParams).task {
+        case .requestParameters: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIAdminEndpoint.getTransactions(params: self.validGetTransactionsParams).task {
         case .requestParameters: break
         default: XCTFail("Wrong task")
         }
