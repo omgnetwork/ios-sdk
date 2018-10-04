@@ -1,0 +1,63 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "pagination": {
+      "per_page": 10,
+      "is_last_page": true,
+      "is_first_page": true,
+      "current_page": 1
+    },
+    "object": "list",
+    "data": [
+      {
+        "updated_at": "2018-08-24T09:47:29.116420Z",
+        "socket_topic": "account:acc_01cnfz5sh5zmhx4xwd6m1rethy",
+        "parent_id": null,
+        "object": "account",
+        "name": "Account 1",
+        "metadata": {},
+        "master": true,
+        "id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+        "encrypted_metadata": {},
+        "description": "Master Account",
+        "created_at": "2018-08-22T04:44:38.823385Z",
+        "category_ids": [],
+        "categories": {
+          "object": "list",
+          "data": []
+        },
+        "avatar": {
+          "thumb": null,
+          "small": null,
+          "original": null,
+          "large": null
+        }
+      },
+      {
+        "updated_at": "2018-08-24T09:47:42.575342Z",
+        "socket_topic": "account:acc_01cnnna53f35n80pnmbf730s29",
+        "parent_id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+        "object": "account",
+        "name": "Account 2",
+        "metadata": {},
+        "master": false,
+        "id": "acc_01cnnna53f35n80pnmbf730s29",
+        "encrypted_metadata": {},
+        "description": null,
+        "created_at": "2018-08-24T09:47:42.575319Z",
+        "category_ids": [],
+        "categories": {
+          "object": "list",
+          "data": []
+        },
+        "avatar": {
+          "thumb": null,
+          "small": null,
+          "original": null,
+          "large": null
+        }
+      }
+    ]
+  }
+}
