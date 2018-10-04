@@ -23,6 +23,9 @@ class EncodeTests: XCTestCase {
         super.setUp()
         let jsonEncoder = JSONEncoder()
         jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
+        if #available(iOS 11.0, *) {
+            jsonEncoder.outputFormatting = .sortedKeys
+        }
         self.encoder = jsonEncoder
     }
 
@@ -57,18 +60,18 @@ class EncodeTests: XCTestCase {
         {
             "metadata":{
                 "a_bool":true,
-                "an_integer":1,
-                "an_array":["value_1","value_2"],
                 "a_double":12.34,
+                "a_string":"some_string",
+                "an_array":["value_1","value_2"],
+                "an_integer":1,
                 "an_object":{
+                    "a_key":"a_value",
                     "a_nested_object":{
                         "a_nested_key":"a_nested_value"
                     },
-                    "a_key":"a_value",
-                    "a_nil_value": null},
-                "a_string":"some_string"
+                    "a_nil_value": null
+                }
             },
-            "optional_metadata_array":["a_value"],
             "metadata_array":[
                 "value_1",
                 123,
@@ -79,7 +82,8 @@ class EncodeTests: XCTestCase {
             ],
             "optional_metadata":{
                 "a_key":"a_value"
-            }
+            },
+            "optional_metadata_array":["a_value"]
         }
         """.uglifiedEncodedString())
     }
@@ -98,8 +102,8 @@ class EncodeTests: XCTestCase {
         let jsonString = String(data: encodedData, encoding: .utf8)!
         XCTAssertEqual(jsonString, """
             {
-                "metadata_array":[],
-                "metadata":{}
+                "metadata":{},
+                "metadata_array":[]
             }
         """.uglifiedEncodedString())
     }
@@ -121,7 +125,9 @@ class EncodeTests: XCTestCase {
         do {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {"value": 922337203685400}
+                {
+                    "value": 922337203685400
+                }
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -133,7 +139,9 @@ class EncodeTests: XCTestCase {
         do {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {"value": 99999999999999999999999999999999999998}
+                {
+                    "value": 99999999999999999999999999999999999998
+                }
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -216,19 +224,19 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "require_confirmation":true,
-                    "consumption_lifetime":1000,
-                    "allow_amount_override":true,
-                    "encrypted_metadata":{},
-                    "amount":null,
-                    "metadata":{},
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-                    "type":"receive",
-                    "max_consumptions":1,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "allow_amount_override":true,
+                    "amount":null,
+                    "consumption_lifetime":1000,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "encrypted_metadata":{},
+                    "expiration_date":"1970-01-01T00:00:00Z",
+                    "max_consumptions":1,
                     "max_consumptions_per_user":5,
-                    "expiration_date":"1970-01-01T00:00:00Z"
+                    "metadata":{},
+                    "require_confirmation":true,
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "type":"receive"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -255,19 +263,19 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(transactionRequestParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "require_confirmation":true,
-                    "consumption_lifetime":1000,
-                    "allow_amount_override":false,
-                    "encrypted_metadata":{},
-                    "amount":1337,
-                    "metadata":{},
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-                    "type":"receive",
-                    "max_consumptions":1,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "allow_amount_override":false,
+                    "amount":1337,
+                    "consumption_lifetime":1000,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "encrypted_metadata":{},
+                    "expiration_date":"1970-01-01T00:00:00Z",
+                    "max_consumptions":1,
                     "max_consumptions_per_user":5,
-                    "expiration_date":"1970-01-01T00:00:00Z"
+                    "metadata":{},
+                    "require_confirmation":true,
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "type":"receive"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -284,7 +292,9 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                                                            {"formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"}
+                            {
+                                "formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"
+                            }
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -331,12 +341,12 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
+                    "address":"456",
                     "amount":null,
                     "correlation_id":"321",
-                    "formatted_transaction_request_id":"|0a8a4a98-794b-419e-b92d-514e83657e75",
-                    "address":"456",
-                    "idempotency_token":"123",
                     "encrypted_metadata":{},
+                    "formatted_transaction_request_id":"|0a8a4a98-794b-419e-b92d-514e83657e75",
+                    "idempotency_token":"123",
                     "metadata":{}
                 }
             """.uglifiedEncodedString())
@@ -358,11 +368,11 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "search_term":"test",
+                    "page":1,
                     "per_page":20,
-                    "sort_dir":"asc",
+                    "search_term":"test",
                     "sort_by":"a_sortable_attribute",
-                    "page":1
+                    "sort_dir":"asc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -381,11 +391,11 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "search_terms":{"a_searchable_attribute":"test"},
+                    "page":1,
                     "per_page":20,
-                    "sort_dir":"asc",
+                    "search_terms":{"a_searchable_attribute":"test"},
                     "sort_by":"a_sortable_attribute",
-                    "page":1
+                    "sort_dir":"asc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -403,10 +413,10 @@ class EncodeTests: XCTestCase {
             let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
+                    "page":1,
                     "per_page":20,
-                    "sort_dir":"asc",
                     "sort_by":"a_sortable_attribute",
-                    "page":1
+                    "sort_dir":"asc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -427,12 +437,12 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
+                    "address":"123",
                     "page":1,
-                    "search_term":"test",
                     "per_page":20,
-                    "sort_dir":"desc",
+                    "search_term":"test",
                     "sort_by":"created_at",
-                    "address":"123"
+                    "sort_dir":"desc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -449,9 +459,9 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "data":{"a_key":"a_value"},
-                    "topic":"a_topic",
                     "event":"phx_join",
-                    "ref":"1"
+                    "ref":"1",
+                    "topic":"a_topic"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -467,7 +477,9 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                                                                            {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
+                            {
+                                "id":"0a8a4a98-794b-419e-b92d-514e83657e75"
+                            }
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -490,11 +502,11 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
-                    "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
-                    "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "idempotency_token":"123",
+                    "metadata":{"a_key":"a_value"},
+                    "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
                     "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
                 }
             """.uglifiedEncodedString())
@@ -519,11 +531,11 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
-                    "to_account_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
-                    "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "idempotency_token":"123",
+                    "metadata":{"a_key":"a_value"},
+                    "to_account_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
                     "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
                 }
             """.uglifiedEncodedString())
@@ -548,12 +560,64 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
-                    "to_provider_user_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
-                    "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
+                    "idempotency_token":"123",
+                    "metadata":{"a_key":"a_value"},
+                    "to_provider_user_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
                     "token_id":"BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionParamsEncodingFull() {
+        do {
+            let transactionParams = TransactionCreateParams(fromAddress: "dqhg022708121978",
+                                                            toAddress: "qrxe701832114087",
+                                                            amount: 1,
+                                                            fromAmount: 1,
+                                                            toAmount: 2,
+                                                            fromTokenId: "tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+                                                            toTokenId: "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+                                                            tokenId: "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+                                                            fromAccountId: "acc_01cqwwqz8zpsgta8rsm244w8rr",
+                                                            toAccountId: "acc_01cqx8qt9hgnbz1vkwhm5ymkbn",
+                                                            fromProviderUserId: "123",
+                                                            toProviderUserId: "321",
+                                                            fromUserId: "usr_01cqx93p4jh939xbq5k71evswe",
+                                                            toUserId: "usr_01qqx93p4jh939xbq5k71evswe",
+                                                            idempotencyToken: "1234",
+                                                            exchangeAccountId: "acc_01cqwwqz8zpsgta8rsm244w8rr",
+                                                            exchangeAddress: "dqhg022708121978",
+                                                            metadata: ["a_key": "a_value"],
+                                                            encryptedMetadata: ["a_key": "a_value"])
+            let encodedData = try self.encoder.encode(transactionParams)
+            let encodedPayload = try! transactionParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "amount":1,
+                    "encrypted_metadata":{"a_key":"a_value"},
+                    "exchange_account_id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+                    "exchange_address": "dqhg022708121978",
+                    "from_account_id":"acc_01cqwwqz8zpsgta8rsm244w8rr",
+                    "from_address":"dqhg022708121978",
+                    "from_amount":1,
+                    "from_provider_user_id":"123",
+                    "from_token_id":"tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+                    "from_user_id":"usr_01cqx93p4jh939xbq5k71evswe",
+                    "idempotency_token":"1234",
+                    "metadata":{"a_key":"a_value"},
+                    "to_account_id":"acc_01cqx8qt9hgnbz1vkwhm5ymkbn",
+                    "to_address":"qrxe701832114087",
+                    "to_amount":2,
+                    "to_provider_user_id":"321",
+                    "to_token_id":"tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+                    "to_user_id":"usr_01qqx93p4jh939xbq5k71evswe",
+                    "token_id":"tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -588,9 +652,9 @@ class EncodeTests: XCTestCase {
                 {
                     "email":"email@example.com",
                     "password":"password",
+                    "password_confirmation":"password",
                     "success_url":"yyy",
-                    "verification_url":"xxx",
-                    "password_confirmation":"password"
+                    "verification_url":"xxx"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -611,12 +675,12 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "search_term":"test",
-                    "per_page":20,
                     "id":"123",
-                    "sort_dir":"asc",
+                    "page":1,
+                    "per_page":20,
+                    "search_term":"test",
                     "sort_by":"address",
-                    "page":1
+                    "sort_dir":"asc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -638,13 +702,13 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
-                    "per_page":20,
-                    "page":1,
                     "id":"123",
                     "owned": true,
-                    "sort_dir":"asc",
+                    "page":1,
+                    "per_page":20,
                     "search_term":"test",
-                    "sort_by":"address"
+                    "sort_by":"address",
+                    "sort_dir":"asc"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

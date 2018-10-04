@@ -22,6 +22,9 @@ func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
 
 func serialize<ObjectType: Encodable>(_ object: ObjectType) throws -> Data {
     let jsonEncoder = JSONEncoder()
+    if #available(iOS 11.0, *) {
+        jsonEncoder.outputFormatting = .sortedKeys
+    }
     jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
     return try jsonEncoder.encode(object)
 }

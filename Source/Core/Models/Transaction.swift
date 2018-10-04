@@ -93,6 +93,8 @@ extension Transaction: Sortable {
 
 extension Transaction: PaginatedListable {}
 
+extension Transaction: Retrievable {}
+
 extension Transaction: Hashable {
     public var hashValue: Int {
         return self.id.hashValue

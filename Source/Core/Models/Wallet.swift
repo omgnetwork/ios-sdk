@@ -48,15 +48,20 @@ extension Wallet: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         address = try container.decode(String.self, forKey: .address)
-        balances = try container.decode([Balance].self, forKey: .balances)
-        name = try container.decode(String.self, forKey: .name)
-        identifier = try container.decode(String.self, forKey: .identifier)
-        userId = try container.decodeIfPresent(String.self, forKey: .userId)
-        user = try container.decodeIfPresent(User.self, forKey: .user)
-        accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
-        account = try container.decodeIfPresent(Account.self, forKey: .account)
-        metadata = try container.decode([String: Any].self, forKey: .metadata)
-        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
+        let decodedBalances = try container.decodeIfPresent([Balance].self, forKey: .balances)
+        if let balances = decodedBalances {
+            self.balances = balances
+        } else {
+            self.balances = []
+        }
+        self.name = try container.decode(String.self, forKey: .name)
+        self.identifier = try container.decode(String.self, forKey: .identifier)
+        self.userId = try container.decodeIfPresent(String.self, forKey: .userId)
+        self.user = try container.decodeIfPresent(User.self, forKey: .user)
+        self.accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
+        self.account = try container.decodeIfPresent(Account.self, forKey: .account)
+        self.metadata = try container.decode([String: Any].self, forKey: .metadata)
+        self.encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
     }
 }
 

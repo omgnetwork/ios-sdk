@@ -1,0 +1,217 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "updated_at": "2018-09-24T05:33:57.952836Z",
+    "to": {
+      "user_id": null,
+      "user": null,
+      "token_id": "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+      "token": {
+        "updated_at": "2018-09-21T05:15:19.986923Z",
+        "symbol": "NTN",
+        "subunit_to_unit": 100,
+        "object": "token",
+        "name": "Neutrino",
+        "metadata": {},
+        "id": "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+        "encrypted_metadata": {},
+        "enabled": true,
+        "created_at": "2018-09-21T05:15:19.986916Z"
+      },
+      "object": "transaction_source",
+      "amount": 200,
+      "address": "iciu825817955943",
+      "account_id": "acc_01cqx8qt9hgnbz1vkwhm5ymkbn",
+      "account": {
+        "updated_at": "2018-09-21T05:13:17.873565Z",
+        "socket_topic": "account:acc_01cqx8qt9hgnbz1vkwhm5ymkbn",
+        "parent_id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "object": "account",
+        "name": "Singapore",
+        "metadata": {},
+        "master": false,
+        "id": "acc_01cqx8qt9hgnbz1vkwhm5ymkbn",
+        "encrypted_metadata": {},
+        "description": "Singapore",
+        "created_at": "2018-09-21T05:13:17.873558Z",
+        "category_ids": [],
+        "categories": {
+          "object": "list",
+          "data": []
+        },
+        "avatar": {
+          "thumb": null,
+          "small": null,
+          "original": null,
+          "large": null
+        }
+      }
+    },
+    "status": "confirmed",
+    "object": "transaction",
+    "metadata": {
+      "a_key": "a_value"
+    },
+    "idempotency_token": "82492734829374",
+    "id": "txn_01cr513t95d061rcgv2pr90awc",
+    "from": {
+      "user_id": null,
+      "user": null,
+      "token_id": "tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+      "token": {
+        "updated_at": "2018-09-21T05:22:21.655506Z",
+        "symbol": "NT2",
+        "subunit_to_unit": 100,
+        "object": "token",
+        "name": "Neutrino 2",
+        "metadata": {},
+        "id": "tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+        "encrypted_metadata": {},
+        "enabled": true,
+        "created_at": "2018-09-21T05:22:21.655498Z"
+      },
+      "object": "transaction_source",
+      "amount": 400,
+      "address": "dqhg022708121978",
+      "account_id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+      "account": {
+        "updated_at": "2018-09-21T01:44:04.571154Z",
+        "socket_topic": "account:acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "parent_id": null,
+        "object": "account",
+        "name": "Master Account",
+        "metadata": {},
+        "master": true,
+        "id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "encrypted_metadata": {},
+        "description": "Master Account",
+        "created_at": "2018-09-21T01:43:40.067136Z",
+        "category_ids": [],
+        "categories": {
+          "object": "list",
+          "data": []
+        },
+        "avatar": {
+          "thumb": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/thumb.png?v=63704713444",
+          "small": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/small.png?v=63704713444",
+          "original": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/original.jpg?v=63704713444",
+          "large": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/large.png?v=63704713444"
+        }
+      }
+    },
+    "exchange": {
+      "rate": 0.5,
+      "object": "exchange",
+      "exchange_wallet_address": "dqhg022708121978",
+      "exchange_wallet": {
+        "user_id": null,
+        "user": null,
+        "updated_at": "2018-09-21T01:43:40.088282Z",
+        "socket_topic": "wallet:dqhg022708121978",
+        "object": "wallet",
+        "name": "primary",
+        "metadata": {},
+        "identifier": "primary",
+        "encrypted_metadata": {},
+        "enabled": true,
+        "created_at": "2018-09-21T01:43:40.088270Z",
+        "balances": null,
+        "address": "dqhg022708121978",
+        "account_id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "account": {
+          "updated_at": "2018-09-21T01:44:04.571154Z",
+          "socket_topic": "account:acc_01cqwwqz8zpsgta8rsm244w8rr",
+          "parent_id": null,
+          "object": "account",
+          "name": "Master Account",
+          "metadata": {},
+          "master": true,
+          "id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+          "encrypted_metadata": {},
+          "description": "Master Account",
+          "created_at": "2018-09-21T01:43:40.067136Z",
+          "category_ids": [],
+          "categories": {
+            "object": "list",
+            "data": []
+          },
+          "avatar": {
+            "thumb": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/thumb.png?v=63704713444",
+            "small": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/small.png?v=63704713444",
+            "original": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/original.jpg?v=63704713444",
+            "large": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/large.png?v=63704713444"
+          }
+        }
+      },
+      "exchange_pair_id": "exg_01cqx98n071yw80nacskky22ra",
+      "exchange_pair": {
+        "updated_at": "2018-09-21T05:22:29.511768Z",
+        "to_token_id": "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+        "to_token": {
+          "updated_at": "2018-09-21T05:15:19.986923Z",
+          "symbol": "NTN",
+          "subunit_to_unit": 100,
+          "object": "token",
+          "name": "Neutrino",
+          "metadata": {},
+          "id": "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48",
+          "encrypted_metadata": {},
+          "enabled": true,
+          "created_at": "2018-09-21T05:15:19.986916Z"
+        },
+        "rate": 0.5,
+        "object": "exchange_pair",
+        "name": "NT2/NTN",
+        "id": "exg_01cqx98n071yw80nacskky22ra",
+        "from_token_id": "tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+        "from_token": {
+          "updated_at": "2018-09-21T05:22:21.655506Z",
+          "symbol": "NT2",
+          "subunit_to_unit": 100,
+          "object": "token",
+          "name": "Neutrino 2",
+          "metadata": {},
+          "id": "tok_NT2_01cqx98daqa6qf0pdzn3e5csjq",
+          "encrypted_metadata": {},
+          "enabled": true,
+          "created_at": "2018-09-21T05:22:21.655498Z"
+        },
+        "deleted_at": null,
+        "created_at": "2018-09-21T05:22:29.511762Z"
+      },
+      "exchange_account_id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+      "exchange_account": {
+        "updated_at": "2018-09-21T01:44:04.571154Z",
+        "socket_topic": "account:acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "parent_id": null,
+        "object": "account",
+        "name": "Master Account",
+        "metadata": {},
+        "master": true,
+        "id": "acc_01cqwwqz8zpsgta8rsm244w8rr",
+        "encrypted_metadata": {},
+        "description": "Master Account",
+        "created_at": "2018-09-21T01:43:40.067136Z",
+        "category_ids": [],
+        "categories": {
+          "object": "list",
+          "data": []
+        },
+        "avatar": {
+          "thumb": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/thumb.png?v=63704713444",
+          "small": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/small.png?v=63704713444",
+          "original": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/original.jpg?v=63704713444",
+          "large": "http://localhost:4000/public/uploads/dev/account/avatars/acc_01cqwwqz8zpsgta8rsm244w8rr/large.png?v=63704713444"
+        }
+      },
+      "calculated_at": "2018-09-24T05:33:57.923439Z"
+    },
+    "error_description": null,
+    "error_code": null,
+    "encrypted_metadata": {
+      "a_key": "a_value"
+    },
+    "created_at": "2018-09-24T05:33:57.925639Z"
+  }
+}

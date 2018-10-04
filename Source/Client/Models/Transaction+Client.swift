@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension Transaction: Retrievable {
+extension Transaction {
     @discardableResult
     /// Create a new transaction
     ///
@@ -21,9 +21,7 @@ extension Transaction: Retrievable {
                               callback: @escaping Transaction.RetrieveRequestCallback) -> Transaction.RetrieveRequest? {
         return self.retrieve(using: client, endpoint: APIClientEndpoint.createTransaction(params: params), callback: callback)
     }
-}
 
-extension Transaction {
     @discardableResult
     /// Get a paginated list of transaction for the current user
     ///
