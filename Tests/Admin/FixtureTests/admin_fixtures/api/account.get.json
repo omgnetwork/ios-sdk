@@ -1,0 +1,29 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "object": "account",
+    "updated_at": "2018-08-24T09:47:29.116420Z",
+    "socket_topic": "account:acc_01cnfz5sh5zmhx4xwd6m1rethy",
+    "parent_id": null,
+    "object": "account",
+    "name": "Account 1",
+    "metadata": {},
+    "master": true,
+    "id": "acc_01cnfz5sh5zmhx4xwd6m1rethy",
+    "encrypted_metadata": {},
+    "description": "Master Account",
+    "created_at": "2018-08-22T04:44:38.823385Z",
+    "category_ids": [],
+    "categories": {
+      "object": "list",
+      "data": []
+    },
+    "avatar": {
+      "thumb": null,
+      "small": null,
+      "original": null,
+      "large": null
+    }
+  }
+}

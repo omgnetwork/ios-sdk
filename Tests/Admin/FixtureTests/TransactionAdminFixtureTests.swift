@@ -53,7 +53,7 @@ class TransactionAdminFixtureTests: FixtureAdminTestCase {
                                              exchangeAddress: "dqhg022708121978",
                                              metadata: ["a_key": "a_value"],
                                              encryptedMetadata: ["a_key": "a_value"])
-        let request = Transaction.create(using: self.testClient, params: params) { (result) in
+        let request = Transaction.create(using: self.testClient, params: params) { result in
             defer { expectation.fulfill() }
             switch result {
             case let .success(data: transaction):

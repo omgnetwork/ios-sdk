@@ -40,3 +40,20 @@ extension Account: PaginatedListable {
         return self.list(using: client, endpoint: APIAdminEndpoint.getAccounts(params: params), callback: callback)
     }
 }
+
+extension Account: Retrievable {
+    @discardableResult
+    /// Get an account from its id
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - params: The AccountGetParams params object containing the id of the account to retrieve
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public static func get(using client: HTTPAdminAPI,
+                           params: AccountGetParams,
+                           callback: @escaping Account.RetrieveRequestCallback) -> Account.RetrieveRequest? {
+        return self.retrieve(using: client, endpoint: APIAdminEndpoint.getAccount(params: params), callback: callback)
+    }
+}

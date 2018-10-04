@@ -13,6 +13,7 @@ enum APIAdminEndpoint: APIEndpoint {
     case getWallet(params: WalletGetParams)
     case getWalletsForUser(params: WalletListForUserParams)
     case getWalletsForAccount(params: WalletListForAccountParams)
+    case getAccount(params: AccountGetParams)
     case getAccounts(params: PaginatedListParams<Account>)
     case getTransactions(params: PaginatedListParams<Transaction>)
     case createTransaction(params: TransactionCreateParams)
@@ -29,6 +30,8 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/user.get_wallets"
         case .getWalletsForAccount:
             return "/account.get_wallets"
+        case .getAccount:
+            return "/account.get"
         case .getAccounts:
             return "/account.all"
         case .getTransactions:
@@ -47,6 +50,8 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .getWalletsForUser(parameters):
             return .requestParameters(parameters: parameters)
         case let .getWalletsForAccount(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .getAccount(parameters):
             return .requestParameters(parameters: parameters)
         case let .getAccounts(parameters):
             return .requestParameters(parameters: parameters)

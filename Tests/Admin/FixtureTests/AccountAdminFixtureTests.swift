@@ -32,4 +32,20 @@ class AccountAdminFixtureTests: FixtureAdminTestCase {
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
+
+    func testGetAccount() {
+        let expectation = self.expectation(description: "Get an account from its id")
+        let params = AccountGetParams(id: "acc_01cnfz5sh5zmhx4xwd6m1rethy")
+        let request = Account.get(using: self.testClient, params: params) { result in
+            defer { expectation.fulfill() }
+            switch result {
+            case let .success(data: account):
+                XCTAssertEqual(account.id, "acc_01cnfz5sh5zmhx4xwd6m1rethy")
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            }
+        }
+        XCTAssertNotNil(request)
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
 }

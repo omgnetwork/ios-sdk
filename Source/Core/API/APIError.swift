@@ -116,7 +116,7 @@ extension APIErrorCode: RawRepresentable {
             self = .internalServerError
         case "server:unknown_error":
             self = .unknownServerError
-        case "user:auth_token_not_found":
+        case "user:auth_token_not_found", "auth_token:not_found":
             self = .authenticationTokenNotFound
         case "user:auth_token_expired":
             self = .authenticationTokenExpired
