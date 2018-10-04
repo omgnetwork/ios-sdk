@@ -22,8 +22,9 @@ The Client and Admin modules contain specific logic to respectively access the c
   - [CocoaPods](#cocoapods)
   - [Carthage](#carthage)
 - [Usage](#usage)
-  - [Client](documentation/client.md)
-  - [Admin](documentation/admin.md)
+  - [Client API](documentation/client.md)
+  - [Admin API](documentation/admin.md)
+  - [Pagination and filtering](documentation/pagination.md)
 - [Tests](#tests)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
@@ -110,6 +111,8 @@ Drag the built `OmiseGO.framework` into your Xcode project.
 [Client API usage](documentation/client.md)
 
 [Admin API usage](documentation/admin.md)
+
+[Pagination and filtering](documentation/pagination.md)
 
 # Tests
 

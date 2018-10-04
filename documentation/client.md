@@ -6,7 +6,8 @@ The client iOS SDK allows developers to easily interact with the OmiseGO client 
 
 - [HTTP Requests](#http-requests)
   - [Initialization](#initialization-of-the-http-client)
-  - [Log a user in](#login)
+    - [Sign in and Sign up](#sign-in-and-sign-up)
+    - [Sign out](#sign-out)
   - [Retrieving resources](#retrieving-resources)
     - [Get the current user](#get-the-current-user)
     - [Get the wallets of the current user](#get-the-wallets-of-the-current-user)
@@ -65,6 +66,8 @@ let configuration = ClientConfiguration(baseURL: "https://your.base.url",
 let client = HTTPClientAPI(config: configuration)
 ```
 
+#### Sign in and Sign up
+
 - If you are running a standalone version of the eWallet, you can sign up and sign in your users directly from the SDK:
 
 You can retrieve an authentication token using the `HTTPClientAPI.login`.
@@ -99,6 +102,16 @@ client.signup(withParams: params) { (result) in
         case let .fail(error: error):
             // TODO: handle error
     }
+}
+```
+
+#### Sign out
+
+You can sign out a user and invalidate the client's authentication token with:
+
+```swift
+client.logout { _ in
+
 }
 ```
 
@@ -191,38 +204,7 @@ let params = TransactionListParams(paginatedListParams: paginationParams, addres
 
 Where
 - `address` is an optional address that belongs to the current user (primary wallet address by default)
-- `paginationParams` is a `PaginatedListParams<Transaction>` object:
-
-```swift
-let paginationParams = PaginatedListParams<Transaction>(
-    page: 1,
-    perPage: 10,
-    searchTerm: nil,
-    sortBy: .createdAt,
-    sortDirection: .descending
-)
-```
-
-or
-
-```swift
-let paginationParams = PaginatedListParams<Transaction>(
-    page: 1,
-    perPage: 10,
-    searchTerms: nil,
-    sortBy: .createdAt,
-    sortDirection: .descending
-)
-```
-
-
-Where:
-- `page` is the page you wish to receive.
-- `perPage` is the number of results per page.
-- `sortBy` is the sorting field. Available values: `.id`, `.status`, `.from`, `.to`, `.createdAt`
-- `sortDir` is the sorting direction. Available values: `.ascending`, `.descending`
-- `searchTerm` is a term to search for in ALL of the searchable fields. Conflict with search_terms, only use one of them. See list of searchable fields below (same as search_terms).
-- `searchTerms` is a dictionary of fields to search in with the following available fields: `.id`, `.status`, `.from`, `.to`. Ex: `[.from: "someAddress", .id: "someId"]`
+- `paginationParams` is a `PaginatedListParams<Transaction>` object
 
 Then you can call:
 
@@ -238,18 +220,6 @@ Transaction.list(
         }
 }
 ```
-
-The `paginatedList` here is an object
-
-Where:
-- `data` is an array of transactions
-- `pagination` is a `Pagination` object
-
-  Where:
-  - `perPage` is the number of results per page.
-  - `currentPage` is the retrieved page.
-  - `isFirstPage` is a bool indicating if the page received is the first page
-  - `isLastPage` is a bool indicating if the page received is the last page
 
 
 ### Transferring tokens
