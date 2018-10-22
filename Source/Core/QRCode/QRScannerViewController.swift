@@ -102,19 +102,19 @@ public class QRScannerViewController: UIViewController {
         qrScannerView.cancelButton.addTarget(self, action: #selector(self.didTapCancel), for: .touchUpInside)
         self.view.addSubview(qrScannerView)
         self.view.addSubview(self.loadingView)
-        [NSLayoutAttribute.left, .top, .right, .bottom].forEach({ attribute in
+        [NSLayoutConstraint.Attribute.left, .top, .right, .bottom].forEach({
             self.view.addConstraint(NSLayoutConstraint(item: qrScannerView,
-                                                       attribute: attribute,
+                                                       attribute: $0,
                                                        relatedBy: .equal,
                                                        toItem: view,
-                                                       attribute: attribute,
+                                                       attribute: $0,
                                                        multiplier: 1,
                                                        constant: 0))
             self.view.addConstraint(NSLayoutConstraint(item: self.loadingView,
-                                                       attribute: attribute,
+                                                       attribute: $0,
                                                        relatedBy: .equal,
                                                        toItem: view,
-                                                       attribute: attribute,
+                                                       attribute: $0,
                                                        multiplier: 1,
                                                        constant: 0))
         })

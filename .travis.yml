@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode9.4
+osx_image: xcode10
 env:
   matrix:
     - TEST_TYPE=iOS
@@ -18,15 +18,16 @@ install:
     pod repo update --silent
   fi
   if [ "$TEST_TYPE" = iOS ]; then
+    bundle install
     pod install
   fi
 script:
 - |
   if [ "$TEST_TYPE" = iOS ]; then
     set -o pipefail
-    xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" test | xcpretty -c
+    xcodebuild -workspace OmiseGO.xcworkspace -scheme "OmiseGO" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone X" test | xcpretty -c
   elif [ "$TEST_TYPE" = Lint ]; then
     swiftlint lint --config .swiftlint.yml
   elif [ "$TEST_TYPE" = CocoaPods ]; then
-    pod lib lint
+    pod lib lint --verbose
   fi

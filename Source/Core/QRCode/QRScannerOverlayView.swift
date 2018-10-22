@@ -22,7 +22,7 @@ class QRScannerOverlayView: UIView {
 
     private lazy var maskLayer: CAShapeLayer = {
         let maskLayer = CAShapeLayer()
-        maskLayer.fillRule = kCAFillRuleEvenOdd
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         maskLayer.fillColor = UIColor.black.cgColor
         maskLayer.opacity = 0.6
         return maskLayer

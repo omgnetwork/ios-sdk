@@ -10,11 +10,11 @@ import UIKit
 
 class QRScannerLoadingView: UIView {
     lazy var loadingSpinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spinner)
-        [NSLayoutAttribute.centerX, NSLayoutAttribute.centerY].forEach({ attribute in
+        [NSLayoutConstraint.Attribute.centerX, NSLayoutConstraint.Attribute.centerY].forEach({ attribute in
             self.addConstraint(NSLayoutConstraint(item: spinner,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
