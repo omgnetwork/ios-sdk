@@ -35,8 +35,8 @@ The Client and Admin modules contain specific logic to respectively access the c
 # Requirements
 
 - iOS 10.0+
-- Xcode 9+
-- Swift 4.1
+- Xcode 10+
+- Swift 4.2
 
 ---
 

@@ -37,6 +37,10 @@ public class SocketClient {
         self.webSocket.delegate = self
     }
 
+    public func stopListening(topic: String) {
+        self.leaveChannel(withTopic: topic)
+    }
+
     func leaveChannel(withTopic topic: String) {
         guard let channel = self.channels[topic] else { return }
         channel.leave(onSuccess: { [weak self] in

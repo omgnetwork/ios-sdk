@@ -17,6 +17,11 @@ enum APIAdminEndpoint: APIEndpoint {
     case getAccounts(params: PaginatedListParams<Account>)
     case getTransactions(params: PaginatedListParams<Transaction>)
     case createTransaction(params: TransactionCreateParams)
+    case transactionRequestCreate(params: TransactionRequestCreateParams)
+    case transactionRequestGet(params: TransactionRequestGetParams)
+    case transactionRequestConsume(params: TransactionConsumptionParams)
+    case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
+    case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
 
     var path: String {
         switch self {
@@ -38,6 +43,16 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/transaction.all"
         case .createTransaction:
             return "/transaction.create"
+        case .transactionRequestCreate:
+            return "/transaction_request.create"
+        case .transactionRequestGet:
+            return "/transaction_request.get"
+        case .transactionRequestConsume:
+            return "/transaction_request.consume"
+        case .transactionConsumptionApprove:
+            return "/transaction_consumption.approve"
+        case .transactionConsumptionReject:
+            return "/transaction_consumption.reject"
         }
     }
 
@@ -58,6 +73,16 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .getTransactions(parameters):
             return .requestParameters(parameters: parameters)
         case let .createTransaction(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionRequestCreate(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionRequestGet(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionRequestConsume(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionConsumptionApprove(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionConsumptionReject(parameters):
             return .requestParameters(parameters: parameters)
         default:
             return .requestPlain

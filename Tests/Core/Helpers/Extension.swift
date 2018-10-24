@@ -15,3 +15,9 @@ extension String {
         return formatter.date(from: self)!
     }
 }
+
+extension String {
+    func uglifiedEncodedString() -> String {
+        return replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
+    }
+}

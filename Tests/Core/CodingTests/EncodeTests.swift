@@ -10,12 +10,6 @@ import BigInt
 @testable import OmiseGO
 import XCTest
 
-extension String {
-    func uglifiedEncodedString() -> String {
-        return replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
-    }
-}
-
 class EncodeTests: XCTestCase {
     var encoder: JSONEncoder!
 
@@ -292,9 +286,9 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                    {
-                                        "formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"
-                                    }
+                                        {
+                                            "formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"
+                                        }
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -477,9 +471,9 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                    {
-                                        "id":"0a8a4a98-794b-419e-b92d-514e83657e75"
-                                    }
+                                        {
+                                            "id":"0a8a4a98-794b-419e-b92d-514e83657e75"
+                                        }
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
@@ -655,92 +649,6 @@ class EncodeTests: XCTestCase {
                     "password_confirmation":"password",
                     "success_url":"yyy",
                     "verification_url":"xxx"
-                }
-            """.uglifiedEncodedString())
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testGetWalletParamsEncoding() {
-        do {
-            let walletParams = WalletGetParams(address: "123")
-            let encodedData = try self.encoder.encode(walletParams)
-            let encodedPayload = try! walletParams.encodedPayload()
-            XCTAssertEqual(encodedData, encodedPayload)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {
-                    "address":"123"
-                }
-            """.uglifiedEncodedString())
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testWalletListForUserParamsEncoding() {
-        do {
-            let walletParams = WalletListForUserParams(
-                paginatedListParams: StubGenerator.paginatedListParams(
-                    searchTerm: "test",
-                    sortBy: .address,
-                    sortDirection: .ascending),
-                userId: "123")
-            let encodedData = try self.encoder.encode(walletParams)
-            let encodedPayload = try! walletParams.encodedPayload()
-            XCTAssertEqual(encodedData, encodedPayload)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {
-                    "id":"123",
-                    "page":1,
-                    "per_page":20,
-                    "search_term":"test",
-                    "sort_by":"address",
-                    "sort_dir":"asc"
-                }
-            """.uglifiedEncodedString())
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testWalletListForAccountParamsEncoding() {
-        do {
-            let walletParams = WalletListForAccountParams(
-                paginatedListParams: StubGenerator.paginatedListParams(
-                    searchTerm: "test",
-                    sortBy: .address,
-                    sortDirection: .ascending),
-                accountId: "123",
-                owned: true)
-            let encodedData = try self.encoder.encode(walletParams)
-            let encodedPayload = try! walletParams.encodedPayload()
-            XCTAssertEqual(encodedData, encodedPayload)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {
-                    "id":"123",
-                    "owned": true,
-                    "page":1,
-                    "per_page":20,
-                    "search_term":"test",
-                    "sort_by":"address",
-                    "sort_dir":"asc"
-                }
-            """.uglifiedEncodedString())
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testGetAccountParamsEncoding() {
-        do {
-            let accountParams = AccountGetParams(id: "123")
-            let encodedData = try self.encoder.encode(accountParams)
-            let encodedPayload = try! accountParams.encodedPayload()
-            XCTAssertEqual(encodedData, encodedPayload)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {
-                    "id":"123"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

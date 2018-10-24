@@ -89,6 +89,8 @@ extension TransactionRequest: Listenable {}
 
 extension TransactionRequest: QREncodable {}
 
+extension TransactionRequest: Retrievable {}
+
 extension TransactionRequest: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id

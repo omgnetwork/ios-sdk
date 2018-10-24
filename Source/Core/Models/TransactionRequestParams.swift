@@ -40,6 +40,18 @@ public struct TransactionRequestCreateParams {
     /// Additional encrypted metadata embedded with the request
     public let encryptedMetadata: [String: Any]
 
+    // -- Admin only
+    /// The account id creating the request
+    public let accountId: String?
+    /// The user id of the user for whom the request is created
+    public let userId: String?
+    /// The provider user id of the user for whom the request is created
+    public let providerUserId: String?
+    /// The account to use for the token exchange (if any)
+    public let exchangeAccountId: String?
+    /// The wallet address to use for the token exchange (if any)
+    public let exchangeWalletAddress: String?
+
     /// Initialize the params used to generate a transaction request.
     /// Returns nil if allowAmountOverride is false and amount is nil
     ///
@@ -87,6 +99,11 @@ public struct TransactionRequestCreateParams {
         self.maxConsumptionsPerUser = maxConsumptionsPerUser
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
+        self.accountId = nil
+        self.userId = nil
+        self.providerUserId = nil
+        self.exchangeAccountId = nil
+        self.exchangeWalletAddress = nil
     }
 }
 
@@ -105,6 +122,11 @@ extension TransactionRequestCreateParams: APIParameters {
         case maxConsumptionsPerUser = "max_consumptions_per_user"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
+        case accountId = "account_id"
+        case userId = "user_id"
+        case providerUserId = "provider_user_id"
+        case exchangeAccountId = "exchange_account_id"
+        case exchangeWalletAddress = "exchange_wallet_address"
     }
 
     // Custom encoding as we need to encode amount event if nil
@@ -123,6 +145,11 @@ extension TransactionRequestCreateParams: APIParameters {
         try container.encode(maxConsumptionsPerUser, forKey: .maxConsumptionsPerUser)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
+        try container.encodeIfPresent(accountId, forKey: .accountId)
+        try container.encodeIfPresent(userId, forKey: .userId)
+        try container.encodeIfPresent(providerUserId, forKey: .providerUserId)
+        try container.encodeIfPresent(exchangeAccountId, forKey: .exchangeAccountId)
+        try container.encodeIfPresent(exchangeWalletAddress, forKey: .exchangeWalletAddress)
     }
 }
 

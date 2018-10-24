@@ -88,6 +88,8 @@ public struct TransactionConsumption {
 
 extension TransactionConsumption: Listenable {}
 
+extension TransactionConsumption: Retrievable {}
+
 extension TransactionConsumption: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id

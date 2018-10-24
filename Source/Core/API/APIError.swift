@@ -20,7 +20,7 @@ public struct APIError {
     /// Indicate if the error is an authorization error in which case you may want to refresh the authentication token
     public func isAuthorizationError() -> Bool {
         switch self.code {
-        case .authenticationTokenExpired, .authenticationTokenNotFound, .invalidAPIKey: return true
+        case .authenticationTokenExpired, .authenticationTokenNotFound, .invalidAPIKey, .invalidAuthScheme: return true
         default: return false
         }
     }
@@ -61,6 +61,7 @@ public enum APIErrorCode: Decodable {
     case permissionError
     case endPointNotFound
     case invalidAPIKey
+    case invalidAuthScheme
     // Server
     case internalServerError
     case unknownServerError
@@ -112,6 +113,8 @@ extension APIErrorCode: RawRepresentable {
             self = .endPointNotFound
         case "client:invalid_api_key":
             self = .invalidAPIKey
+        case "client:invalid_auth_scheme":
+            self = .invalidAuthScheme
         case "server:internal_server_error":
             self = .internalServerError
         case "server:unknown_error":
@@ -167,6 +170,8 @@ extension APIErrorCode: RawRepresentable {
             return "client:endpoint_not_found"
         case .invalidAPIKey:
             return "client:invalid_api_key"
+        case .invalidAuthScheme:
+            return "client:invalid_auth_scheme"
         case .internalServerError:
             return "server:internal_server_error"
         case .unknownServerError:
