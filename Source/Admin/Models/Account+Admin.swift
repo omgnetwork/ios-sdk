@@ -6,16 +6,19 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension Account: Searchable {
-    public enum SearchableFields: String, KeyEncodable {
+extension Account: Filterable {
+    public enum FilterableFields: String, RawEnumerable {
         case id
         case name
         case description
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case metadata
     }
 }
 
 extension Account: Sortable {
-    public enum SortableFields: String, KeyEncodable {
+    public enum SortableFields: String, RawEnumerable {
         case id
         case name
         case description

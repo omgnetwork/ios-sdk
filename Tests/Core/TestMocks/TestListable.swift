@@ -19,11 +19,11 @@ struct TestListable: Decodable, Listable {
 struct PaginatedTestListable: Decodable, PaginatedListable {
     let dummy: String = "123"
 
-    enum SearchableFields: String, KeyEncodable {
+    enum FilterableFields: String, RawEnumerable {
         case dummy
     }
 
-    enum SortableFields: String, KeyEncodable {
+    enum SortableFields: String, RawEnumerable {
         case dummy
     }
 

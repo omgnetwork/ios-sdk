@@ -115,7 +115,7 @@
 		034F151C214F6E8E002BB513 /* RequestAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F151B214F6E8E002BB513 /* RequestAdminFixtureTests.swift */; };
 		034F1520214F8708002BB513 /* WalletListForUserParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F151F214F8708002BB513 /* WalletListForUserParams.swift */; };
 		034F1523214FA205002BB513 /* SortParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1522214FA205002BB513 /* SortParams.swift */; };
-		034F1525214FA21B002BB513 /* SearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1524214FA21B002BB513 /* SearchParams.swift */; };
+		034F1525214FA21B002BB513 /* FilterParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1524214FA21B002BB513 /* FilterParams.swift */; };
 		034F1527214FA228002BB513 /* PaginationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1526214FA228002BB513 /* PaginationParams.swift */; };
 		034F1529214FA6FB002BB513 /* PaginatedListParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1528214FA6FB002BB513 /* PaginatedListParams.swift */; };
 		0379E7E921184BC900E65D4F /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AB21184BC800E65D4F /* SocketEvent.swift */; };
@@ -317,7 +317,7 @@
 		034F151B214F6E8E002BB513 /* RequestAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAdminFixtureTests.swift; sourceTree = "<group>"; };
 		034F151F214F8708002BB513 /* WalletListForUserParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListForUserParams.swift; sourceTree = "<group>"; };
 		034F1522214FA205002BB513 /* SortParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortParams.swift; sourceTree = "<group>"; };
-		034F1524214FA21B002BB513 /* SearchParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParams.swift; sourceTree = "<group>"; };
+		034F1524214FA21B002BB513 /* FilterParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterParams.swift; sourceTree = "<group>"; };
 		034F1526214FA228002BB513 /* PaginationParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParams.swift; sourceTree = "<group>"; };
 		034F1528214FA6FB002BB513 /* PaginatedListParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedListParams.swift; sourceTree = "<group>"; };
 		0379E7AB21184BC800E65D4F /* SocketEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
@@ -704,7 +704,7 @@
 			children = (
 				034F1528214FA6FB002BB513 /* PaginatedListParams.swift */,
 				034F1522214FA205002BB513 /* SortParams.swift */,
-				034F1524214FA21B002BB513 /* SearchParams.swift */,
+				034F1524214FA21B002BB513 /* FilterParams.swift */,
 				034F1526214FA228002BB513 /* PaginationParams.swift */,
 			);
 			path = CollectionParams;
@@ -1200,7 +1200,7 @@
 				0320EABF2119499B0006685C /* TransactionRequest+Client.swift in Sources */,
 				0320EAC72119865A0006685C /* ClientConfiguration.swift in Sources */,
 				0379E7F921184BC900E65D4F /* User.swift in Sources */,
-				034F1525214FA21B002BB513 /* SearchParams.swift in Sources */,
+				034F1525214FA21B002BB513 /* FilterParams.swift in Sources */,
 				0320EAC1211962060006685C /* HTTPClientAPI.swift in Sources */,
 				03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */,
 				0379E7EC21184BC900E65D4F /* SocketDelegate.swift in Sources */,

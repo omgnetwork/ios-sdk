@@ -6,19 +6,24 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension Wallet: Searchable {
-    public enum SearchableFields: String, KeyEncodable {
+extension Wallet: Filterable {
+    public enum FilterableFields: String, RawEnumerable {
         case address
         case name
         case identifier
+        case enabled
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 }
 
 extension Wallet: Sortable {
-    public enum SortableFields: String, KeyEncodable {
+    public enum SortableFields: String, RawEnumerable {
         case address
         case name
         case identifier
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 }
 

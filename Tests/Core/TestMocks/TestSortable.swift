@@ -15,11 +15,11 @@ struct TestPaginatedListable: PaginatedListable {
     let aSearchableAttribute: String
     let aNonSearchableAttribute: String
 
-    enum SortableFields: String, KeyEncodable {
+    enum SortableFields: String, RawEnumerable {
         case aSortableAttribute = "a_sortable_attribute"
     }
 
-    enum SearchableFields: String, KeyEncodable {
-        case aSearchableAttribute = "a_searchable_attribute"
+    enum FilterableFields: String, RawEnumerable {
+        case aFilterableAttribute = "a_searchable_attribute"
     }
 }

@@ -43,7 +43,6 @@ class AdminEncodeTests: XCTestCase {
         do {
             let walletParams = WalletListForUserParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
-                    searchTerm: "test",
                     sortBy: .address,
                     sortDirection: .ascending),
                 userId: "123")
@@ -55,7 +54,6 @@ class AdminEncodeTests: XCTestCase {
                     "id":"123",
                     "page":1,
                     "per_page":20,
-                    "search_term":"test",
                     "sort_by":"address",
                     "sort_dir":"asc"
                 }
@@ -69,7 +67,6 @@ class AdminEncodeTests: XCTestCase {
         do {
             let walletParams = WalletListForAccountParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
-                    searchTerm: "test",
                     sortBy: .address,
                     sortDirection: .ascending),
                 accountId: "123",
@@ -83,7 +80,6 @@ class AdminEncodeTests: XCTestCase {
                     "owned": true,
                     "page":1,
                     "per_page":20,
-                    "search_term":"test",
                     "sort_by":"address",
                     "sort_dir":"asc"
                 }

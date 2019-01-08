@@ -16,7 +16,7 @@ public enum SortDirection: String, Encodable {
 }
 
 public protocol Sortable {
-    associatedtype SortableFields: KeyEncodable where SortableFields.RawValue == String
+    associatedtype SortableFields: RawEnumerable where SortableFields.RawValue == String
 }
 
 /// Represents a structure used to query a sortable list

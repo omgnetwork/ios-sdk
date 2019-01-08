@@ -391,13 +391,13 @@ class StubGenerator {
     class func paginatedListParams<T: PaginatedListable>(
         page: Int? = 1,
         perPage: Int? = 20,
-        searchTerm: String? = nil,
+        filters: FilterParams<T>? = nil,
         sortBy: T.SortableFields,
         sortDirection: SortDirection? = .ascending)
         -> PaginatedListParams<T> {
         return PaginatedListParams<T>(page: page!,
                                       perPage: perPage!,
-                                      searchTerm: searchTerm ?? "",
+                                      filters: filters,
                                       sortBy: sortBy,
                                       sortDirection: sortDirection!)
     }

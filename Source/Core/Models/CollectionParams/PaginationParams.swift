@@ -6,8 +6,6 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-public protocol KeyEncodable: Hashable, RawRepresentable, Encodable {}
-
 /// Represents a structure used to query a paginated list
 struct PaginationParams {
     /// The page requested (0 and 1 are the same)

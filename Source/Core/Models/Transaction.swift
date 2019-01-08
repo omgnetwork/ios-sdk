@@ -72,22 +72,30 @@ extension Transaction: Decodable {
     }
 }
 
-extension Transaction: Searchable {
-    public enum SearchableFields: String, KeyEncodable {
+extension Transaction: Filterable {
+    public enum FilterableFields: String, RawEnumerable {
         case id
+        case idempotencyToken = "idempotency_token"
+        case errorCode = "error_code"
+        case errorDescription = "error_description"
         case status
-        case from
-        case to
+        case type
+        case calculatedAt = "calculated_at"
+        case insertedAt = "inserted_at"
+        case updatedAt = "updated_at"
+        case fromAmount = "from_amount"
+        case toAmount = "to_amount"
     }
 }
 
 extension Transaction: Sortable {
-    public enum SortableFields: String, KeyEncodable {
+    public enum SortableFields: String, RawEnumerable {
         case id
         case status
         case from
         case to
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 }
 

@@ -116,7 +116,7 @@ class TransactionRequestLiveTests: LiveClientTestCase {
             XCTFail("Should get an error")
             return
         }
-        XCTAssertEqual(error.code, .channelNotFound)
+        XCTAssertEqual(error.code, .forbiddenChannel)
     }
 }
 

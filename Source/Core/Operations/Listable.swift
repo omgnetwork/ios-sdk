@@ -29,7 +29,7 @@ public extension Listable where Self: Decodable {
 }
 
 /// Represents an object that can be retrieved in a paginated collection
-public protocol PaginatedListable: Searchable, Sortable {}
+public protocol PaginatedListable: Filterable, Sortable {}
 
 public extension PaginatedListable where Self: Decodable {
     public typealias PaginatedListRequest = Request<JSONPaginatedListResponse<Self>>
