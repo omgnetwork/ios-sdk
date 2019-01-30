@@ -1,15 +1,13 @@
 language: swift
 osx_image: xcode10
+cache:
+- bundler
+- cocoapods
 env:
   matrix:
     - TEST_TYPE=iOS
     - TEST_TYPE=Lint
     - TEST_TYPE=CocoaPods
-before_install:
-- |
-  if [ "$TEST_TYPE" = Lint ]; then
-    brew update
-  fi
 install:
 - |
   if [ "$TEST_TYPE" = Lint ]; then

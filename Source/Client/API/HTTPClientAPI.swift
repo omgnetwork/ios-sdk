@@ -23,7 +23,8 @@ extension HTTPClientAPI {
     @discardableResult
     public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
         -> Request<EmptyResponse>? {
-        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIClientEndpoint.logout) { result in
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIClientEndpoint.logout) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .success(data: data):
                 self.config.credentials.invalidate()
@@ -48,15 +49,17 @@ extension HTTPClientAPI {
     public func login(withParams params: LoginParams,
                       callback: @escaping Request<AuthenticationToken>.Callback)
         -> Request<AuthenticationToken>? {
-        let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIClientEndpoint.login(params: params)) { result in
-            switch result {
-            case let .success(data: authenticationToken):
-                self.config.credentials.update(withAuthenticationToken: authenticationToken)
-                callback(.success(data: authenticationToken))
-            case let .fail(error):
-                callback(.fail(error: error))
+        let request: Request<AuthenticationToken>? =
+            self.request(toEndpoint: APIClientEndpoint.login(params: params)) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(data: authenticationToken):
+                    self.config.credentials.update(withAuthenticationToken: authenticationToken)
+                    callback(.success(data: authenticationToken))
+                case let .fail(error):
+                    callback(.fail(error: error))
+                }
             }
-        }
         return request
     }
 

@@ -32,8 +32,9 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
 
     private lazy var reader: QRReader = {
         QRReader(onFindClosure: { [weak self] value in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.loadTransactionRequest(withFormattedId: value)
+                self.loadTransactionRequest(withFormattedId: value)
             }
         })
     }()
@@ -52,7 +53,8 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         self.loadedIds.append(formattedId)
         self.stopScanning()
         self.onLoadingStateChange?(true)
-        self.verifier.onData(data: formattedId) { result in
+        self.verifier.onData(data: formattedId) { [weak self] result in
+            guard let self = self else { return }
             self.onLoadingStateChange?(false)
             switch result {
             case let .success(data: transactionRequest):

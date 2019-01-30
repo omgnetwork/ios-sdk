@@ -29,15 +29,17 @@ extension HTTPAdminAPI {
     public func login(withParams params: LoginParams,
                       callback: @escaping Request<AuthenticationToken>.Callback)
         -> Request<AuthenticationToken>? {
-        let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIAdminEndpoint.login(params: params)) { result in
-            switch result {
-            case let .success(data: authenticationToken):
-                self.config.credentials.update(withAuthenticationToken: authenticationToken)
-                callback(.success(data: authenticationToken))
-            case let .fail(error):
-                callback(.fail(error: error))
+        let request: Request<AuthenticationToken>? =
+            self.request(toEndpoint: APIAdminEndpoint.login(params: params)) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(data: authenticationToken):
+                    self.config.credentials.update(withAuthenticationToken: authenticationToken)
+                    callback(.success(data: authenticationToken))
+                case let .fail(error):
+                    callback(.fail(error: error))
+                }
             }
-        }
         return request
     }
 
@@ -48,7 +50,8 @@ extension HTTPAdminAPI {
     @discardableResult
     public func logout(withCallback callback: @escaping Request<EmptyResponse>.Callback)
         -> Request<EmptyResponse>? {
-        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIAdminEndpoint.logout) { result in
+        let request: Request<EmptyResponse>? = self.request(toEndpoint: APIAdminEndpoint.logout) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .success(data: data):
                 self.config.credentials.invalidate()

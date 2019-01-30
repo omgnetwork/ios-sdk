@@ -129,9 +129,9 @@ public class SocketClient {
         }
         self.reconnectTimer?.invalidate()
         self.reconnectTimer = Timer.scheduledTimer(withTimeInterval: self.reconnectDelay, repeats: false, block: { [weak self] _ in
-            guard let weakself = self, weakself.shouldBeConnected else { return }
-            weakself.connect()
-            weakself.rejoinOpenedChannels()
+            guard let self = self, self.shouldBeConnected else { return }
+            self.connect()
+            self.rejoinOpenedChannels()
         })
     }
 
@@ -143,14 +143,16 @@ public class SocketClient {
 
     private func startHeartbeatTimer() {
         self.heartbeatTimer?.invalidate()
-        self.heartbeatTimer = Timer.scheduledTimer(withTimeInterval: self.heartbeatDelay, repeats: true, block: { _ in
+        self.heartbeatTimer = Timer.scheduledTimer(withTimeInterval: self.heartbeatDelay, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
             self.send(topic: "phoenix", event: .heartbeat)
         })
     }
 
     private func resetBufferTimer() {
         self.sendBufferTimer?.invalidate()
-        self.sendBufferTimer = Timer.scheduledTimer(withTimeInterval: self.flushDelay, repeats: true, block: { _ in
+        self.sendBufferTimer = Timer.scheduledTimer(withTimeInterval: self.flushDelay, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
             self.flushSendBuffer()
         })
         self.sendBufferTimer?.fire()

@@ -65,13 +65,13 @@ extension QRReader: AVCaptureMetadataOutputObjectsDelegate {
                         didOutput metadataObjects: [AVMetadataObject],
                         from _: AVCaptureConnection) {
         self.sessionQueue.async { [weak self] in
-            guard let weakSelf = self else { return }
+            guard let self = self else { return }
             guard !metadataObjects.isEmpty,
                 let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
                 metadataObject.type == AVMetadataObject.ObjectType.qr,
                 let decodedData = metadataObject.stringValue
             else { return }
-            weakSelf.didReadCode(decodedData)
+            self.didReadCode(decodedData)
         }
     }
 }
