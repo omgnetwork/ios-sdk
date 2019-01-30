@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.com/omisego/ios-sdk/tree/HEAD)
 
-[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta2...HEAD)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0...HEAD)
+
+**Closed issues:**
+
+- Release 1.1.0 [\#110](https://github.com/omisego/ios-sdk/issues/110)
+
+## [1.1.0](https://github.com/omisego/ios-sdk/tree/1.1.0) (2019-01-30)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta2...1.1.0)
 
 **Closed issues:**
 
@@ -13,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Prepare 1.1.0 release [\#113](https://github.com/omisego/ios-sdk/pull/113) ([mederic-p](https://github.com/mederic-p))
 - Add \[weak self\] where missing from closures [\#112](https://github.com/omisego/ios-sdk/pull/112) ([mederic-p](https://github.com/mederic-p))
 - Add advanced filter [\#108](https://github.com/omisego/ios-sdk/pull/108) ([mederic-p](https://github.com/mederic-p))
 
