@@ -9,7 +9,10 @@
 import Starscream
 
 class FixtureWebsocketClient: WebSocketClient {
+    var sslClientCertificate: SSLClientCertificate?
+
     var delegate: WebSocketDelegate?
+    var pongDelegate: WebSocketPongDelegate?
     var disableSSLCertValidation: Bool = true
     var overrideTrustHostname: Bool = false
     var desiredTrustHostname: String?

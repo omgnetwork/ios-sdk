@@ -2,7 +2,22 @@
 
 ## [Unreleased](https://github.com/omisego/ios-sdk/tree/HEAD)
 
-[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta1...HEAD)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta2...HEAD)
+
+**Closed issues:**
+
+- Use \[weak self\] in closures [\#111](https://github.com/omisego/ios-sdk/issues/111)
+- Fix package security issue [\#109](https://github.com/omisego/ios-sdk/issues/109)
+- Implement new filter system [\#107](https://github.com/omisego/ios-sdk/issues/107)
+- Beta 2 [\#105](https://github.com/omisego/ios-sdk/issues/105)
+
+**Merged pull requests:**
+
+- Add \[weak self\] where missing from closures [\#112](https://github.com/omisego/ios-sdk/pull/112) ([mederic-p](https://github.com/mederic-p))
+- Add advanced filter [\#108](https://github.com/omisego/ios-sdk/pull/108) ([mederic-p](https://github.com/mederic-p))
+
+## [1.1.0-beta2](https://github.com/omisego/ios-sdk/tree/1.1.0-beta2) (2018-10-24)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta1...1.1.0-beta2)
 
 **Closed issues:**
 
@@ -21,6 +36,7 @@
 
 **Merged pull requests:**
 
+- Change podspec to beta2 [\#106](https://github.com/omisego/ios-sdk/pull/106) ([mederic-p](https://github.com/mederic-p))
 - Swift 4.2 [\#104](https://github.com/omisego/ios-sdk/pull/104) ([mederic-p](https://github.com/mederic-p))
 - Add transaction request support for admin API [\#102](https://github.com/omisego/ios-sdk/pull/102) ([mederic-p](https://github.com/mederic-p))
 - Get account API [\#100](https://github.com/omisego/ios-sdk/pull/100) ([mederic-p](https://github.com/mederic-p))

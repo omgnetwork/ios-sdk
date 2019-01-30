@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/omisego/ios-sdk.svg?branch=master)](https://travis-ci.org/omisego/ios-sdk)
+[![Build Status](https://travis-ci.com/omisego/ios-sdk.svg?branch=master)](https://travis-ci.com/omisego/ios-sdk)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/OmiseGO.svg)](https://cocoapods.org/pods/OmiseGO)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/OmiseGO.svg?style=flat)](https://github.com/omisego/ios-sdk)
@@ -37,6 +37,8 @@ The Client and Admin modules contain specific logic to respectively access the c
 - iOS 10.0+
 - Xcode 10+
 - Swift 4.2
+
+This version of the SDK is compatible with the version `1.1.0` of the [eWallet](https://github.com/omisego/ewallet/tree/v1.1).
 
 ---
 
