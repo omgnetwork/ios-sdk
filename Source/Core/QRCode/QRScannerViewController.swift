@@ -10,6 +10,10 @@ import UIKit
 
 /// The delegate that will receive events from the QRScannerViewController
 public protocol QRScannerViewControllerDelegate: class {
+    /// This is called upon the decision of user to either accept or decline the camera permissions.
+    ///
+    /// - Parameter granted: True if the user allowed the app to use the camera, false otherwise.
+    func userDidChoosePermission(granted: Bool)
     /// Called when the user tap on the cancel button.
     /// Note that the view controller is not automatically dismissed when the user tap on cancel.
     ///
@@ -58,14 +62,19 @@ public class QRScannerViewController: UIViewController {
     }
 
     func configureViewModel() {
-        self.viewModel.onLoadingStateChange = { isLoading in
-            self.toggleLoadingOverlay(show: isLoading)
+        self.viewModel.onLoadingStateChange = { [weak self] isLoading in
+            self?.toggleLoadingOverlay(show: isLoading)
         }
-        self.viewModel.onGetTransactionRequest = { transactionRequest in
+        self.viewModel.onGetTransactionRequest = { [weak self] transactionRequest in
+            guard let self = self else { return }
             self.delegate?.scannerDidDecode(scanner: self, transactionRequest: transactionRequest)
         }
-        self.viewModel.onError = { error in
+        self.viewModel.onError = { [weak self] error in
+            guard let self = self else { return }
             self.delegate?.scannerDidFailToDecode(scanner: self, withError: error)
+        }
+        self.viewModel.onUserPermissionChoice = { [weak self] granted in
+            self?.delegate?.userDidChoosePermission(granted: granted)
         }
     }
 
@@ -76,11 +85,11 @@ public class QRScannerViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.startScanning()
+        self.viewModel.startScanning(onStart: nil)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
-        self.viewModel.stopScanning()
+        self.viewModel.stopScanning(onStop: nil)
         super.viewWillDisappear(animated)
     }
 
@@ -91,6 +100,24 @@ public class QRScannerViewController: UIViewController {
 
     func toggleLoadingOverlay(show: Bool) {
         show ? self.loadingView.showLoading() : self.loadingView.hideLoading()
+    }
+
+    /// Manually start the capture.
+    /// Use this method if you want to restart the capture after it has been stoped
+    /// This is asynchronous and a completion closure can be provided
+    ///
+    /// - Parameter onStart: A completion closure that will be called when the scanner is started
+    public func startCapture(onStart: (() -> Void)? = nil) {
+        self.viewModel.startScanning(onStart: onStart)
+    }
+
+    /// Manually stop the capture.
+    /// Use this method if you want to stop the camera capture
+    /// This is asynchronous and a completion closure can be provided
+    ///
+    /// - Parameter onStart: A completion closure that will be called when the scanner is stoped
+    public func stopCapture(onStop: (() -> Void)? = nil) {
+        self.viewModel.stopScanning(onStop: onStop)
     }
 
     private func setupUIWithCancelButtonTitle(_ cancelButtonTitle: String) {

@@ -390,6 +390,10 @@ if let vc = QRScannerViewController(delegate: self, verifier: verifier, cancelBu
 The `QRScannerViewControllerDelegate` offers the following interface:
 
 ```swift
+func userDidChoosePermission(granted: Bool) {
+    // Handle whether the user allowed the app to access the camera or not
+}
+
 func scannerDidCancel(scanner: QRScannerViewController) {
     // Handle tap on cancel button: Typically dismiss the scanner
 }

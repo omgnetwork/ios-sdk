@@ -15,9 +15,10 @@ typealias OnErrorClosure = ((OMGError) -> Void)
 protocol QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure? { get set }
     var onGetTransactionRequest: OnGetTransactionRequestClosure? { get set }
+    var onUserPermissionChoice: ((Bool) -> Void)? { get set }
     var onError: OnErrorClosure? { get set }
-    func startScanning()
-    func stopScanning()
+    func startScanning(onStart: (() -> Void)?)
+    func stopScanning(onStop: (() -> Void)?)
     func readerPreviewLayer() -> AVCaptureVideoPreviewLayer
     func updateQRReaderPreviewLayer(withFrame frame: CGRect)
     func isQRCodeAvailable() -> Bool
@@ -27,16 +28,12 @@ protocol QRScannerViewModelProtocol {
 class QRScannerViewModel: QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure?
     var onGetTransactionRequest: OnGetTransactionRequestClosure?
+    var onUserPermissionChoice: ((Bool) -> Void)?
     var onError: OnErrorClosure?
     var loadedIds: [String] = []
 
     private lazy var reader: QRReader = {
-        QRReader(onFindClosure: { [weak self] value in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.loadTransactionRequest(withFormattedId: value)
-            }
-        })
+        QRReader(delegate: self)
     }()
 
     private let verifier: QRVerifier
@@ -51,27 +48,30 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         self.loadedIds.append(formattedId)
-        self.stopScanning()
         self.onLoadingStateChange?(true)
-        self.verifier.onData(data: formattedId) { [weak self] result in
+        self.stopScanning { [weak self] in
             guard let self = self else { return }
-            self.onLoadingStateChange?(false)
-            switch result {
-            case let .success(data: transactionRequest):
-                self.onGetTransactionRequest?(transactionRequest)
-            case let .fail(error: error):
-                self.startScanning()
-                self.onError?(error)
+            self.verifier.onData(data: formattedId) { [weak self] result in
+                guard let self = self else { return }
+                self.onLoadingStateChange?(false)
+                switch result {
+                case let .success(data: transactionRequest):
+                    self.loadedIds = self.loadedIds.filter({ $0 != formattedId })
+                    self.onGetTransactionRequest?(transactionRequest)
+                case let .fail(error: error):
+                    self.startScanning()
+                    self.onError?(error)
+                }
             }
         }
     }
 
-    func startScanning() {
-        self.reader.startScanning()
+    func startScanning(onStart: (() -> Void)? = nil) {
+        self.reader.startScanning(onStart: onStart)
     }
 
-    func stopScanning() {
-        self.reader.stopScanning()
+    func stopScanning(onStop: (() -> Void)? = nil) {
+        self.reader.stopScanning(onStop: onStop)
     }
 
     func readerPreviewLayer() -> AVCaptureVideoPreviewLayer {
@@ -83,6 +83,16 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
     }
 
     func isQRCodeAvailable() -> Bool {
-        return QRReader.isAvailable()
+        return self.reader.isAvailable()
+    }
+}
+
+extension QRScannerViewModel: QRReaderDelegate {
+    func onDecodedData(decodedData: String) {
+        self.loadTransactionRequest(withFormattedId: decodedData)
+    }
+
+    func onUserPermissionChoice(granted: Bool) {
+        self.onUserPermissionChoice?(granted)
     }
 }

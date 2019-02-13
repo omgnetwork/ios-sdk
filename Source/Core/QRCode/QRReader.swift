@@ -9,17 +9,22 @@
 import AVFoundation
 import UIKit
 
+protocol QRReaderDelegate: class {
+    func onDecodedData(decodedData: String)
+    func onUserPermissionChoice(granted: Bool)
+}
+
 class QRReader: NSObject {
     let session = AVCaptureSession()
-    var didReadCode: ((String) -> Void)!
+    weak var delegate: QRReaderDelegate?
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         AVCaptureVideoPreviewLayer(session: self.session)
     }()
 
     private let sessionQueue: DispatchQueue = DispatchQueue(label: "serial queue")
 
-    init(onFindClosure: @escaping ((String) -> Void)) {
-        self.didReadCode = onFindClosure
+    init(delegate: QRReaderDelegate?) {
+        self.delegate = delegate
         super.init()
         self.sessionQueue.async {
             self.configureReader()
@@ -40,23 +45,45 @@ class QRReader: NSObject {
         self.session.commitConfiguration()
     }
 
-    func startScanning() {
+    func startScanning(onStart: (() -> Void)? = nil) {
         self.sessionQueue.async {
-            guard !self.session.isRunning else { return }
+            guard !self.session.isRunning else {
+                onStart?()
+                return
+            }
             self.session.startRunning()
+            onStart?()
         }
     }
 
-    func stopScanning() {
+    func stopScanning(onStop: (() -> Void)? = nil) {
         self.sessionQueue.async {
-            guard self.session.isRunning else { return }
+            guard self.session.isRunning else {
+                onStop?()
+                return
+            }
             self.session.stopRunning()
+            onStop?()
         }
     }
 
-    class func isAvailable() -> Bool {
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return false }
-        return (try? AVCaptureDeviceInput(device: captureDevice)) != nil
+    func isAvailable() -> Bool {
+        guard AVCaptureDevice.default(for: .video) != nil else { return false }
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            return true
+        case .restricted, .denied:
+            return false
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { [weak self] granted in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.delegate?.onUserPermissionChoice(granted: granted)
+                }
+            })
+            return true
+        }
     }
 }
 
@@ -71,7 +98,9 @@ extension QRReader: AVCaptureMetadataOutputObjectsDelegate {
                 metadataObject.type == AVMetadataObject.ObjectType.qr,
                 let decodedData = metadataObject.stringValue
             else { return }
-            self.didReadCode(decodedData)
+            DispatchQueue.main.async {
+                self.delegate?.onDecodedData(decodedData: decodedData)
+            }
         }
     }
 }

@@ -85,4 +85,16 @@ class QRScannerViewControllerTest: FixtureTestCase {
         self.sut.viewWillLayoutSubviews()
         XCTAssertTrue(self.mockViewModel.didUpdateQRReaderPreviewLayer)
     }
+
+    func testStartCapture() {
+        XCTAssertFalse(self.mockViewModel.didStartScanning)
+        self.sut.startCapture()
+        XCTAssertTrue(self.mockViewModel.didStartScanning)
+    }
+
+    func testStopCapture() {
+        XCTAssertFalse(self.mockViewModel.didStopScanning)
+        self.sut.stopCapture()
+        XCTAssertTrue(self.mockViewModel.didStopScanning)
+    }
 }
