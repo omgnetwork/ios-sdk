@@ -6,7 +6,12 @@
 
 **Closed issues:**
 
+- Provide a way to manually start/stop QR code capture [\#114](https://github.com/omisego/ios-sdk/issues/114)
 - Release 1.1.0 [\#110](https://github.com/omisego/ios-sdk/issues/110)
+
+**Merged pull requests:**
+
+- 114 improve qr scanner [\#115](https://github.com/omisego/ios-sdk/pull/115) ([mederic-p](https://github.com/mederic-p))
 
 ## [1.1.0](https://github.com/omisego/ios-sdk/tree/1.1.0) (2019-01-30)
 [Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0-beta2...1.1.0)
