@@ -2,7 +2,20 @@
 
 ## [Unreleased](https://github.com/omisego/ios-sdk/tree/HEAD)
 
-[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0...HEAD)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.1...HEAD)
+
+**Closed issues:**
+
+- Add reset/update password for users [\#118](https://github.com/omisego/ios-sdk/issues/118)
+- Update transaction request/consumption [\#117](https://github.com/omisego/ios-sdk/issues/117)
+
+**Merged pull requests:**
+
+- Add reset and update password for end users [\#120](https://github.com/omisego/ios-sdk/pull/120) ([mederic-p](https://github.com/mederic-p))
+- 117 update request consumption [\#119](https://github.com/omisego/ios-sdk/pull/119) ([mederic-p](https://github.com/mederic-p))
+
+## [1.1.1](https://github.com/omisego/ios-sdk/tree/1.1.1) (2019-02-13)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.0...1.1.1)
 
 **Closed issues:**
 
@@ -11,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Prepare 1.1.1 release [\#116](https://github.com/omisego/ios-sdk/pull/116) ([mederic-p](https://github.com/mederic-p))
 - 114 improve qr scanner [\#115](https://github.com/omisego/ios-sdk/pull/115) ([mederic-p](https://github.com/mederic-p))
 
 ## [1.1.0](https://github.com/omisego/ios-sdk/tree/1.1.0) (2019-01-30)
