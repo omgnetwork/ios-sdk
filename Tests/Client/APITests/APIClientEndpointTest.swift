@@ -14,6 +14,8 @@ class APIClientEndpointTest: XCTestCase {
     let validTransactionCreateParams = StubGenerator.transactionRequestCreateParams()
     let validTransactionGetParams = StubGenerator.transactionRequestGetParams()
     let validTransactionListParams = StubGenerator.transactionListParams()
+    let validResetPasswordParams = StubGenerator.resetPasswordParams()
+    let validUpdatePasswordParams = StubGenerator.updatePasswordParams()
 
     func testPath() {
         XCTAssertEqual(APIClientEndpoint.getCurrentUser.path, "/me.get")
@@ -27,6 +29,10 @@ class APIClientEndpointTest: XCTestCase {
                        "/me.get_transaction_request")
         XCTAssertEqual(APIClientEndpoint.transactionRequestConsume(params: self.validTransactionConsumptionParams).path,
                        "/me.consume_transaction_request")
+        XCTAssertEqual(APIClientEndpoint.resetPassword(params: self.validResetPasswordParams).path,
+                       "/user.reset_password")
+        XCTAssertEqual(APIClientEndpoint.updatePassword(params: self.validUpdatePasswordParams).path,
+                       "/user.update_password")
         XCTAssertEqual(APIClientEndpoint.logout.path, "/me.logout")
     }
 
@@ -56,6 +62,14 @@ class APIClientEndpointTest: XCTestCase {
         default: XCTFail("Wrong task")
         }
         switch APIClientEndpoint.transactionRequestGet(params: self.validTransactionGetParams).task {
+        case .requestParameters: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIClientEndpoint.resetPassword(params: self.validResetPasswordParams).task {
+        case .requestParameters: break
+        default: XCTFail("Wrong task")
+        }
+        switch APIClientEndpoint.updatePassword(params: self.validUpdatePasswordParams).task {
         case .requestParameters: break
         default: XCTFail("Wrong task")
         }

@@ -100,6 +100,8 @@
 		032CEF24211D685600E44445 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CEF22211D685600E44445 /* secret.plist */; };
 		032CEF2A211D783D00E44445 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEF29211D783D00E44445 /* LiveTestCase.swift */; };
 		033802AB215B9D2500C2501F /* AccountGetParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033802AA215B9D2500C2501F /* AccountGetParams.swift */; };
+		033D1889223A0E6B00B6B8D9 /* UserResetPasswordParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033D1888223A0E6B00B6B8D9 /* UserResetPasswordParams.swift */; };
+		033D188B223A0E8000B6B8D9 /* UserUpdatePasswordParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033D188A223A0E8000B6B8D9 /* UserUpdatePasswordParams.swift */; };
 		0341BCA2216B395D001928FE /* TransactionRequestParams+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCA1216B395D001928FE /* TransactionRequestParams+Admin.swift */; };
 		0341BCA4216B3DC5001928FE /* TransactionConsumptionParams+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCA3216B3DC5001928FE /* TransactionConsumptionParams+Admin.swift */; };
 		0341BCA7216B4024001928FE /* AdminEncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCA6216B4024001928FE /* AdminEncodeTests.swift */; };
@@ -302,6 +304,8 @@
 		032CEF22211D685600E44445 /* secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		032CEF29211D783D00E44445 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTestCase.swift; sourceTree = "<group>"; };
 		033802AA215B9D2500C2501F /* AccountGetParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountGetParams.swift; sourceTree = "<group>"; };
+		033D1888223A0E6B00B6B8D9 /* UserResetPasswordParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResetPasswordParams.swift; sourceTree = "<group>"; };
+		033D188A223A0E8000B6B8D9 /* UserUpdatePasswordParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdatePasswordParams.swift; sourceTree = "<group>"; };
 		0341BCA1216B395D001928FE /* TransactionRequestParams+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionRequestParams+Admin.swift"; sourceTree = "<group>"; };
 		0341BCA3216B3DC5001928FE /* TransactionConsumptionParams+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionConsumptionParams+Admin.swift"; sourceTree = "<group>"; };
 		0341BCA6216B4024001928FE /* AdminEncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEncodeTests.swift; sourceTree = "<group>"; };
@@ -439,6 +443,8 @@
 				0320EAB92119499B0006685C /* TransactionRequest+Client.swift */,
 				0306DC9E215A2E0200612953 /* TransactionListParams.swift */,
 				0380AAE8212D2D78006B2193 /* SignupParams.swift */,
+				033D1888223A0E6B00B6B8D9 /* UserResetPasswordParams.swift */,
+				033D188A223A0E8000B6B8D9 /* UserUpdatePasswordParams.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1169,6 +1175,7 @@
 				033802AB215B9D2500C2501F /* AccountGetParams.swift in Sources */,
 				0379E7F721184BC900E65D4F /* TransactionParams.swift in Sources */,
 				0379E80621184BC900E65D4F /* Account.swift in Sources */,
+				033D188B223A0E8000B6B8D9 /* UserUpdatePasswordParams.swift in Sources */,
 				034F1523214FA205002BB513 /* SortParams.swift in Sources */,
 				0379E80B21184BC900E65D4F /* Listable.swift in Sources */,
 				0379E81321184BC900E65D4F /* QRScannerViewController.swift in Sources */,
@@ -1238,6 +1245,7 @@
 				0341BCAC216B4316001928FE /* TransactionRequest+Admin.swift in Sources */,
 				03E72EDB2124177E0060E1D7 /* LoginParams.swift in Sources */,
 				034F1529214FA6FB002BB513 /* PaginatedListParams.swift in Sources */,
+				033D1889223A0E6B00B6B8D9 /* UserResetPasswordParams.swift in Sources */,
 				03E565B5211AFBB100BC9124 /* QRScannerViewController+Client.swift in Sources */,
 				034F1527214FA228002BB513 /* PaginationParams.swift in Sources */,
 				0379E81221184BC900E65D4F /* QRScannerLoadingView.swift in Sources */,

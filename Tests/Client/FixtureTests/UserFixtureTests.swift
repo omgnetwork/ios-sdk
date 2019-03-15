@@ -48,4 +48,34 @@ class UserFixtureTests: FixtureClientTestCase {
         XCTAssertNotNil(request)
         waitForExpectations(timeout: 15.0, handler: nil)
     }
+
+    func testResetPassword() {
+        let expectation = self.expectation(description: "Reset password")
+        let params = StubGenerator.resetPasswordParams()
+        let request = User.resetPassword(using: self.testClient, params: params) { result in
+            switch result {
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            case .success: break
+            }
+            expectation.fulfill()
+        }
+        XCTAssertNotNil(request)
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
+
+    func testUpdatePassword() {
+        let expectation = self.expectation(description: "Update password")
+        let params = StubGenerator.updatePasswordParams()
+        let request = User.updatePassword(using: self.testClient, params: params) { result in
+            switch result {
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            case .success: break
+            }
+            expectation.fulfill()
+        }
+        XCTAssertNotNil(request)
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
 }

@@ -489,4 +489,21 @@ class StubGenerator {
             createdAt: createdAt ?? v.createdAt,
             updatedAt: updatedAt ?? v.updatedAt)
     }
+
+    class func resetPasswordParams(
+        email: String = "email@example.com",
+        redirectURL: String = "http://localhost:4000") -> UserResetPasswordParams {
+        return UserResetPasswordParams(email: email, redirectUrl: redirectURL)
+    }
+
+    class func updatePasswordParams(
+        email: String = "email@example.com",
+        token: String = "XXXXXXXXXXXXXXX",
+        password: String = "password",
+        passwordConfirmation _: String = "password") -> UserUpdatePasswordParams {
+        return UserUpdatePasswordParams(email: email,
+                                        token: token,
+                                        password: password,
+                                        passwordConfirmation: password)
+    }
 }

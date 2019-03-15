@@ -23,6 +23,9 @@ The client iOS SDK allows developers to easily interact with the OmiseGO client 
   - [QR codes](#qr-codes)
     - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
     - [Scan a QR code](#scan-a-qr-code)
+  - [Reset user password](#reset-user-password)
+    - [Reset password](#reset-password)
+    - [Update password](#update-password)
 - [Websockets](#websockets)
   - [Initialization](#initialization-of-the-websocket-client)
   - [Listenable resources](#listenable-resources)
@@ -431,6 +434,59 @@ When the scanner successfully decodes a `TransactionRequest` it will call its de
 
 You should use this `TransactionRequest` to generate a `TransactionConsumptionParams` in order to [consume the request](#consume-a-transaction-request).
 
+### Reset user password
+
+> Note: Only available if the eWallet is running in standalone mode.
+
+If a user forget his password, he will be able to reset it by requesting  a reset password link.
+This link will contain a unique token that will need to be submitted along with the updated password chosen by the user.
+
+#### Reset password
+
+To get a password reset link, you can call:
+
+```
+User.resetPassword(using: client, params: params) { result in
+    switch result {
+    case .success:
+      // Handle success
+    case let .fail(error: error):
+      // Handle error
+    }
+}
+```
+
+Where `params` is a `UserResetPasswordParams` struct constructed using:
+
+- `email`: The email of the user (ie: email@example.com)
+- `redirectURL`: A redirect URL that will be built on the server by replacing the `{email}` and `{token}` params.
+
+For example, if you provide this url: `my-app-scheme-uri://user/reset_password?email={email}&token={token}`, the user will receive a link by email that will look like this: `my-app-scheme-uri://user/reset_password?email=email@example.com&token=XXXXXXXXXXXXXXXXXXXXXX`.
+You can then handle the params passed to your application upon launch from this deep link and pass them to the `User.updatePassword` method.
+
+> This url needs to be whitelisted on the eWallet configuration page using the `Redirect URL Prefixes` config before being used.
+
+#### Update password
+
+To update the user with a new password, you can call:
+
+```
+User.updatePassword(using: client, params: params) { result in
+    switch result {
+    case .success:
+      // Handle success
+    case let .fail(error: error):
+      // Handle error
+    }
+}
+```
+
+Where `params` is a `UserUpdatePasswordParams` struct constructed using:
+
+- `email`: The email obtained in the previous step
+- `token`: The token obtained in the previous step
+- `password`: The updated user's password
+- `passwordConfirmation`: The updated user's password
 
 ## Websockets
 

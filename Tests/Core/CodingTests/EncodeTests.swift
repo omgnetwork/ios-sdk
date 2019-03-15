@@ -657,4 +657,40 @@ class EncodeTests: XCTestCase {
             XCTFail(thrownError.localizedDescription)
         }
     }
+
+    func testResetPasswordParamsEncoding() {
+        do {
+            let resetPasswordParams = UserResetPasswordParams(email: "email@example.com",
+                                                              redirectUrl: "xxx")
+            let encodedData = try self.encoder.encode(resetPasswordParams)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "email":"email@example.com",
+                    "redirect_url":"xxx"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testUpdatePasswordParamsEncoding() {
+        do {
+            let updatePassword = UserUpdatePasswordParams(email: "email@example.com",
+                                                          token: "xxx",
+                                                          password: "password",
+                                                          passwordConfirmation: "password")
+            let encodedData = try self.encoder.encode(updatePassword)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "email":"email@example.com",
+                    "password":"password",
+                    "password_confirmation":"password",
+                    "token":"xxx"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
 }
