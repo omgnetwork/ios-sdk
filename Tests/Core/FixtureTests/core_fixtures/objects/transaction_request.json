@@ -2,6 +2,9 @@
   "object": "transaction_request",
   "type": "receive",
   "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
+  "consumption_interval_duration": 10000,
+  "max_consumptions_per_interval": 10,
+  "max_consumptions_per_interval_per_user": 1,
   "token": {
     "object": "token",
     "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",

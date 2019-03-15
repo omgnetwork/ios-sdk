@@ -45,6 +45,9 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     exchangeWalletAddress: nil,
                                                     exchangeAccount: nil,
                                                     exchangeWallet: nil,
+                                                    consumptionIntervalDuration: nil,
+                                                    maxConsumptionsPerInterval: nil,
+                                                    maxConsumptionsPerIntervalPerUser: nil,
                                                     metadata: [:],
                                                     encryptedMetadata: [:])
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
@@ -80,6 +83,9 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     exchangeWalletAddress: nil,
                                                     exchangeAccount: nil,
                                                     exchangeWallet: nil,
+                                                    consumptionIntervalDuration: nil,
+                                                    maxConsumptionsPerInterval: nil,
+                                                    maxConsumptionsPerIntervalPerUser: nil,
                                                     metadata: [:],
                                                     encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,

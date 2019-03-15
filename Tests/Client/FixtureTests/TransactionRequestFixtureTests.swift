@@ -39,6 +39,9 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
                     XCTAssertEqual(transactionRequest.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertTrue(transactionRequest.allowAmountOverride)
+                    XCTAssertNil(transactionRequest.consumptionIntervalDuration)
+                    XCTAssertNil(transactionRequest.maxConsumptionsPerInterval)
+                    XCTAssertNil(transactionRequest.maxConsumptionsPerIntervalPerUser)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
                 case let .fail(error: error):
@@ -74,6 +77,9 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
                     XCTAssertEqual(transactionRequest.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertEqual(transactionRequest.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertTrue(transactionRequest.allowAmountOverride)
+                    XCTAssertEqual(transactionRequest.consumptionIntervalDuration, 10000)
+                    XCTAssertEqual(transactionRequest.maxConsumptionsPerInterval, 10)
+                    XCTAssertEqual(transactionRequest.maxConsumptionsPerIntervalPerUser, 1)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
                 case let .fail(error: error):

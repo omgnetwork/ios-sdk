@@ -44,6 +44,9 @@ class TransactionRequestAdminFixtureTests: FixtureAdminTestCase {
                     XCTAssertTrue(transactionRequest.allowAmountOverride)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
+                    XCTAssertNil(transactionRequest.consumptionIntervalDuration)
+                    XCTAssertNil(transactionRequest.maxConsumptionsPerInterval)
+                    XCTAssertNil(transactionRequest.maxConsumptionsPerIntervalPerUser)
                 case let .fail(error: error):
                     XCTFail("\(error)")
                 }
@@ -76,6 +79,9 @@ class TransactionRequestAdminFixtureTests: FixtureAdminTestCase {
                     XCTAssertEqual(transactionRequest.createdAt, "2018-10-08T07:54:24Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
                     XCTAssertNil(transactionRequest.expiredAt)
                     XCTAssertTrue(transactionRequest.allowAmountOverride)
+                    XCTAssertEqual(transactionRequest.consumptionIntervalDuration, 10000)
+                    XCTAssertEqual(transactionRequest.maxConsumptionsPerInterval, 10)
+                    XCTAssertEqual(transactionRequest.maxConsumptionsPerIntervalPerUser, 1)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
                 case let .fail(error: error):

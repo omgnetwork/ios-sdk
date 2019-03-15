@@ -19,6 +19,7 @@ The client iOS SDK allows developers to easily interact with the OmiseGO client 
     - [Consume a transaction request](#consume-a-transaction-request)
     - [Approve a transaction consumption](#approve-a-transaction-consumption)
     - [Reject a transaction consumption](#reject-a-transaction-consumption)
+    - [Cancel a transaction consumption](#cancel-a-transaction-consumption)
   - [QR codes](#qr-codes)
     - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
     - [Scan a QR code](#scan-a-qr-code)
@@ -269,6 +270,9 @@ let params = TransactionRequestCreateParams(type: .receive,
                                             expirationDate: nil,
                                             allowAmountOverride: true,
                                             maxConsumptionsPerUser: 5,
+                                            consumptionIntervalDuration: 10000,
+                                            maxConsumptionsPerInterval: 10,
+                                            maxConsumptionsPerIntervalPerUser: 1,
                                             metadata: [:],
                                             encryptedMetadata: [:])!
 TransactionRequest.create(using: client, params: params) { (transactionRequestResult) in
@@ -296,6 +300,9 @@ Where:
   - `allowAmountOverride`: (optional) Allow or not the consumer to override the amount specified in the request. This needs to be true if the amount is not specified
   > Note that if `amount` is nil and `allowAmountOverride` is false the init will fail and return `nil`.
 
+  - `consumptionIntervalDuration`: The duration (in milliseconds) during which the `maxConsumptionsPerInterval` and  `maxConsumptionsPerIntervalPerUser` attributes take effect.
+  - `maxConsumptionsPerInterval`: The total number of times the request can be consumed in the defined interval (like 3 times every 24 hours)
+  - `maxConsumptionsPerIntervalPerUser`: The total number of times one unique user can consume the request (like once every 24 hours)
   - `maxConsumptionsPerUser`: The maximum number of consumptions allowed per unique user
   - `metadata`: Additional metadata embedded with the request
   - `encryptedMetadata`: Additional encrypted metadata embedded with the request
@@ -352,6 +359,19 @@ transactionConsumption.approve(using:client, callback: { (result) in
 
 ```swift
 transactionConsumption.reject(using:client, callback: { (result) in
+    switch result {
+    case .success(data: let transactionConsumption):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+})
+```
+
+#### Cancel a transaction consumption
+
+```swift
+transactionConsumption.cancel(using:client, callback: { (result) in
     switch result {
     case .success(data: let transactionConsumption):
         // Handle success

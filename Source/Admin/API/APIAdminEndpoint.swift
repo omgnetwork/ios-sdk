@@ -20,6 +20,7 @@ enum APIAdminEndpoint: APIEndpoint {
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumptionParams)
+    case transactionConsumptionCancel(params: TransactionConsumptionCancellationParams)
     case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
     case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
 
@@ -49,6 +50,8 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/transaction_request.get"
         case .transactionRequestConsume:
             return "/transaction_request.consume"
+        case .transactionConsumptionCancel:
+            return "/transaction_consumption.cancel"
         case .transactionConsumptionApprove:
             return "/transaction_consumption.approve"
         case .transactionConsumptionReject:
@@ -81,6 +84,8 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .transactionRequestConsume(parameters):
             return .requestParameters(parameters: parameters)
         case let .transactionConsumptionApprove(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionConsumptionCancel(parameters):
             return .requestParameters(parameters: parameters)
         case let .transactionConsumptionReject(parameters):
             return .requestParameters(parameters: parameters)

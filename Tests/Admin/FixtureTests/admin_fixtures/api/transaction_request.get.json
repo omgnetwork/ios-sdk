@@ -3,6 +3,9 @@
   "success": true,
   "data": {
     "user_id": "usr_01cs9amcdf1kqp10de3q8fe56v",
+    "consumption_interval_duration": 10000,
+    "max_consumptions_per_interval": 10,
+    "max_consumptions_per_interval_per_user": 1,
     "user": {
       "username": "user1",
       "updated_at": "2018-10-08T07:52:57.519979Z",

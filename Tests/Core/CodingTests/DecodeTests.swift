@@ -376,6 +376,9 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.exchangeWalletAddress, "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a")
             XCTAssertEqual(decodedData.exchangeAccount!.id, "acc_01ca2p8jqans5aty5gj5etmjcf")
             XCTAssertEqual(decodedData.exchangeWallet!.address, "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a")
+            XCTAssertEqual(decodedData.consumptionIntervalDuration, 10000)
+            XCTAssertEqual(decodedData.maxConsumptionsPerInterval, 10)
+            XCTAssertEqual(decodedData.maxConsumptionsPerIntervalPerUser, 1)
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
@@ -416,6 +419,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.confirmedAt, "2019-01-02T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.failedAt, nil)
             XCTAssertEqual(decodedData.expiredAt, nil)
+            XCTAssertEqual(decodedData.cancelledAt, nil)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.exchangeAccountId, "acc_01ca2p8jqans5aty5gj5etmjcf")
             XCTAssertEqual(decodedData.exchangeWalletAddress, "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a")

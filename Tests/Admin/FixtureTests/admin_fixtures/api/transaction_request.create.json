@@ -23,6 +23,9 @@
         "large": null
       }
     },
+    "consumption_interval_duration": null,
+    "max_consumptions_per_interval": null,
+    "max_consumptions_per_interval_per_user": null,
     "updated_at": "2018-10-08T07:54:24.403846Z",
     "type": "receive",
     "token_id": "tok_TK1_01cs953xjn9hvz1bcet7swq36j",

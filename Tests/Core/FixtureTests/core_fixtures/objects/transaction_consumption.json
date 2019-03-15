@@ -133,6 +133,7 @@
   "expiration_date": "2019-01-01T00:00:00Z",
   "approved_at": "2018-01-02T00:00:00Z",
   "rejected_at": null,
+  "cancelled_at": null,
   "confirmed_at": "2019-01-02T00:00:00Z",
   "failed_at": null,
   "expired_at": null,

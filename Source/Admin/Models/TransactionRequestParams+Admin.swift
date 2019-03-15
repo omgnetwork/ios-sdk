@@ -30,6 +30,12 @@ extension TransactionRequestCreateParams {
     ///   - allowAmountOverride: Allow or not the consumer to override the amount specified in the request
     ///                          This needs to be true if the amount is not specified
     ///   - maxConsumptionsPerUser: The maximum number of consumptions allowed per unique user
+    ///   - consumptionIntervalDuration: The duration (in milliseconds) during which the maxConsumptionsPerInterval and
+    ///     maxConsumptionsPerIntervalPerUser attributes take effect.
+    ///   - maxConsumptionsPerInterval: The total number of times the request can be consumed in the defined interval
+    ///     (like 3 times every 24 hours)
+    ///   - maxConsumptionsPerIntervalPerUser: The total number of times one unique user can consume the request
+    ///     (like once every 24 hours)
     ///   - exchangeAccountId: The account to use for the token exchange (if any)
     ///   - exchangeWalletAddress: The wallet address to use for the token exchange (if any)
     ///   - metadata: Additional metadata embeded with the request
@@ -48,6 +54,9 @@ extension TransactionRequestCreateParams {
                  expirationDate: Date? = nil,
                  allowAmountOverride: Bool,
                  maxConsumptionsPerUser: Int? = nil,
+                 consumptionIntervalDuration: Int? = nil,
+                 maxConsumptionsPerInterval: Int? = nil,
+                 maxConsumptionsPerIntervalPerUser: Int? = nil,
                  exchangeAccountId: String? = nil,
                  exchangeWalletAddress: String? = nil,
                  metadata: [String: Any] = [:],
@@ -67,6 +76,9 @@ extension TransactionRequestCreateParams {
         self.expirationDate = expirationDate
         self.allowAmountOverride = allowAmountOverride
         self.maxConsumptionsPerUser = maxConsumptionsPerUser
+        self.consumptionIntervalDuration = consumptionIntervalDuration
+        self.maxConsumptionsPerInterval = maxConsumptionsPerInterval
+        self.maxConsumptionsPerIntervalPerUser = maxConsumptionsPerIntervalPerUser
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
         self.exchangeAccountId = exchangeAccountId

@@ -79,6 +79,12 @@ public struct TransactionRequest {
     public let exchangeAccount: Account?
     /// The wallet used for exchanging the funds
     public let exchangeWallet: Wallet?
+    /// The duration (in milliseconds) during which the maxConsumptionsPerInterval and maxConsumptionsPerIntervalPerUser attributes take effect.
+    public let consumptionIntervalDuration: Int?
+    /// The total number of times the request can be consumed in the defined interval (like 3 times every 24 hours)
+    public let maxConsumptionsPerInterval: Int?
+    /// The total number of times one unique user can consume the request (like once every 24 hours)
+    public let maxConsumptionsPerIntervalPerUser: Int?
     /// Additional metadata for the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the request
@@ -112,6 +118,9 @@ extension TransactionRequest: Decodable {
         case expiredAt = "expired_at"
         case allowAmountOverride = "allow_amount_override"
         case maxConsumptionsPerUser = "max_consumptions_per_user"
+        case consumptionIntervalDuration = "consumption_interval_duration"
+        case maxConsumptionsPerInterval = "max_consumptions_per_interval"
+        case maxConsumptionsPerIntervalPerUser = "max_consumptions_per_interval_per_user"
         case formattedId = "formatted_id"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
@@ -142,6 +151,9 @@ extension TransactionRequest: Decodable {
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
         maxConsumptionsPerUser = try container.decodeIfPresent(Int.self, forKey: .maxConsumptionsPerUser)
+        consumptionIntervalDuration = try container.decodeIfPresent(Int.self, forKey: .consumptionIntervalDuration)
+        maxConsumptionsPerInterval = try container.decodeIfPresent(Int.self, forKey: .maxConsumptionsPerInterval)
+        maxConsumptionsPerIntervalPerUser = try container.decodeIfPresent(Int.self, forKey: .maxConsumptionsPerIntervalPerUser)
         formattedId = try container.decode(String.self, forKey: .formattedId)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
         encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)

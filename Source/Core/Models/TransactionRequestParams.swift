@@ -35,6 +35,12 @@ public struct TransactionRequestCreateParams {
     public let allowAmountOverride: Bool
     /// The maximum number of consumptions allowed per unique user
     public let maxConsumptionsPerUser: Int?
+    /// The duration (in milliseconds) during which the maxConsumptionsPerInterval and maxConsumptionsPerIntervalPerUser attributes take effect.
+    public let consumptionIntervalDuration: Int?
+    /// The total number of times the request can be consumed in the defined interval (like 3 times every 24 hours)
+    public let maxConsumptionsPerInterval: Int?
+    /// The total number of times one unique user can consume the request (like once every 24 hours)
+    public let maxConsumptionsPerIntervalPerUser: Int?
     /// Additional metadata embedded with the request
     public let metadata: [String: Any]
     /// Additional encrypted metadata embedded with the request
@@ -70,6 +76,12 @@ public struct TransactionRequestCreateParams {
     ///   - allowAmountOverride: Allow or not the consumer to override the amount specified in the request
     ///                          This needs to be true if the amount is not specified
     ///   - maxConsumptionsPerUser: The maximum number of consumptions allowed per unique user
+    ///   - consumptionIntervalDuration: The duration (in milliseconds) during which the maxConsumptionsPerInterval and
+    ///     maxConsumptionsPerIntervalPerUser attributes take effect.
+    ///   - maxConsumptionsPerInterval: The total number of times the request can be consumed in the defined interval
+    ///     (like 3 times every 24 hours)
+    ///   - maxConsumptionsPerIntervalPerUser: The total number of times one unique user can consume the request
+    ///     (like once every 24 hours)
     ///   - metadata: Additional metadata embeded with the request
     ///   - encryptedMetadata: Additional encrypted metadata embedded with the request
     public init?(type: TransactionRequestType,
@@ -83,9 +95,15 @@ public struct TransactionRequestCreateParams {
                  expirationDate: Date? = nil,
                  allowAmountOverride: Bool,
                  maxConsumptionsPerUser: Int? = nil,
+                 consumptionIntervalDuration: Int? = nil,
+                 maxConsumptionsPerInterval: Int? = nil,
+                 maxConsumptionsPerIntervalPerUser: Int? = nil,
                  metadata: [String: Any] = [:],
                  encryptedMetadata: [String: Any] = [:]) {
         guard allowAmountOverride || amount != nil else { return nil }
+        guard consumptionIntervalDuration == nil ||
+            maxConsumptionsPerInterval != nil ||
+            maxConsumptionsPerIntervalPerUser != nil else { return nil }
         self.type = type
         self.tokenId = tokenId
         self.amount = amount
@@ -97,6 +115,9 @@ public struct TransactionRequestCreateParams {
         self.expirationDate = expirationDate
         self.allowAmountOverride = allowAmountOverride
         self.maxConsumptionsPerUser = maxConsumptionsPerUser
+        self.consumptionIntervalDuration = consumptionIntervalDuration
+        self.maxConsumptionsPerInterval = maxConsumptionsPerInterval
+        self.maxConsumptionsPerIntervalPerUser = maxConsumptionsPerIntervalPerUser
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
         self.accountId = nil
@@ -120,6 +141,9 @@ extension TransactionRequestCreateParams: APIParameters {
         case expirationDate = "expiration_date"
         case allowAmountOverride = "allow_amount_override"
         case maxConsumptionsPerUser = "max_consumptions_per_user"
+        case consumptionIntervalDuration = "consumption_interval_duration"
+        case maxConsumptionsPerInterval = "max_consumptions_per_interval"
+        case maxConsumptionsPerIntervalPerUser = "max_consumptions_per_interval_per_user"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
         case accountId = "account_id"
@@ -143,6 +167,9 @@ extension TransactionRequestCreateParams: APIParameters {
         try container.encode(expirationDate, forKey: .expirationDate)
         try container.encode(allowAmountOverride, forKey: .allowAmountOverride)
         try container.encode(maxConsumptionsPerUser, forKey: .maxConsumptionsPerUser)
+        try container.encode(consumptionIntervalDuration, forKey: .consumptionIntervalDuration)
+        try container.encode(maxConsumptionsPerInterval, forKey: .maxConsumptionsPerInterval)
+        try container.encode(maxConsumptionsPerIntervalPerUser, forKey: .maxConsumptionsPerIntervalPerUser)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
         try container.encodeIfPresent(accountId, forKey: .accountId)

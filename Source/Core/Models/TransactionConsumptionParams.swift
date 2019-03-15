@@ -145,3 +145,8 @@ extension TransactionConsumptionParams: APIParameters {
 struct TransactionConsumptionConfirmationParams: APIParameters {
     let id: String
 }
+
+/// Represents a structure used to cancel a transaction consumption from its id
+struct TransactionConsumptionCancellationParams: APIParameters {
+    let id: String
+}

@@ -18,6 +18,7 @@ public enum TransactionConsumptionStatus: String, Decodable {
     case confirmed
     case approved
     case rejected
+    case cancelled
     case failed
     case expired
 }
@@ -68,6 +69,8 @@ public struct TransactionConsumption {
     public let rejectedAt: Date?
     /// The date when the consumption got confirmed
     public let confirmedAt: Date?
+    /// The date when the consumption got cancelled
+    public let cancelledAt: Date?
     /// The date when the consumption failed
     public let failedAt: Date?
     /// The date when the consumption expired
@@ -113,6 +116,7 @@ extension TransactionConsumption: Decodable {
         case approvedAt = "approved_at"
         case rejectedAt = "rejected_at"
         case confirmedAt = "confirmed_at"
+        case cancelledAt = "cancelled_at"
         case failedAt = "failed_at"
         case expiredAt = "expired_at"
         case metadata
@@ -145,6 +149,7 @@ extension TransactionConsumption: Decodable {
         approvedAt = try container.decodeIfPresent(Date.self, forKey: .approvedAt)
         rejectedAt = try container.decodeIfPresent(Date.self, forKey: .rejectedAt)
         confirmedAt = try container.decodeIfPresent(Date.self, forKey: .confirmedAt)
+        cancelledAt = try container.decodeIfPresent(Date.self, forKey: .cancelledAt)
         failedAt = try container.decodeIfPresent(Date.self, forKey: .failedAt)
         expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         createdAt = try container.decode(Date.self, forKey: .createdAt)

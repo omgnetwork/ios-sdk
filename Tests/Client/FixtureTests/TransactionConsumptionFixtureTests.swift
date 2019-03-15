@@ -68,6 +68,23 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
         waitForExpectations(timeout: 15.0, handler: nil)
     }
 
+    func testCancelTransactionConsumption() {
+        let expectation =
+            self.expectation(description: "Cancel a transaction consumption")
+        let transactionConsumption = StubGenerator.transactionConsumption()
+        let request = transactionConsumption.cancel(using: self.testClient) { result in
+            defer { expectation.fulfill() }
+            switch result {
+            case let .success(data: transactionConsumption):
+                XCTAssertEqual(transactionConsumption.status, .cancelled)
+            case let .fail(error: error):
+                XCTFail("\(error)")
+            }
+        }
+        XCTAssertNotNil(request)
+        waitForExpectations(timeout: 15.0, handler: nil)
+    }
+
     func testApproveTransactionConsumption() {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
