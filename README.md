@@ -38,7 +38,7 @@ The Client and Admin modules contain specific logic to respectively access the c
 - Xcode 10+
 - Swift 4.2
 
-This version of the SDK is compatible with the version `1.1.0` of the [eWallet](https://github.com/omisego/ewallet/tree/v1.1).
+This version of the SDK is compatible with the version `1.2.0` of the [eWallet](https://github.com/omisego/ewallet/tree/v1.2).
 
 ---
 
