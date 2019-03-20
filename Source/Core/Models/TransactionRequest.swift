@@ -79,7 +79,8 @@ public struct TransactionRequest {
     public let exchangeAccount: Account?
     /// The wallet used for exchanging the funds
     public let exchangeWallet: Wallet?
-    /// The duration (in milliseconds) during which the maxConsumptionsPerInterval and maxConsumptionsPerIntervalPerUser attributes take effect.
+    /// The duration (in milliseconds) during which the maxConsumptionsPerInterval and maxConsumptionsPerIntervalPerUser
+    /// attributes take effect.
     public let consumptionIntervalDuration: Int?
     /// The total number of times the request can be consumed in the defined interval (like 3 times every 24 hours)
     public let maxConsumptionsPerInterval: Int?
