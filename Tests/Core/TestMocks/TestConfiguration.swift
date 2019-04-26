@@ -11,6 +11,8 @@
 struct TestConfiguration: Configuration {
     let apiVersion: String = "1"
 
+    let baseAPIURL: String
+
     let baseURL: String
 
     var credentials: Credential
@@ -19,6 +21,7 @@ struct TestConfiguration: Configuration {
 
     init(baseURL: String = "http://localhost:4000", credentials: TestCredential = TestCredential(authenticated: true)) {
         self.baseURL = baseURL
+        self.baseAPIURL = baseURL + "/api"
         self.credentials = credentials
     }
 }

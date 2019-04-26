@@ -189,6 +189,7 @@
 		03E72EDB2124177E0060E1D7 /* LoginParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDA2124177E0060E1D7 /* LoginParams.swift */; };
 		03E72EDD212424B00060E1D7 /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */; };
 		03E72EDF2124312C0060E1D7 /* AuthenticationTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E72EDE2124312C0060E1D7 /* AuthenticationTokenTests.swift */; };
+		03E93809225606810012A92A /* UserResetPasswordParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E93808225606810012A92A /* UserResetPasswordParamsTests.swift */; };
 		03F2D500212436BB00BC65BB /* LoginFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */; };
 		03F827462150CA7100BD05D6 /* WalletListForAccountParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F827452150CA7100BD05D6 /* WalletListForAccountParams.swift */; };
 		03F827482150F45E00BD05D6 /* Account+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F827472150F45E00BD05D6 /* Account+Admin.swift */; };
@@ -396,6 +397,7 @@
 		03E72EDA2124177E0060E1D7 /* LoginParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParams.swift; sourceTree = "<group>"; };
 		03E72EDC212424B00060E1D7 /* AuthenticationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationToken.swift; sourceTree = "<group>"; };
 		03E72EDE2124312C0060E1D7 /* AuthenticationTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenTests.swift; sourceTree = "<group>"; };
+		03E93808225606810012A92A /* UserResetPasswordParamsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResetPasswordParamsTests.swift; sourceTree = "<group>"; };
 		03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFixtureTests.swift; sourceTree = "<group>"; };
 		03F827452150CA7100BD05D6 /* WalletListForAccountParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListForAccountParams.swift; sourceTree = "<group>"; };
 		03F827472150F45E00BD05D6 /* Account+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Admin.swift"; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 				032CEDC2211D3D5300E44445 /* RequestFixtureTest.swift */,
 				03F2D4FF212436BB00BC65BB /* LoginFixtureTests.swift */,
 				0380AAEA212D311B006B2193 /* SignupFixtureTests.swift */,
+				03E93808225606810012A92A /* UserResetPasswordParamsTests.swift */,
 			);
 			path = FixtureTests;
 			sourceTree = "<group>";
@@ -1300,6 +1303,7 @@
 				032CEE3D211D3D5300E44445 /* WalletLiveTests.swift in Sources */,
 				032CEE29211D3D5300E44445 /* UserFixtureTests.swift in Sources */,
 				032CEE26211D3D5300E44445 /* ClientCredentialTests.swift in Sources */,
+				03E93809225606810012A92A /* UserResetPasswordParamsTests.swift in Sources */,
 				03AB7ED3214BC04D00C80D8E /* AdminCredentialTests.swift in Sources */,
 				03AB7ED5214BC04D00C80D8E /* FixtureAdminTestCase.swift in Sources */,
 				032CEDD0211D3D5300E44445 /* QRScannerViewTests.swift in Sources */,

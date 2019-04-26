@@ -459,12 +459,14 @@ User.resetPassword(using: client, params: params) { result in
 Where `params` is a `UserResetPasswordParams` struct constructed using:
 
 - `email`: The email of the user (ie: email@example.com)
-- `redirectURL`: A redirect URL that will be built on the server by replacing the `{email}` and `{token}` params.
+- `reset_password_url`: The URL of the link that the user will receive by email.
+  In most cases this should be the default URL, only override if you are building your custom system.
+  The default URL can be retrieved using the `defaultResetPasswordURL(forClient:)` function
+- `forward_url`: The default reset password page will try to redirect the user to this forwardURL if present.
+  If omitted or invalid, the user will be able to reset his password on the default page.
+  You can use this URL if you want the default page to open your app with it's scheme for example.
 
-For example, if you provide this url: `my-app-scheme-uri://user/reset_password?email={email}&token={token}`, the user will receive a link by email that will look like this: `my-app-scheme-uri://user/reset_password?email=email@example.com&token=XXXXXXXXXXXXXXXXXXXXXX`.
-You can then handle the params passed to your application upon launch from this deep link and pass them to the `User.updatePassword` method.
-
-> This url needs to be whitelisted on the eWallet configuration page using the `Redirect URL Prefixes` config before being used.
+> These urls needs to be whitelisted on the eWallet configuration page using the `Redirect URL Prefixes` config before being used.
 
 #### Update password
 

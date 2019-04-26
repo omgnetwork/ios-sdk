@@ -47,6 +47,10 @@ public class HTTPAPI {
                 performCallback {
                     callback?(.failure(.other(error: error)))
                 }
+            @unknown default:
+                performCallback {
+                    callback?(.fail(error: OMGError.other(error: error)))
+                }
             }
         } catch _ {
             self.performCallback {

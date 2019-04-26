@@ -667,12 +667,14 @@ class EncodeTests: XCTestCase {
     func testResetPasswordParamsEncoding() {
         do {
             let resetPasswordParams = UserResetPasswordParams(email: "email@example.com",
-                                                              redirectUrl: "xxx")
+                                                              resetPasswordURL: "resetPasswordURL",
+                                                              forwardURL: "forwardURL")
             let encodedData = try self.encoder.encode(resetPasswordParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "email":"email@example.com",
-                    "redirect_url":"xxx"
+                    "forward_url": "forwardURL",
+                    "reset_password_url":"resetPasswordURL"
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {

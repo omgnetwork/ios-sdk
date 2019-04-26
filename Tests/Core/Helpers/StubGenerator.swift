@@ -512,9 +512,10 @@ class StubGenerator {
 
     class func resetPasswordParams(
         email: String = "email@example.com",
-        redirectURL: String = "http://localhost:4000"
+        resetPasswordURL: String = "http://localhost:4000/client/reset_password?email={email}&token={token}",
+        forwardURL: String = "my-app://reset_password?email={email}&token={token}"
     ) -> UserResetPasswordParams {
-        return UserResetPasswordParams(email: email, redirectUrl: redirectURL)
+        return UserResetPasswordParams(email: email, resetPasswordURL: resetPasswordURL, forwardURL: forwardURL)
     }
 
     class func updatePasswordParams(

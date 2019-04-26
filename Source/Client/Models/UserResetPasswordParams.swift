@@ -10,30 +10,50 @@
 public struct UserResetPasswordParams {
     /// The email of the user
     public let email: String
-    /// The URL where the user will be taken when clicking the link in the email
-    public let redirectUrl: String
+    /// The URL of the link that the user will receive by email.
+    /// In most cases this should be the default URL, only override if you
+    /// are building your custom system
+    public let resetPasswordURL: String
+    /// The default reset password page will try to redirect the user to this forwardURL if present.
+    /// If omitted or invalid, the user will be able to reset his password on the default page.
+    /// You can use this URL if you want the default page to open your app with it's scheme for example.
+    public let forwardURL: String?
+
+    static let defaultResetPasswordPath = "/client/reset_password?email={email}&token={token}"
 
     /// Initialize the params used to request a password reset for the user
     ///
     /// - Parameters:
     ///   - email: The email of the user
-    ///   - redirectUrl: The URL where the user will be taken when clicking the link in the email
+    ///   - resetPasswordURL: The URL of the link that the user will receive by email.
+    /// In most cases, you'll want to use the URL from defaultResetPasswordURL(forClient:)
+    ///   - forwardURL: The default reset password page will try to redirect the user to this forwardURL if present.
+    /// If omitted or invalid, the user will be able to reset his password on the default page.
+    /// You can use this URL if you want the default page to open your app with it's scheme for example.
     public init(email: String,
-                redirectUrl: String) {
+                resetPasswordURL: String,
+                forwardURL: String? = nil) {
         self.email = email
-        self.redirectUrl = redirectUrl
+        self.resetPasswordURL = resetPasswordURL
+        self.forwardURL = forwardURL
+    }
+
+    public static func defaultResetPasswordURL(forClient client: HTTPClientAPI) -> String {
+        return client.config.baseURL + self.defaultResetPasswordPath
     }
 }
 
 extension UserResetPasswordParams: APIParameters {
     private enum CodingKeys: String, CodingKey {
         case email
-        case redirectUrl = "redirect_url"
+        case resetPasswordURL = "reset_password_url"
+        case forwardURL = "forward_url"
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(email, forKey: .email)
-        try container.encode(redirectUrl, forKey: .redirectUrl)
+        try container.encode(resetPasswordURL, forKey: .resetPasswordURL)
+        try container.encodeIfPresent(forwardURL, forKey: .forwardURL)
     }
 }

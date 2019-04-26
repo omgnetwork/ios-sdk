@@ -15,7 +15,7 @@ final class RequestBuilder {
     }
 
     func buildHTTPURLRequest(withEndpoint endpoint: APIEndpoint) throws -> URLRequest {
-        guard let requestURL = URL(string: self.configuration.baseURL)?.appendingPathComponent(endpoint.path) else {
+        guard let requestURL = URL(string: self.configuration.baseAPIURL)?.appendingPathComponent(endpoint.path) else {
             throw OMGError.configuration(message: "Invalid base url")
         }
 
@@ -37,7 +37,7 @@ final class RequestBuilder {
     }
 
     func buildWebsocketRequest() throws -> URLRequest {
-        guard let url = URL(string: self.configuration.baseURL + "/socket") else {
+        guard let url = URL(string: self.configuration.baseAPIURL + "/socket") else {
             throw OMGError.configuration(message: "Invalid base url")
         }
 
