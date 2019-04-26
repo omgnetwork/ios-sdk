@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 15/6/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -41,8 +41,8 @@ public final class OMGNumberFormatter {
     /// - ie: Given string: 13.37 and decimals: 2 will return a number equivalent to 1337.
     public func number(from string: String, decimals: Int) -> BigInt? {
         guard string != "" else { return nil }
-        guard let index = string.index(where: { String($0) == decimalSeparator }) else {
-            return BigInt(string).flatMap({ $0 * BigInt(10).power(decimals) })
+        guard let index = string.firstIndex(where: { String($0) == decimalSeparator }) else {
+            return BigInt(string).flatMap { $0 * BigInt(10).power(decimals) }
         }
         let nonFractionalDigits = string.distance(from: string.startIndex, to: index)
         let fractionalDigits = string.distance(from: string.index(after: index), to: string.endIndex)
@@ -123,7 +123,7 @@ public final class OMGNumberFormatter {
         if digits < decimals {
             string = String(repeating: "0", count: decimals - digits) + string
         }
-        if let lastNonZeroIndex = string.reversed().index(where: { $0 != "0" })?.base {
+        if let lastNonZeroIndex = string.reversed().firstIndex(where: { $0 != "0" })?.base {
             let numberOfZeros = string.distance(from: string.startIndex, to: lastNonZeroIndex)
             if numberOfZeros > self.minFractionDigits {
                 let newEndIndex = string.index(string.startIndex, offsetBy: numberOfZeros - minFractionDigits)

@@ -3,10 +3,10 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
-protocol SocketSendable: class {
+protocol SocketSendable: AnyObject {
     func send(topic: String, event: SocketEventSend) -> SocketMessage
 }
 
@@ -22,16 +22,16 @@ struct SocketChannel {
     }
 
     func join() {
-        self.socket?.send(topic: self.topic, event: .join).onSuccess({ _ in
+        self.socket?.send(topic: self.topic, event: .join).onSuccess { _ in
             self.dispatcher?.dispatchJoin()
-        })
+        }
     }
 
     func leave(onSuccess: @escaping (() -> Void)) {
-        self.socket?.send(topic: self.topic, event: .leave).onSuccess({ _ in
+        self.socket?.send(topic: self.topic, event: .leave).onSuccess { _ in
             self.dispatcher?.dispatchLeave()
             onSuccess()
-        })
+        }
     }
 
     func dispatchEvents(forMessage message: SocketMessage) {

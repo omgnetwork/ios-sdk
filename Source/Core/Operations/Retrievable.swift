@@ -3,15 +3,15 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 11/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represent an Object that can be uniquely retrived
 public protocol Retrievable {}
 
 public extension Retrievable where Self: Decodable {
-    public typealias RetrieveRequest = Request<Self>
-    public typealias RetrieveRequestCallback = RetrieveRequest.Callback
+    typealias RetrieveRequest = Request<Self>
+    typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
     internal static func retrieve<T: APIEndpoint>(using client: HTTPAPI,

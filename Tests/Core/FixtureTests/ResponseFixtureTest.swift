@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 10/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -18,7 +18,7 @@ class ResponseFixtureTest: FixtureTestCase {
             switch result {
             case let .success(object):
                 XCTAssertEqual(object.object, "success_test_object")
-            case let .fail(error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -34,7 +34,7 @@ class ResponseFixtureTest: FixtureTestCase {
             switch result {
             case .success(data: _):
                 XCTFail("Should not succeed")
-            case let .fail(error):
+            case let .failure(error):
                 XCTAssertEqual(error.description, "error_message")
             }
         }

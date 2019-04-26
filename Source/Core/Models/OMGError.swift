@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a SDK error
@@ -40,6 +40,8 @@ public enum OMGError: Error {
                 return "decoding error: \(context.debugDescription)"
             case let .valueNotFound(_, context):
                 return "decoding error: \(context.debugDescription)"
+            @unknown default:
+                return "unexpected decoding error"
             }
 
         case let .api(error):

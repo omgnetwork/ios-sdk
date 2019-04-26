@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 25/6/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -16,7 +16,7 @@ class DecodingFixtureTests: FixtureTestCase {
         let request: Request<TestObject>? = self.testClient.request(toEndpoint: endpoint) { result in
             switch result {
             case .success(data: _): XCTFail("Excpected a decoding error")
-            case let .fail(error: error):
+            case let .failure(error):
                 defer { e.fulfill() }
                 XCTAssertEqual(error.message, "decoding error: Expected to decode String but found a number instead.")
             }

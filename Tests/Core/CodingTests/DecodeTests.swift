@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 13/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -12,7 +12,7 @@ import XCTest
 class DecodeTests: XCTestCase {
     let jsonDecoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         return jsonDecoder
     }()
 
@@ -57,14 +57,14 @@ class DecodeTests: XCTestCase {
     func testFailsToDecodeANumberWith39Digits() {
         do {
             let jsonData = try self.jsonData(withFileName: "bigint_invalid")
-            XCTAssertThrowsError(try self.jsonDecoder.decode(TestBigUInt.self, from: jsonData), "Failed to decode value", { error -> Void in
+            XCTAssertThrowsError(try self.jsonDecoder.decode(TestBigUInt.self, from: jsonData), "Failed to decode value") { error -> Void in
                 switch error {
                 case let DecodingError.dataCorrupted(context):
                     XCTAssertEqual(context.debugDescription, "Invalid number")
                 default:
                     XCTFail("Should raise a data corrupted error")
                 }
-            })
+            }
         } catch _ {
             XCTFail("Should raise a decoding error")
         }
@@ -72,7 +72,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         do {
             let jsonData = try self.jsonData(withFileName: "dates")
             let decodedData = try self.jsonDecoder.decode(TestDate.self, from: jsonData)
@@ -89,7 +89,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomInvalidDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         do {
             let jsonData = try self.jsonData(withFileName: "dates_invalid")
             _ = try self.jsonDecoder.decode(TestDateInvalid.self, from: jsonData)
@@ -182,7 +182,7 @@ class DecodeTests: XCTestCase {
             switch decodedData.data {
             case let .success(data: content):
                 XCTAssertEqual(content["a_key"], "a_value")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -203,7 +203,7 @@ class DecodeTests: XCTestCase {
                 XCTAssertTrue(list.count == 2)
                 XCTAssertEqual(list[0], "value_1")
                 XCTAssertEqual(list[1], "value_2")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -229,7 +229,7 @@ class DecodeTests: XCTestCase {
                 XCTAssertEqual(pagination.perPage, 10)
                 XCTAssertEqual(pagination.isFirstPage, true)
                 XCTAssertEqual(pagination.isLastPage, true)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {

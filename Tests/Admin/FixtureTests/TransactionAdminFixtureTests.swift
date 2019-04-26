@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 19/9/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -24,7 +24,7 @@ class TransactionAdminFixtureTests: FixtureAdminTestCase {
                     let transactions = paginatedList.data
                     XCTAssertEqual(transactions.first?.id, "txn_01cqr309xnwa2qwdk4dqaqrbs6")
                     XCTAssertEqual(transactions[1].id, "txn_01cqr2yx2ns2kdysat3h7075a0")
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }
@@ -65,7 +65,7 @@ class TransactionAdminFixtureTests: FixtureAdminTestCase {
                 XCTAssertEqual(transaction.to.token.id, "tok_NTN_01cqx8vhhj1h9mb1mw8hj5vs48")
                 XCTAssertEqual(transaction.exchange.exchangeAccountId!, "acc_01cqwwqz8zpsgta8rsm244w8rr")
                 XCTAssertEqual(transaction.exchange.exchangeWalletAddress!, "dqhg022708121978")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

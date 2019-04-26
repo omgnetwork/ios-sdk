@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Thibault Denizet on 12/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a wallet containing a list of balances
@@ -66,8 +66,8 @@ extension Wallet: Decodable {
 }
 
 extension Wallet: Hashable {
-    public var hashValue: Int {
-        return self.address.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.address)
     }
 
     public static func == (lhs: Wallet, rhs: Wallet) -> Bool {

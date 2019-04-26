@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 18/6/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -54,7 +54,7 @@ extension KeyedDecodingContainerProtocol {
         // https://bugs.swift.org/browse/SR-7054
         // This is a workaround where we first try to decode the number as a UInt and fallback to Decimal if it fails.
         do {
-            parsedBigInt = BigInt(String((try self.decode(UInt.self, forKey: key))))
+            parsedBigInt = BigInt(String(try self.decode(UInt.self, forKey: key)))
         } catch _ {
             do {
                 parsedBigInt = BigInt((try self.decode(Decimal.self, forKey: key)).description)
@@ -150,7 +150,7 @@ extension UnkeyedDecodingContainer {
 
 extension KeyedEncodingContainerProtocol where Key == JSONCodingKeys {
     mutating func encode(_ value: [String: Any]) throws {
-        try value.forEach({ key, value in
+        try value.forEach { key, value in
             let key = JSONCodingKeys(key: key)
             switch value {
             case let value as Bool:
@@ -173,7 +173,7 @@ extension KeyedEncodingContainerProtocol where Key == JSONCodingKeys {
                                                  EncodingError.Context(codingPath: codingPath + [key],
                                                                        debugDescription: "Invalid JSON value"))
             }
-        })
+        }
     }
 }
 
@@ -231,7 +231,7 @@ extension KeyedEncodingContainerProtocol {
 
 extension UnkeyedEncodingContainer {
     mutating func encode(_ value: [Any]) throws {
-        try value.enumerated().forEach({ index, value in
+        try value.enumerated().forEach { index, value in
             switch value {
             case let value as Bool:
                 try encode(value)
@@ -249,12 +249,12 @@ extension UnkeyedEncodingContainer {
             case Optional<Any>.none:
                 try encodeNil()
             default:
-                let keys = JSONCodingKeys(intValue: index).map({ [$0] }) ?? []
+                let keys = JSONCodingKeys(intValue: index).map { [$0] } ?? []
                 throw EncodingError.invalidValue(value,
                                                  EncodingError.Context(codingPath: codingPath + keys,
                                                                        debugDescription: "Invalid JSON value"))
             }
-        })
+        }
     }
 
     mutating func encodeJSONDictionary(_ value: [String: Any]) throws {

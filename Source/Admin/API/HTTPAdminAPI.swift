@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 8/8/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 public class HTTPAdminAPI: HTTPAPI {
@@ -35,9 +35,9 @@ extension HTTPAdminAPI {
                 switch result {
                 case let .success(data: authenticationToken):
                     self.config.credentials.update(withAuthenticationToken: authenticationToken)
-                    callback(.success(data: authenticationToken))
-                case let .fail(error):
-                    callback(.fail(error: error))
+                    callback(.success(authenticationToken))
+                case let .failure(error):
+                    callback(.failure(error))
                 }
             }
         return request
@@ -55,9 +55,9 @@ extension HTTPAdminAPI {
             switch result {
             case let .success(data: data):
                 self.config.credentials.invalidate()
-                callback(.success(data: data))
-            case let .fail(error):
-                callback(.fail(error: error))
+                callback(.success(data))
+            case let .failure(error):
+                callback(.failure(error))
             }
         }
         return request

@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 func omiseGOWarn(_ message: String) {
@@ -16,7 +16,7 @@ func omiseGOInfo(_ message: String) {
 
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
-    jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+    jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
     return try jsonDecoder.decode(ObjectType.self, from: data)
 }
 

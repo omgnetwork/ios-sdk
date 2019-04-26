@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 13/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -20,14 +20,16 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
             amount: 1337,
             address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
             correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-            status: .valid)
+            status: .valid
+        )
         let params = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
             amount: nil,
             idempotencyToken: "123",
             correlationId: nil,
-            metadata: [:])!
+            metadata: [:]
+        )!
         let request =
             TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }
@@ -60,7 +62,7 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
                     XCTAssertEqual(transactionConsumption.expiredAt, nil)
                     XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                     XCTAssertTrue(transactionConsumption.metadata.isEmpty)
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }
@@ -77,7 +79,7 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
             switch result {
             case let .success(data: transactionConsumption):
                 XCTAssertEqual(transactionConsumption.status, .cancelled)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -120,7 +122,7 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
                 XCTAssertEqual(transactionConsumption.expiredAt, nil)
                 XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertTrue(transactionConsumption.metadata.isEmpty)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -163,7 +165,7 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
                 XCTAssertEqual(transactionConsumption.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertTrue(transactionConsumption.metadata.isEmpty)
                 XCTAssertTrue(transactionConsumption.encryptedMetadata.isEmpty)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

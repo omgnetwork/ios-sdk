@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents an API error
@@ -219,8 +219,8 @@ extension APIErrorCode: RawRepresentable {
 }
 
 extension APIErrorCode: Hashable {
-    public var hashValue: Int {
-        return self.code.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.code)
     }
 
     public static func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {

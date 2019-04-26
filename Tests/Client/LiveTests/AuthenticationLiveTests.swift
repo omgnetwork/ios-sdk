@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 6/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -21,7 +21,7 @@ class AuthenticationLiveTests: LiveClientTestCase {
             switch response {
             case .success(data: _):
                 XCTFail("Call shouldn't succeed with an invalid authentication token")
-            case let .fail(error: error):
+            case let .failure(error):
                 switch error {
                 case let .api(apiError: apiError) where apiError.isAuthorizationError():
                     XCTAssertEqual(apiError.code, .authenticationTokenNotFound)
@@ -45,7 +45,7 @@ class AuthenticationLiveTests: LiveClientTestCase {
             switch response {
             case .success(data: _):
                 XCTFail("Call shouldn't succeed with an invalid authentication token")
-            case let .fail(error: error):
+            case let .failure(error):
                 switch error {
                 case let .api(apiError: apiError) where apiError.isAuthorizationError():
                     XCTAssertEqual(apiError.code, .invalidAPIKey)

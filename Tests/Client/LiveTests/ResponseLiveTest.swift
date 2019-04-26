@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 18/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -18,7 +18,7 @@ class ResponseLiveTest: LiveClientTestCase {
             switch result {
             case .success(data: _):
                 XCTFail("Should not succeed")
-            case let .fail(error):
+            case let .failure(error):
                 switch error {
                 case let .api(apiError: apiError):
                     XCTAssertEqual(apiError.code, .endPointNotFound)

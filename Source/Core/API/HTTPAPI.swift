@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents an HTTPAPI that should be initialized using a Configuration
@@ -35,18 +35,22 @@ public class HTTPAPI {
             return try request.start()
         } catch let error as OMGError {
             performCallback {
-                callback?(.fail(error: error))
+                callback?(.failure(error))
             }
         } catch let error as EncodingError {
             switch error {
             case let .invalidValue(_, context):
                 performCallback {
-                    callback?(.fail(error: OMGError.unexpected(message: context.debugDescription)))
+                    callback?(.failure(.unexpected(message: context.debugDescription)))
+                }
+            @unknown default:
+                performCallback {
+                    callback?(.failure(.other(error: error)))
                 }
             }
         } catch _ {
             self.performCallback {
-                callback?(.fail(error: OMGError.unexpected(message: "Could not build the request")))
+                callback?(.failure(.unexpected(message: "Could not build the request")))
             }
         }
 

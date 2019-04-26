@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 22/8/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -28,7 +28,7 @@ class SignupFixtureTests: XCTestCase {
         let request = client.signup(withParams: params) { result in
             defer { expectation.fulfill() }
             switch result {
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.message)
             case .success(data: _): break
             }

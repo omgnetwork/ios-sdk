@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 18/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import Foundation
@@ -18,7 +18,7 @@ class UserLiveTests: LiveClientTestCase {
             switch result {
             case let .success(user):
                 XCTAssertNotNil(user)
-            case let .fail(error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

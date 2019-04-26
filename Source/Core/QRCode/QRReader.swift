@@ -3,13 +3,13 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 8/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import AVFoundation
 import UIKit
 
-protocol QRReaderDelegate: class {
+protocol QRReaderDelegate: AnyObject {
     func onDecodedData(decodedData: String)
     func onUserPermissionChoice(granted: Bool)
 }
@@ -83,6 +83,8 @@ class QRReader: NSObject {
                 }
             })
             return true
+        @unknown default:
+            return false
         }
     }
 }

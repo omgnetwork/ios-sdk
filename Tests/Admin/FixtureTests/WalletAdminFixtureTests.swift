@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 17/9/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -19,7 +19,7 @@ class WalletAdminFixtureTests: FixtureAdminTestCase {
             switch result {
             case let .success(data: wallet):
                 XCTAssertEqual(wallet.address, address)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -44,7 +44,7 @@ class WalletAdminFixtureTests: FixtureAdminTestCase {
                 XCTAssertEqual(wallets.count, 2)
                 XCTAssertEqual(wallets.first!.userId!, userId)
                 XCTAssertEqual(wallets[1].userId!, userId)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -69,7 +69,7 @@ class WalletAdminFixtureTests: FixtureAdminTestCase {
                 XCTAssertEqual(wallets.count, 2)
                 XCTAssertEqual(wallets.first!.accountId!, accountId)
                 XCTAssertEqual(wallets[1].accountId!, accountId)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 11/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -41,7 +41,7 @@ class UserFixtureTests: FixtureClientTestCase {
                 XCTAssertTrue(user.encryptedMetadata.isEmpty)
                 XCTAssertEqual(user.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(user.updatedAt, "2018-01-01T00:00:00Z".toDate())
-            case let .fail(error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -54,7 +54,7 @@ class UserFixtureTests: FixtureClientTestCase {
         let params = StubGenerator.resetPasswordParams()
         let request = User.resetPassword(using: self.testClient, params: params) { result in
             switch result {
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             case .success: break
             }
@@ -69,7 +69,7 @@ class UserFixtureTests: FixtureClientTestCase {
         let params = StubGenerator.updatePasswordParams()
         let request = User.updatePassword(using: self.testClient, params: params) { result in
             switch result {
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             case .success: break
             }

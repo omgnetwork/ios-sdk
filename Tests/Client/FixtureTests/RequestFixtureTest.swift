@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 13/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -28,7 +28,7 @@ class RequestFixtureTest: FixtureClientTestCase {
             XCTAssertNil(urlRequest.httpBody)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
             XCTAssertEqual(urlRequest.timeoutInterval, 6)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

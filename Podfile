@@ -5,8 +5,8 @@ def shared_pods
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   # websocket library
-  pod 'Starscream', '~> 3.0'
-  pod 'BigInt', '~> 3.1'
+  pod 'Starscream', '~> 3.1'
+  pod 'BigInt', '~> 4.0'
 end
 
 target 'OmiseGO' do

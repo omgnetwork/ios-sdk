@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 10/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -17,7 +17,7 @@ class SettingLiveTests: LiveClientTestCase {
             switch result {
             case let .success(setting):
                 XCTAssert(!setting.tokens.isEmpty)
-            case let .fail(error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

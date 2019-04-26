@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 14/9/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -26,9 +26,9 @@ class FixtureAdminAPI: HTTPAdminAPI {
                                                                      callback: callback)
             return try request.start()
         } catch let error as NSError {
-            operationQueue.addOperation { callback?(.fail(error: .other(error: error))) }
+            operationQueue.addOperation { callback?(.failure(.other(error: error))) }
         } catch let error as OMGError {
-            operationQueue.addOperation { callback?(.fail(error: error)) }
+            operationQueue.addOperation { callback?(.failure(error)) }
         }
 
         return nil

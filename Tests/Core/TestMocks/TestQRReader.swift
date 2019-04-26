@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 12/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -94,9 +94,9 @@ class TestQRVerifier: QRVerifier {
 
     func onData(data _: String, callback: @escaping (Response<TransactionRequest>) -> Void) {
         if self.success {
-            callback(Response.success(data: StubGenerator.transactionRequest()))
+            callback(Response.success(StubGenerator.transactionRequest()))
         } else {
-            callback(Response.fail(error: OMGError.api(apiError: .init(code: .other("test"), description: "test"))))
+            callback(Response.failure(OMGError.api(apiError: .init(code: .other("test"), description: "test"))))
         }
     }
 }

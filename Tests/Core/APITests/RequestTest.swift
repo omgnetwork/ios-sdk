@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 6/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -19,7 +19,7 @@ class RequestTest: XCTestCase {
             XCTAssertNil(request.task)
             _ = try request.start()
             XCTAssertNotNil(request.task)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -33,7 +33,7 @@ class RequestTest: XCTestCase {
                 defer { expectation.fulfill() }
                 switch result {
                 case .success: XCTFail("Expected failure")
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTAssertEqual(error.description, "I/O error: cancelled")
                 }
             }
@@ -44,7 +44,7 @@ class RequestTest: XCTestCase {
             request.cancel()
             self.wait(for: [expectation], timeout: 10)
             XCTAssertEqual(request.task!.state, .completed)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

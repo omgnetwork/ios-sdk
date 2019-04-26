@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 5/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -18,7 +18,8 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
             tokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
             amount: 1337,
             address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-            correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
+            correlationId: "31009545-db10-4287-82f4-afb46d9741d8"
+        )
         let request =
             TransactionRequest.create(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }
@@ -44,7 +45,7 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
                     XCTAssertNil(transactionRequest.maxConsumptionsPerIntervalPerUser)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }
@@ -58,7 +59,8 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
         let request =
             TransactionRequest.get(
                 using: self.testClient,
-                formattedId: "|8eb0160e-1c96-481a-88e1-899399cc84dc") { result in
+                formattedId: "|8eb0160e-1c96-481a-88e1-899399cc84dc"
+            ) { result in
                 defer { expectation.fulfill() }
                 switch result {
                 case let .success(data: transactionRequest):
@@ -82,7 +84,7 @@ class TransactionRequestFixtureTests: FixtureClientTestCase {
                     XCTAssertEqual(transactionRequest.maxConsumptionsPerIntervalPerUser, 1)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }

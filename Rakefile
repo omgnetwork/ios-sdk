@@ -10,6 +10,6 @@ task :changelog do
 end
 
 task :prepare_release do
-  Rake::Task["docs"].invoke
+  # Rake::Task["docs"].invoke
   Rake::Task["changelog"].invoke
 end

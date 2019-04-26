@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 22/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -158,7 +158,7 @@ class SocketDispatcherTests: XCTestCase {
         return SocketPayloadReceive(topic: "",
                                     event: event,
                                     ref: "1",
-                                    data: (object != nil ? GenericObject(object: object!) : nil),
+                                    data: object != nil ? GenericObject(object: object!) : nil,
                                     version: "1", success: false,
                                     error: .init(code: code, description: "dummy_error"))
     }

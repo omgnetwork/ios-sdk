@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import Starscream
@@ -159,7 +159,7 @@ public class SocketClient {
     }
 
     private func flushSendBuffer() {
-        guard self.webSocket.isConnected && !self.sendBuffer.isEmpty else { return }
+        guard self.webSocket.isConnected, !self.sendBuffer.isEmpty else { return }
         for data in self.sendBuffer {
             self.send(message: data)
         }

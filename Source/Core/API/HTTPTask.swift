@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by yuzushioh on2017-2018/05/11.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Protocol for api parameters

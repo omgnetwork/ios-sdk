@@ -35,8 +35,8 @@ The Client and Admin modules contain specific logic to respectively access the c
 # Requirements
 
 - iOS 10.0+
-- Xcode 10+
-- Swift 4.2
+- Xcode 10.2+
+- Swift 5.0
 
 This version of the SDK is compatible with the version `1.2.0` of the [eWallet](https://github.com/omisego/ewallet/tree/v1.2).
 
@@ -75,7 +75,7 @@ pod 'OmiseGO'
 Alternatively you can also specify a version ([read more about the Podfile] (https://guides.cocoapods.org/using/the-podfile.html)):
 
 ```ruby
-pod 'OmiseGO', '~> 1.0'
+pod 'OmiseGO', '~> 1.2'
 ```
 
 Then, run the following command:
@@ -131,7 +131,7 @@ The variables are:
 
 You can then for example run the tests with the following command:
 
-`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url" test`
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url" test`
 
 
 ---

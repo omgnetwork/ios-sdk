@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'OmiseGO'
-  s.version = '1.2.0.beta.1'
+  s.version = '1.2.0.beta.2'
   s.license = 'Apache'
   s.summary = 'The OmiseGO iOS SDK allows developers to easily interact with a node of the OmiseGO eWallet.'
   s.homepage = 'https://github.com/omisego/ios-sdk'
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/omisego/ios-sdk.git', :tag => s.version }
 
   s.platform = :ios, '10.0'
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.subspec 'Core' do |ss|
     ss.source_files = "Source/Core/**/*.swift"

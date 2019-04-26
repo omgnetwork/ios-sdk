@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 7/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -18,6 +18,5 @@ class ToolsTests: XCTestCase {
         XCTAssertEqual(customFormat, "1970 01 01 00:00:00")
     }
 
-    func testDecodingContainerProtocol() {
-    }
+    func testDecodingContainerProtocol() {}
 }

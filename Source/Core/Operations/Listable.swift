@@ -3,15 +3,15 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents an object that can be retrived in a collection
 public protocol Listable {}
 
 public extension Listable where Self: Decodable {
-    public typealias ListRequest = Request<JSONListResponse<Self>>
-    public typealias ListRequestCallback = (Response<[Self]>) -> Void
+    typealias ListRequest = Request<JSONListResponse<Self>>
+    typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
     internal static func list(using client: HTTPAPI,
@@ -20,9 +20,9 @@ public extension Listable where Self: Decodable {
         return client.request(toEndpoint: endpoint, callback: { result in
             switch result {
             case let .success(list):
-                callback(.success(data: list.data))
-            case let .fail(error):
-                callback(.fail(error: error))
+                callback(.success(list.data))
+            case let .failure(error):
+                callback(.failure(error))
             }
         })
     }
@@ -32,8 +32,8 @@ public extension Listable where Self: Decodable {
 public protocol PaginatedListable: Filterable, Sortable {}
 
 public extension PaginatedListable where Self: Decodable {
-    public typealias PaginatedListRequest = Request<JSONPaginatedListResponse<Self>>
-    public typealias PaginatedListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
+    typealias PaginatedListRequest = Request<JSONPaginatedListResponse<Self>>
+    typealias PaginatedListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
 
     @discardableResult
     internal static func list(using client: HTTPAPI,
@@ -42,9 +42,9 @@ public extension PaginatedListable where Self: Decodable {
         return client.request(toEndpoint: endpoint, callback: { result in
             switch result {
             case let .success(list):
-                callback(.success(data: list))
-            case let .fail(error):
-                callback(.fail(error: error))
+                callback(.success(list))
+            case let .failure(error):
+                callback(.failure(error))
             }
         })
     }

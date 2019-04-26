@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Thibault Denizet on 11/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -49,7 +49,7 @@ class WalletFixtureTests: FixtureClientTestCase {
                 XCTAssertEqual(wallet.account, nil)
                 XCTAssertTrue(wallet.metadata.isEmpty)
                 XCTAssertTrue(wallet.encryptedMetadata.isEmpty)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -86,7 +86,7 @@ class WalletFixtureTests: FixtureClientTestCase {
                 XCTAssertTrue(balance2.token.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance2.token.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance2.token.updatedAt, "2018-01-01T00:00:00Z".toDate())
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

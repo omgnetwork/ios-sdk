@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 5/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -16,7 +16,7 @@ class EncodeTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
+        jsonEncoder.dateEncodingStrategy = .custom { try dateEncodingStrategy(date: $0, encoder: $1) }
         if #available(iOS 11.0, *) {
             jsonEncoder.outputFormatting = .sortedKeys
         }
@@ -144,14 +144,14 @@ class EncodeTests: XCTestCase {
 
     func testBigIntFailsToEncodeWith39Digits() {
         let encodable = TestBigUInt(value: BigInt("999999999999999999999999999999999999991"))
-        XCTAssertThrowsError(try serialize(encodable), "Failed to encode value", { error -> Void in
+        XCTAssertThrowsError(try serialize(encodable), "Failed to encode value") { error -> Void in
             switch error {
             case let EncodingError.invalidValue(_, context):
                 XCTAssertEqual(context.debugDescription, "Value is exceeding the maximum encodable number")
             default:
                 XCTFail("Should raise a data corrupted error")
             }
-        })
+        }
     }
 
     func testInvalidJSONDictionaryEncoding() {
@@ -163,7 +163,7 @@ class EncodeTests: XCTestCase {
                                          optionalMetadataArray: nil,
                                          unavailableMetadata: nil,
                                          unavailableMetadataArray: nil)
-        XCTAssertThrowsError(try self.encoder.encode(metadataDummy), "Failed to encode dictionary", { error -> Void in
+        XCTAssertThrowsError(try self.encoder.encode(metadataDummy), "Failed to encode dictionary") { error -> Void in
             switch error {
             case let EncodingError.invalidValue(value, context):
                 XCTAssertEqual(value as? Data, data)
@@ -171,7 +171,7 @@ class EncodeTests: XCTestCase {
             default:
                 XCTFail("Unexpected error")
             }
-        })
+        }
     }
 
     func testInvalidJSONArrayEncoding() {
@@ -190,6 +190,8 @@ class EncodeTests: XCTestCase {
             case let .invalidValue(value, context):
                 XCTAssertEqual(value as? Data, data)
                 XCTAssertEqual(context.debugDescription, "Invalid JSON value")
+            @unknown default:
+                XCTFail("Unexpected error")
             }
 
         } catch _ {
@@ -292,10 +294,10 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                        {
-                                            "formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"
-                                        }
-            """.uglifiedEncodedString())
+                                            {
+                                                "formatted_id":"|0a8a4a98-794b-419e-b92d-514e83657e75"
+                                            }
+                """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -374,7 +376,8 @@ class EncodeTests: XCTestCase {
                 perPage: 20,
                 filters: filters,
                 sortBy: .aSortableAttribute,
-                sortDirection: .ascending)
+                sortDirection: .ascending
+            )
             let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
@@ -407,7 +410,8 @@ class EncodeTests: XCTestCase {
                 page: 1,
                 perPage: 20,
                 sortBy: .aSortableAttribute,
-                sortDirection: .ascending)
+                sortDirection: .ascending
+            )
             let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
@@ -427,8 +431,10 @@ class EncodeTests: XCTestCase {
             let transactionParams = TransactionListParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
                     sortBy: .createdAt,
-                    sortDirection: .descending),
-                address: "123")
+                    sortDirection: .descending
+                ),
+                address: "123"
+            )
             let encodedData = try self.encoder.encode(transactionParams)
             let encodedPayload = try! transactionParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
@@ -473,10 +479,10 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
                                   encoding: .utf8)!, """
-                                        {
-                                            "id":"0a8a4a98-794b-419e-b92d-514e83657e75"
-                                        }
-            """.uglifiedEncodedString())
+                                            {
+                                                "id":"0a8a4a98-794b-419e-b92d-514e83657e75"
+                                            }
+                """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 10/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 struct JSONResponse<ObjectType: Decodable> {
@@ -25,10 +25,10 @@ extension JSONResponse: Decodable {
         success = try container.decode(Bool.self, forKey: .success)
         if self.success {
             let result = try container.decode(ObjectType.self, forKey: .data)
-            data = .success(data: result)
+            data = .success(result)
         } else {
             let error = try container.decode(APIError.self, forKey: .data)
-            data = .fail(error: .api(apiError: error))
+            data = .failure(.api(apiError: error))
         }
     }
 }

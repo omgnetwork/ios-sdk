@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 10/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import Foundation
@@ -27,9 +27,9 @@ class FixtureCoreAPI: HTTPAPI {
                                                                      callback: callback)
             return try request.start()
         } catch let error as NSError {
-            operationQueue.addOperation { callback?(.fail(error: .other(error: error))) }
+            operationQueue.addOperation { callback?(.failure(.other(error: error))) }
         } catch let error as OMGError {
-            operationQueue.addOperation { callback?(.fail(error: error)) }
+            operationQueue.addOperation { callback?(.failure(error)) }
         }
 
         return nil
@@ -66,11 +66,11 @@ class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
         guard callback != nil else { return }
 
         if let error = error {
-            return performCallback(.fail(error: .other(error: error)))
+            return performCallback(.failure(.other(error: error)))
         }
 
         guard let data = data else {
-            return performCallback(.fail(error: .unexpected(message: "empty response.")))
+            return performCallback(.failure(.unexpected(message: "empty response.")))
         }
         performCallback(self.result(withData: data, statusCode: 200))
     }

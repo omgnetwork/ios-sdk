@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 11/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -34,7 +34,7 @@ class HTTPClientTests: XCTestCase {
             switch result {
             case .success(data: _):
                 XCTFail("Request should not be executed if base url is not correct")
-            case let .fail(error):
+            case let .failure(error):
                 switch error {
                 case .configuration(message: _): break
                 default: XCTFail("Error should be a configuration error")

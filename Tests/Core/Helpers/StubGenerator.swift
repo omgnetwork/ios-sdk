@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 16/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -21,7 +21,7 @@ class StubGenerator {
     private class func stub<T: Decodable>(forResource resource: String) -> T {
         let data = self.fileContent(forResource: resource)
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        decoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         return try! decoder.decode(T.self, from: data)
     }
 
@@ -57,12 +57,14 @@ class StubGenerator {
         let v: Balance = self.stub(forResource: "balance")
         return Balance(
             token: token ?? v.token,
-            amount: amount ?? v.amount)
+            amount: amount ?? v.amount
+        )
     }
 
     class func metadata(
         metadata: [String: Any]? = nil,
-        metadataArray: [Any]? = nil)
+        metadataArray: [Any]? = nil
+    )
         -> TestMetadata {
         let v: TestMetadata = self.stub(forResource: "metadata")
         return TestMetadata(metadata: metadata ?? v.metadata!,
@@ -137,7 +139,8 @@ class StubGenerator {
         exchangeAccount: Account? = nil,
         exchangeWallet: Wallet? = nil,
         metadata: [String: Any]? = nil,
-        encryptedMetadata: [String: Any]? = nil)
+        encryptedMetadata: [String: Any]? = nil
+    )
         -> TransactionConsumption {
         let v: TransactionConsumption = self.stub(forResource: "transaction_consumption")
         return TransactionConsumption(
@@ -203,7 +206,8 @@ class StubGenerator {
         maxConsumptionsPerInterval: Int? = nil,
         maxConsumptionsPerIntervalPerUser: Int? = nil,
         metadata: [String: Any]? = nil,
-        encryptedMetadata: [String: Any]? = nil)
+        encryptedMetadata: [String: Any]? = nil
+    )
         -> TransactionRequest {
         let v: TransactionRequest = self.stub(forResource: "transaction_request")
         return TransactionRequest(
@@ -248,7 +252,8 @@ class StubGenerator {
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil,
         createdAt: Date? = nil,
-        error: APIError? = nil)
+        error: APIError? = nil
+    )
         -> Transaction {
         let v: Transaction = self.stub(forResource: "transaction")
         return Transaction(
@@ -260,7 +265,8 @@ class StubGenerator {
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
             createdAt: createdAt ?? v.createdAt,
-            error: error ?? v.error)
+            error: error ?? v.error
+        )
     }
 
     class func transactionSource(
@@ -268,7 +274,8 @@ class StubGenerator {
         amount: BigInt? = nil,
         token: Token? = nil,
         user: User? = nil,
-        account: Account? = nil)
+        account: Account? = nil
+    )
         -> TransactionSource {
         let v: TransactionSource = self.stub(forResource: "transaction_source")
         return TransactionSource(address: address ?? v.address,
@@ -286,7 +293,8 @@ class StubGenerator {
         exchangeAccountId: String? = nil,
         exchangeAccount: Account? = nil,
         exchangeWalletAddress: String? = nil,
-        exchangeWallet: Wallet? = nil)
+        exchangeWallet: Wallet? = nil
+    )
         -> TransactionExchange {
         let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
         return TransactionExchange(
@@ -305,7 +313,8 @@ class StubGenerator {
         perPage: Int? = nil,
         currentPage: Int? = nil,
         isFirstPage: Bool? = nil,
-        isLastPage: Bool? = nil)
+        isLastPage: Bool? = nil
+    )
         -> Pagination {
         let v: Pagination = self.stub(forResource: "pagination")
         return Pagination(perPage: perPage ?? v.perPage,
@@ -330,7 +339,8 @@ class StubGenerator {
         maxConsumptionsPerInterval: Int? = nil,
         maxConsumptionsPerIntervalPerUser: Int? = nil,
         metadata: [String: Any] = [:],
-        encryptedMetadata: [String: Any] = [:])
+        encryptedMetadata: [String: Any] = [:]
+    )
         -> TransactionRequestCreateParams {
         return TransactionRequestCreateParams(
             type: type,
@@ -353,7 +363,8 @@ class StubGenerator {
     }
 
     class func transactionRequestGetParams(
-        formattedId: String? = "|0a8a4a98-794b-419e-b92d-514e83657e75")
+        formattedId: String? = "|0a8a4a98-794b-419e-b92d-514e83657e75"
+    )
         -> TransactionRequestGetParams {
         return TransactionRequestGetParams(formattedId: formattedId!)
     }
@@ -366,7 +377,8 @@ class StubGenerator {
         idempotencyToken: String = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
         expirationDate _: Date? = Date(timeIntervalSince1970: 0),
-        metadata: [String: Any] = [:]) -> TransactionConsumptionParams {
+        metadata: [String: Any] = [:]
+    ) -> TransactionConsumptionParams {
         return TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: address,
@@ -386,7 +398,8 @@ class StubGenerator {
         socketTopic: String? = nil,
         encryptedMetadata: [String: Any]? = nil,
         createdAt: Date? = nil,
-        updatedAt: Date? = nil)
+        updatedAt: Date? = nil
+    )
         -> User {
         let v: User = self.stub(forResource: "user")
         return User(
@@ -407,7 +420,8 @@ class StubGenerator {
         perPage: Int? = 20,
         filters: FilterParams<T>? = nil,
         sortBy: T.SortableFields,
-        sortDirection: SortDirection? = .ascending)
+        sortDirection: SortDirection? = .ascending
+    )
         -> PaginatedListParams<T> {
         return PaginatedListParams<T>(page: page!,
                                       perPage: perPage!,
@@ -418,7 +432,8 @@ class StubGenerator {
 
     class func transactionListParams(
         paginationParams: PaginatedListParams<Transaction>? = StubGenerator.paginatedListParams(sortBy: .id),
-        address: String? = nil)
+        address: String? = nil
+    )
         -> TransactionListParams {
         return TransactionListParams(paginatedListParams: paginationParams!,
                                      address: address)
@@ -431,7 +446,8 @@ class StubGenerator {
         data: GenericObject? = nil,
         version: String? = nil,
         error: APIError? = nil,
-        success: Bool? = nil) -> SocketPayloadReceive {
+        success: Bool? = nil
+    ) -> SocketPayloadReceive {
         let v: SocketPayloadReceive = self.stub(forResource: "socket_response")
         return SocketPayloadReceive(topic: topic ?? v.topic,
                                     event: event ?? v.event,
@@ -452,7 +468,8 @@ class StubGenerator {
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil,
         createdAt: Date? = nil,
-        updatedAt: Date? = nil) -> Account {
+        updatedAt: Date? = nil
+    ) -> Account {
         let v: Account = self.stub(forResource: "account")
         return Account(
             id: id ?? v.id,
@@ -464,7 +481,8 @@ class StubGenerator {
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
             createdAt: createdAt ?? v.createdAt,
-            updatedAt: updatedAt ?? v.updatedAt)
+            updatedAt: updatedAt ?? v.updatedAt
+        )
     }
 
     class func exchangePair(
@@ -476,7 +494,8 @@ class StubGenerator {
         toToken: Token? = nil,
         rate: Double? = nil,
         createdAt: Date? = nil,
-        updatedAt: Date? = nil) -> ExchangePair {
+        updatedAt: Date? = nil
+    ) -> ExchangePair {
         let v: ExchangePair = self.stub(forResource: "exchange_pair")
         return ExchangePair(
             id: id ?? v.id,
@@ -487,12 +506,14 @@ class StubGenerator {
             toToken: toToken ?? v.toToken,
             rate: rate ?? v.rate,
             createdAt: createdAt ?? v.createdAt,
-            updatedAt: updatedAt ?? v.updatedAt)
+            updatedAt: updatedAt ?? v.updatedAt
+        )
     }
 
     class func resetPasswordParams(
         email: String = "email@example.com",
-        redirectURL: String = "http://localhost:4000") -> UserResetPasswordParams {
+        redirectURL: String = "http://localhost:4000"
+    ) -> UserResetPasswordParams {
         return UserResetPasswordParams(email: email, redirectUrl: redirectURL)
     }
 
@@ -500,7 +521,8 @@ class StubGenerator {
         email: String = "email@example.com",
         token: String = "XXXXXXXXXXXXXXX",
         password: String = "password",
-        passwordConfirmation _: String = "password") -> UserUpdatePasswordParams {
+        passwordConfirmation _: String = "password"
+    ) -> UserUpdatePasswordParams {
         return UserUpdatePasswordParams(email: email,
                                         token: token,
                                         password: password,

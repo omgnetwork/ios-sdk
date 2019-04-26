@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import AVFoundation
@@ -55,10 +55,10 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
                 guard let self = self else { return }
                 self.onLoadingStateChange?(false)
                 switch result {
-                case let .success(data: transactionRequest):
-                    self.loadedIds = self.loadedIds.filter({ $0 != formattedId })
+                case let .success(transactionRequest):
+                    self.loadedIds = self.loadedIds.filter { $0 != formattedId }
                     self.onGetTransactionRequest?(transactionRequest)
-                case let .fail(error: error):
+                case let .failure(error):
                     self.startScanning()
                     self.onError?(error)
                 }

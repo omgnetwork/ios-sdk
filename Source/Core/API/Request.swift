@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// Represents a cancellable request
@@ -41,17 +41,17 @@ public class Request<ResultType: Decodable> {
         guard self.callback != nil else { return }
 
         if let error = error {
-            self.performCallback(.fail(error: .other(error: error)))
+            self.performCallback(.failure(.other(error: error)))
             return
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            self.performCallback(.fail(error: .unexpected(message: "no error and no response.")))
+            self.performCallback(.failure(.unexpected(message: "no error and no response.")))
             return
         }
 
         guard let data = data else {
-            self.performCallback(.fail(error: .unexpected(message: "empty response.")))
+            self.performCallback(.failure(.unexpected(message: "empty response.")))
             return
         }
         self.performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
@@ -59,7 +59,7 @@ public class Request<ResultType: Decodable> {
 
     func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
         guard [200, 500].contains(statusCode) else {
-            return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
+            return .failure(.unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
         do {
             if self.client.config.debugLog {
@@ -68,9 +68,9 @@ public class Request<ResultType: Decodable> {
             let response: JSONResponse<ResultType> = try deserializeData(data)
             return response.data
         } catch let error as DecodingError {
-            return .fail(error: .decoding(underlyingError: error))
-        } catch let error {
-            return .fail(error: .other(error: error))
+            return .failure(.decoding(underlyingError: error))
+        } catch {
+            return .failure(.other(error: error))
         }
     }
 

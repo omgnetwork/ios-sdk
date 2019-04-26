@@ -3,17 +3,17 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 /// A protocol containing the websocket connection events
-public protocol SocketConnectionDelegate: class {
+public protocol SocketConnectionDelegate: AnyObject {
     func didConnect()
     func didDisconnect(_ error: OMGError?)
 }
 
 /// The root protocol of all events that are available when listening any topic
-public protocol EventDelegate: class {
+public protocol EventDelegate: AnyObject {
     func didStartListening()
     func didStopListening()
     func onError(_ error: APIError)

@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 7/8/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 extension TransactionConsumption {

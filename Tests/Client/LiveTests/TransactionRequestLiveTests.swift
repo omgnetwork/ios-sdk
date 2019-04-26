@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 23/2/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -135,11 +135,13 @@ extension TransactionRequestLiveTests {
             expirationDate: Date().addingTimeInterval(60),
             allowAmountOverride: true,
             maxConsumptionsPerUser: 5,
-            metadata: ["a_key": "a_value"])!
+            metadata: ["a_key": "a_value"]
+        )!
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.create(
             using: self.testClient,
-            params: transactionRequestParams) { result in
+            params: transactionRequestParams
+        ) { result in
             defer { generateExpectation.fulfill() }
             switch result {
             case let .success(data: transactionRequest):
@@ -148,7 +150,7 @@ extension TransactionRequestLiveTests {
                 XCTAssertEqual(transactionRequest.amount, 1)
                 XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
                 XCTAssertEqual(transactionRequest.maxConsumptionsPerUser, 5)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -162,7 +164,8 @@ extension TransactionRequestLiveTests {
         let getExpectation = self.expectation(description: "Get transaction request")
         let getRequest = TransactionRequest.get(
             using: self.testClient,
-            formattedId: formattedId) { result in
+            formattedId: formattedId
+        ) { result in
             defer { getExpectation.fulfill() }
             switch result {
             case let .success(data: transactionRequest):
@@ -171,7 +174,7 @@ extension TransactionRequestLiveTests {
                 XCTAssertEqual(transactionRequest.token.id, self.validTokenId)
                 XCTAssertEqual(transactionRequest.amount, 1)
                 XCTAssertEqual(transactionRequest.correlationId, creationCorrelationId)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -189,11 +192,13 @@ extension TransactionRequestLiveTests {
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
-            metadata: ["a_key": "a_value"])
+            metadata: ["a_key": "a_value"]
+        )
         var transactionConsumptionResult: TransactionConsumption?
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,
-            params: transactionConsumptionParams!) { result in
+            params: transactionConsumptionParams!
+        ) { result in
             defer { consumeExpectation.fulfill() }
             switch result {
             case let .success(data: transactionConsumption):
@@ -213,7 +218,7 @@ extension TransactionRequestLiveTests {
                 } else {
                     XCTFail("Should raise a same address error")
                 }
-            case let .fail(error: error):
+            case let .failure(error):
                 if transactionRequest.requireConfirmation {
                     XCTFail("\(error)")
                 } else {
@@ -275,7 +280,7 @@ extension TransactionRequestLiveTests {
             switch result {
             case .success:
                 XCTFail("Shouldn't succeed as we're trying to transfer between the same address")
-            case let .fail(error: error):
+            case let .failure(error):
                 switch error {
                 case let .api(apiError: apiError): XCTAssertEqual(apiError.code, .transactionSameAddress)
                 default: XCTFail("Expected to receive same_address error")
@@ -294,7 +299,7 @@ extension TransactionRequestLiveTests {
             case let .success(data: transactionConsumption):
                 XCTAssertEqual(transactionConsumption.status, .rejected)
                 XCTAssertNotNil(transactionConsumption.rejectedAt)
-            case .fail:
+            case .failure:
                 XCTFail("Shouldn't receive error")
             }
         }

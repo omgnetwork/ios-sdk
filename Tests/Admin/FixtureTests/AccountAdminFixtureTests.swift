@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 18/9/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -25,7 +25,7 @@ class AccountAdminFixtureTests: FixtureAdminTestCase {
                 XCTAssertEqual(accounts.count, 2)
                 XCTAssertEqual(accounts.first!.id, "acc_01cnfz5sh5zmhx4xwd6m1rethy")
                 XCTAssertEqual(accounts[1].id, "acc_01cnnna53f35n80pnmbf730s29")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
@@ -41,7 +41,7 @@ class AccountAdminFixtureTests: FixtureAdminTestCase {
             switch result {
             case let .success(data: account):
                 XCTAssertEqual(account.id, "acc_01cnfz5sh5zmhx4xwd6m1rethy")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }

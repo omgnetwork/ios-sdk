@@ -3,7 +3,7 @@
 //  OmiseGO
 //
 //  Created by Mederic Petit on 7/8/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 extension Wallet {
@@ -34,12 +34,12 @@ extension Wallet {
             switch response {
             case let .success(data: wallets):
                 if wallets.isEmpty {
-                    callback(Response.fail(error: OMGError.unexpected(message: "No wallet received.")))
+                    callback(Response.failure(OMGError.unexpected(message: "No wallet received.")))
                 } else {
-                    callback(.success(data: wallets.first!))
+                    callback(.success(wallets.first!))
                 }
-            case let .fail(error: error):
-                callback(.fail(error: error))
+            case let .failure(error):
+                callback(.failure(error))
             }
 
         })

@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 21/3/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -31,7 +31,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -46,7 +46,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -60,7 +60,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

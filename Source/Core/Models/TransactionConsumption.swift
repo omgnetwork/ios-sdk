@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 13/2/2018.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -163,8 +163,8 @@ extension TransactionConsumption: Decodable {
 }
 
 extension TransactionConsumption: Hashable {
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: TransactionConsumption, rhs: TransactionConsumption) -> Bool {

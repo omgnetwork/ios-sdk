@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 14/9/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
