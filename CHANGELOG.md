@@ -1,8 +1,15 @@
 # Change Log
 
-## [Unreleased](https://github.com/omisego/ios-sdk/tree/HEAD)
+## [1.2.0.beta.2](https://github.com/omisego/ios-sdk/tree/1.2.0.beta.2) (2019-04-26)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.2.0.beta.1...1.2.0.beta.2)
 
-[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.1...HEAD)
+**Merged pull requests:**
+
+- Update reset password with new params [\#125](https://github.com/omisego/ios-sdk/pull/125) ([mederic-p](https://github.com/mederic-p))
+- Update to swift 5 [\#124](https://github.com/omisego/ios-sdk/pull/124) ([mederic-p](https://github.com/mederic-p))
+
+## [1.2.0.beta.1](https://github.com/omisego/ios-sdk/tree/1.2.0.beta.1) (2019-03-20)
+[Full Changelog](https://github.com/omisego/ios-sdk/compare/1.1.1...1.2.0.beta.1)
 
 **Closed issues:**
 
@@ -11,6 +18,7 @@
 
 **Merged pull requests:**
 
+- Prepare 1.1.2 release [\#121](https://github.com/omisego/ios-sdk/pull/121) ([mederic-p](https://github.com/mederic-p))
 - Add reset and update password for end users [\#120](https://github.com/omisego/ios-sdk/pull/120) ([mederic-p](https://github.com/mederic-p))
 - 117 update request consumption [\#119](https://github.com/omisego/ios-sdk/pull/119) ([mederic-p](https://github.com/mederic-p))
 

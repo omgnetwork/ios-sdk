@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |ss|
     ss.source_files = "Source/Core/**/*.swift"
-    ss.dependency 'Starscream', '~> 3.0'
-    ss.dependency 'BigInt', '~> 3.1'
+    ss.dependency 'Starscream', '~> 3.1'
+    ss.dependency 'BigInt', '~> 4.0'
   end
 
   s.subspec 'Client' do |ss|
