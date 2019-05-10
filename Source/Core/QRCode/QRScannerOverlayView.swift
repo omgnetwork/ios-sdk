@@ -13,10 +13,6 @@ class QRScannerOverlayView: UIView {
         let outlineLayer = CAShapeLayer()
         outlineLayer.backgroundColor = UIColor.clear.cgColor
         outlineLayer.fillColor = UIColor.clear.cgColor
-        outlineLayer.strokeColor = UIColor.white.cgColor
-        outlineLayer.lineWidth = 2
-        outlineLayer.lineDashPattern = [5.0, 4.0]
-        outlineLayer.lineDashPhase = 0
         return outlineLayer
     }()
 
